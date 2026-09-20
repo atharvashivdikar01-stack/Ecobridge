@@ -1,0 +1,23 @@
+{
+  "name": "@ecobridge/ui",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "eslint src/"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@ecobridge/eslint-config": "workspace:*",
+    "@ecobridge/tsconfig": "workspace:*",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.0"
+  }
+}
