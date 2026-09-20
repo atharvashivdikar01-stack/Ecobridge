@@ -1,0 +1,25 @@
+{
+  "name": "@ecobridge/collector-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@ecobridge/api-contracts": "workspace:*",
+    "@ecobridge/sync-engine": "workspace:*",
+    "@ecobridge/ai-core": "workspace:*",
+    "@ecobridge/crypto-traceability": "workspace:*",
+    "@ecobridge/i18n": "workspace:*"
+  },
+  "devDependencies": {
+    "@ecobridge/eslint-config": "workspace:*",
+    "@ecobridge/tsconfig": "workspace:*"
+  }
+}
