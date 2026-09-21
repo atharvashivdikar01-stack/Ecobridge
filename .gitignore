@@ -1,0 +1,12 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Android
+.gradle/
+build/
+local.properties
+.idea/
+*.apk
