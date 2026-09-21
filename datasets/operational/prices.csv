@@ -1,0 +1,193 @@
+price_id,category_id,sub_category,location,recorded_at,prevailing_buying_price,selling_quoted_price,unit_of_measurement,market_range_min,market_range_max,recycler_id,source_type
+PRC_00001,CAT_CRT,Standard CRT Monitors & TVs,Mumbai - Dharavi Hub,2025-11-02T00:00:00+00:00,12.51,23.3,kg,11.26,26.79,N/A,field
+PRC_00002,CAT_CRT,Standard CRT Monitors & TVs,Mumbai - Dharavi Hub,2026-01-29T00:00:00+00:00,15.21,25.51,kg,13.69,29.34,REC_MH_THANE_AGGR_008,recycler
+PRC_00003,CAT_CRT,Standard CRT Monitors & TVs,Mumbai - Dharavi Hub,2026-01-26T00:00:00+00:00,14.09,21.7,kg,12.68,24.95,N/A,synthetic
+PRC_00004,CAT_CRT,Standard CRT Monitors & TVs,Mumbai - Kurla Industrial,2026-01-10T00:00:00+00:00,14.89,19.7,kg,13.4,22.65,N/A,field
+PRC_00005,CAT_CRT,Standard CRT Monitors & TVs,Mumbai - Kurla Industrial,2026-01-22T00:00:00+00:00,15.82,23.02,kg,14.24,26.47,REC_MH_ECORECO_001,recycler
+PRC_00006,CAT_CRT,Standard CRT Monitors & TVs,Mumbai - Kurla Industrial,2025-11-11T00:00:00+00:00,16.49,25.85,kg,14.84,29.73,N/A,synthetic
+PRC_00007,CAT_CRT,Standard CRT Monitors & TVs,Navi Mumbai - TTC Mahape,2025-12-07T00:00:00+00:00,12.08,21.8,kg,10.87,25.07,N/A,field
+PRC_00008,CAT_CRT,Standard CRT Monitors & TVs,Navi Mumbai - TTC Mahape,2025-12-31T00:00:00+00:00,15.55,26.83,kg,14.0,30.85,REC_MH_NAGPUR_CLEAN_007,recycler
+PRC_00009,CAT_CRT,Standard CRT Monitors & TVs,Navi Mumbai - TTC Mahape,2025-09-19T00:00:00+00:00,13.7,22.36,kg,12.33,25.71,N/A,synthetic
+PRC_00010,CAT_CRT,Standard CRT Monitors & TVs,Thane - Wagle Estate,2025-11-10T00:00:00+00:00,15.25,22.15,kg,13.72,25.47,N/A,field
+PRC_00011,CAT_CRT,Standard CRT Monitors & TVs,Thane - Wagle Estate,2025-10-05T00:00:00+00:00,15.58,24.96,kg,14.02,28.7,REC_MH_ECORECO_001,recycler
+PRC_00012,CAT_CRT,Standard CRT Monitors & TVs,Thane - Wagle Estate,2025-10-08T00:00:00+00:00,12.73,26.35,kg,11.46,30.3,N/A,synthetic
+PRC_00013,CAT_CRT,Standard CRT Monitors & TVs,Pune - Bhosari MIDC,2025-12-27T00:00:00+00:00,15.48,23.73,kg,13.93,27.29,N/A,field
+PRC_00014,CAT_CRT,Standard CRT Monitors & TVs,Pune - Bhosari MIDC,2025-09-14T00:00:00+00:00,16.98,23.63,kg,15.28,27.17,REC_MH_ECORECO_001,recycler
+PRC_00015,CAT_CRT,Standard CRT Monitors & TVs,Pune - Bhosari MIDC,2025-10-27T00:00:00+00:00,13.11,22.92,kg,11.8,26.36,N/A,synthetic
+PRC_00016,CAT_CRT,Standard CRT Monitors & TVs,Pune - Swargate,2026-02-13T00:00:00+00:00,13.9,17.06,kg,12.51,19.62,N/A,field
+PRC_00017,CAT_CRT,Standard CRT Monitors & TVs,Pune - Swargate,2026-01-16T00:00:00+00:00,15.14,26.32,kg,13.63,30.27,REC_MH_THANE_AGGR_008,recycler
+PRC_00018,CAT_CRT,Standard CRT Monitors & TVs,Pune - Swargate,2025-11-29T00:00:00+00:00,12.53,23.51,kg,11.28,27.04,N/A,synthetic
+PRC_00019,CAT_CRT,Standard CRT Monitors & TVs,Nashik - Sinnar MIDC,2025-11-04T00:00:00+00:00,11.88,23.16,kg,10.69,26.63,N/A,field
+PRC_00020,CAT_CRT,Standard CRT Monitors & TVs,Nashik - Sinnar MIDC,2025-10-20T00:00:00+00:00,17.93,22.34,kg,16.14,25.69,REC_MH_THANE_AGGR_008,recycler
+PRC_00021,CAT_CRT,Standard CRT Monitors & TVs,Nashik - Sinnar MIDC,2025-10-01T00:00:00+00:00,15.77,20.68,kg,14.19,23.78,N/A,synthetic
+PRC_00022,CAT_CRT,Standard CRT Monitors & TVs,Nagpur - Butibori MIDC,2026-01-27T00:00:00+00:00,12.6,18.63,kg,11.34,21.42,N/A,field
+PRC_00023,CAT_CRT,Standard CRT Monitors & TVs,Nagpur - Butibori MIDC,2025-11-27T00:00:00+00:00,15.44,28.64,kg,13.9,32.94,REC_MH_ECOCENTRIC_005,recycler
+PRC_00024,CAT_CRT,Standard CRT Monitors & TVs,Nagpur - Butibori MIDC,2025-11-15T00:00:00+00:00,16.72,24.46,kg,15.05,28.13,N/A,synthetic
+PRC_00025,CAT_LCD_LED,Standard LCD / LED Panels,Mumbai - Dharavi Hub,2025-10-04T00:00:00+00:00,36.21,54.37,kg,32.59,62.53,N/A,field
+PRC_00026,CAT_LCD_LED,Standard LCD / LED Panels,Mumbai - Dharavi Hub,2025-11-17T00:00:00+00:00,42.02,59.22,kg,37.82,68.1,REC_MH_ECORECO_001,recycler
+PRC_00027,CAT_LCD_LED,Standard LCD / LED Panels,Mumbai - Dharavi Hub,2025-11-16T00:00:00+00:00,38.03,56.2,kg,34.23,64.63,N/A,synthetic
+PRC_00028,CAT_LCD_LED,Standard LCD / LED Panels,Mumbai - Kurla Industrial,2026-02-22T00:00:00+00:00,36.24,51.72,kg,32.62,59.48,N/A,field
+PRC_00029,CAT_LCD_LED,Standard LCD / LED Panels,Mumbai - Kurla Industrial,2025-10-01T00:00:00+00:00,42.81,58.05,kg,38.53,66.76,REC_MH_ATTERO_003,recycler
+PRC_00030,CAT_LCD_LED,Standard LCD / LED Panels,Mumbai - Kurla Industrial,2025-09-30T00:00:00+00:00,41.1,59.28,kg,36.99,68.17,N/A,synthetic
+PRC_00031,CAT_LCD_LED,Standard LCD / LED Panels,Navi Mumbai - TTC Mahape,2025-10-17T00:00:00+00:00,37.47,54.47,kg,33.72,62.64,N/A,field
+PRC_00032,CAT_LCD_LED,Standard LCD / LED Panels,Navi Mumbai - TTC Mahape,2025-11-24T00:00:00+00:00,39.18,59.14,kg,35.26,68.01,REC_MH_EINCARNATION_002,recycler
+PRC_00033,CAT_LCD_LED,Standard LCD / LED Panels,Navi Mumbai - TTC Mahape,2026-03-10T00:00:00+00:00,37.69,59.26,kg,33.92,68.15,N/A,synthetic
+PRC_00034,CAT_LCD_LED,Standard LCD / LED Panels,Thane - Wagle Estate,2025-09-19T00:00:00+00:00,38.08,51.23,kg,34.27,58.91,N/A,field
+PRC_00035,CAT_LCD_LED,Standard LCD / LED Panels,Thane - Wagle Estate,2025-12-17T00:00:00+00:00,39.41,58.68,kg,35.47,67.48,REC_MH_THANE_AGGR_008,recycler
+PRC_00036,CAT_LCD_LED,Standard LCD / LED Panels,Thane - Wagle Estate,2025-12-07T00:00:00+00:00,41.42,58.48,kg,37.28,67.25,N/A,synthetic
+PRC_00037,CAT_LCD_LED,Standard LCD / LED Panels,Pune - Bhosari MIDC,2026-02-09T00:00:00+00:00,37.85,56.35,kg,34.07,64.8,N/A,field
+PRC_00038,CAT_LCD_LED,Standard LCD / LED Panels,Pune - Bhosari MIDC,2025-12-07T00:00:00+00:00,42.68,55.77,kg,38.41,64.14,REC_MH_ECOCENTRIC_005,recycler
+PRC_00039,CAT_LCD_LED,Standard LCD / LED Panels,Pune - Bhosari MIDC,2025-12-05T00:00:00+00:00,39.48,53.17,kg,35.53,61.15,N/A,synthetic
+PRC_00040,CAT_LCD_LED,Standard LCD / LED Panels,Pune - Swargate,2025-12-21T00:00:00+00:00,35.32,53.33,kg,31.79,61.33,N/A,field
+PRC_00041,CAT_LCD_LED,Standard LCD / LED Panels,Pune - Swargate,2025-10-02T00:00:00+00:00,42.85,56.33,kg,38.57,64.78,REC_MH_THANE_AGGR_008,recycler
+PRC_00042,CAT_LCD_LED,Standard LCD / LED Panels,Pune - Swargate,2025-12-31T00:00:00+00:00,37.0,54.07,kg,33.3,62.18,N/A,synthetic
+PRC_00043,CAT_LCD_LED,Standard LCD / LED Panels,Nashik - Sinnar MIDC,2026-01-05T00:00:00+00:00,36.8,51.95,kg,33.12,59.74,N/A,field
+PRC_00044,CAT_LCD_LED,Standard LCD / LED Panels,Nashik - Sinnar MIDC,2026-02-12T00:00:00+00:00,42.49,60.45,kg,38.24,69.52,REC_MH_EINCARNATION_002,recycler
+PRC_00045,CAT_LCD_LED,Standard LCD / LED Panels,Nashik - Sinnar MIDC,2026-01-01T00:00:00+00:00,39.74,59.22,kg,35.77,68.1,N/A,synthetic
+PRC_00046,CAT_LCD_LED,Standard LCD / LED Panels,Nagpur - Butibori MIDC,2025-10-31T00:00:00+00:00,34.62,55.42,kg,31.16,63.73,N/A,field
+PRC_00047,CAT_LCD_LED,Standard LCD / LED Panels,Nagpur - Butibori MIDC,2025-10-31T00:00:00+00:00,43.04,56.31,kg,38.74,64.76,REC_MH_ECOCENTRIC_005,recycler
+PRC_00048,CAT_LCD_LED,Standard LCD / LED Panels,Nagpur - Butibori MIDC,2025-11-26T00:00:00+00:00,37.51,53.03,kg,33.76,60.98,N/A,synthetic
+PRC_00049,CAT_PCB,Standard Printed Circuit Boards (PCBs),Mumbai - Dharavi Hub,2025-11-17T00:00:00+00:00,179.61,261.22,kg,161.65,300.4,N/A,field
+PRC_00050,CAT_PCB,Standard Printed Circuit Boards (PCBs),Mumbai - Dharavi Hub,2026-01-09T00:00:00+00:00,182.09,266.41,kg,163.88,306.37,REC_MH_RECYCLEKARO_004,recycler
+PRC_00051,CAT_PCB,Standard Printed Circuit Boards (PCBs),Mumbai - Dharavi Hub,2026-02-06T00:00:00+00:00,178.79,260.68,kg,160.91,299.78,N/A,synthetic
+PRC_00052,CAT_PCB,Standard Printed Circuit Boards (PCBs),Mumbai - Kurla Industrial,2026-01-21T00:00:00+00:00,178.66,258.02,kg,160.79,296.72,N/A,field
+PRC_00053,CAT_PCB,Standard Printed Circuit Boards (PCBs),Mumbai - Kurla Industrial,2025-12-08T00:00:00+00:00,181.02,262.08,kg,162.92,301.39,REC_MH_EINCARNATION_002,recycler
+PRC_00054,CAT_PCB,Standard Printed Circuit Boards (PCBs),Mumbai - Kurla Industrial,2025-12-15T00:00:00+00:00,180.51,259.98,kg,162.46,298.98,N/A,synthetic
+PRC_00055,CAT_PCB,Standard Printed Circuit Boards (PCBs),Navi Mumbai - TTC Mahape,2026-02-17T00:00:00+00:00,179.83,257.63,kg,161.85,296.27,N/A,field
+PRC_00056,CAT_PCB,Standard Printed Circuit Boards (PCBs),Navi Mumbai - TTC Mahape,2025-11-02T00:00:00+00:00,182.55,263.46,kg,164.3,302.98,REC_MH_PUNE_GREEN_006,recycler
+PRC_00057,CAT_PCB,Standard Printed Circuit Boards (PCBs),Navi Mumbai - TTC Mahape,2026-03-08T00:00:00+00:00,181.43,262.71,kg,163.29,302.12,N/A,synthetic
+PRC_00058,CAT_PCB,Standard Printed Circuit Boards (PCBs),Thane - Wagle Estate,2025-10-21T00:00:00+00:00,179.05,259.79,kg,161.15,298.76,N/A,field
+PRC_00059,CAT_PCB,Standard Printed Circuit Boards (PCBs),Thane - Wagle Estate,2026-03-03T00:00:00+00:00,183.3,266.55,kg,164.97,306.53,REC_MH_PUNE_GREEN_006,recycler
+PRC_00060,CAT_PCB,Standard Printed Circuit Boards (PCBs),Thane - Wagle Estate,2026-01-27T00:00:00+00:00,181.98,261.08,kg,163.78,300.24,N/A,synthetic
+PRC_00061,CAT_PCB,Standard Printed Circuit Boards (PCBs),Pune - Bhosari MIDC,2025-10-11T00:00:00+00:00,181.02,256.97,kg,162.92,295.52,N/A,field
+PRC_00062,CAT_PCB,Standard Printed Circuit Boards (PCBs),Pune - Bhosari MIDC,2026-02-09T00:00:00+00:00,181.07,263.72,kg,162.96,303.28,REC_MH_ECORECO_001,recycler
+PRC_00063,CAT_PCB,Standard Printed Circuit Boards (PCBs),Pune - Bhosari MIDC,2025-12-06T00:00:00+00:00,180.35,263.1,kg,162.31,302.56,N/A,synthetic
+PRC_00064,CAT_PCB,Standard Printed Circuit Boards (PCBs),Pune - Swargate,2025-10-09T00:00:00+00:00,178.3,257.96,kg,160.47,296.65,N/A,field
+PRC_00065,CAT_PCB,Standard Printed Circuit Boards (PCBs),Pune - Swargate,2025-11-23T00:00:00+00:00,182.12,266.68,kg,163.91,306.68,REC_MH_THANE_AGGR_008,recycler
+PRC_00066,CAT_PCB,Standard Printed Circuit Boards (PCBs),Pune - Swargate,2025-12-19T00:00:00+00:00,181.5,263.37,kg,163.35,302.88,N/A,synthetic
+PRC_00067,CAT_PCB,Standard Printed Circuit Boards (PCBs),Nashik - Sinnar MIDC,2025-10-27T00:00:00+00:00,178.01,259.21,kg,160.21,298.09,N/A,field
+PRC_00068,CAT_PCB,Standard Printed Circuit Boards (PCBs),Nashik - Sinnar MIDC,2025-12-16T00:00:00+00:00,181.22,267.12,kg,163.1,307.19,REC_MH_THANE_AGGR_008,recycler
+PRC_00069,CAT_PCB,Standard Printed Circuit Boards (PCBs),Nashik - Sinnar MIDC,2025-11-23T00:00:00+00:00,179.26,261.07,kg,161.33,300.23,N/A,synthetic
+PRC_00070,CAT_PCB,Standard Printed Circuit Boards (PCBs),Nagpur - Butibori MIDC,2025-09-26T00:00:00+00:00,179.86,259.15,kg,161.87,298.02,N/A,field
+PRC_00071,CAT_PCB,Standard Printed Circuit Boards (PCBs),Nagpur - Butibori MIDC,2025-09-13T00:00:00+00:00,184.07,260.57,kg,165.66,299.66,REC_MH_PUNE_GREEN_006,recycler
+PRC_00072,CAT_PCB,Standard Printed Circuit Boards (PCBs),Nagpur - Butibori MIDC,2025-09-19T00:00:00+00:00,179.69,263.33,kg,161.72,302.83,N/A,synthetic
+PRC_00073,CAT_CABLES,Standard Copper Cables & Wires,Mumbai - Dharavi Hub,2025-10-05T00:00:00+00:00,240.39,316.81,kg,216.35,364.33,N/A,field
+PRC_00074,CAT_CABLES,Standard Copper Cables & Wires,Mumbai - Dharavi Hub,2026-01-07T00:00:00+00:00,241.38,326.59,kg,217.24,375.58,REC_MH_ECORECO_001,recycler
+PRC_00075,CAT_CABLES,Standard Copper Cables & Wires,Mumbai - Dharavi Hub,2025-12-11T00:00:00+00:00,239.87,321.54,kg,215.88,369.77,N/A,synthetic
+PRC_00076,CAT_CABLES,Standard Copper Cables & Wires,Mumbai - Kurla Industrial,2025-12-04T00:00:00+00:00,239.73,316.0,kg,215.76,363.4,N/A,field
+PRC_00077,CAT_CABLES,Standard Copper Cables & Wires,Mumbai - Kurla Industrial,2026-01-26T00:00:00+00:00,242.85,322.45,kg,218.56,370.82,REC_MH_RECYCLEKARO_004,recycler
+PRC_00078,CAT_CABLES,Standard Copper Cables & Wires,Mumbai - Kurla Industrial,2026-01-20T00:00:00+00:00,242.88,323.09,kg,218.59,371.55,N/A,synthetic
+PRC_00079,CAT_CABLES,Standard Copper Cables & Wires,Navi Mumbai - TTC Mahape,2025-10-04T00:00:00+00:00,240.46,317.56,kg,216.41,365.19,N/A,field
+PRC_00080,CAT_CABLES,Standard Copper Cables & Wires,Navi Mumbai - TTC Mahape,2025-10-20T00:00:00+00:00,242.72,321.56,kg,218.45,369.79,REC_MH_EINCARNATION_002,recycler
+PRC_00081,CAT_CABLES,Standard Copper Cables & Wires,Navi Mumbai - TTC Mahape,2025-12-07T00:00:00+00:00,241.32,324.14,kg,217.19,372.76,N/A,synthetic
+PRC_00082,CAT_CABLES,Standard Copper Cables & Wires,Thane - Wagle Estate,2025-11-20T00:00:00+00:00,241.11,316.57,kg,217.0,364.06,N/A,field
+PRC_00083,CAT_CABLES,Standard Copper Cables & Wires,Thane - Wagle Estate,2026-01-01T00:00:00+00:00,240.64,320.3,kg,216.58,368.34,REC_MH_EINCARNATION_002,recycler
+PRC_00084,CAT_CABLES,Standard Copper Cables & Wires,Thane - Wagle Estate,2025-10-16T00:00:00+00:00,242.09,320.34,kg,217.88,368.39,N/A,synthetic
+PRC_00085,CAT_CABLES,Standard Copper Cables & Wires,Pune - Bhosari MIDC,2025-10-27T00:00:00+00:00,237.12,318.78,kg,213.41,366.6,N/A,field
+PRC_00086,CAT_CABLES,Standard Copper Cables & Wires,Pune - Bhosari MIDC,2025-10-02T00:00:00+00:00,242.13,323.61,kg,217.92,372.15,REC_MH_RECYCLEKARO_004,recycler
+PRC_00087,CAT_CABLES,Standard Copper Cables & Wires,Pune - Bhosari MIDC,2025-10-05T00:00:00+00:00,239.96,317.87,kg,215.96,365.55,N/A,synthetic
+PRC_00088,CAT_CABLES,Standard Copper Cables & Wires,Pune - Swargate,2026-02-01T00:00:00+00:00,237.03,321.11,kg,213.33,369.28,N/A,field
+PRC_00089,CAT_CABLES,Standard Copper Cables & Wires,Pune - Swargate,2026-02-04T00:00:00+00:00,243.94,323.95,kg,219.55,372.54,REC_MH_THANE_AGGR_008,recycler
+PRC_00090,CAT_CABLES,Standard Copper Cables & Wires,Pune - Swargate,2026-03-10T00:00:00+00:00,241.71,323.29,kg,217.54,371.78,N/A,synthetic
+PRC_00091,CAT_CABLES,Standard Copper Cables & Wires,Nashik - Sinnar MIDC,2025-11-23T00:00:00+00:00,236.94,315.22,kg,213.25,362.5,N/A,field
+PRC_00092,CAT_CABLES,Standard Copper Cables & Wires,Nashik - Sinnar MIDC,2026-01-26T00:00:00+00:00,245.32,324.23,kg,220.79,372.86,REC_MH_ATTERO_003,recycler
+PRC_00093,CAT_CABLES,Standard Copper Cables & Wires,Nashik - Sinnar MIDC,2025-11-15T00:00:00+00:00,242.36,323.21,kg,218.12,371.69,N/A,synthetic
+PRC_00094,CAT_CABLES,Standard Copper Cables & Wires,Nagpur - Butibori MIDC,2026-01-29T00:00:00+00:00,238.06,317.65,kg,214.25,365.3,N/A,field
+PRC_00095,CAT_CABLES,Standard Copper Cables & Wires,Nagpur - Butibori MIDC,2026-01-05T00:00:00+00:00,243.28,321.13,kg,218.95,369.3,REC_MH_PUNE_GREEN_006,recycler
+PRC_00096,CAT_CABLES,Standard Copper Cables & Wires,Nagpur - Butibori MIDC,2025-09-20T00:00:00+00:00,239.86,322.22,kg,215.87,370.55,N/A,synthetic
+PRC_00097,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Mumbai - Dharavi Hub,2025-09-28T00:00:00+00:00,75.92,100.36,kg,68.33,115.41,N/A,field
+PRC_00098,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Mumbai - Dharavi Hub,2026-01-28T00:00:00+00:00,79.95,105.73,kg,71.95,121.59,REC_MH_ATTERO_003,recycler
+PRC_00099,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Mumbai - Dharavi Hub,2025-11-17T00:00:00+00:00,75.83,107.64,kg,68.25,123.79,N/A,synthetic
+PRC_00100,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Mumbai - Kurla Industrial,2025-10-16T00:00:00+00:00,73.07,100.51,kg,65.76,115.59,N/A,field
+PRC_00101,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Mumbai - Kurla Industrial,2025-10-14T00:00:00+00:00,76.26,110.48,kg,68.63,127.05,REC_MH_EINCARNATION_002,recycler
+PRC_00102,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Mumbai - Kurla Industrial,2025-09-27T00:00:00+00:00,75.55,106.58,kg,68.0,122.57,N/A,synthetic
+PRC_00103,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Navi Mumbai - TTC Mahape,2025-09-29T00:00:00+00:00,74.98,105.43,kg,67.48,121.24,N/A,field
+PRC_00104,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Navi Mumbai - TTC Mahape,2025-10-07T00:00:00+00:00,80.31,105.39,kg,72.28,121.2,REC_MH_THANE_AGGR_008,recycler
+PRC_00105,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Navi Mumbai - TTC Mahape,2026-03-06T00:00:00+00:00,74.58,109.48,kg,67.12,125.9,N/A,synthetic
+PRC_00106,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Thane - Wagle Estate,2025-10-15T00:00:00+00:00,71.84,100.8,kg,64.66,115.92,N/A,field
+PRC_00107,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Thane - Wagle Estate,2025-09-30T00:00:00+00:00,77.4,106.6,kg,69.66,122.59,REC_MH_EINCARNATION_002,recycler
+PRC_00108,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Thane - Wagle Estate,2025-12-16T00:00:00+00:00,77.1,109.54,kg,69.39,125.97,N/A,synthetic
+PRC_00109,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Pune - Bhosari MIDC,2025-11-05T00:00:00+00:00,76.41,101.89,kg,68.77,117.17,N/A,field
+PRC_00110,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Pune - Bhosari MIDC,2026-01-28T00:00:00+00:00,77.71,110.75,kg,69.94,127.36,REC_MH_EINCARNATION_002,recycler
+PRC_00111,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Pune - Bhosari MIDC,2026-01-29T00:00:00+00:00,73.73,108.55,kg,66.36,124.83,N/A,synthetic
+PRC_00112,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Pune - Swargate,2025-11-01T00:00:00+00:00,74.81,103.29,kg,67.33,118.78,N/A,field
+PRC_00113,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Pune - Swargate,2025-11-01T00:00:00+00:00,77.58,111.6,kg,69.82,128.34,REC_MH_EINCARNATION_002,recycler
+PRC_00114,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Pune - Swargate,2026-03-12T00:00:00+00:00,73.94,105.6,kg,66.55,121.44,N/A,synthetic
+PRC_00115,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Nashik - Sinnar MIDC,2025-10-08T00:00:00+00:00,73.03,103.35,kg,65.73,118.85,N/A,field
+PRC_00116,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Nashik - Sinnar MIDC,2025-12-09T00:00:00+00:00,76.92,110.1,kg,69.23,126.61,REC_MH_THANE_AGGR_008,recycler
+PRC_00117,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Nashik - Sinnar MIDC,2025-12-26T00:00:00+00:00,77.15,105.77,kg,69.44,121.64,N/A,synthetic
+PRC_00118,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Nagpur - Butibori MIDC,2025-11-24T00:00:00+00:00,73.16,105.83,kg,65.84,121.7,N/A,field
+PRC_00119,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Nagpur - Butibori MIDC,2026-02-12T00:00:00+00:00,77.28,106.96,kg,69.55,123.0,REC_MH_PUNE_GREEN_006,recycler
+PRC_00120,CAT_BATTERY,Standard Batteries (Lead-Acid & Li-Ion),Nagpur - Butibori MIDC,2025-10-30T00:00:00+00:00,73.56,106.46,kg,66.2,122.43,N/A,synthetic
+PRC_00121,CAT_MOTORS,Standard Motors & Magnet Assemblies,Mumbai - Dharavi Hub,2026-02-03T00:00:00+00:00,35.33,45.8,kg,31.8,52.67,N/A,field
+PRC_00122,CAT_MOTORS,Standard Motors & Magnet Assemblies,Mumbai - Dharavi Hub,2025-10-19T00:00:00+00:00,38.79,50.63,kg,34.91,58.22,REC_MH_PUNE_GREEN_006,recycler
+PRC_00123,CAT_MOTORS,Standard Motors & Magnet Assemblies,Mumbai - Dharavi Hub,2025-12-10T00:00:00+00:00,35.71,52.26,kg,32.14,60.1,N/A,synthetic
+PRC_00124,CAT_MOTORS,Standard Motors & Magnet Assemblies,Mumbai - Kurla Industrial,2025-11-22T00:00:00+00:00,36.13,44.63,kg,32.52,51.32,N/A,field
+PRC_00125,CAT_MOTORS,Standard Motors & Magnet Assemblies,Mumbai - Kurla Industrial,2026-02-06T00:00:00+00:00,36.18,50.09,kg,32.56,57.6,REC_MH_PUNE_GREEN_006,recycler
+PRC_00126,CAT_MOTORS,Standard Motors & Magnet Assemblies,Mumbai - Kurla Industrial,2026-01-05T00:00:00+00:00,38.09,47.01,kg,34.28,54.06,N/A,synthetic
+PRC_00127,CAT_MOTORS,Standard Motors & Magnet Assemblies,Navi Mumbai - TTC Mahape,2025-09-07T00:00:00+00:00,32.39,47.55,kg,29.15,54.68,N/A,field
+PRC_00128,CAT_MOTORS,Standard Motors & Magnet Assemblies,Navi Mumbai - TTC Mahape,2025-11-29T00:00:00+00:00,40.18,53.9,kg,36.16,61.98,REC_MH_ECORECO_001,recycler
+PRC_00129,CAT_MOTORS,Standard Motors & Magnet Assemblies,Navi Mumbai - TTC Mahape,2026-02-19T00:00:00+00:00,36.36,48.55,kg,32.72,55.83,N/A,synthetic
+PRC_00130,CAT_MOTORS,Standard Motors & Magnet Assemblies,Thane - Wagle Estate,2025-11-23T00:00:00+00:00,36.14,48.01,kg,32.53,55.21,N/A,field
+PRC_00131,CAT_MOTORS,Standard Motors & Magnet Assemblies,Thane - Wagle Estate,2025-12-23T00:00:00+00:00,36.69,49.9,kg,33.02,57.38,REC_MH_THANE_AGGR_008,recycler
+PRC_00132,CAT_MOTORS,Standard Motors & Magnet Assemblies,Thane - Wagle Estate,2025-10-20T00:00:00+00:00,37.87,48.75,kg,34.08,56.06,N/A,synthetic
+PRC_00133,CAT_MOTORS,Standard Motors & Magnet Assemblies,Pune - Bhosari MIDC,2025-09-29T00:00:00+00:00,32.48,48.01,kg,29.23,55.21,N/A,field
+PRC_00134,CAT_MOTORS,Standard Motors & Magnet Assemblies,Pune - Bhosari MIDC,2026-02-21T00:00:00+00:00,35.87,49.91,kg,32.28,57.4,REC_MH_RECYCLEKARO_004,recycler
+PRC_00135,CAT_MOTORS,Standard Motors & Magnet Assemblies,Pune - Bhosari MIDC,2025-12-20T00:00:00+00:00,34.73,51.13,kg,31.26,58.8,N/A,synthetic
+PRC_00136,CAT_MOTORS,Standard Motors & Magnet Assemblies,Pune - Swargate,2026-02-07T00:00:00+00:00,34.18,46.53,kg,30.76,53.51,N/A,field
+PRC_00137,CAT_MOTORS,Standard Motors & Magnet Assemblies,Pune - Swargate,2025-10-06T00:00:00+00:00,35.6,54.2,kg,32.04,62.33,REC_MH_PUNE_GREEN_006,recycler
+PRC_00138,CAT_MOTORS,Standard Motors & Magnet Assemblies,Pune - Swargate,2026-02-04T00:00:00+00:00,35.0,47.48,kg,31.5,54.6,N/A,synthetic
+PRC_00139,CAT_MOTORS,Standard Motors & Magnet Assemblies,Nashik - Sinnar MIDC,2025-09-12T00:00:00+00:00,32.3,46.49,kg,29.07,53.46,N/A,field
+PRC_00140,CAT_MOTORS,Standard Motors & Magnet Assemblies,Nashik - Sinnar MIDC,2025-11-01T00:00:00+00:00,39.01,53.43,kg,35.11,61.44,REC_MH_EINCARNATION_002,recycler
+PRC_00141,CAT_MOTORS,Standard Motors & Magnet Assemblies,Nashik - Sinnar MIDC,2025-09-16T00:00:00+00:00,35.11,49.65,kg,31.6,57.1,N/A,synthetic
+PRC_00142,CAT_MOTORS,Standard Motors & Magnet Assemblies,Nagpur - Butibori MIDC,2025-12-17T00:00:00+00:00,31.52,48.47,kg,28.37,55.74,N/A,field
+PRC_00143,CAT_MOTORS,Standard Motors & Magnet Assemblies,Nagpur - Butibori MIDC,2026-01-12T00:00:00+00:00,37.98,54.06,kg,34.18,62.17,REC_MH_EINCARNATION_002,recycler
+PRC_00144,CAT_MOTORS,Standard Motors & Magnet Assemblies,Nagpur - Butibori MIDC,2025-11-12T00:00:00+00:00,35.01,49.93,kg,31.51,57.42,N/A,synthetic
+PRC_00145,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Mumbai - Dharavi Hub,2025-09-19T00:00:00+00:00,18.27,23.96,kg,16.44,27.55,N/A,field
+PRC_00146,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Mumbai - Dharavi Hub,2025-11-25T00:00:00+00:00,19.0,28.67,kg,17.1,32.97,REC_MH_ECOCENTRIC_005,recycler
+PRC_00147,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Mumbai - Dharavi Hub,2026-01-24T00:00:00+00:00,20.87,28.53,kg,18.78,32.81,N/A,synthetic
+PRC_00148,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Mumbai - Kurla Industrial,2025-12-06T00:00:00+00:00,16.63,23.28,kg,14.97,26.77,N/A,field
+PRC_00149,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Mumbai - Kurla Industrial,2025-10-13T00:00:00+00:00,22.07,32.11,kg,19.86,36.93,REC_MH_PUNE_GREEN_006,recycler
+PRC_00150,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Mumbai - Kurla Industrial,2026-01-24T00:00:00+00:00,17.81,27.63,kg,16.03,31.77,N/A,synthetic
+PRC_00151,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Navi Mumbai - TTC Mahape,2025-11-15T00:00:00+00:00,19.47,28.63,kg,17.52,32.92,N/A,field
+PRC_00152,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Navi Mumbai - TTC Mahape,2025-10-04T00:00:00+00:00,18.63,30.02,kg,16.77,34.52,REC_MH_PUNE_GREEN_006,recycler
+PRC_00153,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Navi Mumbai - TTC Mahape,2026-03-10T00:00:00+00:00,18.2,27.13,kg,16.38,31.2,N/A,synthetic
+PRC_00154,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Thane - Wagle Estate,2025-09-15T00:00:00+00:00,16.88,24.62,kg,15.19,28.31,N/A,field
+PRC_00155,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Thane - Wagle Estate,2026-03-02T00:00:00+00:00,22.22,31.89,kg,20.0,36.67,REC_MH_ECOCENTRIC_005,recycler
+PRC_00156,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Thane - Wagle Estate,2025-11-21T00:00:00+00:00,18.65,29.09,kg,16.79,33.45,N/A,synthetic
+PRC_00157,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Pune - Bhosari MIDC,2025-10-24T00:00:00+00:00,15.0,26.81,kg,13.5,30.83,N/A,field
+PRC_00158,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Pune - Bhosari MIDC,2025-11-04T00:00:00+00:00,23.17,34.67,kg,20.85,39.87,REC_MH_THANE_AGGR_008,recycler
+PRC_00159,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Pune - Bhosari MIDC,2025-10-25T00:00:00+00:00,16.76,31.72,kg,15.08,36.48,N/A,synthetic
+PRC_00160,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Pune - Swargate,2025-12-10T00:00:00+00:00,18.97,24.34,kg,17.07,27.99,N/A,field
+PRC_00161,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Pune - Swargate,2026-01-13T00:00:00+00:00,22.73,35.12,kg,20.46,40.39,REC_MH_PUNE_GREEN_006,recycler
+PRC_00162,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Pune - Swargate,2025-10-25T00:00:00+00:00,20.06,29.25,kg,18.05,33.64,N/A,synthetic
+PRC_00163,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Nashik - Sinnar MIDC,2025-11-13T00:00:00+00:00,17.67,23.3,kg,15.9,26.79,N/A,field
+PRC_00164,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Nashik - Sinnar MIDC,2025-10-12T00:00:00+00:00,23.31,29.84,kg,20.98,34.32,REC_MH_THANE_AGGR_008,recycler
+PRC_00165,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Nashik - Sinnar MIDC,2026-03-08T00:00:00+00:00,20.5,31.72,kg,18.45,36.48,N/A,synthetic
+PRC_00166,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Nagpur - Butibori MIDC,2025-10-21T00:00:00+00:00,18.88,26.5,kg,16.99,30.47,N/A,field
+PRC_00167,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Nagpur - Butibori MIDC,2025-09-16T00:00:00+00:00,19.37,33.88,kg,17.43,38.96,REC_MH_ECORECO_001,recycler
+PRC_00168,CAT_PLASTICS,Standard Mixed E-Waste Plastics (ABS / HIPS),Nagpur - Butibori MIDC,2025-12-18T00:00:00+00:00,20.32,26.19,kg,18.29,30.12,N/A,synthetic
+PRC_00169,CAT_OTHER,Standard Other Electronic Scrap,Mumbai - Dharavi Hub,2026-01-31T00:00:00+00:00,21.44,31.23,kg,19.3,35.91,N/A,field
+PRC_00170,CAT_OTHER,Standard Other Electronic Scrap,Mumbai - Dharavi Hub,2025-12-29T00:00:00+00:00,25.06,33.45,kg,22.55,38.47,REC_MH_THANE_AGGR_008,recycler
+PRC_00171,CAT_OTHER,Standard Other Electronic Scrap,Mumbai - Dharavi Hub,2025-12-07T00:00:00+00:00,22.74,33.5,kg,20.47,38.52,N/A,synthetic
+PRC_00172,CAT_OTHER,Standard Other Electronic Scrap,Mumbai - Kurla Industrial,2026-01-03T00:00:00+00:00,17.84,27.69,kg,16.06,31.84,N/A,field
+PRC_00173,CAT_OTHER,Standard Other Electronic Scrap,Mumbai - Kurla Industrial,2025-09-29T00:00:00+00:00,24.84,37.56,kg,22.36,43.19,REC_MH_NAGPUR_CLEAN_007,recycler
+PRC_00174,CAT_OTHER,Standard Other Electronic Scrap,Mumbai - Kurla Industrial,2025-11-03T00:00:00+00:00,22.35,35.28,kg,20.12,40.57,N/A,synthetic
+PRC_00175,CAT_OTHER,Standard Other Electronic Scrap,Navi Mumbai - TTC Mahape,2025-11-29T00:00:00+00:00,18.77,29.5,kg,16.89,33.92,N/A,field
+PRC_00176,CAT_OTHER,Standard Other Electronic Scrap,Navi Mumbai - TTC Mahape,2026-01-13T00:00:00+00:00,20.5,38.37,kg,18.45,44.13,REC_MH_ECORECO_001,recycler
+PRC_00177,CAT_OTHER,Standard Other Electronic Scrap,Navi Mumbai - TTC Mahape,2025-09-17T00:00:00+00:00,21.03,33.73,kg,18.93,38.79,N/A,synthetic
+PRC_00178,CAT_OTHER,Standard Other Electronic Scrap,Thane - Wagle Estate,2025-10-31T00:00:00+00:00,17.03,28.45,kg,15.33,32.72,N/A,field
+PRC_00179,CAT_OTHER,Standard Other Electronic Scrap,Thane - Wagle Estate,2026-03-05T00:00:00+00:00,24.51,33.58,kg,22.06,38.62,REC_MH_ECORECO_001,recycler
+PRC_00180,CAT_OTHER,Standard Other Electronic Scrap,Thane - Wagle Estate,2025-11-24T00:00:00+00:00,21.47,33.43,kg,19.32,38.44,N/A,synthetic
+PRC_00181,CAT_OTHER,Standard Other Electronic Scrap,Pune - Bhosari MIDC,2025-11-06T00:00:00+00:00,19.72,27.43,kg,17.75,31.54,N/A,field
+PRC_00182,CAT_OTHER,Standard Other Electronic Scrap,Pune - Bhosari MIDC,2025-09-25T00:00:00+00:00,22.39,34.95,kg,20.15,40.19,REC_MH_EINCARNATION_002,recycler
+PRC_00183,CAT_OTHER,Standard Other Electronic Scrap,Pune - Bhosari MIDC,2026-01-12T00:00:00+00:00,21.47,31.04,kg,19.32,35.7,N/A,synthetic
+PRC_00184,CAT_OTHER,Standard Other Electronic Scrap,Pune - Swargate,2026-02-13T00:00:00+00:00,19.89,33.36,kg,17.9,38.36,N/A,field
+PRC_00185,CAT_OTHER,Standard Other Electronic Scrap,Pune - Swargate,2026-03-02T00:00:00+00:00,23.38,36.14,kg,21.04,41.56,REC_MH_NAGPUR_CLEAN_007,recycler
+PRC_00186,CAT_OTHER,Standard Other Electronic Scrap,Pune - Swargate,2025-11-11T00:00:00+00:00,18.54,32.49,kg,16.69,37.36,N/A,synthetic
+PRC_00187,CAT_OTHER,Standard Other Electronic Scrap,Nashik - Sinnar MIDC,2026-01-03T00:00:00+00:00,20.36,28.32,kg,18.32,32.57,N/A,field
+PRC_00188,CAT_OTHER,Standard Other Electronic Scrap,Nashik - Sinnar MIDC,2026-01-03T00:00:00+00:00,25.25,35.91,kg,22.73,41.3,REC_MH_NAGPUR_CLEAN_007,recycler
+PRC_00189,CAT_OTHER,Standard Other Electronic Scrap,Nashik - Sinnar MIDC,2026-02-16T00:00:00+00:00,21.5,29.67,kg,19.35,34.12,N/A,synthetic
+PRC_00190,CAT_OTHER,Standard Other Electronic Scrap,Nagpur - Butibori MIDC,2025-10-06T00:00:00+00:00,17.44,30.32,kg,15.7,34.87,N/A,field
+PRC_00191,CAT_OTHER,Standard Other Electronic Scrap,Nagpur - Butibori MIDC,2025-12-04T00:00:00+00:00,25.1,33.53,kg,22.59,38.56,REC_MH_THANE_AGGR_008,recycler
+PRC_00192,CAT_OTHER,Standard Other Electronic Scrap,Nagpur - Butibori MIDC,2026-02-04T00:00:00+00:00,18.69,35.27,kg,16.82,40.56,N/A,synthetic

@@ -1,0 +1,31 @@
+prompt_key,screen,language,spoken_text_devanagari,phonetic_transcription,res_raw_filename,duration_seconds
+audio_welcome,HOME,mr,इकोब्रिजमध्ये आपले स्वागत आहे. भंगार नोंदवण्यासाठी कॅमेरा बटण दाबा.,Ecobridge madhe aaple swagat aahe. Bhangar nondavnyasathi camera button daba.,audio_welcome_mr.ogg,3.8
+audio_welcome,HOME,hi,इकोब्रिज में आपका स्वागत है। कबाड़ दर्ज करने के लिए कैमरा बटन दबाएं।,Ecobridge mein aapka swagat hai. Kabaad darj karne ke liye camera button dabayein.,audio_welcome_hi.ogg,3.5
+audio_take_photo,LOT_CREATION,mr,कृपया ई-कचऱ्याचा स्पष्ट फोटो काढा.,Krupaya e-kachryacha spashta photo kadha.,audio_take_photo_mr.ogg,2.4
+audio_take_photo,LOT_CREATION,hi,कृपया ई-कचरे की साफ फोटो खींचें।,Kripya e-kachre ki saaf photo kheenche.,audio_take_photo_hi.ogg,2.2
+audio_cat_crt,CATEGORY_SELECT,mr,सीआरटी मॉनिटर किंवा जुना टीव्ही,CRT monitor kivha juna TV,audio_cat_crt_mr.ogg,2.1
+audio_cat_crt,CATEGORY_SELECT,hi,सीआरटी मॉनिटर या पुराना टीवी,CRT monitor ya purana TV,audio_cat_crt_hi.ogg,2.0
+audio_cat_lcd,CATEGORY_SELECT,mr,एलसीडी किंवा एलईडी स्क्रीन आणि लॅपटॉप पॅनेल,LCD kivha LED screen aani laptop panel,audio_cat_lcd_mr.ogg,2.6
+audio_cat_lcd,CATEGORY_SELECT,hi,एलसीडी या एलईडी स्क्रीन और लैपटॉप पैनल,LCD ya LED screen aur laptop panel,audio_cat_lcd_hi.ogg,2.5
+audio_cat_pcb,CATEGORY_SELECT,mr,सर्किट बोर्ड किंवा पीसीबी मदरबोर्ड,Circuit board kivha PCB motherboard,audio_cat_pcb_mr.ogg,2.4
+audio_cat_pcb,CATEGORY_SELECT,hi,सर्किट बोर्ड या पीसीबी मदरबोर्ड,Circuit board ya PCB motherboard,audio_cat_pcb_hi.ogg,2.3
+audio_cat_cables,CATEGORY_SELECT,mr,तांब्याची वायर आणि केबल्स,Tambyachi wire aani cables,audio_cat_cables_mr.ogg,2.0
+audio_cat_cables,CATEGORY_SELECT,hi,तांबे के तार और केबल,Tambe ke taar aur cable,audio_cat_cables_hi.ogg,1.9
+audio_cat_battery,CATEGORY_SELECT,mr,इन्व्हर्टर किंवा मोबाईल बॅटरी,Inverter kivha mobile battery,audio_cat_battery_mr.ogg,2.1
+audio_cat_battery,CATEGORY_SELECT,hi,इन्वर्टर या मोबाइल बैटरी,Inverter ya mobile battery,audio_cat_battery_hi.ogg,2.0
+audio_cat_motors,CATEGORY_SELECT,mr,"मोटर्स, फॅन कॉइल किंवा चुंबक","Motors, fan coil kivha chumbak",audio_cat_motors_mr.ogg,2.3
+audio_cat_motors,CATEGORY_SELECT,hi,"मोटर, पंखा कॉइल या चुंबक","Motor, pankha coil ya chumbak",audio_cat_motors_hi.ogg,2.2
+audio_cat_plastics,CATEGORY_SELECT,mr,ई-कचरा प्लास्टिक कॅबिनेट,E-kachra plastic cabinet,audio_cat_plastics_mr.ogg,2.0
+audio_cat_plastics,CATEGORY_SELECT,hi,ई-कचरा प्लास्टिक कैबिनेट,E-kachra plastic cabinet,audio_cat_plastics_hi.ogg,1.9
+audio_cat_other,CATEGORY_SELECT,mr,इतर इलेक्ट्रॉनिक भंगार,Itar electronic bhangar,audio_cat_other_mr.ogg,1.8
+audio_cat_other,CATEGORY_SELECT,hi,अन्य इलेक्ट्रॉनिक कबाड़,Anya electronic kabaad,audio_cat_other_hi.ogg,1.8
+audio_enter_weight,WEIGHT_INPUT,mr,वजन काट्यावरील वजन किलोमध्ये नोंदवा.,Vajan katyavaril vajan kilo madhe nondva.,audio_enter_weight_mr.ogg,2.7
+audio_enter_weight,WEIGHT_INPUT,hi,कांटे पर तौला गया वजन किलो में दर्ज करें।,Kante par taula gaya vajan kilo mein darj karein.,audio_enter_weight_hi.ogg,2.6
+audio_value_estimate_prefix,VALUATION,mr,अंदाजे किंमत आहे,Andaaje kimat aahe,audio_value_estimate_prefix_mr.ogg,1.6
+audio_value_estimate_prefix,VALUATION,hi,अनुमानित कीमत है,Anumaanit keemat hai,audio_value_estimate_prefix_hi.ogg,1.5
+audio_unit_rupees,VALUATION,mr,रुपये,Rupaye,audio_unit_rupees_mr.ogg,0.8
+audio_unit_rupees,VALUATION,hi,रुपये,Rupaye,audio_unit_rupees_hi.ogg,0.8
+audio_handover_success,HANDOVER,mr,हस्तांतरण यशस्वी झाले. पावती जतन केली आहे.,Hastantaran yashasvi jhale. Paavati jatan keli aahe.,audio_handover_success_mr.ogg,3.1
+audio_handover_success,HANDOVER,hi,हैंडओवर सफल रहा। रसीद सुरक्षित कर ली गई है।,Handover safal raha. Raseed surakshit kar li gayi hai.,audio_handover_success_hi.ogg,3.0
+audio_hazard_warning_high,SAFETY_CARD,mr,खबरदारी! ही वस्तू स्वतः तोडू नका. विषारी घटक असू शकतात.,Khabardari! Hee vastu swatah todu naka. Vishari ghatak asu shaktat.,audio_hazard_warning_high_mr.ogg,3.9
+audio_hazard_warning_high,SAFETY_CARD,hi,सावधानी! इस सामान को खुद न तोड़ें। इसमें जहरीले पदार्थ हो सकते हैं।,Savdhani! Is saman ko khud na todein. Ismein zehreelay padarth ho sakte hain.,audio_hazard_warning_high_hi.ogg,3.8
