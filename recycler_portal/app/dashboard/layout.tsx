@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { api, getStoredUser, logout, DashboardSummary } from '../lib/api';
 
@@ -15,11 +15,7 @@ export default function DashboardLayout({
   const [loading, setLoading] = useState(true);
   const [switchLoading, setSwitchLoading] = useState(false);
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     try {
       const data = await api.getDashboard();
       setDashboard(data);
@@ -30,7 +26,11 @@ export default function DashboardLayout({
     } finally {
       setLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    void loadData();
+  }, [loadData]);
 
   const handleToggleDemoRole = async () => {
     setSwitchLoading(true);

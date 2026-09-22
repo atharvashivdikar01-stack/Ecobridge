@@ -8,7 +8,7 @@ workflows.
 
 - **Backend:** FastAPI, SQLAlchemy async, PostgreSQL in production, SQLite for tests.
 - **Recycler portal:** Next.js 14 and React 18.
-- **Collector app:** Expo/React Native package placeholder and implementation guide.
+- **Collector app:** Expo/React Native Android app under `apps/collector-mobile`.
 - **Shared packages:** API contracts, AI classification types, offline sync types,
   translations, traceability hashing, UI, and database scaffolding.
 
@@ -19,14 +19,20 @@ require deployment-specific integration.
 ## Repository layout
 
 ```text
-backend/          FastAPI application, models, services, and tests
-recycler_portal/  Next.js recycler operations portal
-collector_app/    Expo package metadata and Android implementation guide
-packages/         Shared TypeScript packages
-docs/             Development and Android setup documentation
-scripts/          Local setup helpers
-infra/            Deployment notes
+apps/api-server/       Active FastAPI API and production-readiness tests
+apps/collector-mobile/ Expo/React Native collector Android app
+backend/               Legacy-compatible FastAPI test/application tree
+recycler_portal/       Active Next.js recycler operations portal
+packages/              Shared TypeScript packages
+docs/                  Development, Android, API, and operations documentation
+scripts/               Local setup helpers
+infra/                 Deployment notes
 ```
+
+The `apps/` tree is the canonical location for new application work. The
+root-level `backend/` and `recycler_portal/` packages remain supported for
+compatibility with the original implementation and existing tests while the
+migration is completed; do not add new features to both copies.
 
 ## Prerequisites
 
@@ -51,6 +57,14 @@ Set `DATABASE_URL` and `SECRET_KEY` through environment variables. Never commit
 Run the API:
 
 ```bash
+uvicorn src.main:app --reload --port 8000
+```
+
+The active API server is under `apps/api-server`:
+
+```bash
+cd apps/api-server
+pip install -r requirements.txt
 uvicorn src.main:app --reload --port 8000
 ```
 
