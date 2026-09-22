@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "EcoBridge Collector",
+    "slug": "ecobridge-collector",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "android": {
+      "package": "com.ecobridge.collector",
+      "permissions": ["CAMERA", "ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
+    },
+    "plugins": [
+      ["expo-camera", { "cameraPermission": "Allow EcoBridge to capture collection proof photos." }],
+      ["expo-location", { "locationAlwaysAndWhenInUsePermission": "Allow EcoBridge to record where a lot was collected." }],
+      "expo-secure-store"
+    ]
+  }
+}
