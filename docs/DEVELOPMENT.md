@@ -8,10 +8,11 @@ Welcome to the **ECOBRIDGE** development guide. This document outlines how to se
 
 Ensure the following tools are installed on your machine:
 - **Node.js**: `v18.0.0` or higher (LTS recommended)
-- **pnpm**: `v9.0.0` or higher (`corepack enable && corepack prepare pnpm@latest --activate` or `npm i -g pnpm`)
-- **Docker & Docker Compose**: For local PostgreSQL, Redis, and MinIO instances
+- **pnpm**: `9.15.0` (the version declared by `packageManager`)
 - **Git**: For source control
-- *(Optional for AI model training)*: **Python 3.10+** with `virtualenv`
+- **Python**: `3.11` or higher
+- **Docker & Docker Compose**: Optional; use only when working on the local
+  infrastructure configuration
 
 ---
 
@@ -22,8 +23,7 @@ Ensure the following tools are installed on your machine:
 git clone https://github.com/atharvashivdikar01-stack/Ecobridge.git
 cd Ecobridge
 
-# Run the automated onboarding script
-chmod +x scripts/dev-setup.sh
+# Optional shell helper for checking local prerequisites
 ./scripts/dev-setup.sh
 ```
 
@@ -32,44 +32,39 @@ chmod +x scripts/dev-setup.sh
 pnpm install
 ```
 
-### Step 3: Launch Local Infrastructure
-Start the supporting containerized services:
-```bash
-docker compose -f infra/docker/docker-compose.yml up -d
-```
-This boots:
-- **PostgreSQL 16 + PostGIS**: `localhost:5432` (User: `ecobridge`, DB: `ecobridge_dev`)
-- **Redis 7**: `localhost:6379`
-- **MinIO S3 Emulator**: `localhost:9000` (Console: `localhost:9001`)
+Copy `backend/.env.example` to `backend/.env` and
+`recycler_portal/.env.example` to `recycler_portal/.env.local`, then replace
+placeholders with local-only values.
 
 ---
 
 ## 3. Everyday Development Workflows
 
 ### Running Applications
-Turborepo orchestrates commands across all workspaces:
+The declared pnpm workspace currently includes `recycler_portal` and
+`packages/*`:
 
 ```bash
-# Start all applications in dev mode concurrently
-pnpm dev
-
-# Target a specific app
-pnpm --filter @ecobridge/api-server dev
 pnpm --filter @ecobridge/recycler-portal dev
-pnpm --filter @ecobridge/admin-dashboard dev
-pnpm --filter @ecobridge/collector-mobile start
+```
+
+Run the FastAPI backend separately:
+
+```bash
+uvicorn src.main:app --reload --port 8000 --app-dir backend
 ```
 
 ### Building & Checking Code
 ```bash
-# Typecheck and build all packages
+# Typecheck and build the active portal
+pnpm --dir recycler_portal exec tsc --noEmit
 pnpm build
 
-# Run linting across all workspaces
+# Lint the active portal
 pnpm lint
 
-# Run automated tests
-pnpm test
+# Run backend tests (Windows PowerShell)
+$env:PYTHONPATH = "backend"; python -m pytest backend/tests -q
 ```
 
 ---
@@ -102,16 +97,17 @@ In `apps/api-server/package.json`:
 
 ## 5. Working with the Database
 
-Database migrations and models reside in `packages/database/`:
+Database schema and migrations reside in `packages/database/`; run these only
+when working on that package:
 
 ```bash
-# Generate database migration
-pnpm --filter @ecobridge/database db:migrate:dev
+# Generate/apply a local database migration
+pnpm --filter @ecobridge/database db:migrate
 
 # Seed local database with mock collectors, recyclers, and scrap prices
 pnpm --filter @ecobridge/database db:seed
 
-# Inspect database using Prisma/Drizzle Studio
+# Inspect the database using Prisma Studio
 pnpm --filter @ecobridge/database db:studio
 ```
 
