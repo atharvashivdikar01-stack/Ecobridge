@@ -1,5 +1,7 @@
 from typing import Optional
 from fastapi import APIRouter, Depends, Query, status
+from sqlalchemy import select
+from ....core.exceptions import ForbiddenError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ....core.database import get_db
@@ -13,6 +15,9 @@ from ....schemas.pricing import (
     LotValuationResponse,
 )
 from ....services.price_intelligence_service import price_intelligence_service
+from ....models.user import User
+from ....models.recycler import RecyclerCompany
+from ...deps import get_current_recycler
 
 router = APIRouter(prefix="/prices", tags=["Price Intelligence"])
 
@@ -64,6 +69,7 @@ async def get_lot_valuation(
 )
 async def record_price_observation(
     data: CreatePriceObservationRequest,
+    current_recycler: User = Depends(get_current_recycler),
     db: AsyncSession = Depends(get_db),
 ) -> ApiResponse[ObservedPriceDetail]:
     result = await price_intelligence_service.record_observation(
@@ -82,8 +88,15 @@ async def record_price_observation(
 )
 async def submit_recycler_offer(
     data: CreateRecyclerOfferRequest,
+    current_recycler: User = Depends(get_current_recycler),
     db: AsyncSession = Depends(get_db),
 ) -> ApiResponse[RecyclerOfferDetail]:
+    company_result = await db.execute(select(RecyclerCompany).where(RecyclerCompany.user_id == current_recycler.id))
+    company = company_result.scalar_one_or_none()
+    if not company:
+        raise ForbiddenError(message="Recycler company profile not found")
+    data.recycler_id = str(company.id)
+    data.recycler_name = company.company_name
     result = await price_intelligence_service.submit_recycler_offer(
         db=db,
         data=data,

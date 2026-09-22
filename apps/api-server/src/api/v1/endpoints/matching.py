@@ -9,6 +9,8 @@ from ....schemas.matching import (
     LotMatchingResponse,
 )
 from ....services.matching_service import matching_service
+from ....models.user import User
+from ...deps import get_current_user, get_current_collector
 
 router = APIRouter(prefix="/matching", tags=["Recycler Matching Engine"])
 
@@ -24,6 +26,7 @@ async def match_lot(
     lot_id: str,
     require_pickup: bool = Query(False, description="Filter for recyclers with active doorstep pickup"),
     max_distance_km: Optional[float] = Query(None, description="Maximum search distance in km"),
+    current_collector: User = Depends(get_current_collector),
     db: AsyncSession = Depends(get_db),
 ) -> ApiResponse[LotMatchingResponse]:
     result = await matching_service.match_lot(
@@ -31,6 +34,7 @@ async def match_lot(
         lot_id=lot_id,
         require_pickup=require_pickup,
         max_distance_km=max_distance_km,
+        current_user=current_collector,
     )
     return ApiResponse.create_success(result)
 
@@ -44,6 +48,7 @@ async def match_lot(
 )
 async def evaluate_manifest(
     data: EvaluateManifestRequest,
+    current_user: User = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> ApiResponse[LotMatchingResponse]:
     result = await matching_service.evaluate_manifest(
