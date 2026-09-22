@@ -32,7 +32,7 @@ infra/            Deployment notes
 
 - Python 3.11+
 - Node.js 18+
-- npm or pnpm 9+
+- pnpm 9.15.0 (the version declared by `packageManager`)
 - PostgreSQL for production; SQLite is used by the automated tests
 
 ## Backend setup
@@ -64,9 +64,8 @@ python -m pytest backend/tests -q
 ## Recycler portal
 
 ```bash
-cd recycler_portal
-npm install
-npm run dev
+pnpm install
+pnpm --filter @ecobridge/recycler-portal dev
 ```
 
 The portal runs on `http://localhost:3001` and proxies `/api/v1` to the backend
@@ -76,8 +75,8 @@ at `http://127.0.0.1:8000`. Override the API URL with
 Production checks:
 
 ```bash
-npm run build
-npm run start
+pnpm build
+pnpm --filter @ecobridge/recycler-portal start
 ```
 
 ## Android collector app
@@ -93,6 +92,10 @@ Use environment variables for database URLs, JWT secrets, storage credentials,
 and external API keys. Demo login is for local demonstrations only. Review
 privacy, consent, data retention, and regulatory requirements before production
 deployment.
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), and
+[`docs/RELEASE.md`](docs/RELEASE.md) for contribution, vulnerability reporting,
+and release validation guidance.
 
 ## License
 
