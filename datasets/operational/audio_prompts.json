@@ -1,0 +1,272 @@
+[
+  {
+    "prompt_key": "audio_welcome",
+    "screen": "HOME",
+    "language": "mr",
+    "spoken_text_devanagari": "इकोब्रिजमध्ये आपले स्वागत आहे. भंगार नोंदवण्यासाठी कॅमेरा बटण दाबा.",
+    "phonetic_transcription": "Ecobridge madhe aaple swagat aahe. Bhangar nondavnyasathi camera button daba.",
+    "res_raw_filename": "audio_welcome_mr.ogg",
+    "duration_seconds": 3.8
+  },
+  {
+    "prompt_key": "audio_welcome",
+    "screen": "HOME",
+    "language": "hi",
+    "spoken_text_devanagari": "इकोब्रिज में आपका स्वागत है। कबाड़ दर्ज करने के लिए कैमरा बटन दबाएं।",
+    "phonetic_transcription": "Ecobridge mein aapka swagat hai. Kabaad darj karne ke liye camera button dabayein.",
+    "res_raw_filename": "audio_welcome_hi.ogg",
+    "duration_seconds": 3.5
+  },
+  {
+    "prompt_key": "audio_take_photo",
+    "screen": "LOT_CREATION",
+    "language": "mr",
+    "spoken_text_devanagari": "कृपया ई-कचऱ्याचा स्पष्ट फोटो काढा.",
+    "phonetic_transcription": "Krupaya e-kachryacha spashta photo kadha.",
+    "res_raw_filename": "audio_take_photo_mr.ogg",
+    "duration_seconds": 2.4
+  },
+  {
+    "prompt_key": "audio_take_photo",
+    "screen": "LOT_CREATION",
+    "language": "hi",
+    "spoken_text_devanagari": "कृपया ई-कचरे की साफ फोटो खींचें।",
+    "phonetic_transcription": "Kripya e-kachre ki saaf photo kheenche.",
+    "res_raw_filename": "audio_take_photo_hi.ogg",
+    "duration_seconds": 2.2
+  },
+  {
+    "prompt_key": "audio_cat_crt",
+    "screen": "CATEGORY_SELECT",
+    "language": "mr",
+    "spoken_text_devanagari": "सीआरटी मॉनिटर किंवा जुना टीव्ही",
+    "phonetic_transcription": "CRT monitor kivha juna TV",
+    "res_raw_filename": "audio_cat_crt_mr.ogg",
+    "duration_seconds": 2.1
+  },
+  {
+    "prompt_key": "audio_cat_crt",
+    "screen": "CATEGORY_SELECT",
+    "language": "hi",
+    "spoken_text_devanagari": "सीआरटी मॉनिटर या पुराना टीवी",
+    "phonetic_transcription": "CRT monitor ya purana TV",
+    "res_raw_filename": "audio_cat_crt_hi.ogg",
+    "duration_seconds": 2.0
+  },
+  {
+    "prompt_key": "audio_cat_lcd",
+    "screen": "CATEGORY_SELECT",
+    "language": "mr",
+    "spoken_text_devanagari": "एलसीडी किंवा एलईडी स्क्रीन आणि लॅपटॉप पॅनेल",
+    "phonetic_transcription": "LCD kivha LED screen aani laptop panel",
+    "res_raw_filename": "audio_cat_lcd_mr.ogg",
+    "duration_seconds": 2.6
+  },
+  {
+    "prompt_key": "audio_cat_lcd",
+    "screen": "CATEGORY_SELECT",
+    "language": "hi",
+    "spoken_text_devanagari": "एलसीडी या एलईडी स्क्रीन और लैपटॉप पैनल",
+    "phonetic_transcription": "LCD ya LED screen aur laptop panel",
+    "res_raw_filename": "audio_cat_lcd_hi.ogg",
+    "duration_seconds": 2.5
+  },
+  {
+    "prompt_key": "audio_cat_pcb",
+    "screen": "CATEGORY_SELECT",
+    "language": "mr",
+    "spoken_text_devanagari": "सर्किट बोर्ड किंवा पीसीबी मदरबोर्ड",
+    "phonetic_transcription": "Circuit board kivha PCB motherboard",
+    "res_raw_filename": "audio_cat_pcb_mr.ogg",
+    "duration_seconds": 2.4
+  },
+  {
+    "prompt_key": "audio_cat_pcb",
+    "screen": "CATEGORY_SELECT",
+    "language": "hi",
+    "spoken_text_devanagari": "सर्किट बोर्ड या पीसीबी मदरबोर्ड",
+    "phonetic_transcription": "Circuit board ya PCB motherboard",
+    "res_raw_filename": "audio_cat_pcb_hi.ogg",
+    "duration_seconds": 2.3
+  },
+  {
+    "prompt_key": "audio_cat_cables",
+    "screen": "CATEGORY_SELECT",
+    "language": "mr",
+    "spoken_text_devanagari": "तांब्याची वायर आणि केबल्स",
+    "phonetic_transcription": "Tambyachi wire aani cables",
+    "res_raw_filename": "audio_cat_cables_mr.ogg",
+    "duration_seconds": 2.0
+  },
+  {
+    "prompt_key": "audio_cat_cables",
+    "screen": "CATEGORY_SELECT",
+    "language": "hi",
+    "spoken_text_devanagari": "तांबे के तार और केबल",
+    "phonetic_transcription": "Tambe ke taar aur cable",
+    "res_raw_filename": "audio_cat_cables_hi.ogg",
+    "duration_seconds": 1.9
+  },
+  {
+    "prompt_key": "audio_cat_battery",
+    "screen": "CATEGORY_SELECT",
+    "language": "mr",
+    "spoken_text_devanagari": "इन्व्हर्टर किंवा मोबाईल बॅटरी",
+    "phonetic_transcription": "Inverter kivha mobile battery",
+    "res_raw_filename": "audio_cat_battery_mr.ogg",
+    "duration_seconds": 2.1
+  },
+  {
+    "prompt_key": "audio_cat_battery",
+    "screen": "CATEGORY_SELECT",
+    "language": "hi",
+    "spoken_text_devanagari": "इन्वर्टर या मोबाइल बैटरी",
+    "phonetic_transcription": "Inverter ya mobile battery",
+    "res_raw_filename": "audio_cat_battery_hi.ogg",
+    "duration_seconds": 2.0
+  },
+  {
+    "prompt_key": "audio_cat_motors",
+    "screen": "CATEGORY_SELECT",
+    "language": "mr",
+    "spoken_text_devanagari": "मोटर्स, फॅन कॉइल किंवा चुंबक",
+    "phonetic_transcription": "Motors, fan coil kivha chumbak",
+    "res_raw_filename": "audio_cat_motors_mr.ogg",
+    "duration_seconds": 2.3
+  },
+  {
+    "prompt_key": "audio_cat_motors",
+    "screen": "CATEGORY_SELECT",
+    "language": "hi",
+    "spoken_text_devanagari": "मोटर, पंखा कॉइल या चुंबक",
+    "phonetic_transcription": "Motor, pankha coil ya chumbak",
+    "res_raw_filename": "audio_cat_motors_hi.ogg",
+    "duration_seconds": 2.2
+  },
+  {
+    "prompt_key": "audio_cat_plastics",
+    "screen": "CATEGORY_SELECT",
+    "language": "mr",
+    "spoken_text_devanagari": "ई-कचरा प्लास्टिक कॅबिनेट",
+    "phonetic_transcription": "E-kachra plastic cabinet",
+    "res_raw_filename": "audio_cat_plastics_mr.ogg",
+    "duration_seconds": 2.0
+  },
+  {
+    "prompt_key": "audio_cat_plastics",
+    "screen": "CATEGORY_SELECT",
+    "language": "hi",
+    "spoken_text_devanagari": "ई-कचरा प्लास्टिक कैबिनेट",
+    "phonetic_transcription": "E-kachra plastic cabinet",
+    "res_raw_filename": "audio_cat_plastics_hi.ogg",
+    "duration_seconds": 1.9
+  },
+  {
+    "prompt_key": "audio_cat_other",
+    "screen": "CATEGORY_SELECT",
+    "language": "mr",
+    "spoken_text_devanagari": "इतर इलेक्ट्रॉनिक भंगार",
+    "phonetic_transcription": "Itar electronic bhangar",
+    "res_raw_filename": "audio_cat_other_mr.ogg",
+    "duration_seconds": 1.8
+  },
+  {
+    "prompt_key": "audio_cat_other",
+    "screen": "CATEGORY_SELECT",
+    "language": "hi",
+    "spoken_text_devanagari": "अन्य इलेक्ट्रॉनिक कबाड़",
+    "phonetic_transcription": "Anya electronic kabaad",
+    "res_raw_filename": "audio_cat_other_hi.ogg",
+    "duration_seconds": 1.8
+  },
+  {
+    "prompt_key": "audio_enter_weight",
+    "screen": "WEIGHT_INPUT",
+    "language": "mr",
+    "spoken_text_devanagari": "वजन काट्यावरील वजन किलोमध्ये नोंदवा.",
+    "phonetic_transcription": "Vajan katyavaril vajan kilo madhe nondva.",
+    "res_raw_filename": "audio_enter_weight_mr.ogg",
+    "duration_seconds": 2.7
+  },
+  {
+    "prompt_key": "audio_enter_weight",
+    "screen": "WEIGHT_INPUT",
+    "language": "hi",
+    "spoken_text_devanagari": "कांटे पर तौला गया वजन किलो में दर्ज करें।",
+    "phonetic_transcription": "Kante par taula gaya vajan kilo mein darj karein.",
+    "res_raw_filename": "audio_enter_weight_hi.ogg",
+    "duration_seconds": 2.6
+  },
+  {
+    "prompt_key": "audio_value_estimate_prefix",
+    "screen": "VALUATION",
+    "language": "mr",
+    "spoken_text_devanagari": "अंदाजे किंमत आहे",
+    "phonetic_transcription": "Andaaje kimat aahe",
+    "res_raw_filename": "audio_value_estimate_prefix_mr.ogg",
+    "duration_seconds": 1.6
+  },
+  {
+    "prompt_key": "audio_value_estimate_prefix",
+    "screen": "VALUATION",
+    "language": "hi",
+    "spoken_text_devanagari": "अनुमानित कीमत है",
+    "phonetic_transcription": "Anumaanit keemat hai",
+    "res_raw_filename": "audio_value_estimate_prefix_hi.ogg",
+    "duration_seconds": 1.5
+  },
+  {
+    "prompt_key": "audio_unit_rupees",
+    "screen": "VALUATION",
+    "language": "mr",
+    "spoken_text_devanagari": "रुपये",
+    "phonetic_transcription": "Rupaye",
+    "res_raw_filename": "audio_unit_rupees_mr.ogg",
+    "duration_seconds": 0.8
+  },
+  {
+    "prompt_key": "audio_unit_rupees",
+    "screen": "VALUATION",
+    "language": "hi",
+    "spoken_text_devanagari": "रुपये",
+    "phonetic_transcription": "Rupaye",
+    "res_raw_filename": "audio_unit_rupees_hi.ogg",
+    "duration_seconds": 0.8
+  },
+  {
+    "prompt_key": "audio_handover_success",
+    "screen": "HANDOVER",
+    "language": "mr",
+    "spoken_text_devanagari": "हस्तांतरण यशस्वी झाले. पावती जतन केली आहे.",
+    "phonetic_transcription": "Hastantaran yashasvi jhale. Paavati jatan keli aahe.",
+    "res_raw_filename": "audio_handover_success_mr.ogg",
+    "duration_seconds": 3.1
+  },
+  {
+    "prompt_key": "audio_handover_success",
+    "screen": "HANDOVER",
+    "language": "hi",
+    "spoken_text_devanagari": "हैंडओवर सफल रहा। रसीद सुरक्षित कर ली गई है।",
+    "phonetic_transcription": "Handover safal raha. Raseed surakshit kar li gayi hai.",
+    "res_raw_filename": "audio_handover_success_hi.ogg",
+    "duration_seconds": 3.0
+  },
+  {
+    "prompt_key": "audio_hazard_warning_high",
+    "screen": "SAFETY_CARD",
+    "language": "mr",
+    "spoken_text_devanagari": "खबरदारी! ही वस्तू स्वतः तोडू नका. विषारी घटक असू शकतात.",
+    "phonetic_transcription": "Khabardari! Hee vastu swatah todu naka. Vishari ghatak asu shaktat.",
+    "res_raw_filename": "audio_hazard_warning_high_mr.ogg",
+    "duration_seconds": 3.9
+  },
+  {
+    "prompt_key": "audio_hazard_warning_high",
+    "screen": "SAFETY_CARD",
+    "language": "hi",
+    "spoken_text_devanagari": "सावधानी! इस सामान को खुद न तोड़ें। इसमें जहरीले पदार्थ हो सकते हैं।",
+    "phonetic_transcription": "Savdhani! Is saman ko khud na todein. Ismein zehreelay padarth ho sakte hain.",
+    "res_raw_filename": "audio_hazard_warning_high_hi.ogg",
+    "duration_seconds": 3.8
+  }
+]

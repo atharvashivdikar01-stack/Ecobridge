@@ -1,0 +1,28 @@
+# YOLOv8 / TFLite Dataset Config — Kabadiwala Connect
+# SIH 2026 Problem Statement 26229
+path: ../ai_ml/vision
+train: images/train
+val: images/val
+test: images/test
+
+# 8 Core Target Classes
+nc: 8
+names:
+  0: CRT
+  1: LCD_LED_PANEL
+  2: PCB
+  3: CABLES
+  4: BATTERIES
+  5: MOTORS_MAGNETS
+  6: MIXED_PLASTICS
+  7: OTHER_EWASTE
+
+multilingual_names:
+  0: {en: "CRT Monitors & TVs", mr: "सीआरटी मॉनिटर आणि टीव्ही", hi: "सीआरटी मॉनिटर और टीवी"}
+  1: {en: "LCD / LED Panels", mr: "एलसीडी / एलईडी स्क्रीन", hi: "एलसीडी / एलईडी स्क्रीन"}
+  2: {en: "Printed Circuit Boards", mr: "सर्किट बोर्ड / पीसीबी", hi: "सर्किट बोर्ड / पीसीबी"}
+  3: {en: "Copper Cables & Wires", mr: "तांब्याची वायर आणि केबल्स", hi: "तांबे के तार और केबल"}
+  4: {en: "Batteries", mr: "बॅटरी (लेड-अ‍ॅसिड / लिथियम)", hi: "बैटरी (लेड-एसिड / लिथियम)"}
+  5: {en: "Motors & Magnets", mr: "मोटर्स आणि चुंबक", hi: "मोटर और चुंबक"}
+  6: {en: "Mixed E-Waste Plastics", mr: "ई-कचरा प्लास्टिक", hi: "ई-कचरा प्लास्टिक"}
+  7: {en: "Other E-Waste", mr: "इतर ई-कचरा", hi: "अन्य ई-कचरा"}
