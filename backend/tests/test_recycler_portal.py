@@ -182,6 +182,7 @@ async def setup_recycler_portal_test_data(init_test_db):
             "unverified_token": unverified_token,
             "lot_id": str(lot.id),
             "lot_code": lot.lot_code,
+            "material_id": str(mat.id),
         }
 
 
@@ -334,3 +335,58 @@ async def test_demo_login_endpoint(client: AsyncClient, setup_recycler_portal_te
     res_unv = await client.post("/api/v1/auth/demo-login", json={"role": "UNVERIFIED_RECYCLER"})
     assert res_unv.status_code == 200
     assert "Vikram" in res_unv.json()["data"]["user"]["full_name"]
+
+
+@pytest.mark.asyncio
+async def test_offline_sync_is_idempotent(client: AsyncClient, setup_recycler_portal_test_data):
+    token = setup_recycler_portal_test_data["verified_token"]
+    # Use the collector account created by OTP authentication for this mutation.
+    collector = await client.post(
+        "/api/v1/auth/otp/verify",
+        json={"phone": "+919800000099", "otp": "123456", "full_name": "Offline Collector", "collector_type": "INDIVIDUAL_PICKER"},
+    )
+    collector_token = collector.json()["data"]["access_token"]
+    payload = {
+        "lot_code": "EB-OFF123",
+        "offline_created_at": "2026-09-23T00:00:00Z",
+        "items": [{"material_id": setup_recycler_portal_test_data["material_id"], "estimated_weight_kg": 12.5, "quantity": 1, "unit": "KG", "detected_hazard": "NORMAL"}],
+        "images": [],
+    }
+    batch = {"mutations": [{"id": "EB-OFF123", "lot_id": "EB-OFF123", "record_type": "Lot Creation", "payload": payload}]}
+    first = await client.post("/api/v1/sync", json=batch, headers={"Authorization": f"Bearer {collector_token}"})
+    second = await client.post("/api/v1/sync", json=batch, headers={"Authorization": f"Bearer {collector_token}"})
+    assert first.status_code == second.status_code == 200
+    assert first.json()["data"]["synced_count"] == 1
+    assert second.json()["data"]["results"][0]["duplicate"] is True
+
+
+@pytest.mark.asyncio
+async def test_offline_lot_to_portal_handover_and_settlement(client: AsyncClient, setup_recycler_portal_test_data):
+    collector = await client.post(
+        "/api/v1/auth/otp/verify",
+        json={"phone": "+919800000098", "otp": "123456", "full_name": "Queue Collector", "collector_type": "INDIVIDUAL_PICKER"},
+    )
+    collector_token = collector.json()["data"]["access_token"]
+    code = "EB-FLOW01"
+    sync = await client.post(
+        "/api/v1/sync",
+        headers={"Authorization": f"Bearer {collector_token}"},
+        json={"mutations": [{"id": code, "lot_id": code, "record_type": "Lot Creation", "payload": {
+            "lot_code": code,
+            "offline_created_at": "2026-09-23T00:00:00Z",
+            "items": [{"material_id": setup_recycler_portal_test_data["material_id"], "estimated_weight_kg": 10, "quantity": 1, "unit": "KG", "detected_hazard": "NORMAL"}],
+            "images": [],
+        }}]},
+    )
+    assert sync.status_code == 200
+    recycler_headers = {"Authorization": f"Bearer {setup_recycler_portal_test_data['verified_token']}"}
+    materials = await client.get("/api/v1/recycler-portal/materials", headers=recycler_headers)
+    lot = next(item for item in materials.json()["data"]["items"] if item["lot_code"] == code)
+    accepted = await client.post(f"/api/v1/recycler-portal/lots/{lot['lot_id']}/accept", headers=recycler_headers, json={"agreed_price_per_kg": 100})
+    assert accepted.json()["data"]["status"] == "ACCEPTED"
+    handover = await client.post(f"/api/v1/recycler-portal/lots/{lot['lot_id']}/handover", headers=recycler_headers, json={"weighbridge_slip_number": "WB-FLOW01", "weighbridge_gross_kg": 12, "weighbridge_tare_kg": 2, "verified_weight_kg": 10, "scale_calibration_id": "SCALE-1"})
+    assert handover.json()["data"]["status"] == "HANDED_OVER"
+    payment = await client.post(f"/api/v1/recycler-portal/lots/{lot['lot_id']}/payment", headers=recycler_headers, json={"payment_method": "CASH", "gateway_reference": "CASH-FLOW01"})
+    assert payment.json()["data"]["total_amount"] == 1000
+    ledger = await client.get("/api/v1/recycler-portal/ledger", headers=recycler_headers)
+    assert any(tx["reference_number"] == "CASH-FLOW01" and tx["total_amount"] == 1000 for tx in ledger.json()["data"]["transactions"])
