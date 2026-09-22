@@ -4,8 +4,10 @@ from fastapi import APIRouter, status
 from pydantic import BaseModel, Field
 
 from ....schemas.response import ApiResponse
+from ....core.providers import DevelopmentPaymentProvider, ProviderUnavailable
 
 router = APIRouter(prefix="/payments", tags=["Payment & Escrow Settlement"])
+payment_provider = DevelopmentPaymentProvider()
 
 
 class ConfirmPaymentRequest(BaseModel):
@@ -24,15 +26,24 @@ class ConfirmPaymentRequest(BaseModel):
 )
 async def confirm_payment(data: ConfirmPaymentRequest) -> ApiResponse[Dict[str, Any]]:
     now_str = datetime.now(timezone.utc).isoformat()
-    txn_ref = f"CSH-{data.lot_id.replace('ECO-26-', '')}-X" if data.payment_method == "CASH" else f"UPI/{int(datetime.now().timestamp())}/AXIS"
+    try:
+        txn_ref = await payment_provider.create_payment(
+            amount=int(round(data.amount * 100)),
+            currency="INR",
+            reference=data.lot_id,
+        )
+        payment_status = "CONFIRMED"
+    except ProviderUnavailable:
+        txn_ref = None
+        payment_status = "PENDING_PROVIDER_CONFIGURATION"
 
     return ApiResponse.create_success({
         "lot_id": data.lot_id,
         "amount_inr": data.amount,
         "payment_method": data.payment_method,
-        "status": "CONFIRMED",
+        "status": payment_status,
         "txn_reference": txn_ref,
-        "beneficiary": "Raju Shinde (#842)",
+        "provider_configured": txn_ref is not None,
         "confirmed_at": now_str,
     })
 

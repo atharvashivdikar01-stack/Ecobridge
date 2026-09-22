@@ -24,6 +24,8 @@ def create_access_token(
         "type": "access",
         "iat": now,
         "exp": expire,
+        "iss": settings.JWT_ISSUER,
+        "aud": settings.JWT_AUDIENCE,
     }
     if extra_claims:
         payload.update(extra_claims)
@@ -48,6 +50,8 @@ def create_refresh_token(
         "type": "refresh",
         "iat": now,
         "exp": expire,
+        "iss": settings.JWT_ISSUER,
+        "aud": settings.JWT_AUDIENCE,
     }
 
     encoded_jwt = jwt.encode(payload, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
@@ -60,7 +64,10 @@ def decode_token(token: str) -> Dict[str, Any]:
         payload = jwt.decode(
             token,
             settings.JWT_SECRET_KEY,
-            algorithms=[settings.JWT_ALGORITHM]
+            algorithms=[settings.JWT_ALGORITHM],
+            issuer=settings.JWT_ISSUER,
+            audience=settings.JWT_AUDIENCE,
+            options={"require": ["sub", "type", "iat", "exp", "iss", "aud"]},
         )
         return payload
     except jwt.ExpiredSignatureError:
