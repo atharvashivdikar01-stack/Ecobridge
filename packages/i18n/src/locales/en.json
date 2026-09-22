@@ -1,0 +1,42 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "materials": "Materials",
+    "handover": "Handover",
+    "payment": "Payment",
+    "ledger": "Ledger"
+  },
+  "statusLabels": {
+    "collected": "Collected",
+    "offered": "Offered",
+    "inTransit": "In Transit",
+    "delivered": "Delivered",
+    "completed": "Completed"
+  },
+  "lotFields": {
+    "weight": "Weight (kg)",
+    "price": "Price (₹)",
+    "material": "Material",
+    "category": "Category",
+    "collector": "Collector",
+    "hazard": "Hazard Level"
+  },
+  "auth": {
+    "login": "Login",
+    "otp": "OTP Verification",
+    "verify": "Verify",
+    "signOut": "Sign Out"
+  },
+  "hazardWarnings": {
+    "swollenBattery": "Swollen Battery - Handle with care!",
+    "brokenCrt": "Broken CRT Glass - Wear protective gear!",
+    "burntPcb": "Burnt PCB - Avoid inhalation!"
+  },
+  "commonUi": {
+    "search": "Search",
+    "filter": "Filter",
+    "refresh": "Refresh",
+    "reset": "Reset",
+    "submit": "Submit"
+  }
+}

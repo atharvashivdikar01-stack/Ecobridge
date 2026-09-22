@@ -1,8 +1,14 @@
 # Python
 venv/
+.venv/
 __pycache__/
 *.pyc
+*.pyo
 .env
+.env.*
+!.env.example
+*.db
+*.sqlite3
 
 # Android
 .gradle/
@@ -10,3 +16,35 @@ build/
 local.properties
 .idea/
 *.apk
+*.aab
+*.keystore
+*.jks
+
+# Node.js / pnpm / Turborepo
+node_modules/
+.turbo/
+dist/
+.next/
+out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Coverage / Testing
+coverage/
+.pytest_cache/
+htmlcov/
+
+# Build artifacts
+*.tsbuildinfo
+
+# Logs and local tooling
+*.log
+.claude/
+.pytest_cache/

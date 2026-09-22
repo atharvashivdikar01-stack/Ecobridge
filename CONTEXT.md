@@ -43,11 +43,14 @@ Tier 2: safety cards (picture + audio), anomaly flags on odd prices, price-trend
 Tier 3 (stretch): WhatsApp/SMS receipt, missed-call price line, optional UPI "mark as paid".
 NOT doing: blockchain, real payment gateway, iOS, email/password login.
 
-## 4. Architecture (PROPOSED)
+## 4. Architecture (AGREED)
 
-- Collector app: native Android, Java, XML layouts, Room (SQLite), WorkManager (sync), CameraX, Retrofit, TensorFlow Lite (on-device classifier)
-- Backend: Python + Flask + SQLAlchemy, REST JSON under /api/v1; SQLite in dev, PostgreSQL when deployed
-- Recycler / admin interface: Flask + Jinja templates + Bootstrap; Leaflet + OpenStreetMap for maps
+- Monorepo: pnpm workspaces + Turborepo for build orchestration
+- Collector app: React Native / Expo offline-first client, SQLite / WatermelonDB, TensorFlow Lite (on-device classifier)
+- Backend: Python + FastAPI + SQLAlchemy Async, REST JSON under /api/v1; SQLite in dev, PostgreSQL 16 when deployed
+- Recycler portal: Next.js (App Router) + React + Tailwind CSS; Leaflet + OpenStreetMap for maps
+- Admin dashboard: Next.js (App Router) + React + Tailwind CSS
+- Shared packages: api-contracts (TypeScript + Zod), database, sync-engine, ai-core, crypto-traceability, ui, i18n, tsconfig, eslint-config
 - Voice: pre-recorded Marathi/Hindi audio clips (numbers composed from clips); Android TTS only as fallback
 - Fallback plan: if "photo -> save offline -> sync" is not working by the end of the tech spike,
   switch the collector app to a PWA (HTML/JS, service worker, IndexedDB) wrapped as an APK.
@@ -109,15 +112,15 @@ Rules: never mix real and synthetic prices without source_type; never store unne
 General: small commits, clear names, comments for anything non-obvious.
 Simple code beats clever code: everyone must be able to explain it.
 
-Android / Java:
-- Package com.<team>.kabadiwala (TODO). Classes PascalCase, methods/variables camelCase, resources snake_case.
-- No hardcoded UI text: use strings.xml with values/ (English), values-mr/, values-hi/.
-- Audio files in res/raw as audio_<key>_<lang>.ogg
-- Touch targets at least 48dp; icons always come with labels; test on the cheapest phone you can borrow.
-
-Python / Flask:
-- PEP 8, snake_case, one blueprint per feature (prices, recyclers, lots, handovers).
+Python / FastAPI:
+- PEP 8, snake_case, one router per feature (prices, recyclers, lots, handovers).
+- Async endpoints with SQLAlchemy async sessions. Pydantic schemas for all request/response.
 - Config from environment (.env). Never commit secrets or API keys.
+
+TypeScript / Next.js:
+- Strict mode enabled. No `any` types — use `unknown` with Zod parsing or type guards.
+- Use `@ecobridge/*` workspace packages for shared logic.
+- All UI text via i18n translation tokens — no hardcoded English strings in views.
 
 Git:
 - Branches: feature/<name>-<thing>. main must always run. Every PR is reviewed by one other person.

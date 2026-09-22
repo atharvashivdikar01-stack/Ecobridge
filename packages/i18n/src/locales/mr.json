@@ -1,0 +1,42 @@
+{
+  "navigation": {
+    "dashboard": "डॅशबोर्ड",
+    "materials": "पदार्थे",
+    "handover": "हस्तांतरण",
+    "payment": "पेमेंट",
+    "ledger": "लेकर"
+  },
+  "statusLabels": {
+    "collected": "संग्रहित केला",
+    "offered": "प्रस्तावित केला",
+    "inTransit": " प्रवाहीत",
+    "delivered": " entrega केला",
+    "completed": "पूर्ण केला"
+  },
+  "lotFields": {
+    "weight": "वजन (किलोग्राम)",
+    "price": "किंमत (₹)",
+    "material": "पदार्थ",
+    "category": "वर्ग",
+    "collector": "संग्रहकर्ता",
+    "hazard": "जोखिम स्तर"
+  },
+  "auth": {
+    "login": "लॉगिन",
+    "otp": "OTP सत्यापन",
+    "verify": "सत्यापित करा",
+    "signOut": "बाहर पडा"
+  },
+  "hazardWarnings": {
+    "swollenBattery": "फूलली हुई बैटरी - सावधानीपूर्वक हांडला!",
+    "brokenCrt": "तोडलेली CRT काच - संरक्षक गियर घाला!",
+    "burntPcb": "जली हुई PCB - श्वास घेतने टाळा!"
+  },
+  "commonUi": {
+    "search": "शोधा",
+    "filter": "फिल्टर करा",
+    "refresh": "ताज़ा करा",
+    "reset": "रीसेट करा",
+    "submit": "제출"
+  }
+}

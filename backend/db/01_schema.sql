@@ -14,6 +14,10 @@
 
 BEGIN;
 
+-- gen_random_uuid() is built into Postgres 13+, but this line makes the
+-- script work on older Postgres versions too, and costs nothing on 13+.
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 -- 1. Collectors: minimal personal data on purpose (PS requirement)
 CREATE TABLE collectors (
     collector_id        UUID PRIMARY KEY,                       -- made on the phone
@@ -87,8 +91,8 @@ CREATE TABLE prices (
     buying_price   NUMERIC(10, 2) NOT NULL CHECK (buying_price >= 0),
     selling_price  NUMERIC(10, 2) CHECK (selling_price >= 0),
     unit           TEXT NOT NULL DEFAULT 'INR/kg',
-    range_low      NUMERIC(10, 2),
-    range_high     NUMERIC(10, 2),
+    range_low      NUMERIC(10, 2) CHECK (range_low >= 0),
+    range_high     NUMERIC(10, 2) CHECK (range_high >= 0),
     recycler_id    UUID REFERENCES recyclers(recycler_id) ON DELETE SET NULL,
     source_type    TEXT NOT NULL CHECK (source_type IN ('field', 'recycler', 'synthetic')),
     CHECK (range_low IS NULL OR range_high IS NULL OR range_low <= range_high)

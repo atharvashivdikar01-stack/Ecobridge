@@ -1,0 +1,4 @@
+packages:
+  - 'recycler_portal'
+  - 'collector_app'
+  - 'packages/*'
