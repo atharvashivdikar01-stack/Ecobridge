@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECOBRIDGE | Tamper-Evident E-Waste Lot Traceability & Payments</title>
+  <meta name="description" content="Verifiable, tamper-evident e-waste chain of custody and instant payments tracking informal collectors to certified CPCB recyclers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="app-header" id="appHeader">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-logo" id="brandLogo">
+          <span class="logo-icon">🌿</span>
+          <div class="brand-titles">
+            <span class="brand-name">ECOBRIDGE</span>
+            <span class="brand-subtitle">Kabadiwala Connect • Traceability & Settlement</span>
+          </div>
+        </div>
+        <span class="badge-status-pill badge-live" id="liveNetworkPill">
+          <span class="pulse-dot"></span> Live Verifier
+        </span>
+      </div>
+
+      <!-- Lot Search & Preset Selector -->
+      <div class="search-box-wrapper" id="lotSearchWrapper">
+        <label for="lotSearchInput" class="visually-hidden">Search Lot ID</label>
+        <div class="search-input-group">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="lotSearchInput" 
+            placeholder="Search Lot ID (e.g. ECO-26-MH-004821)" 
+            value="ECO-26-MH-004821" 
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button type="button" id="searchSubmitBtn" class="btn-search">Inspect</button>
+        </div>
+        <div class="preset-pills" id="presetPills">
+          <span class="preset-label">Quick Lots:</span>
+          <button type="button" class="preset-btn active" data-lot="ECO-26-MH-004821">ECO-26-MH-004821</button>
+          <button type="button" class="preset-btn" data-lot="LOT_2026_0001">LOT_2026_0001</button>
+          <button type="button" class="preset-btn" data-lot="LOT_2026_0002">LOT_2026_0002</button>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Live Connection Status Indicator & Hackathon Simulation Switch -->
+        <div class="network-status-widget" id="networkStatusWidget">
+          <span class="network-indicator online" id="networkIndicatorDot"></span>
+          <span class="network-label" id="networkStatusLabel">ONLINE</span>
+          <button type="button" class="btn-network-toggle" id="btnToggleConnection" title="Toggle between Online and Simulated Offline Mode for live demo testing">
+            <span id="btnToggleConnIcon">⚡</span>
+            <span id="btnToggleConnText">Simulate Offline</span>
+          </button>
+        </div>
+
+        <button type="button" id="btnOpenCreateLot" class="btn-create-lot-header">
+          <span class="btn-icon">➕</span> New Waste Lot
+        </button>
+        <button type="button" id="qrPassBtn" class="btn-outline-header">
+          <span class="btn-icon">📱</span> QR Gate Pass
+        </button>
+        <button type="button" id="exportManifestBtn" class="btn-primary-header">
+          <span class="btn-icon">📄</span> Export Manifest
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slide-down Real Offline Alert Notification Banner -->
+  <aside class="offline-notification-banner hidden" id="offlineNotificationBanner" role="alert">
+    <div class="offline-banner-inner">
+      <div class="offline-banner-left">
+        <span class="offline-banner-icon">⚡</span>
+        <div class="offline-banner-text">
+          <strong>OFFLINE MODE ACTIVE:</strong> No internet connection detected. The application is operating in local-first mode. All new collection lots and transaction receipts are safely persisted in local storage and will synchronize automatically when online.
+        </div>
+      </div>
+      <div class="offline-banner-right">
+        <button type="button" class="btn-banner-queue-link" id="btnBannerViewQueue">
+          View Offline Queue (<span id="bannerQueueCount">0</span>) →
+        </button>
+        <button type="button" class="btn-banner-close" id="btnDismissOfflineBanner" title="Dismiss banner">✕</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Feature Navigation Tabs (Traceability, Payment, My Earnings, Offline Queue) -->
+  <nav class="feature-nav-bar" id="featureNavBar">
+    <div class="feature-nav-container">
+      <div class="feature-tabs-group">
+        <button type="button" class="feature-nav-tab active" id="tabTraceabilityBtn" data-target="viewTraceability">
+          <span class="tab-icon">🔗</span>
+          <span>Traceability Lifecycle</span>
+        </button>
+        <button type="button" class="feature-nav-tab" id="tabPaymentBtn" data-target="viewPayment">
+          <span class="tab-icon">💳</span>
+          <span>Payment Method & Confirmation</span>
+          <span class="tab-badge" id="navPaymentBadge">Demo: ₹6,407.40</span>
+        </button>
+        <button type="button" class="feature-nav-tab" id="tabEarningsBtn" data-target="viewEarnings">
+          <span class="tab-icon">💰</span>
+          <span>My Earnings</span>
+          <span class="tab-badge tab-badge-amber" id="navPendingBadge">Pending: ₹1,200</span>
+        </button>
+        <button type="button" class="feature-nav-tab" id="tabQueueBtn" data-target="viewOfflineQueue">
+          <span class="tab-icon">🔄</span>
+          <span>Offline Queue</span>
+          <span class="tab-badge tab-badge-amber" id="navQueueBadge">0 waiting</span>
+        </button>
+      </div>
+
+      <button type="button" class="btn-reset-demo" id="btnResetDemo" title="Reset Demo flow to demonstrate Lot → Payment → Confirmation → Earnings">
+        <span class="btn-icon">↺</span> Reset Demo State
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="main-layout" id="mainLayout">
+
+    <!-- ====================================================================
+         VIEW 1: TRACEABILITY LIFECYCLE
+         ==================================================================== -->
+    <div id="viewTraceability" class="feature-view active">
+      <!-- Hero Lot Header Section -->
+      <section class="lot-hero-card" id="lotHeroCard">
+        <div class="lot-hero-top">
+          <div class="lot-id-badge-group">
+            <span class="lot-label">UNIQUE LOT IDENTIFIER</span>
+            <div class="lot-id-row">
+              <h1 class="lot-id-title" id="displayLotId">ECO-26-MH-004821</h1>
+              <button type="button" class="copy-lot-btn" id="copyLotBtn" title="Copy Lot ID to clipboard">
+                <span class="copy-icon">📋</span>
+                <span class="copy-text">Copy</span>
+              </button>
+            </div>
+            <div class="lot-meta-tags">
+              <span class="meta-tag tag-code" id="shortCodeTag">Short Code: <strong id="shortCodeVal">MH4821</strong></span>
+              <span class="meta-tag tag-category" id="categoryTag">High-Grade Telecom PCB</span>
+              <span class="meta-tag tag-origin" id="originTag">📍 Dharavi Ward G/N, Mumbai</span>
+              <span class="meta-tag tag-collector" id="collectorTag">👤 Raju Shinde (Aggregator #842)</span>
+            </div>
+          </div>
+
+          <div class="lot-status-container">
+            <div class="status-badge-lg status-completed" id="overallStatusBadge">
+              <span class="status-indicator-ring"></span>
+              <div class="status-badge-text">
+                <span class="status-sub">LIFECYCLE STATUS</span>
+                <span class="status-main" id="overallStatusText">✓ Recycler Received</span>
+              </div>
+            </div>
+            <span class="completion-pill" id="completionRatePill">8 of 8 Milestones Completed (100%)</span>
+          </div>
+        </div>
+
+        <!-- Quick Summary Metric Cards -->
+        <div class="summary-metrics-grid" id="summaryMetricsGrid">
+          <div class="metric-card" id="metricWeightCard">
+            <div class="metric-icon-wrap icon-weight">⚖️</div>
+            <div class="metric-content">
+              <span class="metric-label">Verified Net Weight</span>
+              <div class="metric-value-row">
+                <span class="metric-value" id="netWeightVal">48.25</span>
+                <span class="metric-unit">kg</span>
+              </div>
+              <span class="metric-footnote" id="weightFootnote">Gross 52.10kg • Tare 3.85kg (-0.5% var)</span>
+            </div>
+          </div>
+
+          <div class="metric-card" id="metricPayoutCard">
+            <div class="metric-icon-wrap icon-payout">₹</div>
+            <div class="metric-content">
+              <span class="metric-label">Collector Direct Payout</span>
+              <div class="metric-value-row">
+                <span class="metric-value" id="payoutVal">₹6,407.40</span>
+                <span class="metric-unit">INR</span>
+              </div>
+              <span class="metric-footnote text-success" id="payoutFootnote">✓ Confirmed & Settled</span>
+            </div>
+          </div>
+
+          <div class="metric-card" id="metricRecyclerCard">
+            <div class="metric-icon-wrap icon-facility">🏭</div>
+            <div class="metric-content">
+              <span class="metric-label">Authorized Recycler</span>
+              <div class="metric-value-row">
+                <span class="metric-facility-name" id="recyclerNameVal">EcoRecycle Mahape</span>
+              </div>
+              <span class="metric-footnote" id="recyclerFootnote">CPCB/EW-REG/MH-2024/091 (Valid 2029)</span>
+            </div>
+          </div>
+
+          <div class="metric-card" id="metricImpactCard">
+            <div class="metric-icon-wrap icon-leaf">🌱</div>
+            <div class="metric-content">
+              <span class="metric-label">Verified Carbon Offset</span>
+              <div class="metric-value-row">
+                <span class="metric-value" id="carbonOffsetVal">96.5</span>
+                <span class="metric-unit">kg CO₂e</span>
+              </div>
+              <span class="metric-footnote" id="impactFootnote">0.14g Au • 2.1kg Cu Recovered</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tamper-Evident Cryptographic Chain Integrity Banner -->
+        <div class="crypto-integrity-banner" id="cryptoIntegrityBanner">
+          <div class="crypto-banner-left">
+            <div class="crypto-shield-icon">🛡️</div>
+            <div class="crypto-banner-info">
+              <div class="crypto-banner-title-row">
+                <span class="crypto-banner-title">Tamper-Evident Chain of Custody Verified</span>
+                <span class="crypto-badge-sha256">SHA-256 Block Hashed</span>
+              </div>
+              <p class="crypto-banner-desc">
+                Every transition from pickup to recycler receipt is linked via immutable SHA-256 cryptographic hashes, GPS locks, and dual actor signatures.
+              </p>
+            </div>
+          </div>
+          <div class="crypto-banner-actions">
+            <div class="chain-state" id="chainStateDisplay">
+              <span class="chain-dot"></span>
+              <span class="chain-state-text" id="chainStateText">Chain Valid (8/8 Blocks)</span>
+            </div>
+            <button type="button" class="btn-verify-chain" id="verifyChainBtn">
+              <span class="btn-icon">⚡</span> Run Hash Verification
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline Controls Bar -->
+      <section class="timeline-controls-bar" id="timelineControlsBar">
+        <div class="timeline-controls-left">
+          <span class="controls-title">Lifecycle Chain Milestones</span>
+          <span class="controls-count" id="eventsCountBadge">8 Verified Milestones</span>
+        </div>
+        <div class="timeline-controls-right">
+          <button type="button" class="control-toggle-btn active" id="filterAllBtn">All Milestones</button>
+          <button type="button" class="control-toggle-btn" id="filterKeyBtn">Key Custody Changes</button>
+          <div class="controls-divider"></div>
+          <button type="button" class="btn-action-text" id="toggleAllDrawersBtn">
+            <span id="toggleDrawersText">Expand All Details</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Vertical Timeline / Checklist Section -->
+      <section class="timeline-wrapper" id="timelineSection">
+        <div class="timeline-connector-line" id="timelineConnectorLine"></div>
+        <div class="timeline-items-container" id="timelineContainer">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </section>
+    </div>
+
+    <!-- ====================================================================
+         VIEW 2: PAYMENT METHOD & CONFIRMATION
+         ==================================================================== -->
+    <div id="viewPayment" class="feature-view">
+      <div class="payment-view-container">
+        <!-- Lot Context Bar -->
+        <div class="payment-lot-bar">
+          <div class="payment-lot-info">
+            <span class="payment-lot-label">ACTIVE BATCH SETTLEMENT</span>
+            <div class="payment-lot-id-row">
+              <span class="payment-lot-id" id="paymentLotIdDisplay">ECO-26-MH-004821</span>
+              <span class="payment-collector-badge" id="paymentCollectorBadge">👤 Raju Shinde (Kabadiwala #842)</span>
+              <span class="payment-weight-badge" id="paymentWeightBadge">⚖️ 48.25 kg Verified</span>
+            </div>
+          </div>
+          <div class="payment-amount-box">
+            <span class="pay-amt-label">PAYABLE AMOUNT</span>
+            <span class="pay-amt-val" id="paymentDueAmount">₹6,407.40</span>
+          </div>
+        </div>
+
+        <!-- Interactive Payment Method Selection Screen -->
+        <section class="payment-method-card" id="paymentMethodCard">
+          <div class="card-section-header">
+            <div class="card-title-group">
+              <span class="card-kicker">STEP 1 OF 2 • SETTLEMENT MODALITY</span>
+              <h2 class="card-title-main" id="paymentMethodTitle">Payment Method</h2>
+            </div>
+            <span class="payment-support-tag">Cash Default & Supported</span>
+          </div>
+
+          <p class="card-desc-text">
+            Select exactly one payment modality. In accordance with Kabadiwala Connect requirements, <strong>Cash is fully supported</strong> as digital payment is optional for informal waste collectors.
+          </p>
+
+          <form id="paymentMethodForm" class="payment-options-form">
+            <!-- Option 1: Cash -->
+            <label class="payment-option-label active" id="optionLabelCash">
+              <div class="option-radio-col">
+                <input type="radio" name="paymentMethod" value="CASH" id="payMethodCash" checked>
+                <span class="custom-radio"></span>
+              </div>
+              <div class="option-content-col">
+                <div class="option-title-row">
+                  <span class="option-title">○ Cash</span>
+                  <span class="option-badge badge-cash">Default • Supported (No KYC Barrier)</span>
+                </div>
+                <p class="option-desc">
+                  Immediate physical currency handover upon scale signoff. Issues verifiable receipt code <strong>#CSH-MH26-4821</strong> for the collector’s physical ledger.
+                </p>
+              </div>
+              <div class="option-amount-col">
+                <span class="option-amount-sub">Instant</span>
+                <span class="option-amount-main">₹6,407.40</span>
+              </div>
+            </label>
+
+            <!-- Option 2: UPI -->
+            <label class="payment-option-label" id="optionLabelUpi">
+              <div class="option-radio-col">
+                <input type="radio" name="paymentMethod" value="UPI" id="payMethodUpi">
+                <span class="custom-radio"></span>
+              </div>
+              <div class="option-content-col">
+                <div class="option-title-row">
+                  <span class="option-title">○ UPI</span>
+                  <span class="option-badge badge-upi">Instant Settlement (&lt; 2s)</span>
+                </div>
+                <p class="option-desc">
+                  Direct virtual payment address credit to collector’s registered UPI VPA: <code class="upi-code">raju.shinde@axisbank</code>. Zero intermediary platform fee.
+                </p>
+              </div>
+              <div class="option-amount-col">
+                <span class="option-amount-sub">Instant</span>
+                <span class="option-amount-main">₹6,407.40</span>
+              </div>
+            </label>
+
+            <!-- Option 3: Bank Transfer -->
+            <label class="payment-option-label" id="optionLabelBank">
+              <div class="option-radio-col">
+                <input type="radio" name="paymentMethod" value="BANK_TRANSFER" id="payMethodBank">
+                <span class="custom-radio"></span>
+              </div>
+              <div class="option-content-col">
+                <div class="option-title-row">
+                  <span class="option-title">○ Bank Transfer</span>
+                  <span class="option-badge badge-bank">Direct IMPS / NEFT Rail</span>
+                </div>
+                <p class="option-desc">
+                  Automated escrow disbursement to Bank of Maharashtra A/C <code class="bank-code">••••8491</code> (IFSC: MAHB0000312).
+                </p>
+              </div>
+              <div class="option-amount-col">
+                <span class="option-amount-sub">IMPS</span>
+                <span class="option-amount-main">₹6,407.40</span>
+              </div>
+            </label>
+
+            <!-- Submit Button Bar -->
+            <div class="payment-submit-bar">
+              <div class="selected-summary-text">
+                Selected Method: <strong id="selectedMethodDisplay">Cash Handover (Physical)</strong>
+              </div>
+              <button type="button" class="btn-confirm-payment" id="btnConfirmPayment">
+                <span class="btn-icon">✓</span> Confirm & Disburse ₹6,407.40
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Payment Confirmation Section / Card -->
+        <section class="payment-confirmation-card" id="paymentConfirmationCard">
+          <div class="confirm-card-glow"></div>
+          <div class="confirm-header-row">
+            <div class="confirm-title-group">
+              <span class="confirm-super">STEP 2 OF 2 • SETTLEMENT RECEIPT</span>
+              <h2 class="confirm-title">Payment</h2>
+            </div>
+            <span class="confirm-lot-tag" id="confirmLotTag">Lot: ECO-26-MH-004821</span>
+          </div>
+
+          <!-- Big Amount & Confirmed Badge -->
+          <div class="confirm-amount-display">
+            <span class="confirm-currency">₹</span>
+            <span class="confirm-amount-number" id="confirmAmountNumber">6,407.40</span>
+            <div class="confirm-badge-wrap">
+              <span class="confirm-pill-badge" id="confirmStatusBadge">
+                <span class="confirm-check-icon">✓</span> Confirmed
+              </span>
+            </div>
+          </div>
+
+          <!-- Confirmation Details Grid -->
+          <div class="confirm-details-grid">
+            <div class="confirm-detail-item">
+              <span class="cd-label">Disbursement Mode</span>
+              <span class="cd-val" id="confirmMethodVal">Cash Handover</span>
+            </div>
+            <div class="confirm-detail-item">
+              <span class="cd-label">Confirmation Timestamp</span>
+              <span class="cd-val font-mono" id="confirmTimestampVal">2026-09-22 05:45:00 IST</span>
+            </div>
+            <div class="confirm-detail-item">
+              <span class="cd-label">Transaction Reference</span>
+              <span class="cd-val font-mono" id="confirmTxnRefVal">TXN-MH26-6407-X</span>
+            </div>
+            <div class="confirm-detail-item">
+              <span class="cd-label">Beneficiary Collector</span>
+              <span class="cd-val" id="confirmCollectorVal">Raju Shinde (#842)</span>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Actions -->
+          <div class="confirm-actions-row">
+            <button type="button" class="btn-link-action" id="btnGoToTraceability">
+              <span>View in Traceability Lifecycle</span> ↗
+            </button>
+            <button type="button" class="btn-link-action" id="btnGoToEarnings">
+              <span>View in My Earnings Dashboard</span> ↗
+            </button>
+            <button type="button" class="btn-link-action-subtle" id="btnChangePaymentMethod">
+              <span>Change Payment Method / Test Another Option</span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         VIEW 3: MY EARNINGS DASHBOARD
+         ==================================================================== -->
+    <div id="viewEarnings" class="feature-view">
+      <div class="earnings-view-container">
+        <!-- Hero Header -->
+        <div class="earnings-hero-header">
+          <div class="earnings-title-group">
+            <span class="earnings-kicker">INFORMAL COLLECTOR REVENUE LEDGER</span>
+            <h1 class="earnings-title-main">MY EARNINGS</h1>
+            <p class="earnings-subtitle">
+              Verified earnings for collector <strong>Raju Shinde (#KAB-MH-842)</strong> • Clean e-waste handovers with zero intermediary deductions.
+            </p>
+          </div>
+          <div class="earnings-sync-status">
+            <span class="sync-dot"></span>
+            <span>Real-time Ledger Active</span>
+          </div>
+        </div>
+
+        <!-- 3 Primary Earnings Metrics Cards -->
+        <div class="earnings-metrics-grid" id="earningsMetricsGrid">
+          <!-- Today Card -->
+          <div class="earnings-card card-today">
+            <div class="ec-top">
+              <span class="ec-label">Today</span>
+              <span class="ec-badge badge-today">Active Day</span>
+            </div>
+            <div class="ec-amount-row">
+              <span class="ec-amount" id="earningsTodayVal">₹6,407</span>
+            </div>
+            <span class="ec-footnote" id="earningsTodayFootnote">✓ Batch ECO-26-MH-004821 Settled</span>
+          </div>
+
+          <!-- Pending Card -->
+          <div class="earnings-card card-pending">
+            <div class="ec-top">
+              <span class="ec-label">Pending</span>
+              <span class="ec-badge badge-pending">Awaiting Intake</span>
+            </div>
+            <div class="ec-amount-row">
+              <span class="ec-amount" id="earningsPendingVal">₹1,200</span>
+            </div>
+            <span class="ec-footnote" id="earningsPendingFootnote">1 lot staged in Kurla transit</span>
+          </div>
+
+          <!-- Completed Card -->
+          <div class="earnings-card card-completed">
+            <div class="ec-top">
+              <span class="ec-label">Completed</span>
+              <span class="ec-badge badge-completed">Fully Disbursed</span>
+            </div>
+            <div class="ec-amount-row">
+              <span class="ec-amount" id="earningsCompletedVal">₹17,450</span>
+            </div>
+            <span class="ec-footnote" id="earningsCompletedFootnote">All previous verified transactions</span>
+          </div>
+        </div>
+
+        <!-- Detailed Transaction History & Ledger -->
+        <section class="earnings-ledger-section">
+          <div class="ledger-header-row">
+            <div class="ledger-title-group">
+              <h2 class="ledger-title">Collector Transaction Ledger</h2>
+              <span class="ledger-count" id="ledgerCountBadge">5 Records</span>
+            </div>
+            <div class="ledger-actions">
+              <span class="ledger-filter-pill">Distinguishing Pending & Completed</span>
+            </div>
+          </div>
+
+          <div class="ledger-table-wrapper">
+            <table class="ledger-table">
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>Lot ID / Reference</th>
+                  <th>Date & Time</th>
+                  <th>Material Category</th>
+                  <th>Payment Modality</th>
+                  <th class="text-right">Amount (INR)</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody id="ledgerTableBody">
+                <!-- Dynamically populated by app.js -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         VIEW 4: OFFLINE QUEUE (DELTA SYNC ENGINE)
+         ==================================================================== -->
+    <div id="viewOfflineQueue" class="feature-view">
+      <section class="offline-queue-card">
+        <div class="queue-header-row">
+          <div>
+            <span class="lot-label">OFFLINE RESILIENCE PROTOCOL • DELTA SYNC ENGINE</span>
+            <h1 class="queue-title">OFFLINE QUEUE</h1>
+            <p class="queue-waiting-count" id="queueWaitingCount">0 records waiting</p>
+          </div>
+          <div class="queue-header-actions">
+            <button type="button" id="btnManualSync" class="btn-sync-trigger">
+              <span class="btn-icon">⚡</span> Sync Now
+            </button>
+            <button type="button" id="btnQueueCreateLot" class="btn-create-lot-header">
+              <span class="btn-icon">➕</span> Create Lot Offline
+            </button>
+          </div>
+        </div>
+
+        <!-- Automatic Synchronization Progress & Results Box -->
+        <div class="sync-progress-box hidden" id="syncProgressBox">
+          <div class="sync-progress-header">
+            <div class="sync-title-wrap">
+              <span class="pulse-dot-sync"></span>
+              <span class="sync-status-title" id="syncStatusTitle">Syncing...</span>
+            </div>
+            <span class="sync-pct-label" id="syncPctLabel">████████████ 100%</span>
+          </div>
+          <div class="sync-progress-track">
+            <div class="sync-progress-bar" id="syncProgressBar" style="width: 0%"></div>
+          </div>
+          <div class="sync-results-feed" id="syncResultsFeed">
+            <!-- Dynamically populated: ✓ Lot synchronized, ✓ Transaction synchronized -->
+          </div>
+        </div>
+
+        <!-- Queue Records Table -->
+        <div class="queue-table-wrap">
+          <table class="queue-records-table" id="queueRecordsTable">
+            <thead>
+              <tr>
+                <th>Lot ID</th>
+                <th>Record Type</th>
+                <th>Created Time</th>
+                <th>Sync Status</th>
+                <th class="text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="queueTableBody">
+              <!-- Dynamically populated by app.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div class="queue-empty-state hidden" id="queueEmptyState">
+          <div class="empty-icon-wrap">✓</div>
+          <h3>Offline Queue is Empty</h3>
+          <p>All local lots and transactions are fully synchronized with certified recyclers.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Legal Compliance & EPR Attribution Footer -->
+    <footer class="compliance-footer" id="complianceFooter">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <span class="footer-heading">KABADIWALA CONNECT INITIATIVE</span>
+          <p class="footer-text">
+            Bridging informal e-waste collectors (kabadiwalas, scrap aggregators) with certified formal recycling infrastructure. Built in adherence to E-Waste (Management) Rules 2022 & CPCB statutory traceability guidelines.
+          </p>
+        </div>
+        <div class="footer-col">
+          <span class="footer-heading">AUDIT & TRACEABILITY STANDARD</span>
+          <p class="footer-text">
+            Each custody event maintains parent block hash verification, GPS geolocation fencing, weighbridge scale slip reconciliation, and tamper-evident audit records.
+          </p>
+        </div>
+        <div class="footer-col footer-col-links">
+          <span class="footer-heading">SYSTEM VERIFICATION</span>
+          <div class="footer-links-list">
+            <span class="footer-badge">🔒 SHA-256 Ledger Active</span>
+            <span class="footer-badge">⚡ Offline-Sync Ready</span>
+            <span class="footer-badge">🇮🇳 CPCB/SPCB Validated</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Photo / Evidence Viewer Modal -->
+  <div class="modal-backdrop" id="photoModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-title">Inspection Photo Evidence</span>
+          <span class="modal-subtitle" id="photoModalSubtitle">Lot ECO-26-MH-004821 • On-Ground Verification</span>
+        </div>
+        <button type="button" class="modal-close-btn" id="closePhotoModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="photo-viewer-container">
+          <img id="modalPhotoImage" src="" alt="E-waste lot inspection evidence photo" class="modal-photo">
+          <div class="photo-overlay-tag" id="photoHazardTag">✓ No Swollen Batteries Detected • Normal</div>
+        </div>
+        <div class="evidence-meta-grid">
+          <div class="evidence-meta-item">
+            <span class="evidence-label">SHA-256 Image Digest</span>
+            <code class="evidence-code" id="modalPhotoHash">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>
+          </div>
+          <div class="evidence-meta-item">
+            <span class="evidence-label">Timestamp Captured</span>
+            <span class="evidence-val" id="modalPhotoTimestamp">2026-09-20 09:15:22 IST</span>
+          </div>
+          <div class="evidence-meta-item">
+            <span class="evidence-label">GPS Geolocation</span>
+            <span class="evidence-val" id="modalPhotoGps">19.0418° N, 72.8535° E (Dharavi Ward G/N)</span>
+          </div>
+          <div class="evidence-meta-item">
+            <span class="evidence-label">Inspected By</span>
+            <span class="evidence-val" id="modalPhotoActor">Raju Shinde (Kabadiwala Partner #842)</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-dismiss" id="dismissPhotoModalBtn">Close Preview</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Manifest Gate Pass Modal -->
+  <div class="modal-backdrop" id="qrModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card modal-card-sm">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-title">Encrypted QR Gate Pass</span>
+          <span class="modal-subtitle">Weighbridge & Facility Inwarding Token</span>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeQrModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="qr-canvas-wrapper">
+          <svg class="qr-svg" viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <rect width="200" height="200" fill="#ffffff" rx="12"/>
+            <path d="M20 20h50v50H20zM30 30h30v30H30zM40 40h10v10H40zM130 20h50v50h-50zM140 30h30v30h-30zM150 40h10v10h-10zM20 130h50v50H20zM30 140h30v30H30zM40 150h10v10H40z" fill="#0B1120"/>
+            <rect x="80" y="25" width="10" height="10" fill="#0B1120"/>
+            <rect x="100" y="25" width="15" height="10" fill="#0B1120"/>
+            <rect x="85" y="45" width="20" height="10" fill="#0B1120"/>
+            <rect x="90" y="65" width="15" height="15" fill="#0B1120"/>
+            <rect x="30" y="80" width="15" height="10" fill="#0B1120"/>
+            <rect x="55" y="80" width="20" height="10" fill="#0B1120"/>
+            <rect x="85" y="90" width="30" height="20" fill="#10B981" rx="4"/>
+            <text x="100" y="104" font-family="sans-serif" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">ECO</text>
+            <rect x="125" y="80" width="15" height="15" fill="#0B1120"/>
+            <rect x="150" y="85" width="25" height="10" fill="#0B1120"/>
+            <rect x="130" y="105" width="10" height="25" fill="#0B1120"/>
+            <rect x="150" y="110" width="20" height="10" fill="#0B1120"/>
+            <rect x="80" y="125" width="10" height="20" fill="#0B1120"/>
+            <rect x="100" y="130" width="15" height="10" fill="#0B1120"/>
+            <rect x="85" y="155" width="25" height="15" fill="#0B1120"/>
+            <rect x="130" y="145" width="45" height="10" fill="#0B1120"/>
+            <rect x="140" y="165" width="20" height="15" fill="#0B1120"/>
+          </svg>
+        </div>
+        <div class="qr-token-info">
+          <span class="qr-lot-id" id="qrModalLotId">ECO-26-MH-004821</span>
+          <span class="qr-token-hash" id="qrModalHash">eb://trace/lot/ECO-26-MH-004821?sig=9f82ab87c12</span>
+          <p class="qr-instruction">
+            Scan at EcoRecycle Mahape facility weighbridge intake for automated batch reconciliation and instant weighbridge record creation.
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-dismiss" id="dismissQrModalBtn">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statutory Manifest Export Modal -->
+  <div class="modal-backdrop" id="manifestModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card modal-card-lg">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-title">E-Waste Statutory Custody Manifest</span>
+          <span class="modal-subtitle">Form 2 / Form 3 Compliance Audit Record</span>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeManifestModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="manifest-doc-preview" id="manifestDocPreview">
+          <div class="manifest-doc-header">
+            <div class="doc-header-brand">GOVERNMENT OF INDIA • CPCB COMPLIANT MANIFEST</div>
+            <div class="doc-title-main">CERTIFICATE OF E-WASTE CUSTODY & RECYCLING DISPOSITION</div>
+            <div class="doc-meta-bar">
+              <span>MANIFEST NO: <strong id="manNoVal">MAN-MH-2026-4821</strong></span>
+              <span>DATE: <strong id="manDateVal">2026-09-20</strong></span>
+              <span>STATE: <strong>MAHARASHTRA</strong></span>
+            </div>
+          </div>
+
+          <div class="manifest-table-wrap">
+            <table class="manifest-table">
+              <tbody>
+                <tr>
+                  <td class="tbl-lbl">Lot Reference ID</td>
+                  <td class="tbl-val" id="manLotId">ECO-26-MH-004821</td>
+                  <td class="tbl-lbl">Chain Root Hash</td>
+                  <td class="tbl-val font-mono" id="manRootHash">8d3e6a9f4c2b1e709a87d654f3c2b1a0e9...</td>
+                </tr>
+                <tr>
+                  <td class="tbl-lbl">Origin Collector</td>
+                  <td class="tbl-val">Raju Shinde (Kabadiwala #842)</td>
+                  <td class="tbl-lbl">Collection Location</td>
+                  <td class="tbl-val">Dharavi Ward G/N, Mumbai (19.0418° N, 72.8535° E)</td>
+                </tr>
+                <tr>
+                  <td class="tbl-lbl">Authorized Recycler</td>
+                  <td class="tbl-val">EcoRecycle Advanced Recovery Facility #04</td>
+                  <td class="tbl-lbl">CPCB Reg. Number</td>
+                  <td class="tbl-val">CPCB/EW-REG/MH-2024/091</td>
+                </tr>
+                <tr>
+                  <td class="tbl-lbl">E-Waste Category</td>
+                  <td class="tbl-val">Printed Circuit Boards (Class A Telecom/PC)</td>
+                  <td class="tbl-lbl">Verified Scale Net Weight</td>
+                  <td class="tbl-val"><strong>48.25 kg</strong> (Gross: 52.10kg, Tare: 3.85kg)</td>
+                </tr>
+                <tr>
+                  <td class="tbl-lbl">Weighbridge Slip Ref</td>
+                  <td class="tbl-val">WB-SLIP-2026-99382</td>
+                  <td class="tbl-lbl">Settled Direct Payout</td>
+                  <td class="tbl-val" id="manifestPayoutCell">₹6,407.40 (Confirmed)</td>
+                </tr>
+                <tr>
+                  <td class="tbl-lbl">EPR Credit Reference</td>
+                  <td class="tbl-val">EPR-CERT-MH-2026-003891</td>
+                  <td class="tbl-lbl">Disposition Method</td>
+                  <td class="tbl-val">Mechanical Shredding + Precious Metal Recovery</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="manifest-signatures-row">
+            <div class="sig-box">
+              <span class="sig-status">✓ VERIFIED BIOMETRIC / OTP</span>
+              <span class="sig-actor">Raju Shinde (Informal Aggregator)</span>
+              <span class="sig-timestamp">2026-09-20 14:25:30 IST</span>
+            </div>
+            <div class="sig-box">
+              <span class="sig-status">✓ DIGITAL SPCB/CPCB SEAL</span>
+              <span class="sig-actor">Vikram Mehta (EcoRecycle Gate Inward Lead)</span>
+              <span class="sig-timestamp">2026-09-20 15:00:12 IST</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="downloadJsonBtn">Download Raw JSON</button>
+        <button type="button" class="btn-primary" id="printManifestBtn">Print Manifest PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Create Waste Collection Lot (Online & Offline Support) -->
+  <div class="modal-backdrop hidden" id="modalCreateLot" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card modal-card-md">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-badge-mode" id="lotCreateModeBadge">● ONLINE MODE</span>
+          <h2 class="modal-title">Create Waste Collection Lot</h2>
+          <span class="modal-subtitle">Record formal or offline intake with immutable timestamp & GPS verification.</span>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeCreateLotModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="formCreateLot" class="modal-form">
+        <div class="modal-body">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="newLotId" class="form-label">Lot Identifier (Auto-generated / Unique)</label>
+              <input type="text" id="newLotId" class="form-control font-mono" value="ECO-26-MH-004822" required>
+              <span class="form-hint">E-waste batch identifier adhering to CPCB format</span>
+            </div>
+            <div class="form-group">
+              <label for="newCollectorName" class="form-label">Aggregator / Kabadiwala Partner</label>
+              <input type="text" id="newCollectorName" class="form-control" value="Raju Shinde (#842)" required>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="newLotCategory" class="form-label">Material Category</label>
+              <select id="newLotCategory" class="form-control">
+                <option value="Printed Circuit Boards (Grade A Telecom / Motherboards)">Printed Circuit Boards (Grade A Telecom / Motherboards)</option>
+                <option value="Lithium-ion Battery Packs (E-Mobility / EV Grade)">Lithium-ion Battery Packs (E-Mobility / EV Grade)</option>
+                <option value="Mixed WEEE Electronics & Peripheral Scrap">Mixed WEEE Electronics & Peripheral Scrap</option>
+                <option value="Copper Yoke & Deflection Glass (CRT Monitored)">Copper Yoke & Deflection Glass (CRT Monitored)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="newLotWeight" class="form-label">Collection Weight (kg)</label>
+              <input type="number" step="0.05" id="newLotWeight" class="form-control font-mono" value="48.50" required>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="newRatePerKg" class="form-label">Rate per kg (INR)</label>
+              <input type="number" step="0.5" id="newRatePerKg" class="form-control font-mono" value="132.80" required>
+            </div>
+            <div class="form-group">
+              <label for="newGrossPayout" class="form-label">Gross Direct Payout (INR)</label>
+              <input type="text" id="newGrossPayout" class="form-control font-mono" value="₹6,440.80" readonly>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="newGpsLocation" class="form-label">Collection Geolocation (GPS Lock)</label>
+              <input type="text" id="newGpsLocation" class="form-control font-mono" value="19.0418° N, 72.8535° E (Dharavi Ward G/N)" required>
+            </div>
+            <div class="form-group">
+              <label for="newEvidencePhoto" class="form-label">Photo Evidence Tag</label>
+              <input type="text" id="newEvidencePhoto" class="form-control font-mono" value="photos/lots/ECO-26-MH-004822_collection.jpg" readonly>
+            </div>
+          </div>
+
+          <div class="form-notice-box" id="modalFormNotice">
+            <span class="notice-icon">🔒</span>
+            <span class="notice-text">
+              Offline-First Guarantee: If offline, this collection lot and payout transaction will be persisted to local browser storage immediately and enqueued for automated sync.
+            </span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" id="cancelCreateLotBtn">Cancel</button>
+          <button type="submit" class="btn-primary" id="btnSubmitCreateLot">
+            <span>✓ Save & Record Collection Lot</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

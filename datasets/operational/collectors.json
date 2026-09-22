@@ -1,0 +1,402 @@
+[
+  {
+    "collector_id": "COL_MH_0001",
+    "preferred_language": "mr",
+    "operating_area": "Thane - Wagle Estate / Kisan Nagar",
+    "transaction_count": 38,
+    "total_weight_kg": 164.8,
+    "total_cash_earned_inr": 9450.61,
+    "pending_dues_inr": 3100.0,
+    "created_at": "2026-01-21T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0002",
+    "preferred_language": "mr",
+    "operating_area": "Pune - Pimpri Kaspate Vasti",
+    "transaction_count": 21,
+    "total_weight_kg": 511.0,
+    "total_cash_earned_inr": 23661.65,
+    "pending_dues_inr": 1200.0,
+    "created_at": "2025-11-18T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0003",
+    "preferred_language": "mr",
+    "operating_area": "Thane - Wagle Estate / Kisan Nagar",
+    "transaction_count": 31,
+    "total_weight_kg": 1567.8,
+    "total_cash_earned_inr": 60014.25,
+    "pending_dues_inr": 2450.0,
+    "created_at": "2025-11-29T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0004",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Malad West Ward P/N",
+    "transaction_count": 3,
+    "total_weight_kg": 1443.1,
+    "total_cash_earned_inr": 70384.63,
+    "pending_dues_inr": 0.0,
+    "created_at": "2025-12-19T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0005",
+    "preferred_language": "hi",
+    "operating_area": "Thane - Wagle Estate / Kisan Nagar",
+    "transaction_count": 31,
+    "total_weight_kg": 1637.1,
+    "total_cash_earned_inr": 109278.64,
+    "pending_dues_inr": 0.0,
+    "created_at": "2025-09-02T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0006",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Malad West Ward P/N",
+    "transaction_count": 33,
+    "total_weight_kg": 736.5,
+    "total_cash_earned_inr": 29224.87,
+    "pending_dues_inr": 2450.0,
+    "created_at": "2026-01-24T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0007",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Malad West Ward P/N",
+    "transaction_count": 40,
+    "total_weight_kg": 1571.1,
+    "total_cash_earned_inr": 79882.57,
+    "pending_dues_inr": 450.0,
+    "created_at": "2026-01-28T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0008",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Kurla West Ward L",
+    "transaction_count": 34,
+    "total_weight_kg": 597.0,
+    "total_cash_earned_inr": 44291.63,
+    "pending_dues_inr": 0.0,
+    "created_at": "2026-01-23T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0009",
+    "preferred_language": "mr",
+    "operating_area": "Pune - Pimpri Kaspate Vasti",
+    "transaction_count": 11,
+    "total_weight_kg": 679.5,
+    "total_cash_earned_inr": 28346.3,
+    "pending_dues_inr": 0.0,
+    "created_at": "2025-11-23T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0010",
+    "preferred_language": "mr",
+    "operating_area": "Pune - Swargate / Bhavani Peth",
+    "transaction_count": 36,
+    "total_weight_kg": 1219.0,
+    "total_cash_earned_inr": 56514.2,
+    "pending_dues_inr": 0.0,
+    "created_at": "2025-11-19T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0011",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Govandi / Mankhurd",
+    "transaction_count": 18,
+    "total_weight_kg": 715.4,
+    "total_cash_earned_inr": 51675.99,
+    "pending_dues_inr": 3100.0,
+    "created_at": "2025-09-13T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0012",
+    "preferred_language": "hi",
+    "operating_area": "Mumbai - Malad West Ward P/N",
+    "transaction_count": 6,
+    "total_weight_kg": 1127.1,
+    "total_cash_earned_inr": 51576.4,
+    "pending_dues_inr": 1200.0,
+    "created_at": "2025-06-05T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0013",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Malad West Ward P/N",
+    "transaction_count": 39,
+    "total_weight_kg": 1117.0,
+    "total_cash_earned_inr": 36738.33,
+    "pending_dues_inr": 2450.0,
+    "created_at": "2025-11-21T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0014",
+    "preferred_language": "hi",
+    "operating_area": "Nagpur - Sitabuldi / Cotton Market",
+    "transaction_count": 14,
+    "total_weight_kg": 263.4,
+    "total_cash_earned_inr": 16451.5,
+    "pending_dues_inr": 1200.0,
+    "created_at": "2025-07-16T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0015",
+    "preferred_language": "mr",
+    "operating_area": "Nagpur - Sitabuldi / Cotton Market",
+    "transaction_count": 42,
+    "total_weight_kg": 1170.2,
+    "total_cash_earned_inr": 59386.8,
+    "pending_dues_inr": 1200.0,
+    "created_at": "2025-07-06T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0016",
+    "preferred_language": "mr",
+    "operating_area": "Nashik - Old CBS / Panchavati",
+    "transaction_count": 30,
+    "total_weight_kg": 1387.9,
+    "total_cash_earned_inr": 106890.24,
+    "pending_dues_inr": 2450.0,
+    "created_at": "2026-02-12T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0017",
+    "preferred_language": "mr",
+    "operating_area": "Thane - Wagle Estate / Kisan Nagar",
+    "transaction_count": 38,
+    "total_weight_kg": 1398.5,
+    "total_cash_earned_inr": 52118.58,
+    "pending_dues_inr": 2450.0,
+    "created_at": "2025-09-10T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0018",
+    "preferred_language": "mr",
+    "operating_area": "Nagpur - Sitabuldi / Cotton Market",
+    "transaction_count": 6,
+    "total_weight_kg": 646.5,
+    "total_cash_earned_inr": 21574.26,
+    "pending_dues_inr": 450.0,
+    "created_at": "2025-08-09T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0019",
+    "preferred_language": "mr",
+    "operating_area": "Pune - Swargate / Bhavani Peth",
+    "transaction_count": 18,
+    "total_weight_kg": 1084.4,
+    "total_cash_earned_inr": 73494.19,
+    "pending_dues_inr": 450.0,
+    "created_at": "2025-06-11T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0020",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Dharavi Ward G/N",
+    "transaction_count": 21,
+    "total_weight_kg": 405.7,
+    "total_cash_earned_inr": 18042.54,
+    "pending_dues_inr": 0.0,
+    "created_at": "2026-02-15T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0021",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Govandi / Mankhurd",
+    "transaction_count": 36,
+    "total_weight_kg": 1066.7,
+    "total_cash_earned_inr": 71660.44,
+    "pending_dues_inr": 0.0,
+    "created_at": "2025-10-21T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0022",
+    "preferred_language": "hi",
+    "operating_area": "Mumbai - Malad West Ward P/N",
+    "transaction_count": 31,
+    "total_weight_kg": 680.5,
+    "total_cash_earned_inr": 24509.21,
+    "pending_dues_inr": 1200.0,
+    "created_at": "2025-12-11T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0023",
+    "preferred_language": "mr",
+    "operating_area": "Pune - Hadapsar Industrial",
+    "transaction_count": 22,
+    "total_weight_kg": 1683.5,
+    "total_cash_earned_inr": 70485.76,
+    "pending_dues_inr": 450.0,
+    "created_at": "2025-11-01T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0024",
+    "preferred_language": "mr",
+    "operating_area": "Pune - Pimpri Kaspate Vasti",
+    "transaction_count": 18,
+    "total_weight_kg": 803.1,
+    "total_cash_earned_inr": 36387.95,
+    "pending_dues_inr": 1200.0,
+    "created_at": "2025-07-16T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0025",
+    "preferred_language": "hi",
+    "operating_area": "Mumbai - Dharavi Ward G/N",
+    "transaction_count": 22,
+    "total_weight_kg": 1175.5,
+    "total_cash_earned_inr": 87071.69,
+    "pending_dues_inr": 0.0,
+    "created_at": "2025-09-18T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0026",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Kurla West Ward L",
+    "transaction_count": 33,
+    "total_weight_kg": 615.8,
+    "total_cash_earned_inr": 21398.08,
+    "pending_dues_inr": 2450.0,
+    "created_at": "2025-10-31T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0027",
+    "preferred_language": "mr",
+    "operating_area": "Thane - Wagle Estate / Kisan Nagar",
+    "transaction_count": 20,
+    "total_weight_kg": 534.8,
+    "total_cash_earned_inr": 40045.12,
+    "pending_dues_inr": 0.0,
+    "created_at": "2025-11-09T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0028",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Kurla West Ward L",
+    "transaction_count": 10,
+    "total_weight_kg": 709.7,
+    "total_cash_earned_inr": 37650.93,
+    "pending_dues_inr": 0.0,
+    "created_at": "2025-07-19T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0029",
+    "preferred_language": "hi",
+    "operating_area": "Mumbai - Dharavi Ward G/N",
+    "transaction_count": 38,
+    "total_weight_kg": 1702.4,
+    "total_cash_earned_inr": 130961.31,
+    "pending_dues_inr": 3100.0,
+    "created_at": "2026-01-24T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0030",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Malad West Ward P/N",
+    "transaction_count": 18,
+    "total_weight_kg": 789.3,
+    "total_cash_earned_inr": 39404.94,
+    "pending_dues_inr": 3100.0,
+    "created_at": "2025-09-10T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0031",
+    "preferred_language": "hi",
+    "operating_area": "Mumbai - Dharavi Ward G/N",
+    "transaction_count": 14,
+    "total_weight_kg": 1789.2,
+    "total_cash_earned_inr": 65027.99,
+    "pending_dues_inr": 450.0,
+    "created_at": "2025-09-08T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0032",
+    "preferred_language": "mr",
+    "operating_area": "Nagpur - Itwari Scrap Yard",
+    "transaction_count": 40,
+    "total_weight_kg": 1501.2,
+    "total_cash_earned_inr": 103474.68,
+    "pending_dues_inr": 3100.0,
+    "created_at": "2025-07-14T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0033",
+    "preferred_language": "mr",
+    "operating_area": "Thane - Mumbra / Diva",
+    "transaction_count": 26,
+    "total_weight_kg": 1007.1,
+    "total_cash_earned_inr": 49416.5,
+    "pending_dues_inr": 3100.0,
+    "created_at": "2025-09-08T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0034",
+    "preferred_language": "mr",
+    "operating_area": "Nagpur - Itwari Scrap Yard",
+    "transaction_count": 37,
+    "total_weight_kg": 364.5,
+    "total_cash_earned_inr": 16505.39,
+    "pending_dues_inr": 1200.0,
+    "created_at": "2026-02-11T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0035",
+    "preferred_language": "hi",
+    "operating_area": "Nashik - Old CBS / Panchavati",
+    "transaction_count": 18,
+    "total_weight_kg": 1772.2,
+    "total_cash_earned_inr": 98371.91,
+    "pending_dues_inr": 450.0,
+    "created_at": "2025-12-30T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0036",
+    "preferred_language": "mr",
+    "operating_area": "Pune - Pimpri Kaspate Vasti",
+    "transaction_count": 16,
+    "total_weight_kg": 369.3,
+    "total_cash_earned_inr": 19714.36,
+    "pending_dues_inr": 1200.0,
+    "created_at": "2026-01-23T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0037",
+    "preferred_language": "hi",
+    "operating_area": "Mumbai - Kurla West Ward L",
+    "transaction_count": 20,
+    "total_weight_kg": 293.2,
+    "total_cash_earned_inr": 20425.91,
+    "pending_dues_inr": 0.0,
+    "created_at": "2025-07-18T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0038",
+    "preferred_language": "mr",
+    "operating_area": "Pune - Swargate / Bhavani Peth",
+    "transaction_count": 36,
+    "total_weight_kg": 290.6,
+    "total_cash_earned_inr": 14730.48,
+    "pending_dues_inr": 3100.0,
+    "created_at": "2025-07-18T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0039",
+    "preferred_language": "hi",
+    "operating_area": "Mumbai - Malad West Ward P/N",
+    "transaction_count": 20,
+    "total_weight_kg": 1313.0,
+    "total_cash_earned_inr": 101230.3,
+    "pending_dues_inr": 3100.0,
+    "created_at": "2025-11-10T00:00:00+00:00"
+  },
+  {
+    "collector_id": "COL_MH_0040",
+    "preferred_language": "mr",
+    "operating_area": "Mumbai - Malad West Ward P/N",
+    "transaction_count": 6,
+    "total_weight_kg": 1596.4,
+    "total_cash_earned_inr": 78756.8,
+    "pending_dues_inr": 0.0,
+    "created_at": "2026-02-01T00:00:00+00:00"
+  }
+]
