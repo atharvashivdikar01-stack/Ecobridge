@@ -1,0 +1,13 @@
+# Gradle & Build files
+.gradle/
+build/
+app/build/
+local.properties
+.DS_Store
+
+# Android Studio / VSCode
+.idea/
+.vscode/
+*.iml
+.navigation/
+captures/

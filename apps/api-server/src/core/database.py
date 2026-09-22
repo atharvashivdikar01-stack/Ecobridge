@@ -6,14 +6,18 @@ from .logging import get_logger
 
 logger = get_logger(__name__)
 
-# Create async engine with pooling
+# Create async engine with pooling (omit pool options for SQLite)
+engine_kwargs = {"echo": False, "future": True}
+if not settings.ASYNC_DATABASE_URL.startswith("sqlite"):
+    engine_kwargs.update({
+        "pool_size": settings.DB_POOL_SIZE,
+        "max_overflow": settings.DB_MAX_OVERFLOW,
+        "pool_timeout": settings.DB_POOL_TIMEOUT,
+    })
+
 async_engine = create_async_engine(
     settings.ASYNC_DATABASE_URL,
-    pool_size=settings.DB_POOL_SIZE,
-    max_overflow=settings.DB_MAX_OVERFLOW,
-    pool_timeout=settings.DB_POOL_TIMEOUT,
-    echo=False,
-    future=True,
+    **engine_kwargs,
 )
 
 # Async session factory

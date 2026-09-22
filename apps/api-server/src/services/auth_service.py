@@ -71,8 +71,8 @@ class AuthService:
                     status_code=403,
                 )
 
-            # Ensure profile exists if user was created through another flow
-            if user.collector_profile is None:
+            # Ensure profile exists if user is a collector and created through another flow
+            if user.role == "COLLECTOR" and user.collector_profile is None:
                 profile = CollectorProfile(
                     user_id=user.id,
                     collector_type=collector_type or "INDIVIDUAL_PICKER",
@@ -149,6 +149,73 @@ class AuthService:
         return TokenResponse(
             access_token=new_access_token,
             refresh_token=new_refresh_token,
+            token_type="bearer",
+            expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+            user=user_summary,
+        )
+
+    async def demo_login(self, db: AsyncSession, target_role: str) -> TokenResponse:
+        """Convenient zero-barrier login for competition demonstrations.
+        Switches between Verified Recycler, Unverified Recycler, and Collector.
+        """
+        role_key = (target_role or "VERIFIED_RECYCLER").upper()
+
+        if role_key in ("VERIFIED_RECYCLER", "RECYCLER_VERIFIED", "RECYCLER"):
+            phone = "+919811111111"
+            name = "Ravi Patel (EcoGreen Recyclers)"
+            user_role = "RECYCLER_ADMIN"
+        elif role_key in ("UNVERIFIED_RECYCLER", "PENDING_RECYCLER"):
+            phone = "+919822222222"
+            name = "Vikram Shah (Pending Scrap Co.)"
+            user_role = "RECYCLER_ADMIN"
+        else:
+            phone = "+919800000001"
+            name = "Raju Shinde (Verified Collector)"
+            user_role = "COLLECTOR"
+
+        result = await db.execute(select(User).where(User.phone == phone))
+        user = result.scalar_one_or_none()
+
+        if not user:
+            user = User(
+                phone=phone,
+                full_name=name,
+                role=user_role,
+                status="ACTIVE",
+                preferred_language="en",
+            )
+            db.add(user)
+            await db.flush()
+
+            if user_role == "COLLECTOR":
+                profile = CollectorProfile(
+                    user_id=user.id,
+                    collector_type="INDIVIDUAL_PICKER",
+                )
+                db.add(profile)
+            await db.commit()
+            await db.refresh(user)
+
+        access_token = create_access_token(
+            subject=str(user.id),
+            role=user.role,
+            extra_claims={"phone": user.phone, "name": user.full_name},
+        )
+        refresh_token = create_refresh_token(subject=str(user.id))
+
+        user_summary = UserSummary(
+            id=str(user.id),
+            phone=user.phone,
+            full_name=user.full_name,
+            role=user.role,
+            status=user.status,
+            preferred_language=user.preferred_language,
+            avatar_url=user.avatar_url,
+        )
+
+        return TokenResponse(
+            access_token=access_token,
+            refresh_token=refresh_token,
             token_type="bearer",
             expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60,
             user=user_summary,

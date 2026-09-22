@@ -11,6 +11,7 @@ from ....schemas.auth import (
     VerifyOtpRequest,
     TokenResponse,
     RefreshTokenRequest,
+    DemoLoginRequest,
     UserSummary,
 )
 from ....services.otp_service import otp_service
@@ -98,3 +99,21 @@ async def get_me(
         avatar_url=current_user.avatar_url,
     )
     return ApiResponse.create_success(user_summary)
+
+
+@router.post(
+    "/demo-login",
+    response_model=ApiResponse[TokenResponse],
+    status_code=status.HTTP_200_OK,
+    summary="One-Click Demo Account Authentication",
+    description="Authenticates directly as Verified Recycler, Unverified Recycler, or Collector for competition demonstrations.",
+)
+async def demo_login(
+    request: DemoLoginRequest,
+    db: AsyncSession = Depends(get_db),
+) -> ApiResponse[TokenResponse]:
+    token_response = await auth_service.demo_login(
+        db=db,
+        target_role=request.role,
+    )
+    return ApiResponse.create_success(token_response)

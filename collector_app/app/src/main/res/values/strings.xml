@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Information -->
+    <string name="app_name">ECOBRIDGE</string>
+    <string name="app_tagline">Kabadiwala Connect</string>
+
+    <!-- Language Names -->
+    <string name="lang_english">English</string>
+    <string name="lang_hindi">हिंदी (Hindi)</string>
+    <string name="lang_marathi">मराठी (Marathi)</string>
+    <string name="select_language">Select Language / भाषा निवडा</string>
+
+    <!-- Connection & Sync States -->
+    <string name="status_online">ONLINE</string>
+    <string name="status_offline">OFFLINE</string>
+    <string name="status_syncing">SYNCING...</string>
+    <string name="sync_pending_count">%1$d records waiting to sync</string>
+    <string name="sync_all_synced">All records synced</string>
+    <string name="sync_now">Sync Now</string>
+    <string name="sync_success">Synchronization completed successfully</string>
+    <string name="sync_failed">Sync failed. Will retry automatically.</string>
+
+    <!-- Home Actions (Large Icon-Driven) -->
+    <string name="action_new_lot">New Lot</string>
+    <string name="action_my_transactions">My Transactions</string>
+    <string name="action_todays_prices">Today\'s Prices</string>
+    <string name="action_my_earnings">My Earnings</string>
+    <string name="action_sync">Sync</string>
+    <string name="action_help">Help &amp; Safety</string>
+
+    <!-- Step 1: Camera & Photo Capture -->
+    <string name="step_photo_title">Step 1: Take Photo</string>
+    <string name="instruction_take_photo">Capture photo of scrap material</string>
+    <string name="btn_capture">Capture Photo</string>
+    <string name="btn_retake">Retake</string>
+    <string name="btn_flash_on">Flash On</string>
+    <string name="btn_flash_off">Flash Off</string>
+    <string name="photo_compressed_info">Compressed (~150 KB) • SHA-256 Verified</string>
+    <string name="camera_permission_required">Camera permission is required to photograph scrap material.</string>
+
+    <!-- Step 2: AI Material Classification -->
+    <string name="step_classify_title">Step 2: Material</string>
+    <string name="detected_material">Detected Material</string>
+    <string name="confidence_label">Confidence</string>
+    <string name="not_sure_manual">Not sure? Select material manually</string>
+    <string name="manual_selection">Manual Selection</string>
+    <string name="hazard_alert_title">Safety Warning!</string>
+    <string name="hazard_battery_msg">Hazardous battery detected! Do not puncture, crush, or expose to heat.</string>
+    <string name="hazard_crt_msg">Hazardous CRT glass detected! Handle with heavy gloves. Do not break tube.</string>
+
+    <!-- Scrap Categories -->
+    <string name="cat_copper">Copper</string>
+    <string name="cat_aluminium">Aluminium</string>
+    <string name="cat_iron">Iron</string>
+    <string name="cat_pcb">Printed Circuit Board (PCB)</string>
+    <string name="cat_mobile">Mobile Phone</string>
+    <string name="cat_laptop">Computer / Laptop</string>
+    <string name="cat_cable">Cables &amp; Wire</string>
+    <string name="cat_battery">Batteries</string>
+    <string name="cat_mixed">Mixed E-Waste</string>
+    <string name="cat_other">Other Scrap</string>
+
+    <!-- Step 3: Weight Screen -->
+    <string name="step_weight_title">Step 3: Weight</string>
+    <string name="label_weight">Weight (KG)</string>
+    <string name="enter_weight_hint">0.0</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_confirm_weight">Confirm Weight</string>
+    <string name="unit_kg">KG</string>
+
+    <!-- Step 4: Price Intelligence -->
+    <string name="step_price_title">Step 4: Fair Price</string>
+    <string name="estimated_market_price">Estimated Market Price</string>
+    <string name="rate_per_kg">₹%1$.2f / kg</string>
+    <string name="expected_value">Expected Value: ₹%1$,d</string>
+    <string name="calculation_breakdown">%1$.1f kg × ₹%2$.2f = ₹%3$,d</string>
+    <string name="price_source_demo">Source: Certified Recycler Benchmark (Demo Dataset)</string>
+    <string name="price_source_cached">Source: Locally Cached Benchmark</string>
+    <string name="price_source_live">Source: Live Recycler Benchmark</string>
+
+    <!-- Step 5: Recycler Matching & Net Earnings -->
+    <string name="step_recycler_title">Step 5: Verified Recyclers</string>
+    <string name="cpcb_registered">CPCB Registered</string>
+    <string name="distance_km">%1$.1f km away</string>
+    <string name="offered_rate">Rate: ₹%1$.2f/kg</string>
+    <string name="estimated_payout">Gross Payout: ₹%1$,d</string>
+    <string name="select_recycler">Select Recycler</string>
+
+    <!-- Net Earnings Formula Breakdown -->
+    <string name="net_earnings_title">Net Earnings Breakdown</string>
+    <string name="gross_sale_value">Gross Sale Value: ₹%1$,d</string>
+    <string name="transport_cost">Transport Cost: -₹%1$,d</string>
+    <string name="handling_cost">Handling Cost: -₹%1$,d</string>
+    <string name="net_take_home">Net Take-Home: ₹%1$,d</string>
+    <string name="net_earnings_formula">Net = Sale (₹%1$,d) - Transport (₹%2$,d) - Handling (₹%3$,d)</string>
+
+    <!-- Step 6: Lot Created & QR -->
+    <string name="lot_created_title">Lot Created Successfully!</string>
+    <string name="lot_short_code_label">Lot Code: %1$s</string>
+    <string name="btn_save_lot">Save Lot</string>
+    <string name="btn_view_qr">Show Recycler QR</string>
+    <string name="qr_instruction">Show this QR code at the recycler collection center</string>
+
+    <!-- Handover & Settlement Flow -->
+    <string name="handover_title">Handover &amp; Payment</string>
+    <string name="handover_actual_weight">Actual Weight at Handover (KG)</string>
+    <string name="handover_agreed_price">Agreed Price (₹/kg)</string>
+    <string name="handover_final_amount">Final Amount: ₹%1$,d</string>
+    <string name="payment_mode_label">Payment Mode</string>
+    <string name="payment_cash">CASH (Recommended)</string>
+    <string name="payment_digital">DIGITAL (UPI / Bank)</string>
+    <string name="btn_confirm_handover">Confirm Handover &amp; Cash Received</string>
+    <string name="handover_success">Handover recorded with tamper-evident audit hash!</string>
+
+    <!-- Traceability Lifecycle Statuses -->
+    <string name="status_created">Lot Created</string>
+    <string name="status_matched">Recycler Matched</string>
+    <string name="status_offer_accepted">Offer Accepted</string>
+    <string name="status_ready_handover">Ready for Handover</string>
+    <string name="status_handover_confirmed">Handover Confirmed</string>
+    <string name="status_payment_confirmed">Payment Confirmed</string>
+    <string name="status_received">Received at Dismantler</string>
+
+    <!-- My Transactions Ledger -->
+    <string name="transactions_empty">No transactions found. Create your first scrap lot!</string>
+    <string name="transaction_detail_title">Transaction Details</string>
+    <string name="transaction_hash_label">Audit Hash (SHA-256):</string>
+    <string name="traceability_title">Lot Status Timeline</string>
+
+    <!-- My Earnings Screen -->
+    <string name="earnings_today">Today\'s Earnings</string>
+    <string name="earnings_weekly">This Week</string>
+    <string name="earnings_total">Total Lifetime</string>
+    <string name="stats_lots_count">Total Lots</string>
+    <string name="stats_weight_sold">Total Sold (KG)</string>
+
+    <!-- Common UI Actions -->
+    <string name="btn_next">Next</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_done">Done</string>
+    <string name="btn_close">Close</string>
+    <string name="btn_retry">Retry</string>
+
+    <!-- Additional Transaction Status Labels -->
+    <string name="label_pending">Pending</string>
+    <string name="payment_pending_label">Payment Pending</string>
+</resources>

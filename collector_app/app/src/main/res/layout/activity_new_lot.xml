@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Top Toolbar with Step Title -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/action_new_lot"
+        app:titleTextColor="@color/on_primary">
+
+        <TextView
+            android:id="@+id/tvStepIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:text="1 / 5"
+            android:textColor="@color/on_primary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <!-- Linear Step Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBarSteps"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:max="5"
+        android:progress="1"
+        android:progressTint="@color/secondary" />
+
+    <!-- Step Container -->
+    <FrameLayout
+        android:id="@+id/stepContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- ============================================== -->
+        <!-- STEP 1: CAMERA & PHOTO CAPTURE                 -->
+        <!-- ============================================== -->
+        <LinearLayout
+            android:id="@+id/step1CameraLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tvCameraInstruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:background="#E8F5E9"
+                android:text="@string/instruction_take_photo"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textAlignment="center" />
+
+            <!-- Camera Preview / Image Capture Container -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#000000">
+
+                <androidx.camera.view.PreviewView
+                    android:id="@+id/cameraPreviewView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/ivCapturedPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    android:contentDescription="Captured Photo" />
+
+                <!-- Flash toggle button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFlashToggle"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="16dp"
+                    android:layout_gravity="top|end"
+                    app:icon="@drawable/ic_flash_on"
+                    app:iconTint="@color/on_primary"
+                    app:strokeColor="@color/on_primary"
+                    android:padding="0dp"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp" />
+            </FrameLayout>
+
+            <!-- Bottom Camera Controls -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/surface"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvPhotoMetadata"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/photo_compressed_info"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRetakePhoto"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/btn_retake"
+                        android:textColor="@color/primary"
+                        app:strokeColor="@color/primary"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCapturePhoto"
+                        style="@style/Widget.EcoBridge.LargeButton"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="2"
+                        android:text="@string/btn_capture"
+                        android:textColor="@color/on_primary"
+                        app:backgroundTint="@color/primary"
+                        app:icon="@drawable/ic_camera"
+                        app:iconGravity="textStart" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnNextStep1"
+                        style="@style/Widget.EcoBridge.LargeButton"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="2"
+                        android:text="@string/btn_next"
+                        android:textColor="@color/on_primary"
+                        app:backgroundTint="@color/primary"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ============================================== -->
+        <!-- STEP 2: AI CLASSIFICATION & MANUAL FALLBACK    -->
+        <!-- ============================================== -->
+        <ScrollView
+            android:id="@+id/step2ClassifyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- AI Detected Category Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="2dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detected_material"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvDetectedCategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Copper"
+                            android:textColor="@color/primary"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/confidence_label"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvConfidenceValue"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text=" 87%"
+                                android:textColor="@color/primary"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <ProgressBar
+                                android:id="@+id/pbConfidence"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="120dp"
+                                android:layout_height="10dp"
+                                android:max="100"
+                                android:progress="87"
+                                android:progressTint="@color/primary" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Hazard Alert Banner (Conditional) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardHazardAlert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="#FFEBEE"
+                    app:strokeColor="@color/hazard_high"
+                    app:strokeWidth="1dp"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:src="@drawable/ic_alert_triangle"
+                            app:tint="@color/hazard_high"
+                            android:contentDescription="Hazard Alert" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hazard_alert_title"
+                                android:textColor="@color/hazard_high"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvHazardMessage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/hazard_battery_msg"
+                                android:textColor="#B71C1C"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Manual Fallback Category Selection Grid -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/not_sure_manual"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- Category Buttons Grid -->
+                <GridLayout
+                    android:id="@+id/gridCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:rowCount="5"
+                    android:alignmentMode="alignMargins"
+                    android:layout_marginBottom="24dp">
+
+                    <!-- Buttons dynamically created in Java -->
+                </GridLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnConfirmCategory"
+                    style="@style/Widget.EcoBridge.LargeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/btn_next"
+                    android:textColor="@color/on_primary"
+                    app:backgroundTint="@color/primary" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ============================================== -->
+        <!-- STEP 3: WEIGHT ENTRY                           -->
+        <!-- ============================================== -->
+        <ScrollView
+            android:id="@+id/step3WeightLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tvWeightPrompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_weight"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Large Digital Weight Display -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="16dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tvWeightDisplay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10.0"
+                            android:textColor="@color/primary"
+                            android:textSize="48sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" KG"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:layout_marginStart="8dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Quick Weight Increments (Low Literacy Tap Presets) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnQuickWeight5"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:text="+5 KG" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnQuickWeight10"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginHorizontal="4dp"
+                        android:text="+10 KG" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnQuickWeight25"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:text="+25 KG" />
+                </LinearLayout>
+
+                <!-- Manual Numeric Keypad for Precision -->
+                <GridLayout
+                    android:id="@+id/gridNumericKeypad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3"
+                    android:rowCount="4"
+                    android:layout_marginBottom="24dp">
+                    <!-- Keypad buttons populated in Java -->
+                </GridLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnConfirmWeight"
+                    style="@style/Widget.EcoBridge.LargeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/btn_confirm_weight"
+                    android:textColor="@color/on_primary"
+                    app:backgroundTint="@color/primary" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ============================================== -->
+        <!-- STEP 4: PRICE INTELLIGENCE                     -->
+        <!-- ============================================== -->
+        <ScrollView
+            android:id="@+id/step4PriceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Price Intelligence Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="3dp"
+                    app:cardBackgroundColor="@color/surface"
+                    app:strokeColor="@color/secondary"
+                    app:strokeWidth="2dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/estimated_market_price"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvPricePerKg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹420.00 / kg"
+                            android:textColor="@color/secondary"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="4dp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/card_stroke"
+                            android:layout_marginVertical="12dp" />
+
+                        <TextView
+                            android:id="@+id/tvExpectedValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expected Value: ₹4,200"
+                            android:textColor="@color/text_primary"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvPriceBreakdown"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10.0 kg × ₹420.00 = ₹4,200"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp"
+                            android:layout_marginTop="4dp" />
+
+                        <TextView
+                            android:id="@+id/tvPriceSource"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/price_source_demo"
+                            android:textColor="@color/text_hint"
+                            android:textSize="11sp"
+                            android:layout_marginTop="12dp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnProceedToRecyclers"
+                    style="@style/Widget.EcoBridge.LargeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/step_recycler_title"
+                    android:textColor="@color/on_primary"
+                    app:backgroundTint="@color/primary"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- ============================================== -->
+        <!-- STEP 5: RECYCLER MATCHING & NET EARNINGS       -->
+        <!-- ============================================== -->
+        <ScrollView
+            android:id="@+id/step5RecyclerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- NET EARNINGS HERO CARD (CRITICAL FEATURE) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:cardBackgroundColor="#E8F5E9"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="2dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="18dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/net_earnings_title"
+                            android:textColor="@color/primary"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvNetTakeHome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Net Take-Home: ₹4,100"
+                            android:textColor="@color/primary_variant"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            android:layout_marginVertical="6dp" />
+
+                        <TextView
+                            android:id="@+id/tvNetEarningsFormula"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sale (₹4,500) - Transport (₹300) - Handling (₹100)"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/step_recycler_title"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp" />
+
+                <!-- Recycler Cards List Container -->
+                <LinearLayout
+                    android:id="@+id/layoutRecyclerList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="24dp">
+                    <!-- Cards populated in Java -->
+                </LinearLayout>
+
+                <!-- Final Confirmation Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCreateLotFinal"
+                    style="@style/Widget.EcoBridge.LargeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Confirm &amp; Create Lot"
+                    android:textColor="@color/on_primary"
+                    app:backgroundTint="@color/primary" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+
+</LinearLayout>

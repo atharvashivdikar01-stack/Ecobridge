@@ -12,6 +12,7 @@ from .recycler import (
     RecyclerAcceptedMaterial,
     RecyclerServiceArea,
 )
+from .transaction import Handover, Transaction
 
 __all__ = [
     "Base",
@@ -32,5 +33,7 @@ __all__ = [
     "AuthorizationRecord",
     "RecyclerAcceptedMaterial",
     "RecyclerServiceArea",
+    "Handover",
+    "Transaction",
 ]
 

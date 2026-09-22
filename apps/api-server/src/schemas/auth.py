@@ -65,3 +65,7 @@ class TokenResponse(BaseModel):
 
 class RefreshTokenRequest(BaseModel):
     refresh_token: str = Field(..., description="Valid refresh token")
+
+
+class DemoLoginRequest(BaseModel):
+    role: str = Field("VERIFIED_RECYCLER", description="Role to switch into: VERIFIED_RECYCLER, UNVERIFIED_RECYCLER, or COLLECTOR")
