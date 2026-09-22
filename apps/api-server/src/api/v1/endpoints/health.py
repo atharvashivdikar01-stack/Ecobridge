@@ -1,5 +1,5 @@
 import time
-from fastapi import APIRouter, status
+from fastapi import APIRouter, HTTPException, status
 from ....core.config import settings
 from ....core.database import check_database_connection
 from ....schemas.response import ApiResponse
@@ -42,3 +42,20 @@ async def health_check() -> ApiResponse[HealthCheckData]:
 )
 async def liveness_probe() -> ApiResponse[LivenessData]:
     return ApiResponse.create_success(LivenessData(alive=True))
+
+
+@router.get(
+    "/readiness",
+    response_model=ApiResponse[dict],
+    summary="Dependency readiness probe",
+    description="Returns 503 until required dependencies are available.",
+)
+async def readiness_probe() -> ApiResponse[dict]:
+    database_connected = await check_database_connection()
+    checks = {"database": database_connected}
+    if not database_connected:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Required service is not ready",
+        )
+    return ApiResponse.create_success({"status": "READY", "checks": checks})
