@@ -7,7 +7,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ..core.exceptions import AppException, NotFoundError, ValidationError
+from ..core.exceptions import AppException, NotFoundError, ValidationError, ForbiddenError
 from ..models.taxonomy import Material
 from ..models.lot import Lot, LotItem
 from ..models.recycler import (
@@ -58,6 +58,7 @@ class MatchingService:
         lot_id: str,
         require_pickup: bool = False,
         max_distance_km: Optional[float] = None,
+        current_user=None,
     ) -> LotMatchingResponse:
         """Match an existing collection lot against certified recyclers."""
         try:
@@ -75,6 +76,9 @@ class MatchingService:
         lot = lot_res.scalar_one_or_none()
         if not lot:
             raise NotFoundError(message=f"Lot with ID '{lot_id}' not found")
+        if current_user is not None and current_user.role == "COLLECTOR":
+            if not current_user.collector_profile or lot.collector_id != current_user.collector_profile.id:
+                raise ForbiddenError(message="You do not have permission to match this lot")
 
         items_input: List[MatchingItemInput] = []
         for item in lot.items:
