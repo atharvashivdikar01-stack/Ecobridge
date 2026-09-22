@@ -2,20 +2,7 @@
   "name": "@ecobridge/sync-engine",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "lint": "eslint src/",
-    "test": "vitest"
-  },
-  "dependencies": {
-    "@ecobridge/api-contracts": "workspace:*"
-  },
-  "devDependencies": {
-    "@ecobridge/eslint-config": "workspace:*",
-    "@ecobridge/tsconfig": "workspace:*",
-    "tsup": "^8.1.0",
-    "typescript": "^5.4.0"
-  }
+  "types": "src/index.ts",
+  "scripts": { "typecheck": "tsc --noEmit" },
+  "devDependencies": { "typescript": "^5.4.0" }
 }

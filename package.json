@@ -1,22 +1,13 @@
 {
-  "name": "ecobridge-root",
-  "version": "0.1.0",
+  "name": "ecobridge",
   "private": true,
-  "description": "Offline-first, AI-driven circular e-waste platform connecting informal collectors with verified recyclers.",
+  "packageManager": "pnpm@9.15.0",
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "clean": "turbo run clean && rm -rf node_modules"
+    "build": "pnpm --filter @ecobridge/recycler-portal build",
+    "dev": "pnpm --filter @ecobridge/recycler-portal dev",
+    "lint": "pnpm --filter @ecobridge/recycler-portal lint"
   },
   "devDependencies": {
-    "turbo": "^2.0.0",
-    "prettier": "^3.3.0"
-  },
-  "packageManager": "pnpm@9.1.0",
-  "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=9.0.0"
+    "turbo": "^2.3.0"
   }
 }

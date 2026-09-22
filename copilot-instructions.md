@@ -1,28 +1,32 @@
-# Copilot instructions — Kabadiwala Connect
+# Copilot instructions — Kabadiwala Connect / ECOBRIDGE
 
-Project: offline-first Android app (Java) + Flask backend + recycler web dashboard for informal
-e-waste collectors in India. Full context, data model and rules are in CONTEXT.md at the repo root.
+Project: offline-first mobile app (React Native / Expo) + FastAPI backend + Next.js recycler web dashboard
+for informal e-waste collectors in India. Full context, data model and rules are in CONTEXT.md at the repo root.
 Read it before suggesting schema, API or architecture changes.
 
 ## Who is writing this code
-- The team are beginners (basic Java, Python, Android, web). Prefer simple, readable code over clever code.
+- The team are beginners (basic Python, TypeScript, Android, web). Prefer simple, readable code over clever code.
 - Add short comments for anything non-obvious, and summarise in one line what the code does.
 
 ## Stack (do not change without asking)
-- Android: Java, XML layouts, Room (SQLite), WorkManager, CameraX, Retrofit, TensorFlow Lite
-- Backend: Python, Flask, SQLAlchemy, JSON REST under /api/v1
-- Web: Flask + Jinja templates + Bootstrap, Leaflet + OpenStreetMap
-- Do not introduce new frameworks or libraries (no Kotlin, Compose, Flutter, React, Firebase) unless asked.
+- Mobile: React Native, Expo, SQLite / WatermelonDB, TensorFlow Lite
+- Backend: Python, FastAPI, SQLAlchemy Async, Pydantic, JSON REST under /api/v1
+- Web Portals: Next.js (App Router), React, Tailwind CSS
+- Monorepo: pnpm workspaces, Turborepo
+- Shared packages: @ecobridge/api-contracts, @ecobridge/database, @ecobridge/ui, @ecobridge/i18n
+- Do not introduce new frameworks or libraries unless asked.
 
 ## Rules
 - Offline-first: write to local SQLite first, sync later with an outbox queue.
   Lot IDs are UUIDs created on the device. Server endpoints must be idempotent.
-- No hardcoded UI text: use strings.xml (values/, values-mr/, values-hi/).
+- No hardcoded UI text: use @ecobridge/i18n translation tokens for all user-facing strings.
+  Support English, Marathi (mr), and Hindi (hi) at minimum.
 - Timestamps are UTC ISO-8601, weights in kg, money in INR.
 - Keep personal data minimal. Never invent prices, recycler names or registration numbers.
   Mark test data as synthetic.
-- Naming: Java PascalCase/camelCase, Python snake_case, Android resources snake_case.
+- Naming: Python snake_case, TypeScript camelCase/PascalCase, file names kebab-case.
 - Keep the APK small: avoid heavy dependencies.
+- TypeScript: strict mode, no `any` — use `unknown` with Zod or type guards.
 
 ## When unsure
 - Ask a clarifying question or list your assumptions instead of guessing.

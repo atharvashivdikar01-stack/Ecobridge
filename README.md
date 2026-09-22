@@ -1,88 +1,99 @@
-# Ecobridge Datasets Repository
-**Smart India Hackathon (SIH 2026) — Problem Statement 26229**  
-*Kabadiwala Connect — Bringing the Informal Collector into the Formal Recycling Chain*
+# EcoBridge
 
-This directory houses all the structured datasets, computer vision assets, CPCB registry seeds, and automated pipeline scripts for the Ecobridge platform.
+EcoBridge connects informal e-waste collectors with recycling facilities through
+transparent collection records, pricing, verification, handover, and settlement
+workflows.
 
----
+## Current implementation
 
-## Directory Structure
+- **Backend:** FastAPI, SQLAlchemy async, PostgreSQL in production, SQLite for tests.
+- **Recycler portal:** Next.js 14 and React 18.
+- **Collector app:** Expo/React Native package placeholder and implementation guide.
+- **Shared packages:** API contracts, AI classification types, offline sync types,
+  translations, traceability hashing, UI, and database scaffolding.
 
-```
-datasets/
-├── README.md                      # This quickstart guide
-├── DATASET_REGISTER.md            # Comprehensive dataset catalog & metadata register
-│
-├── operational/                   # Core Operational Datasets (PS Mandate)
-│   ├── materials.csv & .json      # 8 e-waste classes, weights, condition, hazard level
-│   ├── prices.csv & .json         # Prevailing buy/sell rates across Maharashtra hubs
-│   ├── recyclers.csv & .json      # Authorized MPCB/CPCB recyclers with capacity & GPS
-│   ├── transactions.csv & .json   # Lot lifecycle records (cash/UPI, lot statuses)
-│   ├── traceability.csv & .json   # Tamper-evident SHA-256 digital custody receipts
-│   └── collectors.csv & .json     # Privacy-first collector profiles (Zero PII)
-│
-├── ai_ml/                         # AI/ML, Field Research & Computer Vision Data
-│   ├── vision/                    # Object detection & classification datasets
-│   │   ├── data.yaml              # YOLOv8 & TFLite dataset configuration
-│   │   ├── classes.txt            # 8 target classes (CRT, LCD, PCB, Cables, etc.)
-│   │   ├── images/ (train, val)   # Benchmark annotated training images (640x640)
-│   │   ├── labels/ (train, val)   # Normalized YOLO bounding boxes
-│   │   └── giz_ewaste_samples/    # Real field e-waste photos (GIZ repository, CC-BY-4.0)
-│   ├── field_research/            # Primary field survey assets
-│   │   ├── field_scrap_manifest.csv # Scrap lot photo survey metadata
-│   │   └── classes/               # Dedicated directories for the 8 scrap categories
-│   ├── data_flywheel/             # In-app collector feedback logs
-│   │   ├── confirmed_labels.csv   # Collector confirmations vs TFLite predictions
-│   │   └── flywheel_logs.jsonl    # Streaming feedback logs for model retraining
-│   ├── registry/                  # Seeded CPCB EPR Portal Registry
-│   │   ├── cpcb_recycler_registry.csv
-│   │   └── cpcb_recycler_registry.json
-│   └── price_trends/              # Market price intelligence
-│       ├── price_trends_historical.csv # 15-month historical time-series
-│       └── price_intelligence.json
-│
-├── database_seeds/                # Database DDL and Initial Seed Scripts
-│   ├── schema.sql                 # SQLite & PostgreSQL compatible DDL
-│   └── seed_data.sql              # SQL INSERT statements
-│
-└── scripts/                       # Automation & Validation Tools
-    ├── generate_all_datasets.py   # Master generator for all operational/AIML datasets
-    ├── download_vision_datasets.py# Hugging Face & Roboflow vision dataset downloader
-    ├── validate_datasets.py       # Dataset integrity & referential consistency checker
-    └── seed_database.py           # SQLite database generator & test query suite
+The current repository is a working foundation. Payment gateways, production
+SMS/OTP delivery, live market feeds, and a complete collector mobile UI still
+require deployment-specific integration.
+
+## Repository layout
+
+```text
+backend/          FastAPI application, models, services, and tests
+recycler_portal/  Next.js recycler operations portal
+collector_app/    Expo package metadata and Android implementation guide
+packages/         Shared TypeScript packages
+docs/             Development and Android setup documentation
+scripts/          Local setup helpers
+infra/            Deployment notes
 ```
 
----
+## Prerequisites
 
-## Quick Start Guide
+- Python 3.11+
+- Node.js 18+
+- npm or pnpm 9+
+- PostgreSQL for production; SQLite is used by the automated tests
 
-### 1. Validate All Datasets
-To verify that all foreign keys, timestamps, geographic coordinates, and data honesty tags are valid:
+## Backend setup
+
 ```bash
-python datasets/scripts/validate_datasets.py
+cd backend
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### 2. Seed the Local SQLite Database
-To create or refresh `database/ecobridge.db` and run verification queries:
+Set `DATABASE_URL` and `SECRET_KEY` through environment variables. Never commit
+`.env` files or real credentials.
+
+Run the API:
+
 ```bash
-python datasets/scripts/seed_database.py
+uvicorn src.main:app --reload --port 8000
 ```
 
-### 3. Download Vision Datasets
-- **GIZ Real Field Photos (Hugging Face)**:
-  ```bash
-  python datasets/scripts/download_vision_datasets.py --giz-count 20
-  ```
-- **Roboflow Universe Datasets (Optional)**:
-  ```bash
-  python datasets/scripts/download_vision_datasets.py --roboflow --workspace electronic-waste --project electronic-waste-dataset --api-key YOUR_KEY
-  ```
+Run the backend tests:
 
----
+```bash
+set PYTHONPATH=backend
+python -m pytest backend/tests -q
+```
 
-## Core Specifications Summary
+## Recycler portal
 
-- **8 E-Waste Classes**: CRT, LCD/LED Panels, PCBs, Copper Cables, Batteries, Motors & Magnets, Mixed Plastics, Other E-Waste.
-- **Multilingual Support**: English, Marathi (`mr`), and Hindi (`hi`) Devanagari labels throughout.
-- **Data Honesty**: Explicit `source_type` (`field`, `recycler`, `synthetic`) tags on all market price records.
-- **Privacy First**: Zero unnecessary personally identifiable information (PII) stored in collector profiles.
+```bash
+cd recycler_portal
+npm install
+npm run dev
+```
+
+The portal runs on `http://localhost:3001` and proxies `/api/v1` to the backend
+at `http://127.0.0.1:8000`. Override the API URL with
+`NEXT_PUBLIC_API_URL` when required.
+
+Production checks:
+
+```bash
+npm run build
+npm run start
+```
+
+## Android collector app
+
+The partner folder did not contain a complete Android application. The
+authoritative implementation plan is [`docs/ANDROID_APP.md`](docs/ANDROID_APP.md).
+It covers Expo setup, emulator/device networking, authentication, camera and
+location permissions, offline queueing, synchronization, and release testing.
+
+## Security and privacy
+
+Use environment variables for database URLs, JWT secrets, storage credentials,
+and external API keys. Demo login is for local demonstrations only. Review
+privacy, consent, data retention, and regulatory requirements before production
+deployment.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
