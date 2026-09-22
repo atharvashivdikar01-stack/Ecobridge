@@ -1,0 +1,28 @@
+{
+  "name": "@ecobridge/api-server",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "start": "node dist/index.js",
+    "lint": "eslint src/",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@ecobridge/api-contracts": "workspace:*",
+    "@ecobridge/database": "workspace:*",
+    "@ecobridge/sync-engine": "workspace:*",
+    "@ecobridge/ai-core": "workspace:*",
+    "@ecobridge/crypto-traceability": "workspace:*",
+    "fastify": "^4.28.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@ecobridge/eslint-config": "workspace:*",
+    "@ecobridge/tsconfig": "workspace:*",
+    "tsx": "^4.15.0",
+    "tsup": "^8.1.0"
+  }
+}

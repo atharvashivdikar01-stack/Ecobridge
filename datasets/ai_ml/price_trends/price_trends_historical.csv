@@ -1,0 +1,361 @@
+date,category_id,category_name,location_cluster,buying_price_per_kg,selling_price_per_kg,unit,source_type,notes
+2025-01-01,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),12.42,20.26,kg,field,Aggregated field market reading
+2025-01-01,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),17.42,26.26,kg,recycler,Aggregated recycler market reading
+2025-01-01,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),14.42,22.66,kg,synthetic,Aggregated synthetic market reading
+2025-01-01,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),36.25,52.97,kg,field,Aggregated field market reading
+2025-01-01,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),41.25,58.97,kg,recycler,Aggregated recycler market reading
+2025-01-01,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),38.25,55.37,kg,synthetic,Aggregated synthetic market reading
+2025-01-01,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),175.9,254.56,kg,field,Aggregated field market reading
+2025-01-01,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),180.9,260.56,kg,recycler,Aggregated recycler market reading
+2025-01-01,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),177.9,256.96,kg,synthetic,Aggregated synthetic market reading
+2025-01-01,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),239.15,319.13,kg,field,Aggregated field market reading
+2025-01-01,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),244.15,325.13,kg,recycler,Aggregated recycler market reading
+2025-01-01,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),241.15,321.53,kg,synthetic,Aggregated synthetic market reading
+2025-01-01,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),71.26,100.16,kg,field,Aggregated field market reading
+2025-01-01,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),76.26,106.16,kg,recycler,Aggregated recycler market reading
+2025-01-01,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),73.26,102.56,kg,synthetic,Aggregated synthetic market reading
+2025-01-01,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),33.11,45.75,kg,field,Aggregated field market reading
+2025-01-01,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),38.11,51.75,kg,recycler,Aggregated recycler market reading
+2025-01-01,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),35.11,48.15,kg,synthetic,Aggregated synthetic market reading
+2025-01-01,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),15.66,25.06,kg,field,Aggregated field market reading
+2025-01-01,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),20.66,31.06,kg,recycler,Aggregated recycler market reading
+2025-01-01,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),17.66,27.46,kg,synthetic,Aggregated synthetic market reading
+2025-01-01,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),18.47,30.35,kg,field,Aggregated field market reading
+2025-01-01,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),23.47,36.35,kg,recycler,Aggregated recycler market reading
+2025-01-01,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),20.47,32.75,kg,synthetic,Aggregated synthetic market reading
+2025-01-31,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),11.96,19.54,kg,field,Aggregated field market reading
+2025-01-31,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),16.96,25.54,kg,recycler,Aggregated recycler market reading
+2025-01-31,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),13.96,21.94,kg,synthetic,Aggregated synthetic market reading
+2025-01-31,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),36.28,53.0,kg,field,Aggregated field market reading
+2025-01-31,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),41.28,59.0,kg,recycler,Aggregated recycler market reading
+2025-01-31,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),38.28,55.4,kg,synthetic,Aggregated synthetic market reading
+2025-01-31,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),179.75,260.12,kg,field,Aggregated field market reading
+2025-01-31,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),184.75,266.12,kg,recycler,Aggregated recycler market reading
+2025-01-31,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),181.75,262.52,kg,synthetic,Aggregated synthetic market reading
+2025-01-31,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),239.27,319.3,kg,field,Aggregated field market reading
+2025-01-31,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),244.27,325.3,kg,recycler,Aggregated recycler market reading
+2025-01-31,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),241.27,321.7,kg,synthetic,Aggregated synthetic market reading
+2025-01-31,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),73.1,102.74,kg,field,Aggregated field market reading
+2025-01-31,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),78.1,108.74,kg,recycler,Aggregated recycler market reading
+2025-01-31,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),75.1,105.14,kg,synthetic,Aggregated synthetic market reading
+2025-01-31,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),34.14,47.17,kg,field,Aggregated field market reading
+2025-01-31,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),39.14,53.17,kg,recycler,Aggregated recycler market reading
+2025-01-31,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),36.14,49.57,kg,synthetic,Aggregated synthetic market reading
+2025-01-31,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),16.31,26.08,kg,field,Aggregated field market reading
+2025-01-31,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),21.31,32.08,kg,recycler,Aggregated recycler market reading
+2025-01-31,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),18.31,28.48,kg,synthetic,Aggregated synthetic market reading
+2025-01-31,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),17.89,29.42,kg,field,Aggregated field market reading
+2025-01-31,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),22.89,35.42,kg,recycler,Aggregated recycler market reading
+2025-01-31,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),19.89,31.82,kg,synthetic,Aggregated synthetic market reading
+2025-03-02,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),12.03,19.65,kg,field,Aggregated field market reading
+2025-03-02,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),17.03,25.65,kg,recycler,Aggregated recycler market reading
+2025-03-02,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),14.03,22.05,kg,synthetic,Aggregated synthetic market reading
+2025-03-02,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),35.93,52.49,kg,field,Aggregated field market reading
+2025-03-02,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),40.93,58.49,kg,recycler,Aggregated recycler market reading
+2025-03-02,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),37.93,54.89,kg,synthetic,Aggregated synthetic market reading
+2025-03-02,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),184.06,266.35,kg,field,Aggregated field market reading
+2025-03-02,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),189.06,272.35,kg,recycler,Aggregated recycler market reading
+2025-03-02,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),186.06,268.75,kg,synthetic,Aggregated synthetic market reading
+2025-03-02,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),249.35,332.73,kg,field,Aggregated field market reading
+2025-03-02,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),254.35,338.73,kg,recycler,Aggregated recycler market reading
+2025-03-02,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),251.35,335.13,kg,synthetic,Aggregated synthetic market reading
+2025-03-02,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),76.26,107.16,kg,field,Aggregated field market reading
+2025-03-02,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),81.26,113.16,kg,recycler,Aggregated recycler market reading
+2025-03-02,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),78.26,109.56,kg,synthetic,Aggregated synthetic market reading
+2025-03-02,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),32.91,45.48,kg,field,Aggregated field market reading
+2025-03-02,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),37.91,51.48,kg,recycler,Aggregated recycler market reading
+2025-03-02,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),34.91,47.88,kg,synthetic,Aggregated synthetic market reading
+2025-03-02,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),16.74,26.74,kg,field,Aggregated field market reading
+2025-03-02,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),21.74,32.74,kg,recycler,Aggregated recycler market reading
+2025-03-02,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),18.74,29.14,kg,synthetic,Aggregated synthetic market reading
+2025-03-02,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),19.01,31.22,kg,field,Aggregated field market reading
+2025-03-02,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),24.01,37.22,kg,recycler,Aggregated recycler market reading
+2025-03-02,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),21.01,33.62,kg,synthetic,Aggregated synthetic market reading
+2025-04-01,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),12.72,20.73,kg,field,Aggregated field market reading
+2025-04-01,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),17.72,26.73,kg,recycler,Aggregated recycler market reading
+2025-04-01,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),14.72,23.13,kg,synthetic,Aggregated synthetic market reading
+2025-04-01,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),36.23,52.94,kg,field,Aggregated field market reading
+2025-04-01,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),41.23,58.94,kg,recycler,Aggregated recycler market reading
+2025-04-01,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),38.23,55.34,kg,synthetic,Aggregated synthetic market reading
+2025-04-01,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),184.84,267.48,kg,field,Aggregated field market reading
+2025-04-01,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),189.84,273.48,kg,recycler,Aggregated recycler market reading
+2025-04-01,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),186.84,269.88,kg,synthetic,Aggregated synthetic market reading
+2025-04-01,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),244.9,326.79,kg,field,Aggregated field market reading
+2025-04-01,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),249.9,332.79,kg,recycler,Aggregated recycler market reading
+2025-04-01,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),246.9,329.19,kg,synthetic,Aggregated synthetic market reading
+2025-04-01,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),76.84,107.97,kg,field,Aggregated field market reading
+2025-04-01,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),81.84,113.97,kg,recycler,Aggregated recycler market reading
+2025-04-01,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),78.84,110.37,kg,synthetic,Aggregated synthetic market reading
+2025-04-01,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),34.08,47.08,kg,field,Aggregated field market reading
+2025-04-01,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),39.08,53.08,kg,recycler,Aggregated recycler market reading
+2025-04-01,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),36.08,49.48,kg,synthetic,Aggregated synthetic market reading
+2025-04-01,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),16.45,26.3,kg,field,Aggregated field market reading
+2025-04-01,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),21.45,32.3,kg,recycler,Aggregated recycler market reading
+2025-04-01,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),18.45,28.7,kg,synthetic,Aggregated synthetic market reading
+2025-04-01,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),18.46,30.34,kg,field,Aggregated field market reading
+2025-04-01,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),23.46,36.34,kg,recycler,Aggregated recycler market reading
+2025-04-01,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),20.46,32.74,kg,synthetic,Aggregated synthetic market reading
+2025-05-01,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),12.64,20.6,kg,field,Aggregated field market reading
+2025-05-01,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),17.64,26.6,kg,recycler,Aggregated recycler market reading
+2025-05-01,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),14.64,23.0,kg,synthetic,Aggregated synthetic market reading
+2025-05-01,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),37.06,54.14,kg,field,Aggregated field market reading
+2025-05-01,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),42.06,60.14,kg,recycler,Aggregated recycler market reading
+2025-05-01,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),39.06,56.54,kg,synthetic,Aggregated synthetic market reading
+2025-05-01,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),182.53,264.14,kg,field,Aggregated field market reading
+2025-05-01,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),187.53,270.14,kg,recycler,Aggregated recycler market reading
+2025-05-01,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),184.53,266.54,kg,synthetic,Aggregated synthetic market reading
+2025-05-01,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),242.97,324.22,kg,field,Aggregated field market reading
+2025-05-01,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),247.97,330.22,kg,recycler,Aggregated recycler market reading
+2025-05-01,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),244.97,326.62,kg,synthetic,Aggregated synthetic market reading
+2025-05-01,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),76.89,108.05,kg,field,Aggregated field market reading
+2025-05-01,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),81.89,114.05,kg,recycler,Aggregated recycler market reading
+2025-05-01,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),78.89,110.45,kg,synthetic,Aggregated synthetic market reading
+2025-05-01,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),33.71,46.58,kg,field,Aggregated field market reading
+2025-05-01,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),38.71,52.58,kg,recycler,Aggregated recycler market reading
+2025-05-01,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),35.71,48.98,kg,synthetic,Aggregated synthetic market reading
+2025-05-01,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),16.82,26.87,kg,field,Aggregated field market reading
+2025-05-01,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),21.82,32.87,kg,recycler,Aggregated recycler market reading
+2025-05-01,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),18.82,29.27,kg,synthetic,Aggregated synthetic market reading
+2025-05-01,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),18.41,30.25,kg,field,Aggregated field market reading
+2025-05-01,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),23.41,36.25,kg,recycler,Aggregated recycler market reading
+2025-05-01,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),20.41,32.65,kg,synthetic,Aggregated synthetic market reading
+2025-05-31,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),12.99,21.15,kg,field,Aggregated field market reading
+2025-05-31,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),17.99,27.15,kg,recycler,Aggregated recycler market reading
+2025-05-31,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),14.99,23.55,kg,synthetic,Aggregated synthetic market reading
+2025-05-31,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),37.35,54.55,kg,field,Aggregated field market reading
+2025-05-31,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),42.35,60.55,kg,recycler,Aggregated recycler market reading
+2025-05-31,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),39.35,56.95,kg,synthetic,Aggregated synthetic market reading
+2025-05-31,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),185.4,268.29,kg,field,Aggregated field market reading
+2025-05-31,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),190.4,274.29,kg,recycler,Aggregated recycler market reading
+2025-05-31,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),187.4,270.69,kg,synthetic,Aggregated synthetic market reading
+2025-05-31,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),256.9,342.8,kg,field,Aggregated field market reading
+2025-05-31,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),261.9,348.8,kg,recycler,Aggregated recycler market reading
+2025-05-31,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),258.9,345.2,kg,synthetic,Aggregated synthetic market reading
+2025-05-31,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),75.47,106.06,kg,field,Aggregated field market reading
+2025-05-31,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),80.47,112.06,kg,recycler,Aggregated recycler market reading
+2025-05-31,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),77.47,108.46,kg,synthetic,Aggregated synthetic market reading
+2025-05-31,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),34.99,48.33,kg,field,Aggregated field market reading
+2025-05-31,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),39.99,54.33,kg,recycler,Aggregated recycler market reading
+2025-05-31,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),36.99,50.73,kg,synthetic,Aggregated synthetic market reading
+2025-05-31,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),17.57,28.04,kg,field,Aggregated field market reading
+2025-05-31,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),22.57,34.04,kg,recycler,Aggregated recycler market reading
+2025-05-31,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),19.57,30.44,kg,synthetic,Aggregated synthetic market reading
+2025-05-31,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),18.85,30.96,kg,field,Aggregated field market reading
+2025-05-31,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),23.85,36.96,kg,recycler,Aggregated recycler market reading
+2025-05-31,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),20.85,33.36,kg,synthetic,Aggregated synthetic market reading
+2025-06-30,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),13.21,21.5,kg,field,Aggregated field market reading
+2025-06-30,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),18.21,27.5,kg,recycler,Aggregated recycler market reading
+2025-06-30,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),15.21,23.9,kg,synthetic,Aggregated synthetic market reading
+2025-06-30,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),39.77,58.06,kg,field,Aggregated field market reading
+2025-06-30,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),44.77,64.06,kg,recycler,Aggregated recycler market reading
+2025-06-30,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),41.77,60.46,kg,synthetic,Aggregated synthetic market reading
+2025-06-30,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),186.98,270.58,kg,field,Aggregated field market reading
+2025-06-30,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),191.98,276.58,kg,recycler,Aggregated recycler market reading
+2025-06-30,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),188.98,272.98,kg,synthetic,Aggregated synthetic market reading
+2025-06-30,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),254.54,339.66,kg,field,Aggregated field market reading
+2025-06-30,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),259.54,345.66,kg,recycler,Aggregated recycler market reading
+2025-06-30,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),256.54,342.06,kg,synthetic,Aggregated synthetic market reading
+2025-06-30,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),76.48,107.48,kg,field,Aggregated field market reading
+2025-06-30,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),81.48,113.48,kg,recycler,Aggregated recycler market reading
+2025-06-30,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),78.48,109.88,kg,synthetic,Aggregated synthetic market reading
+2025-06-30,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),36.28,50.1,kg,field,Aggregated field market reading
+2025-06-30,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),41.28,56.1,kg,recycler,Aggregated recycler market reading
+2025-06-30,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),38.28,52.5,kg,synthetic,Aggregated synthetic market reading
+2025-06-30,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),16.84,26.9,kg,field,Aggregated field market reading
+2025-06-30,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),21.84,32.9,kg,recycler,Aggregated recycler market reading
+2025-06-30,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),18.84,29.3,kg,synthetic,Aggregated synthetic market reading
+2025-06-30,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),19.17,31.46,kg,field,Aggregated field market reading
+2025-06-30,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),24.17,37.46,kg,recycler,Aggregated recycler market reading
+2025-06-30,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),21.17,33.86,kg,synthetic,Aggregated synthetic market reading
+2025-07-30,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),12.98,21.15,kg,field,Aggregated field market reading
+2025-07-30,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),17.98,27.15,kg,recycler,Aggregated recycler market reading
+2025-07-30,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),14.98,23.55,kg,synthetic,Aggregated synthetic market reading
+2025-07-30,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),38.96,56.89,kg,field,Aggregated field market reading
+2025-07-30,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),43.96,62.89,kg,recycler,Aggregated recycler market reading
+2025-07-30,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),40.96,59.29,kg,synthetic,Aggregated synthetic market reading
+2025-07-30,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),188.28,272.44,kg,field,Aggregated field market reading
+2025-07-30,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),193.28,278.44,kg,recycler,Aggregated recycler market reading
+2025-07-30,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),190.28,274.84,kg,synthetic,Aggregated synthetic market reading
+2025-07-30,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),251.98,336.24,kg,field,Aggregated field market reading
+2025-07-30,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),256.98,342.24,kg,recycler,Aggregated recycler market reading
+2025-07-30,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),253.98,338.64,kg,synthetic,Aggregated synthetic market reading
+2025-07-30,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),77.74,109.23,kg,field,Aggregated field market reading
+2025-07-30,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),82.74,115.23,kg,recycler,Aggregated recycler market reading
+2025-07-30,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),79.74,111.63,kg,synthetic,Aggregated synthetic market reading
+2025-07-30,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),35.71,49.32,kg,field,Aggregated field market reading
+2025-07-30,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),40.71,55.32,kg,recycler,Aggregated recycler market reading
+2025-07-30,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),37.71,51.72,kg,synthetic,Aggregated synthetic market reading
+2025-07-30,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),17.48,27.9,kg,field,Aggregated field market reading
+2025-07-30,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),22.48,33.9,kg,recycler,Aggregated recycler market reading
+2025-07-30,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),19.48,30.3,kg,synthetic,Aggregated synthetic market reading
+2025-07-30,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),19.66,32.26,kg,field,Aggregated field market reading
+2025-07-30,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),24.66,38.26,kg,recycler,Aggregated recycler market reading
+2025-07-30,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),21.66,34.66,kg,synthetic,Aggregated synthetic market reading
+2025-08-29,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),13.06,21.27,kg,field,Aggregated field market reading
+2025-08-29,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),18.06,27.27,kg,recycler,Aggregated recycler market reading
+2025-08-29,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),15.06,23.67,kg,synthetic,Aggregated synthetic market reading
+2025-08-29,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),39.0,56.95,kg,field,Aggregated field market reading
+2025-08-29,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),44.0,62.95,kg,recycler,Aggregated recycler market reading
+2025-08-29,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),41.0,59.35,kg,synthetic,Aggregated synthetic market reading
+2025-08-29,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),190.48,275.63,kg,field,Aggregated field market reading
+2025-08-29,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),195.48,281.63,kg,recycler,Aggregated recycler market reading
+2025-08-29,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),192.48,278.03,kg,synthetic,Aggregated synthetic market reading
+2025-08-29,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),257.3,343.33,kg,field,Aggregated field market reading
+2025-08-29,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),262.3,349.33,kg,recycler,Aggregated recycler market reading
+2025-08-29,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),259.3,345.73,kg,synthetic,Aggregated synthetic market reading
+2025-08-29,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),80.86,113.6,kg,field,Aggregated field market reading
+2025-08-29,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),85.86,119.6,kg,recycler,Aggregated recycler market reading
+2025-08-29,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),82.86,116.0,kg,synthetic,Aggregated synthetic market reading
+2025-08-29,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),36.09,49.84,kg,field,Aggregated field market reading
+2025-08-29,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),41.09,55.84,kg,recycler,Aggregated recycler market reading
+2025-08-29,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),38.09,52.24,kg,synthetic,Aggregated synthetic market reading
+2025-08-29,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),17.38,27.74,kg,field,Aggregated field market reading
+2025-08-29,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),22.38,33.74,kg,recycler,Aggregated recycler market reading
+2025-08-29,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),19.38,30.14,kg,synthetic,Aggregated synthetic market reading
+2025-08-29,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),19.43,31.89,kg,field,Aggregated field market reading
+2025-08-29,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),24.43,37.89,kg,recycler,Aggregated recycler market reading
+2025-08-29,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),21.43,34.29,kg,synthetic,Aggregated synthetic market reading
+2025-09-28,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),13.64,22.17,kg,field,Aggregated field market reading
+2025-09-28,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),18.64,28.17,kg,recycler,Aggregated recycler market reading
+2025-09-28,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),15.64,24.57,kg,synthetic,Aggregated synthetic market reading
+2025-09-28,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),40.66,59.34,kg,field,Aggregated field market reading
+2025-09-28,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),45.66,65.34,kg,recycler,Aggregated recycler market reading
+2025-09-28,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),42.66,61.74,kg,synthetic,Aggregated synthetic market reading
+2025-09-28,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),201.29,291.25,kg,field,Aggregated field market reading
+2025-09-28,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),206.29,297.25,kg,recycler,Aggregated recycler market reading
+2025-09-28,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),203.29,293.65,kg,synthetic,Aggregated synthetic market reading
+2025-09-28,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),264.72,353.22,kg,field,Aggregated field market reading
+2025-09-28,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),269.72,359.22,kg,recycler,Aggregated recycler market reading
+2025-09-28,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),266.72,355.62,kg,synthetic,Aggregated synthetic market reading
+2025-09-28,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),79.6,111.84,kg,field,Aggregated field market reading
+2025-09-28,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),84.6,117.84,kg,recycler,Aggregated recycler market reading
+2025-09-28,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),81.6,114.24,kg,synthetic,Aggregated synthetic market reading
+2025-09-28,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),35.93,49.61,kg,field,Aggregated field market reading
+2025-09-28,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),40.93,55.61,kg,recycler,Aggregated recycler market reading
+2025-09-28,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),37.93,52.01,kg,synthetic,Aggregated synthetic market reading
+2025-09-28,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),17.92,28.59,kg,field,Aggregated field market reading
+2025-09-28,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),22.92,34.59,kg,recycler,Aggregated recycler market reading
+2025-09-28,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),19.92,30.99,kg,synthetic,Aggregated synthetic market reading
+2025-09-28,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),20.69,33.9,kg,field,Aggregated field market reading
+2025-09-28,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),25.69,39.9,kg,recycler,Aggregated recycler market reading
+2025-09-28,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),22.69,36.3,kg,synthetic,Aggregated synthetic market reading
+2025-10-28,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),13.66,22.2,kg,field,Aggregated field market reading
+2025-10-28,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),18.66,28.2,kg,recycler,Aggregated recycler market reading
+2025-10-28,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),15.66,24.6,kg,synthetic,Aggregated synthetic market reading
+2025-10-28,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),41.34,60.33,kg,field,Aggregated field market reading
+2025-10-28,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),46.34,66.33,kg,recycler,Aggregated recycler market reading
+2025-10-28,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),43.34,62.73,kg,synthetic,Aggregated synthetic market reading
+2025-10-28,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),199.69,288.93,kg,field,Aggregated field market reading
+2025-10-28,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),204.69,294.93,kg,recycler,Aggregated recycler market reading
+2025-10-28,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),201.69,291.33,kg,synthetic,Aggregated synthetic market reading
+2025-10-28,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),263.48,351.57,kg,field,Aggregated field market reading
+2025-10-28,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),268.48,357.57,kg,recycler,Aggregated recycler market reading
+2025-10-28,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),265.48,353.97,kg,synthetic,Aggregated synthetic market reading
+2025-10-28,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),81.11,113.95,kg,field,Aggregated field market reading
+2025-10-28,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),86.11,119.95,kg,recycler,Aggregated recycler market reading
+2025-10-28,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),83.11,116.35,kg,synthetic,Aggregated synthetic market reading
+2025-10-28,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),38.17,52.69,kg,field,Aggregated field market reading
+2025-10-28,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),43.17,58.69,kg,recycler,Aggregated recycler market reading
+2025-10-28,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),40.17,55.09,kg,synthetic,Aggregated synthetic market reading
+2025-10-28,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),18.36,29.27,kg,field,Aggregated field market reading
+2025-10-28,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),23.36,35.27,kg,recycler,Aggregated recycler market reading
+2025-10-28,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),20.36,31.67,kg,synthetic,Aggregated synthetic market reading
+2025-10-28,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),20.85,34.17,kg,field,Aggregated field market reading
+2025-10-28,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),25.85,40.17,kg,recycler,Aggregated recycler market reading
+2025-10-28,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),22.85,36.57,kg,synthetic,Aggregated synthetic market reading
+2025-11-27,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),13.87,22.54,kg,field,Aggregated field market reading
+2025-11-27,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),18.87,28.54,kg,recycler,Aggregated recycler market reading
+2025-11-27,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),15.87,24.94,kg,synthetic,Aggregated synthetic market reading
+2025-11-27,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),40.81,59.56,kg,field,Aggregated field market reading
+2025-11-27,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),45.81,65.56,kg,recycler,Aggregated recycler market reading
+2025-11-27,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),42.81,61.96,kg,synthetic,Aggregated synthetic market reading
+2025-11-27,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),199.67,288.9,kg,field,Aggregated field market reading
+2025-11-27,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),204.67,294.9,kg,recycler,Aggregated recycler market reading
+2025-11-27,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),201.67,291.3,kg,synthetic,Aggregated synthetic market reading
+2025-11-27,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),274.4,366.13,kg,field,Aggregated field market reading
+2025-11-27,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),279.4,372.13,kg,recycler,Aggregated recycler market reading
+2025-11-27,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),276.4,368.53,kg,synthetic,Aggregated synthetic market reading
+2025-11-27,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),85.05,119.48,kg,field,Aggregated field market reading
+2025-11-27,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),90.05,125.48,kg,recycler,Aggregated recycler market reading
+2025-11-27,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),87.05,121.88,kg,synthetic,Aggregated synthetic market reading
+2025-11-27,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),38.25,52.81,kg,field,Aggregated field market reading
+2025-11-27,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),43.25,58.81,kg,recycler,Aggregated recycler market reading
+2025-11-27,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),40.25,55.21,kg,synthetic,Aggregated synthetic market reading
+2025-11-27,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),18.83,30.0,kg,field,Aggregated field market reading
+2025-11-27,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),23.83,36.0,kg,recycler,Aggregated recycler market reading
+2025-11-27,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),20.83,32.4,kg,synthetic,Aggregated synthetic market reading
+2025-11-27,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),20.13,33.02,kg,field,Aggregated field market reading
+2025-11-27,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),25.13,39.02,kg,recycler,Aggregated recycler market reading
+2025-11-27,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),22.13,35.42,kg,synthetic,Aggregated synthetic market reading
+2025-12-27,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),14.34,23.28,kg,field,Aggregated field market reading
+2025-12-27,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),19.34,29.28,kg,recycler,Aggregated recycler market reading
+2025-12-27,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),16.34,25.68,kg,synthetic,Aggregated synthetic market reading
+2025-12-27,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),41.92,61.17,kg,field,Aggregated field market reading
+2025-12-27,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),46.92,67.17,kg,recycler,Aggregated recycler market reading
+2025-12-27,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),43.92,63.57,kg,synthetic,Aggregated synthetic market reading
+2025-12-27,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),199.32,288.4,kg,field,Aggregated field market reading
+2025-12-27,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),204.32,294.4,kg,recycler,Aggregated recycler market reading
+2025-12-27,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),201.32,290.8,kg,synthetic,Aggregated synthetic market reading
+2025-12-27,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),270.06,360.35,kg,field,Aggregated field market reading
+2025-12-27,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),275.06,366.35,kg,recycler,Aggregated recycler market reading
+2025-12-27,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),272.06,362.75,kg,synthetic,Aggregated synthetic market reading
+2025-12-27,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),81.71,114.8,kg,field,Aggregated field market reading
+2025-12-27,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),86.71,120.8,kg,recycler,Aggregated recycler market reading
+2025-12-27,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),83.71,117.2,kg,synthetic,Aggregated synthetic market reading
+2025-12-27,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),37.64,51.96,kg,field,Aggregated field market reading
+2025-12-27,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),42.64,57.96,kg,recycler,Aggregated recycler market reading
+2025-12-27,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),39.64,54.36,kg,synthetic,Aggregated synthetic market reading
+2025-12-27,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),18.08,28.83,kg,field,Aggregated field market reading
+2025-12-27,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),23.08,34.83,kg,recycler,Aggregated recycler market reading
+2025-12-27,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),20.08,31.23,kg,synthetic,Aggregated synthetic market reading
+2025-12-27,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),20.95,34.31,kg,field,Aggregated field market reading
+2025-12-27,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),25.95,40.31,kg,recycler,Aggregated recycler market reading
+2025-12-27,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),22.95,36.71,kg,synthetic,Aggregated synthetic market reading
+2026-01-26,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),13.96,22.68,kg,field,Aggregated field market reading
+2026-01-26,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),18.96,28.68,kg,recycler,Aggregated recycler market reading
+2026-01-26,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),15.96,25.08,kg,synthetic,Aggregated synthetic market reading
+2026-01-26,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),41.44,60.48,kg,field,Aggregated field market reading
+2026-01-26,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),46.44,66.48,kg,recycler,Aggregated recycler market reading
+2026-01-26,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),43.44,62.88,kg,synthetic,Aggregated synthetic market reading
+2026-01-26,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),207.18,299.76,kg,field,Aggregated field market reading
+2026-01-26,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),212.18,305.76,kg,recycler,Aggregated recycler market reading
+2026-01-26,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),209.18,302.16,kg,synthetic,Aggregated synthetic market reading
+2026-01-26,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),276.02,368.29,kg,field,Aggregated field market reading
+2026-01-26,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),281.02,374.29,kg,recycler,Aggregated recycler market reading
+2026-01-26,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),278.02,370.69,kg,synthetic,Aggregated synthetic market reading
+2026-01-26,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),82.78,116.29,kg,field,Aggregated field market reading
+2026-01-26,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),87.78,122.29,kg,recycler,Aggregated recycler market reading
+2026-01-26,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),84.78,118.69,kg,synthetic,Aggregated synthetic market reading
+2026-01-26,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),39.15,54.03,kg,field,Aggregated field market reading
+2026-01-26,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),44.15,60.03,kg,recycler,Aggregated recycler market reading
+2026-01-26,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),41.15,56.43,kg,synthetic,Aggregated synthetic market reading
+2026-01-26,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),18.99,30.25,kg,field,Aggregated field market reading
+2026-01-26,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),23.99,36.25,kg,recycler,Aggregated recycler market reading
+2026-01-26,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),20.99,32.65,kg,synthetic,Aggregated synthetic market reading
+2026-01-26,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),20.64,33.82,kg,field,Aggregated field market reading
+2026-01-26,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),25.64,39.82,kg,recycler,Aggregated recycler market reading
+2026-01-26,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),22.64,36.22,kg,synthetic,Aggregated synthetic market reading
+2026-02-25,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),14.43,23.43,kg,field,Aggregated field market reading
+2026-02-25,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),19.43,29.43,kg,recycler,Aggregated recycler market reading
+2026-02-25,CAT_CRT,CRT Monitors & TVs,Maharashtra (Mumbai/Pune/Nashik),16.43,25.83,kg,synthetic,Aggregated synthetic market reading
+2026-02-25,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),43.18,63.0,kg,field,Aggregated field market reading
+2026-02-25,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),48.18,69.0,kg,recycler,Aggregated recycler market reading
+2026-02-25,CAT_LCD_LED,LCD / LED Panels,Maharashtra (Mumbai/Pune/Nashik),45.18,65.4,kg,synthetic,Aggregated synthetic market reading
+2026-02-25,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),208.96,302.31,kg,field,Aggregated field market reading
+2026-02-25,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),213.96,308.31,kg,recycler,Aggregated recycler market reading
+2026-02-25,CAT_PCB,Printed Circuit Boards (PCBs),Maharashtra (Mumbai/Pune/Nashik),210.96,304.71,kg,synthetic,Aggregated synthetic market reading
+2026-02-25,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),283.61,378.41,kg,field,Aggregated field market reading
+2026-02-25,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),288.61,384.41,kg,recycler,Aggregated recycler market reading
+2026-02-25,CAT_CABLES,Copper Cables & Wires,Maharashtra (Mumbai/Pune/Nashik),285.61,380.81,kg,synthetic,Aggregated synthetic market reading
+2026-02-25,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),86.82,121.95,kg,field,Aggregated field market reading
+2026-02-25,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),91.82,127.95,kg,recycler,Aggregated recycler market reading
+2026-02-25,CAT_BATTERY,Batteries (Lead-Acid & Li-Ion),Maharashtra (Mumbai/Pune/Nashik),88.82,124.35,kg,synthetic,Aggregated synthetic market reading
+2026-02-25,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),38.05,52.53,kg,field,Aggregated field market reading
+2026-02-25,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),43.05,58.53,kg,recycler,Aggregated recycler market reading
+2026-02-25,CAT_MOTORS,Motors & Magnet Assemblies,Maharashtra (Mumbai/Pune/Nashik),40.05,54.93,kg,synthetic,Aggregated synthetic market reading
+2026-02-25,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),19.36,30.83,kg,field,Aggregated field market reading
+2026-02-25,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),24.36,36.83,kg,recycler,Aggregated recycler market reading
+2026-02-25,CAT_PLASTICS,Mixed E-Waste Plastics (ABS / HIPS),Maharashtra (Mumbai/Pune/Nashik),21.36,33.23,kg,synthetic,Aggregated synthetic market reading
+2026-02-25,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),21.94,35.9,kg,field,Aggregated field market reading
+2026-02-25,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),26.94,41.9,kg,recycler,Aggregated recycler market reading
+2026-02-25,CAT_OTHER,Other Electronic Scrap,Maharashtra (Mumbai/Pune/Nashik),23.94,38.3,kg,synthetic,Aggregated synthetic market reading
