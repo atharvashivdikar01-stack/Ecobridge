@@ -103,17 +103,7 @@ public class HomeActivity extends BaseActivity {
             startActivity(intent);
         });
 
-        // 5. Sync
-        findViewById(R.id.cardSync).setOnClickListener(v -> {
-            if (NetworkUtils.isNetworkAvailable(HomeActivity.this)) {
-                SyncWorker.triggerImmediateSync(HomeActivity.this);
-                Toast.makeText(HomeActivity.this, R.string.status_syncing, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(HomeActivity.this, "Cannot sync: device is offline. Will sync when internet reconnects.", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        // 6. Help & Safety Guidance Dialog
+        // 5. Help & Safety Guidance Dialog
         findViewById(R.id.cardHelp).setOnClickListener(v -> showSafetyHelpDialog());
     }
 
