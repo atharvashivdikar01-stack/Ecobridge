@@ -210,7 +210,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="View Digital Settlement Receipt"
+                android:text="@string/btn_handover_from_lot"
                 android:textColor="@color/secondary"
                 app:icon="@drawable/ic_transactions"
                 app:iconTint="@color/secondary" />

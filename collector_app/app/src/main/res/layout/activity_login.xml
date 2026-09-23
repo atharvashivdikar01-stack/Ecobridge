@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EcoBridge"
+                android:text="@string/app_name"
                 android:textColor="@color/on_primary"
                 android:textSize="32sp"
                 android:textStyle="bold" />
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="SIH 26229 • E-WASTE TERMINAL"
+                android:text="@string/sih_header"
                 android:textColor="@color/primary_fixed"
                 android:letterSpacing="0.1"
                 android:textStyle="bold"
@@ -47,7 +47,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="भाषा / Language"
+                android:text="@string/login_language_title"
                 android:textColor="@color/on_surface"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="मराठी • हिन्दी • English"
+                android:text="@string/login_language_subtitle"
                 android:textColor="@color/on_surface_variant"
                 android:textSize="16sp" />
 
@@ -70,7 +70,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mobile OTP sign-in"
+                android:text="@string/login_otp_title"
                 android:textColor="@color/on_surface"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:hint="10-digit mobile number"
+                android:hint="@string/login_phone_hint"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -98,13 +98,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Send OTP" />
+                android:text="@string/login_send_otp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:hint="6-digit OTP"
+                android:hint="@string/login_otp_hint"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -123,7 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Verify &amp; sign in" />
+                android:text="@string/login_verify" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnContinueOffline"
@@ -131,7 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:layout_marginTop="24dp"
-                android:text="Continue offline"
+                android:text="@string/login_offline"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 app:strokeColor="@color/secondary"
@@ -141,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Offline lots, cached prices and your ledger remain available without sign-in."
+                android:text="@string/login_offline_hint"
                 android:textAlignment="center"
                 android:textColor="@color/on_surface_variant"
                 android:textSize="14sp" />

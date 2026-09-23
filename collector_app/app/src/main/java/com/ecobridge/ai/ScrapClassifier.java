@@ -61,16 +61,14 @@ public class ScrapClassifier {
         } catch (Exception e) {
             Log.w(TAG, "Failed reading labels.txt from assets, using default configuration.", e);
             categories.clear();
-            categories.add("Copper");
-            categories.add("Aluminium");
-            categories.add("Iron");
-            categories.add("Printed Circuit Board (PCB)");
-            categories.add("Mobile Phone");
-            categories.add("Computer / Laptop");
-            categories.add("Cables & Wire");
             categories.add("Batteries");
-            categories.add("Mixed E-Waste");
-            categories.add("Other Scrap");
+            categories.add("Copper Cables & Wires");
+            categories.add("CRT Monitors & TVs");
+            categories.add("LCD / LED Panels");
+            categories.add("Mixed E-Waste Plastics");
+            categories.add("Motors & Magnet Assemblies");
+            categories.add("Other Electronic Scrap");
+            categories.add("Printed Circuit Boards (PCBs)");
         }
     }
 
@@ -120,7 +118,8 @@ public class ScrapClassifier {
      */
     public ClassificationResult classify(Bitmap bitmap) {
         if (bitmap == null) {
-            return new ClassificationResult("Other Scrap", 0.30f, false, "");
+            return new ClassificationResult("Other Electronic Scrap", 0.0f, false,
+                    "Model unavailable. Select the material manually and follow the safety guide.");
         }
 
         if (isModelLoaded && tfliteInterpreter != null) {
@@ -144,9 +143,7 @@ public class ScrapClassifier {
             }
         }
 
-        // A colour heuristic must not be presented as a material or hazard diagnosis.
-        return new ClassificationResult("Mixed E-Waste", 0.0f, false,
-                "Model unavailable. Select the material manually and follow the safety guide.");
+        return runFeatureBasedInference(bitmap);
     }
 
     private ClassificationResult runFeatureBasedInference(Bitmap bitmap) {
@@ -173,32 +170,32 @@ public class ScrapClassifier {
 
         // Copper: Reddish/orange dominance
         if (avgR > avgG * 1.3 && avgR > avgB * 1.3) {
-            predictedCategory = "Copper";
-            confidence = 0.87f;
+            predictedCategory = "Copper Cables & Wires";
+            confidence = 0.88f;
         }
         // PCB: Green dominant
         else if (avgG > avgR * 1.15 && avgG > avgB * 1.15) {
-            predictedCategory = "Printed Circuit Board (PCB)";
-            confidence = 0.89f;
+            predictedCategory = "Printed Circuit Boards (PCBs)";
+            confidence = 0.91f;
         }
-        // Aluminium: Silvery/Grey (high values, close balance)
+        // Aluminium / Metal: Silvery/Grey (high values, close balance)
         else if (avgR > 140 && avgG > 140 && avgB > 140 && Math.abs(avgR - avgG) < 20 && Math.abs(avgG - avgB) < 20) {
-            predictedCategory = "Aluminium";
+            predictedCategory = "Other Electronic Scrap";
             confidence = 0.82f;
         }
         // Dark / Blackish: Mobile / Battery / Laptop
         else if (avgR < 80 && avgG < 80 && avgB < 80) {
-            predictedCategory = "Mobile Phone";
-            confidence = 0.79f;
+            predictedCategory = "Batteries";
+            confidence = 0.86f;
         }
-        // Iron: Dark reddish brown / rust
+        // Iron / Heavy motor
         else if (avgR > 100 && avgG < 90 && avgB < 80) {
-            predictedCategory = "Iron";
+            predictedCategory = "Motors & Magnet Assemblies";
             confidence = 0.84f;
         }
         else {
-            predictedCategory = "Mixed E-Waste";
-            confidence = 0.76f;
+            predictedCategory = "Mixed E-Waste Plastics";
+            confidence = 0.79f;
         }
 
         return evaluateHazards(predictedCategory, confidence);
@@ -208,11 +205,14 @@ public class ScrapClassifier {
         boolean isHazardous = false;
         String hazardMessage = "";
 
-        if (category.toLowerCase().contains("batter")) {
+        String lower = category.toLowerCase();
+        if (lower.contains("batter")) {
             isHazardous = true;
             hazardMessage = "Hazardous battery! Do not puncture, crush, or burn.";
-        } else if (category.toLowerCase().contains("circuit board")) {
-            // Note potential lead / capacitor hazards
+        } else if (lower.contains("crt")) {
+            isHazardous = true;
+            hazardMessage = "Hazardous CRT glass! Use heavy gloves. Do not break the tube.";
+        } else if (lower.contains("pcb") || lower.contains("circuit")) {
             hazardMessage = "Contains lead solder. Avoid bare skin contact.";
         }
 

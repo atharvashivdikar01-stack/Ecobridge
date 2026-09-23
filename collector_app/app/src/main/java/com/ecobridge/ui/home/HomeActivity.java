@@ -17,12 +17,13 @@ import com.ecobridge.data.repository.EcoBridgeRepository;
 import com.ecobridge.sync.SyncWorker;
 import com.ecobridge.ui.BaseActivity;
 import com.ecobridge.ui.earnings.EarningsActivity;
-import com.ecobridge.ui.handover.HandoverActivity;
 import com.ecobridge.ui.lot.NewLotActivity;
 import com.ecobridge.ui.price.PriceBoardActivity;
+import com.ecobridge.ui.recycler.RecyclersActivity;
 import com.ecobridge.ui.settings.LanguageActivity;
 import com.ecobridge.ui.transaction.TransactionsActivity;
 import com.ecobridge.utils.NetworkUtils;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 
 /**
@@ -56,6 +57,7 @@ public class HomeActivity extends BaseActivity {
         setupLanguageDisplay();
         observeSyncStatus();
         setupClickListeners();
+        loadDashboardTotals();
     }
 
     @Override
@@ -63,6 +65,7 @@ public class HomeActivity extends BaseActivity {
         super.onResume();
         setupLanguageDisplay();
         updateNetworkDisplay(0);
+        loadDashboardTotals();
     }
 
     private void initViews() {
@@ -121,7 +124,7 @@ public class HomeActivity extends BaseActivity {
             if (pendingCount > 0) {
                 tvSyncDetails.setText(getString(R.string.sync_pending_count, pendingCount));
             } else {
-                tvSyncDetails.setText("Working offline. Records saved to phone.");
+                tvSyncDetails.setText(R.string.working_offline);
             }
             btnQuickSync.setVisibility(View.GONE);
         }
@@ -147,17 +150,12 @@ public class HomeActivity extends BaseActivity {
         });
 
         // 4. Find Recyclers
-        findViewById(R.id.cardRecyclers).setOnClickListener(v -> {
-            // Recycler discovery feature is currently being integrated.
-            // For now, we show a toast or navigate to a placeholder if available.
-            Toast.makeText(HomeActivity.this, "Recycler Discovery coming soon!", Toast.LENGTH_SHORT).show();
-        });
+        findViewById(R.id.cardRecyclers).setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, RecyclersActivity.class)));
 
         // 5. Handover Scrap
-        findViewById(R.id.cardHandover).setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, HandoverActivity.class);
-            startActivity(intent);
-        });
+        findViewById(R.id.cardHandover).setOnClickListener(v ->
+                startActivity(new Intent(HomeActivity.this, TransactionsActivity.class)));
 
         // 6. My Earnings
         findViewById(R.id.cardEarnings).setOnClickListener(v -> {
@@ -171,26 +169,54 @@ public class HomeActivity extends BaseActivity {
                 SyncWorker.triggerImmediateSync(HomeActivity.this);
                 Toast.makeText(HomeActivity.this, R.string.status_syncing, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(HomeActivity.this, "Cannot sync: device is offline. Will sync when internet reconnects.", Toast.LENGTH_LONG).show();
+                Toast.makeText(HomeActivity.this, R.string.sync_offline_blocked, Toast.LENGTH_LONG).show();
             }
         };
         findViewById(R.id.cardSync).setOnClickListener(syncAction);
         btnQuickSync.setOnClickListener(syncAction);
+        findViewById(R.id.btnRetrySync).setOnClickListener(syncAction);
+        findViewById(R.id.bannerAudio).setOnClickListener(v ->
+                audioPromptManager.playPrompt("home_guide", getString(R.string.dashboard_audio_guide_desc)));
 
-        // 6. Help & Safety Guidance Dialog
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.nav_weigh) {
+                startActivity(new Intent(this, NewLotActivity.class));
+            } else if (id == R.id.nav_history) {
+                startActivity(new Intent(this, TransactionsActivity.class));
+            } else if (id == R.id.nav_rates) {
+                startActivity(new Intent(this, PriceBoardActivity.class));
+            } else if (id == R.id.nav_profile) {
+                startActivity(new Intent(this, LanguageActivity.class));
+            }
+            return true;
+        });
+
         findViewById(R.id.cardHelp).setOnClickListener(v -> showSafetyHelpDialog());
+    }
+
+    private void loadDashboardTotals() {
+        repository.getEarningsSummary(summary -> {
+            TextView earnings = findViewById(R.id.tvTodayEarnings);
+            TextView source = findViewById(R.id.tvEarningsSource);
+            TextView weight = findViewById(R.id.tvTotalWeight);
+            TextView weekly = findViewById(R.id.tvWeeklyPaid);
+            TextView queue = findViewById(R.id.tvSyncQueueTitle);
+            earnings.setText(String.format(java.util.Locale.US, "₹%,d", Math.round(summary.todayEarnings)));
+            source.setText(getString(R.string.earnings_calc_locally, summary.totalLots));
+            weight.setText(getString(R.string.weight_total_label,
+                    String.format(java.util.Locale.US, "%.1f kg", summary.totalWeight)));
+            weekly.setText(getString(R.string.ledger_paid_week,
+                    String.format(java.util.Locale.US, "%,d", Math.round(summary.weeklyEarnings))));
+            queue.setText(getString(R.string.sync_queue_title, summary.totalLots));
+        });
     }
 
     private void showSafetyHelpDialog() {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.action_help)
-                .setMessage(
-                        "🌿 ECOBRIDGE SAFETY RULES:\n\n" +
-                        "1. ⚠️ BATTERY SAFETY: Never puncture, burn, or open swollen batteries. Keep away from water and heat.\n\n" +
-                        "2. ⚠️ CRT GLASS: Contains hazardous lead. Do not break tubes. Use heavy gloves.\n\n" +
-                        "3. 🤝 CASH PAYMENT: Always collect full agreed cash payment before final handover departure.\n\n" +
-                        "4. 📱 OFFLINE USE: You can create scrap lots anywhere without internet. They sync automatically when you reconnect."
-                )
+                .setMessage(R.string.safety_help_body)
                 .setPositiveButton(R.string.btn_done, (dialog, which) -> dialog.dismiss())
                 .show();
     }

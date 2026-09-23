@@ -3,11 +3,11 @@ from src.core.config import Settings
 
 
 def test_settings_default():
-    s = Settings()
+    s = Settings(DATABASE_URL="sqlite+aiosqlite:///./ecobridge.db")
     assert s.PROJECT_NAME == "ECOBRIDGE API Server"
     assert s.VERSION == "0.1.0"
     assert s.API_V1_PREFIX == "/api/v1"
-    assert "postgresql+asyncpg://" in s.ASYNC_DATABASE_URL
+    assert s.ASYNC_DATABASE_URL.startswith("sqlite+aiosqlite://")
 
 
 def test_settings_async_url_generation():

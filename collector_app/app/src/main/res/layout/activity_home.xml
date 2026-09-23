@@ -63,7 +63,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SIH 26229 • E-WASTE"
+                            android:text="@string/sih_header"
                             android:textColor="@color/primary_fixed"
                             android:textSize="10sp"
                             android:textStyle="bold" />
@@ -237,7 +237,7 @@
                             android:id="@+id/btnQuickSync"
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
-                            android:text="Sync"
+                        android:text="@string/sync_now"
                             android:textColor="@color/on_secondary"
                             android:backgroundTint="@color/secondary"
                             android:textSize="12sp"
@@ -414,7 +414,7 @@
                                     android:background="@color/primary_fixed"
                                     android:paddingHorizontal="6dp"
                                     android:paddingVertical="2dp"
-                                    android:text="PRIMARY"
+                                    android:text="@string/badge_primary"
                                     android:textColor="@color/on_primary_fixed"
                                     android:textSize="8sp"
                                     android:textStyle="bold" />
@@ -512,17 +512,9 @@
                                 android:orientation="horizontal"
                                 android:layout_marginTop="4dp">
                                 <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="PCB:"
-                                    android:textColor="@color/primary"
-                                    android:textSize="11sp"
-                                    android:textStyle="bold" />
-                                <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="₹320/kg"
+                                    android:text="@string/pcb_spot_rate"
                                     android:textColor="@color/primary"
                                     android:textSize="11sp"
                                     android:textStyle="bold" />
@@ -592,7 +584,7 @@
                                 android:layout_marginTop="4dp"
                                 android:background="#E8F5E9"
                                 android:paddingHorizontal="4dp"
-                                android:text="JNARDDC Match"
+                android:text="@string/recycler_match_label"
                                 android:textColor="@color/primary"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
@@ -848,7 +840,7 @@
                                         android:background="@color/secondary_container"
                                         android:paddingHorizontal="6dp"
                                         android:paddingVertical="2dp"
-                                        android:text="ACTION REQUIRED"
+                                        android:text="@string/sync_action_required"
                                         android:textColor="@color/on_primary"
                                         android:textSize="8sp"
                                         android:textStyle="bold" />
@@ -866,7 +858,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="40dp"
                                 android:layout_alignParentEnd="true"
-                                android:text="Retry"
+                                android:text="@string/btn_retry"
                                 android:textColor="@color/on_secondary"
                                 android:backgroundTint="@color/secondary"
                                 android:textSize="12sp"
@@ -931,7 +923,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Toll-free Assistance: 1800-11-MINE (6463)"
+                        android:text="@string/footer_hotline"
                         android:textColor="@color/outline"
                         android:textSize="10sp" />
                 </LinearLayout>

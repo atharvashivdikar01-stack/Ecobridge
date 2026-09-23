@@ -35,7 +35,7 @@ import java.util.concurrent.Executors;
                 PriceEntity.class,
                 RecyclerEntity.class
         },
-        version = 1,
+        version = 2,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
@@ -62,6 +62,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                     AppDatabase.class,
                                     DATABASE_NAME
                             )
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }

@@ -102,8 +102,8 @@ public class NewLotActivity extends BaseActivity {
     private TextView tvHazardMessage;
     private GridLayout gridCategories;
     private MaterialButton btnConfirmCategory;
-    private String selectedCategory = "Copper";
-    private float selectedConfidence = 0.87f;
+    private String selectedCategory = "Other Electronic Scrap";
+    private float selectedConfidence = 0.0f;
 
     // Step 3 Views
     private TextView tvWeightDisplay;
@@ -221,7 +221,7 @@ public class NewLotActivity extends BaseActivity {
         if (step == 1) {
             audioPromptManager.playPrompt("take_photo", getString(R.string.instruction_take_photo));
         } else if (step == 2) {
-            audioPromptManager.playPrompt("classify_material", "Please verify the material category detected by the camera.");
+            audioPromptManager.playPrompt("classify_material", getString(R.string.step_classify_title));
             runClassification();
         } else if (step == 3) {
             audioPromptManager.playPrompt("enter_weight", getString(R.string.label_weight));
@@ -364,16 +364,20 @@ public class NewLotActivity extends BaseActivity {
                     }
 
                     highlightSelectedCategoryButton(selectedCategory);
+                    if (selectedConfidence < 0.5f) {
+                        Toast.makeText(NewLotActivity.this, R.string.not_sure_manual, Toast.LENGTH_LONG).show();
+                    }
                 });
             }
 
             @Override
             public void onError(Exception e) {
                 runOnUiThread(() -> {
-                    selectedCategory = "Copper";
-                    tvDetectedCategory.setText("Copper");
-                    tvConfidenceValue.setText(" 87%");
-                    pbConfidence.setProgress(87);
+                    selectedCategory = "Other Electronic Scrap";
+                    tvDetectedCategory.setText(R.string.cat_other);
+                    tvConfidenceValue.setText(" 0%");
+                    pbConfidence.setProgress(0);
+                    Toast.makeText(NewLotActivity.this, R.string.not_sure_manual, Toast.LENGTH_LONG).show();
                 });
             }
         });
@@ -404,9 +408,12 @@ public class NewLotActivity extends BaseActivity {
                 tvConfidenceValue.setText(" Manual Selection");
                 pbConfidence.setProgress(100);
 
-                if ("Batteries".equalsIgnoreCase(cat)) {
+                if (cat.toLowerCase().contains("batter")) {
                     cardHazardAlert.setVisibility(View.VISIBLE);
                     tvHazardMessage.setText(R.string.hazard_battery_msg);
+                } else if (cat.toLowerCase().contains("crt")) {
+                    cardHazardAlert.setVisibility(View.VISIBLE);
+                    tvHazardMessage.setText(R.string.hazard_crt_msg);
                 } else {
                     cardHazardAlert.setVisibility(View.GONE);
                 }
@@ -533,7 +540,7 @@ public class NewLotActivity extends BaseActivity {
             if (price != null) {
                 currentBenchmarkRate = price.getBuyingPrice();
             } else {
-                currentBenchmarkRate = 420.0; // Fallback demo price
+                currentBenchmarkRate = 40.0;
             }
 
             double expectedValue = currentWeightKg * currentBenchmarkRate;

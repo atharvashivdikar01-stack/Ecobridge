@@ -90,17 +90,35 @@
     <string name="hazard_battery_msg">Hazardous battery detected! Do not puncture, crush, or expose to heat.</string>
     <string name="hazard_crt_msg">Hazardous CRT glass detected! Handle with heavy gloves. Do not break tube.</string>
 
-    <!-- Scrap Categories -->
-    <string name="cat_copper">Copper</string>
-    <string name="cat_aluminium">Aluminium</string>
-    <string name="cat_iron">Iron</string>
-    <string name="cat_pcb">Printed Circuit Board (PCB)</string>
-    <string name="cat_mobile">Mobile Phone</string>
-    <string name="cat_laptop">Computer / Laptop</string>
-    <string name="cat_cable">Cables &amp; Wire</string>
+    <string name="working_offline">Working offline. Records saved to phone.</string>
+    <string name="sync_offline_blocked">Cannot sync while offline. Records will sync when internet returns.</string>
+    <string name="handover_pick_lot">Open a lot first, then confirm handover.</string>
+    <string name="btn_handover_from_lot">Confirm handover for this lot</string>
+    <string name="safety_help_body">ECOBRIDGE SAFETY RULES:\n\n1. BATTERY: Never puncture, burn, or open swollen batteries.\n\n2. CRT GLASS: Contains lead. Do not break tubes. Use heavy gloves.\n\n3. CASH: Collect the agreed cash before leaving the yard.\n\n4. OFFLINE: Lots save on the phone and sync when you reconnect.</string>
+    <string name="login_language_title">Language / भाषा</string>
+    <string name="login_language_subtitle">Marathi • Hindi • English</string>
+    <string name="login_otp_title">Mobile OTP sign-in</string>
+    <string name="login_phone_hint">10-digit mobile number</string>
+    <string name="login_send_otp">Send OTP</string>
+    <string name="login_otp_hint">6-digit OTP</string>
+    <string name="login_verify">Verify and sign in</string>
+    <string name="login_offline">Continue offline</string>
+    <string name="login_offline_hint">Offline lots, cached prices and your ledger remain available without sign-in.</string>
+    <string name="badge_primary">PRIMARY</string>
+    <string name="sih_header">SIH 26229 • E-WASTE</string>
+    <string name="action_required">Action Required</string>
+    <string name="pcb_spot_rate">PCB: ₹320/kg</string>
+
+    <string name="cat_copper">Copper Cables &amp; Wires</string>
+    <string name="cat_aluminium">LCD / LED Panels</string>
+    <string name="cat_iron">Motors &amp; Magnet Assemblies</string>
+    <string name="cat_pcb">Printed Circuit Boards (PCBs)</string>
+    <string name="cat_mobile">CRT Monitors &amp; TVs</string>
+    <string name="cat_laptop">Other Electronic Scrap</string>
+    <string name="cat_cable">Copper Cables &amp; Wires</string>
     <string name="cat_battery">Batteries</string>
-    <string name="cat_mixed">Mixed E-Waste</string>
-    <string name="cat_other">Other Scrap</string>
+    <string name="cat_mixed">Mixed E-Waste Plastics</string>
+    <string name="cat_other">Other Electronic Scrap</string>
 
     <!-- Step 3: Weight Screen -->
     <string name="step_weight_title">Step 3: Weight</string>

@@ -1,15 +1,15 @@
 package com.ecobridge.ui.transaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.ecobridge.EcoBridgeApplication;
 import com.ecobridge.R;
 import com.ecobridge.data.local.entity.LotEntity;
 import com.ecobridge.data.repository.EcoBridgeRepository;
 import com.ecobridge.ui.BaseActivity;
+import com.ecobridge.ui.handover.HandoverActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.Locale;
@@ -21,7 +21,7 @@ import java.util.Locale;
 public class TransactionDetailActivity extends BaseActivity {
 
     private EcoBridgeRepository repository;
-    private String lotUuid;
+    private LotEntity loadedLot;
 
     private TextView tvLotCode;
     private TextView tvMaterial;
@@ -43,7 +43,6 @@ public class TransactionDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_transaction_detail);
 
         repository = EcoBridgeApplication.getInstance().getRepository();
-        lotUuid = getIntent().getStringExtra("lot_uuid");
 
         initViews();
         loadTransactionDetails();
@@ -67,13 +66,21 @@ public class TransactionDetailActivity extends BaseActivity {
         tvCreatedAt = findViewById(R.id.tvCreatedAt);
 
         findViewById(R.id.btnViewCertificate).setOnClickListener(v -> {
-            // Placeholder for future receipt viewing logic
+            if (loadedLot == null) return;
+            Intent intent = new Intent(this, HandoverActivity.class);
+            intent.putExtra("lot_uuid", loadedLot.getUuid());
+            intent.putExtra("short_code", loadedLot.getShortCode());
+            intent.putExtra("recycler_name", loadedLot.getSelectedRecyclerName());
+            intent.putExtra("recycler_id", loadedLot.getSelectedRecyclerId());
+            intent.putExtra("weight", loadedLot.getApproxWeightKg());
+            startActivity(intent);
         });
     }
 
     private void loadTransactionDetails() {
-        repository.getLotByUuid(lotUuid, lot -> {
+        repository.getLotByUuid(getIntent().getStringExtra("lot_uuid"), lot -> {
             if (lot != null) {
+                loadedLot = lot;
                 runOnUiThread(() -> {
                     tvLotCode.setText(lot.getShortCode());
                     tvMaterial.setText(lot.getCategory());

@@ -69,6 +69,7 @@ public class HandoverActivity extends BaseActivity {
         audioPromptManager = new AudioPromptManager(this);
 
         extractIntentData();
+        if (isFinishing()) return;
         initViews();
         recalculateSettlement();
 
@@ -83,10 +84,15 @@ public class HandoverActivity extends BaseActivity {
         recyclerId = intent.getStringExtra("recycler_id");
         currentWeight = intent.getDoubleExtra("weight", 10.0);
 
-        if (lotUuid == null) lotUuid = UUID.randomUUID().toString();
-        if (shortCode == null) shortCode = "LOT-DEMO1";
-        if (recyclerName == null) recyclerName = "EcoRecycle India Pvt Ltd";
-        if (recyclerId == null) recyclerId = "rec-001";
+        if (lotUuid == null || lotUuid.isEmpty()) {
+            Toast.makeText(this, R.string.handover_pick_lot, Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this, TransactionsActivity.class));
+            finish();
+            return;
+        }
+        if (shortCode == null) shortCode = "";
+        if (recyclerName == null) recyclerName = getString(R.string.action_recycler);
+        if (recyclerId == null) recyclerId = "00000000-0000-0000-0000-000000000101";
     }
 
     private void initViews() {
