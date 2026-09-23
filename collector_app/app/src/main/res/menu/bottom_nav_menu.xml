@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_weigh"
+        android:icon="@drawable/ic_camera"
+        android:title="@string/nav_weigh" />
+    <item
+        android:id="@+id/nav_history"
+        android:icon="@drawable/ic_verified"
+        android:title="@string/nav_history" />
+    <item
+        android:id="@+id/nav_rates"
+        android:icon="@drawable/ic_verified"
+        android:title="@string/nav_rates" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_verified"
+        android:title="@string/nav_profile" />
+</menu>

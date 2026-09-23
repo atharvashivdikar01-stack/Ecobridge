@@ -64,13 +64,13 @@ async def test_readiness_returns_structured_ready_response(client, monkeypatch):
 async def test_otp_is_one_time_and_attempt_limited():
     service = OtpService()
     phone = "+919876543211"
-    code = await service.generate_and_send_otp(phone)
+    code = service.generate_and_send_otp(phone)
     assert service.verify_otp(phone, code) is True
     assert service.verify_otp(phone, code) is False
 
     service = OtpService()
     phone = "+919876543212"
-    code = await service.generate_and_send_otp(phone)
+    code = service.generate_and_send_otp(phone)
     assert service.verify_otp(phone, "000000") is False
     assert service.verify_otp(phone, "000000") is False
     assert service.verify_otp(phone, "000000") is False

@@ -1,116 +1,104 @@
-# EcoBridge
+# EcoBridge (Kabadiwala Connect)
 
-EcoBridge connects informal e-waste collectors with recycling facilities through
-transparent collection records, pricing, verification, handover, and settlement
-workflows.
+EcoBridge is an offline-first e-waste collection platform for informal collectors and authorised recyclers. The collector records a lot on an inexpensive Android phone, even without connectivity; the app later syncs it to the backend, where a recycler can confirm custody. The product goal is transparent collection records and better price access, not a generic scrap marketplace.
 
-## Current implementation
+## Current working path
 
-- **Backend:** FastAPI, SQLAlchemy async, PostgreSQL in production, SQLite for tests.
-- **Recycler portal:** Next.js 14 and React 18.
-- **Collector app:** Expo/React Native Android app under `apps/collector-mobile`.
-- **Shared packages:** API contracts, AI classification types, offline sync types,
-  translations, traceability hashing, UI, and database scaffolding.
+The canonical implementation is:
 
-The current repository is a working foundation. Payment gateways, production
-SMS/OTP delivery, live market feeds, and a complete collector mobile UI still
-require deployment-specific integration.
+1. `collector_app/` native Android collector app (Java/XML, Room, WorkManager).
+2. `backend/` FastAPI service used for the local integration environment.
+3. SQLite for local testing; PostgreSQL is the intended deployed database.
 
-## Repository layout
+The verified localhost flow is:
 
 ```text
-apps/api-server/       Active FastAPI API and production-readiness tests
-apps/collector-mobile/ Expo/React Native collector Android app
-backend/               Legacy-compatible FastAPI test/application tree
-recycler_portal/       Active Next.js recycler operations portal
-packages/              Shared TypeScript packages
-docs/                  Development, Android, API, and operations documentation
-scripts/               Local setup helpers
-infra/                 Deployment notes
+Collector OTP login -> create Room lot + photo offline -> sync lot + photo
+-> create/sync handover -> verified recycler confirms custody -> payment
+-> collector pulls confirmed/paid status into Room
 ```
 
-The `apps/` tree is the canonical location for new application work. The
-root-level `backend/` and `recycler_portal/` packages remain supported for
-compatibility with the original implementation and existing tests while the
-migration is completed; do not add new features to both copies.
+Lots, handovers, and photos are stored locally first. Network work is performed by
+WorkManager; uploads are idempotent and photo bytes are checked against the SHA-256
+hash calculated on the device.
 
-## Prerequisites
+## Repository map
 
-- Python 3.11+
-- Node.js 18+
-- pnpm 9.15.0 (the version declared by `packageManager`)
-- PostgreSQL for production; SQLite is used by the automated tests
+| Path | Role | Status |
+| --- | --- | --- |
+| `collector_app/` | Canonical native Android collector app | Active |
+| `backend/` | Active FastAPI localhost backend and tests | Active |
+| `apps/api-server/` | Parallel newer FastAPI implementation | Not wired to the native app; do not use for local demo |
+| `apps/collector-mobile/` | Expo collector prototype | Legacy prototype |
+| `recycler_portal/` | Canonical Next.js recycler portal | Active |
+| `apps/recycler-portal/` | Earlier portal experiment | Legacy / not wired |
+| `ai/train_ewaste_classifier.ipynb` | Google Colab training and TFLite export | Run to produce the on-device model |
+| `docs/`, `datasets/`, `infra/` | Product, data, and deployment reference material | Reference / future work |
 
-## Backend setup
+Read [EXPLANATION.md](EXPLANATION.md) for current capabilities, known limits, and the implementation plan.
 
-```bash
-cd backend
-python -m venv .venv
-# Windows: .venv\Scripts\activate
-# macOS/Linux: source .venv/bin/activate
-pip install -r requirements.txt
+## Run locally
+
+Prerequisites: Python 3.11+, Android SDK Platform 34, JDK 17, and an Android emulator.
+
+Start the backend in one PowerShell window:
+
+```powershell
+Set-Location backend
+python -m venv venv
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
+$env:DATABASE_URL = 'sqlite+aiosqlite:///./ecobridge_local.db'
+.\venv\Scripts\python.exe -m scripts.init_local_db
+.\venv\Scripts\python.exe -m uvicorn src.main:app --host 127.0.0.1 --port 8000
 ```
 
-Set `DATABASE_URL` and `SECRET_KEY` through environment variables. Never commit
-`.env` files or real credentials.
+In a second window, build and install the debug app on a running emulator:
 
-Run the API:
-
-```bash
-uvicorn src.main:app --reload --port 8000
+```powershell
+Set-Location collector_app
+.\gradlew.bat installDebug
 ```
 
-The active API server is under `apps/api-server`:
+The debug APK uses `http://10.0.2.2:8000/`, Android Emulator's address for the host machine. It is enabled only in the debug manifest. Release builds default to an invalid HTTPS endpoint until supplied with `-PECOBRIDGE_API_URL=https://your-api.example/`.
 
-```bash
-cd apps/api-server
-pip install -r requirements.txt
-uvicorn src.main:app --reload --port 8000
+For local login, enter any 10-digit mobile number, request an OTP, and enter `123456`. This OTP is development-only and must never be enabled outside localhost.
+
+The APK is at `collector_app/app/build/outputs/apk/debug/app-debug.apk` after a successful build.
+
+### Recycler portal
+
+```powershell
+Set-Location recycler_portal
+pnpm install --frozen-lockfile
+$env:NEXT_PUBLIC_API_URL = 'http://127.0.0.1:8000/api/v1'
+pnpm run dev
 ```
 
-Run the backend tests:
+The portal runs on port 3001 and the backend permits both local ports 3000 and 3001.
 
-```bash
-set PYTHONPATH=backend
-python -m pytest backend/tests -q
-```
+### On-device AI model
 
-## Recycler portal
+There is no trained model binary in this repository. Upload `datasets/ai_ml/vision`
+as `vision.zip` to [ai/train_ewaste_classifier.ipynb](ai/train_ewaste_classifier.ipynb)
+in Google Colab, run every cell, then copy the downloaded `mobilenet_scrap_v1.tflite`
+and `labels.txt` to `collector_app/app/src/main/assets/`. The model runs fully offline.
+Until the model is added, the app intentionally requires manual material selection.
 
-```bash
-pnpm install
-pnpm --filter @ecobridge/recycler-portal dev
-```
+## Verification
 
-The portal runs on `http://localhost:3001` and proxies `/api/v1` to the backend
-at `http://127.0.0.1:8000`. Override the API URL with
-`NEXT_PUBLIC_API_URL` when required.
+Verified on this workstation:
 
-Production checks:
+- Backend tests: `18 passed`.
+- Native Android debug build: `assembleDebug` succeeds.
+- Recycler portal production build: `pnpm run build` succeeds.
+- End-to-end test: native-style offline lot sync, SHA-256 photo upload, handover,
+  custody confirmation, settlement, and collector status pull.
 
-```bash
-pnpm build
-pnpm --filter @ecobridge/recycler-portal start
-```
+Not yet verified: physical-phone networking, real recycler identities, production PostgreSQL migrations, trained model accuracy, real OTP delivery, payment-provider integration, and hosted HTTPS deployment.
 
-## Android collector app
+## Security rules
 
-The partner folder did not contain a complete Android application. The
-authoritative implementation plan is [`docs/ANDROID_APP.md`](docs/ANDROID_APP.md).
-It covers Expo setup, emulator/device networking, authentication, camera and
-location permissions, offline queueing, synchronization, and release testing.
-
-## Security and privacy
-
-Use environment variables for database URLs, JWT secrets, storage credentials,
-and external API keys. Demo login is for local demonstrations only. Review
-privacy, consent, data retention, and regulatory requirements before production
-deployment.
-
-See [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), and
-[`docs/RELEASE.md`](docs/RELEASE.md) for contribution, vulnerability reporting,
-and release validation guidance.
-
-## License
-
-MIT. See [LICENSE](LICENSE).
+- Do not commit `.env`, `local.properties`, APKs, databases, keys, certificates, or production credentials.
+- Keep cleartext HTTP debug-only. Production uses HTTPS.
+- Treat all seeded rates and recyclers as demo data unless independently verified.
+- A traceability record supports auditing; it is not an EPR certificate or a regulatory manifest.

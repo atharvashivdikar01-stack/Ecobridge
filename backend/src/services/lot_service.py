@@ -5,7 +5,7 @@ from sqlalchemy import select,func
 from sqlalchemy.orm import selectinload
 from ..models import Lot,LotItem,LotImage,Material,MaterialPriceBand,WasteCategory,CustodyEvent
 from ..models.collector import CollectorProfile
-from ..core.exceptions import NotFoundError
+from ..core.exceptions import ForbiddenError,NotFoundError
 from ..schemas.lot import *
 class LotService:
  async def create_lot(self,db,collector_user,data):
@@ -33,12 +33,16 @@ class LotService:
   except ValueError:q=select(Lot).where(Lot.lot_code==lot_id_or_code)
   lot=(await db.execute(q)).scalar_one_or_none()
   if not lot: raise NotFoundError('Lot not found')
+  if current_user.role == 'COLLECTOR' and lot.collector_id != current_user.collector_profile.id: raise ForbiddenError('Lot does not belong to this collector')
   return await self._response(db, lot.id)
  async def list_collector_lots(self,db,current_user,status=None,page=1,page_size=20):
   q=select(Lot).where(Lot.collector_id==current_user.collector_profile.id); q=q.where(Lot.status==status) if status else q; lots=(await db.execute(q.order_by(Lot.created_at.desc()))).scalars().all(); return LotListResponse(lots=[await self._response(db,x.id) for x in lots[(page-1)*page_size:page*page_size]],total=len(lots),page=page,page_size=page_size)
  async def attach_image(self,db,lot_id_or_code,current_user,image_data):
-  lot=(await db.execute(select(Lot).where(Lot.id==uuid.UUID(lot_id_or_code)))).scalar_one_or_none();
+  try: q=select(Lot).where(Lot.id==uuid.UUID(lot_id_or_code))
+  except ValueError: q=select(Lot).where(Lot.lot_code==lot_id_or_code)
+  lot=(await db.execute(q)).scalar_one_or_none();
   if not lot: raise NotFoundError('Lot not found')
+  if lot.collector_id != current_user.collector_profile.id: raise ForbiddenError('Lot does not belong to this collector')
   image_hash=image_data.image_hash or hashlib.sha256(image_data.image_url.encode('utf-8')).hexdigest()
   im=LotImage(lot_id=lot.id,image_url=image_data.image_url,image_hash=image_hash,captured_at=image_data.captured_at or datetime.now(timezone.utc),latitude=image_data.latitude,longitude=image_data.longitude,is_proof_of_collection=image_data.is_proof_of_collection); db.add(im); await db.flush(); return LotImageResponse(id=str(im.id),image_url=im.image_url,image_hash=im.image_hash,latitude=im.latitude,longitude=im.longitude,captured_at=im.captured_at.isoformat(),is_proof_of_collection=im.is_proof_of_collection)
  async def get_active_taxonomy(self,db):

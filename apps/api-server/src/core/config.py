@@ -27,6 +27,8 @@ class Settings(BaseSettings):
     # JWT Authentication
     JWT_SECRET_KEY: str = ""
     JWT_ALGORITHM: str = "HS256"
+    JWT_ISSUER: str = "ecobridge-api"
+    JWT_AUDIENCE: str = "ecobridge-clients"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days for mobile collectors
     REFRESH_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 30  # 30 days
 

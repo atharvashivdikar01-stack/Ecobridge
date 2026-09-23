@@ -1,22 +1,18 @@
-# @ecobridge/collector-mobile 📱
+# ECOBRIDGE Collector Android App
 
-The **Collector Mobile App** is an offline-first mobile application built with React Native and Expo, designed for informal e-waste collectors, scrap aggregators, and *kabadiwalas*.
+Native Android collector app using Java, XML layouts, Room, WorkManager, CameraX,
+and offline TTS. Lots and handovers are saved locally before any network attempt.
 
-## Key Capabilities
-- **Zero-Network Usability:** Fully functional offline using SQLite / WatermelonDB.
-- **Edge AI Vision:** Real-time on-device classification of electronic components and hazardous conditions using INT8 quantized YOLOv8-nano via TensorFlow Lite.
-- **Audio-Visual Guidance:** High-contrast, icon-driven interface with localized audio prompts in multiple vernacular languages.
-- **Net-Earning Optimization:** Calculates estimated earnings net of transportation costs to nearby verified recyclers.
-- **Offline QR Generation:** Creates tamper-proof cryptographically signed lot passes for scanning at recycler gates.
+## Build
 
-## Development
-```bash
-# Start Expo development server
-pnpm --filter @ecobridge/collector-mobile start
+Install Android SDK Platform 34 and JDK 17. `assembleDebug` targets the localhost
+Android Emulator API at `http://10.0.2.2:8000/`; clear-text is enabled only for the
+debug manifest. Pass a TLS endpoint for release-like builds with
+`-PECOBRIDGE_API_URL=https://api.example.in/`.
 
-# Run on Android emulator / connected device
-pnpm --filter @ecobridge/collector-mobile android
+For local testing, start `../backend` as documented in the root README, sign in with
+any phone number and OTP `123456`, and choose `Local Test Recycler`. Lots and handovers
+are queued in Room; handovers become confirmed only after the server-side recycler action.
 
-# Run on iOS simulator (macOS only)
-pnpm --filter @ecobridge/collector-mobile ios
-```
+The local OTP, recycler, rates, and HTTP endpoint are demo-only. Release builds must use
+HTTPS, real OTP delivery, and independently verified recycler data.

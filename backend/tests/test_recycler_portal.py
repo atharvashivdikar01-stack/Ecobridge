@@ -30,7 +30,7 @@ async def setup_recycler_portal_test_data(init_test_db):
         # Category and Material
         cat = WasteCategory(
             code="CAT_ITEW",
-            name="IT & Telecom Equipment",
+            name="Printed Circuit Boards",
             description="Laptops, motherboards, servers",
             default_hazard="WARNING",
         )
@@ -40,7 +40,7 @@ async def setup_recycler_portal_test_data(init_test_db):
         mat = Material(
             category_id=cat.id,
             code="PCB_SERVER_GRADE_A",
-            name="Server Motherboard Grade A",
+            name="Printed Circuit Boards (PCBs)",
             base_unit="KG",
         )
         session.add(mat)
@@ -183,6 +183,7 @@ async def setup_recycler_portal_test_data(init_test_db):
             "lot_id": str(lot.id),
             "lot_code": lot.lot_code,
             "material_id": str(mat.id),
+            "recycler_id": str(rec_company.id),
         }
 
 
@@ -200,6 +201,8 @@ async def test_get_dashboard_summary(client: AsyncClient, setup_recycler_portal_
     assert res["data"]["company_name"] == "EcoGreen E-Waste Recyclers Pvt Ltd"
     assert res["data"]["is_verified"] is True
     assert res["data"]["operating_status"] == "VERIFIED"
+    assert res["data"]["available_lots_count"] == 1
+    assert res["data"]["total_payouts_inr"] == 0
 
 
 @pytest.mark.asyncio
@@ -390,3 +393,46 @@ async def test_offline_lot_to_portal_handover_and_settlement(client: AsyncClient
     assert payment.json()["data"]["total_amount"] == 1000
     ledger = await client.get("/api/v1/recycler-portal/ledger", headers=recycler_headers)
     assert any(tx["reference_number"] == "CASH-FLOW01" and tx["total_amount"] == 1000 for tx in ledger.json()["data"]["transactions"])
+
+
+@pytest.mark.asyncio
+async def test_native_sync_photo_handover_status_round_trip(client: AsyncClient, setup_recycler_portal_test_data):
+    """Collector device queue -> photo -> recycler settlement -> collector status pull."""
+    collector = await client.post("/api/v1/auth/otp/verify", json={
+        "phone": "+919800000097", "otp": "123456", "full_name": "Native Queue Collector", "collector_type": "INDIVIDUAL_PICKER",
+    })
+    collector_headers = {"Authorization": f"Bearer {collector.json()['data']['access_token']}"}
+    code, local_id = "EB-NATIVE01", "00000000-0000-0000-0000-000000000097"
+    native = await client.post("/api/v1/sync/batch", headers=collector_headers, json={"lots": [{
+        "uuid": local_id, "short_code": code, "category": "Printed Circuit Boards (PCBs)", "approx_weight_kg": 2,
+        "quoted_price": 100, "created_at": "2026-09-23T00:00:00Z",
+    }]})
+    assert native.status_code == 200 and native.json()["data"]["synced_lot_ids"] == [local_id]
+
+    photo = b"eco-bridge-photo-evidence"
+    import hashlib
+    uploaded = await client.post(f"/api/v1/lots/{code}/photos", headers={
+        **collector_headers, "Content-Type": "image/jpeg", "X-Image-SHA256": hashlib.sha256(photo).hexdigest(),
+    }, content=photo)
+    assert uploaded.status_code == 201
+
+    handover = await client.post("/api/v1/sync/handovers", headers=collector_headers, json={"handovers": [{
+        "uuid": "00000000-0000-0000-0000-000000000098", "reference_no": "HO-NATIVE01", "lot_short_code": code,
+        "recycler_id": setup_recycler_portal_test_data["recycler_id"], "weight": 2, "agreed_price": 100,
+        "record_hash": "a" * 64, "payment_mode": "CASH", "payment_amount": 200, "payment_status": "PENDING",
+        "created_at": "2026-09-23T00:00:00Z",
+    }]})
+    assert handover.status_code == 200
+
+    recycler_headers = {"Authorization": f"Bearer {setup_recycler_portal_test_data['verified_token']}"}
+    confirmed = await client.post("/api/v1/recycler-portal/handovers/HO-NATIVE01/confirm", headers=recycler_headers,
+                                  json={"verified_weight_kg": 2})
+    assert confirmed.status_code == 200
+    materials = await client.get("/api/v1/recycler-portal/materials", headers=recycler_headers)
+    lot = next(item for item in materials.json()["data"]["items"] if item["lot_code"] == code)
+    payment = await client.post(f"/api/v1/recycler-portal/lots/{lot['lot_id']}/payment", headers=recycler_headers,
+                                json={"payment_method": "CASH", "gateway_reference": "CASH-NATIVE01"})
+    assert payment.status_code == 201
+    status = await client.get("/api/v1/sync/status", headers=collector_headers)
+    assert status.json()["data"]["lots"] == [{"lot_code": code, "status": "SETTLED"}]
+    assert status.json()["data"]["handovers"][0]["payment_status"] == "PAID"

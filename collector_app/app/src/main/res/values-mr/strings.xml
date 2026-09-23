@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Information -->
+    <string name="app_name">इकोब्रिज</string>
+    <string name="app_tagline">कबाडीवाला कनेक्ट</string>
+
+    <!-- Language Names -->
+    <string name="lang_english">English</string>
+    <string name="lang_hindi">हिंदी (Hindi)</string>
+    <string name="lang_marathi">मराठी (Marathi)</string>
+    <string name="select_language">भाषा निवडा</string>
+
+    <!-- Connection & Sync States -->
+    <string name="status_online">ऑनलाइन</string>
+    <string name="status_offline">ऑफलाइन</string>
+    <string name="status_syncing">सिंक होत आहे...</string>
+    <string name="sync_pending_count">%1$d नोंदी सिंक करणे बाकी आहे</string>
+    <string name="sync_all_synced">सर्व नोंदी सिंक झाल्या आहेत</string>
+    <string name="sync_now">आता सिंक करा</string>
+    <string name="sync_success">सिंक यशस्वीरीत्या पूर्ण झाले</string>
+    <string name="sync_failed">सिंक अयशस्वी. आपोआप पुन्हा प्रयत्न केला जाईल.</string>
+
+    <!-- Home Actions (Large Icon-Driven) -->
+    <string name="action_new_lot">नवीन माल</string>
+    <string name="action_my_transactions">माझे व्यवहार</string>
+    <string name="action_todays_prices">आजचे भाव</string>
+    <string name="action_my_earnings">माझी कमाई</string>
+    <string name="action_sync">सिंक</string>
+    <string name="action_help">मदत व सुरक्षा</string>
+
+    <!-- Step 1: Camera & Photo Capture -->
+    <string name="step_photo_title">पायरी १: फोटो काढा</string>
+    <string name="instruction_take_photo">भंगाराचा स्पष्ट फोटो काढा</string>
+    <string name="btn_capture">फोटो काढा</string>
+    <string name="btn_retake">पुन्हा काढा</string>
+    <string name="btn_flash_on">फ्लॅश सुरू</string>
+    <string name="btn_flash_off">फ्लॅश बंद</string>
+    <string name="photo_compressed_info">आकार (~१५० KB) • SHA-256 सुरक्षित</string>
+    <string name="camera_permission_required">भंगाराचा फोटो काढण्यासाठी कॅमेरा परवानगी आवश्यक आहे.</string>
+
+    <!-- Step 2: AI Material Classification -->
+    <string name="step_classify_title">पायरी २: भंगार प्रकार</string>
+    <string name="detected_material">ओळखलेला माल</string>
+    <string name="confidence_label">अचूकता खात्री</string>
+    <string name="not_sure_manual">नक्की नाही? स्वतः भंगार प्रकार निवडा</string>
+    <string name="manual_selection">स्वतः माल निवडा</string>
+    <string name="hazard_alert_title">धोकादायक वस्तू सूचना!</string>
+    <string name="hazard_battery_msg">धोकादायक बॅटरी आढळली! याला कापू नका, तोडू नका किंवा आगीजवळ नेऊ नका.</string>
+    <string name="hazard_crt_msg">धोकादायक सीआरटी काच आढळली! जाड हातमोजे वापरा. काच फोडू नका.</string>
+
+    <!-- Scrap Categories in Marathi -->
+    <string name="cat_copper">तांबे (Copper)</string>
+    <string name="cat_aluminium">ॲल्युमिनियम (Aluminium)</string>
+    <string name="cat_iron">लोखंड (Iron)</string>
+    <string name="cat_pcb">सर्किट बोर्ड (PCB)</string>
+    <string name="cat_mobile">मोबाईल फोन</string>
+    <string name="cat_laptop">कॉम्प्युटर / लॅपटॉप</string>
+    <string name="cat_cable">ताऱ्या व वायर (Cables)</string>
+    <string name="cat_battery">बॅटऱ्या (Battery)</string>
+    <string name="cat_mixed">मिश्र ई-कचरा</string>
+    <string name="cat_other">इतर भंगार</string>
+
+    <!-- Step 3: Weight Screen -->
+    <string name="step_weight_title">पायरी ३: वजन</string>
+    <string name="label_weight">वजन (किलो)</string>
+    <string name="enter_weight_hint">०.०</string>
+    <string name="btn_clear">साफ करा</string>
+    <string name="btn_confirm_weight">वजन निश्चित करा</string>
+    <string name="unit_kg">किलो</string>
+
+    <!-- Step 4: Price Intelligence -->
+    <string name="step_price_title">पायरी ४: योग्य भाव</string>
+    <string name="estimated_market_price">अंदाजित बाजार भाव</string>
+    <string name="rate_per_kg">₹%1$.2f / किलो</string>
+    <string name="expected_value">अंदाजित किंमत: ₹%1$,d</string>
+    <string name="calculation_breakdown">%1$.1f किलो × ₹%2$.2f = ₹%3$,d</string>
+    <string name="price_source_demo">स्रोत: प्रमाणित रिसायकलर दर (डेमो डेटा)</string>
+    <string name="price_source_cached">स्रोत: जतन केलेले दर</string>
+    <string name="price_source_live">स्रोत: थेट रिसायकलर दर</string>
+
+    <!-- Step 5: Recycler Matching & Net Earnings -->
+    <string name="step_recycler_title">पायरी ५: प्रमाणित रिसायकलर्स</string>
+    <string name="cpcb_registered">CPCB प्रमाणित</string>
+    <string name="distance_km">%1$.1f किमी अंतरावर</string>
+    <string name="offered_rate">दर: ₹%1$.2f/किलो</string>
+    <string name="estimated_payout">एकूण रक्कम: ₹%1$,d</string>
+    <string name="select_recycler">रिसायकलर निवडा</string>
+
+    <!-- Net Earnings Formula Breakdown -->
+    <string name="net_earnings_title">नक्त नफा हिशोब</string>
+    <string name="gross_sale_value">एकूण विक्री मूल्य: ₹%1$,d</string>
+    <string name="transport_cost">वाहतूक खर्च: -₹%1$,d</string>
+    <string name="handling_cost">मजुरी/इतर खर्च: -₹%1$,d</string>
+    <string name="net_take_home">हातात येणारी कमाई: ₹%1$,d</string>
+    <string name="net_earnings_formula">नक्त = विक्री (₹%1$,d) - वाहतूक (₹%2$,d) - मजुरी (₹%3$,d)</string>
+
+    <!-- Step 6: Lot Created & QR -->
+    <string name="lot_created_title">माल नोंदणी यशस्वी!</string>
+    <string name="lot_short_code_label">माल कोड: %1$s</string>
+    <string name="btn_save_lot">माल जतन करा</string>
+    <string name="btn_view_qr">क्यूआर कोड दाखवा</string>
+    <string name="qr_instruction">रिसायकलर केंद्रावर हा क्यूआर कोड दाखवा</string>
+
+    <!-- Handover & Settlement Flow -->
+    <string name="handover_title">हस्तांतरण व देयक</string>
+    <string name="handover_actual_weight">काट्यावरील प्रत्यक्ष वजन (किलो)</string>
+    <string name="handover_agreed_price">ठरलेला दर (₹/किलो)</string>
+    <string name="handover_final_amount">अंतिम रक्कम: ₹%1$,d</string>
+    <string name="payment_mode_label">पैसे देण्याची पद्धत</string>
+    <string name="payment_cash">रोख (CASH) - प्राधान्य</string>
+    <string name="payment_digital">डिजिटल (UPI / बँक)</string>
+    <string name="btn_confirm_handover">हस्तांतरण व रोख रक्कम मिळाली</string>
+    <string name="handover_success">हस्तांतरण सुरक्षित ऑडिट हॅशसह नोंदवले गेले!</string>
+
+    <!-- Traceability Lifecycle Statuses -->
+    <string name="status_created">माल नोंदवला</string>
+    <string name="status_matched">रिसायकलर जोडला</string>
+    <string name="status_offer_accepted">ऑफर स्वीकारली</string>
+    <string name="status_ready_handover">हस्तांतरणासाठी तयार</string>
+    <string name="status_handover_confirmed">हस्तांतरण निश्चित</string>
+    <string name="status_payment_confirmed">पैसे मिळाले</string>
+    <string name="status_received">रिसायकलरकडे जमा</string>
+
+    <!-- My Transactions Ledger -->
+    <string name="transactions_empty">अजून कोणतेही व्यवहार नाहीत. पहिला माल नोंदवा!</string>
+    <string name="transaction_detail_title">व्यवहार तपशील</string>
+    <string name="transaction_hash_label">सुरक्षित ऑडिट हॅश (SHA-256):</string>
+
+    <!-- My Earnings Screen -->
+    <string name="earnings_today">आजची कमाई</string>
+    <string name="earnings_weekly">या आठवड्याची कमाई</string>
+    <string name="earnings_total">एकूण आजवरची कमाई</string>
+    <string name="stats_lots_count">एकूण माल लॉट्स</string>
+    <string name="stats_weight_sold">एकूण विकलेले वजन (किलो)</string>
+
+    <!-- Common UI Actions -->
+    <string name="btn_next">पुढे</string>
+    <string name="btn_back">मागे</string>
+    <string name="btn_cancel">रद्द करा</string>
+    <string name="btn_done">पूर्ण</string>
+    <string name="btn_close">बंद करा</string>
+    <string name="btn_retry">पुन्हा प्रयत्न करा</string>
+
+    <!-- Additional Transaction Status Labels -->
+    <string name="label_pending">विलंबित</string>
+    <string name="payment_pending_label">पैसे विलंबित</string>
+</resources>

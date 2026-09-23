@@ -196,6 +196,34 @@ async def test_create_lot_success(client, seed_taxonomy):
 
 
 @pytest.mark.asyncio
+async def test_native_collector_batch_is_idempotent(client, seed_taxonomy):
+    token = await get_collector_token(client, "+919876588899")
+    payload = {
+        "collector_uuid": "local-test-device",
+        "lots": [{
+            "uuid": "81e24d2f-9e44-4e94-901e-846b1a2dd03c",
+            "short_code": "LOCAL-001",
+            "category": "Server Motherboard Grade A",
+            "approx_weight_kg": 2.5,
+            "quoted_price": 1350.0,
+            "created_at": "2026-09-23T12:00:00Z",
+        }],
+    }
+    headers = {"Authorization": f"Bearer {token}"}
+
+    first = await client.post("/api/v1/sync/batch", json=payload, headers=headers)
+    second = await client.post("/api/v1/sync/batch", json=payload, headers=headers)
+
+    assert first.status_code == 200
+    assert first.json()["data"]["synced_lot_ids"] == [payload["lots"][0]["uuid"]]
+    assert second.status_code == 200
+    assert second.json()["data"]["synced_lot_ids"] == [payload["lots"][0]["uuid"]]
+
+    listed = await client.get("/api/v1/lots", headers=headers)
+    assert listed.json()["data"]["total"] == 1
+
+
+@pytest.mark.asyncio
 async def test_create_lot_validation_errors(client, seed_taxonomy):
     token = await get_collector_token(client, "+919876588803")
     mat1_id = seed_taxonomy["mat1_id"]

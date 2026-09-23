@@ -1,11 +1,15 @@
 from fastapi import FastAPI,Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
 from .core.config import settings
 from .core.exceptions import AppException
 from .api.v1.router import v1_router
 app=FastAPI(title=settings.PROJECT_NAME,version=settings.VERSION)
+Path(settings.MEDIA_ROOT).mkdir(parents=True, exist_ok=True)
+app.mount('/media', StaticFiles(directory=settings.MEDIA_ROOT), name='media')
 app.add_middleware(CORSMiddleware,allow_origins=settings.CORS_ORIGINS,allow_credentials=True,allow_methods=['*'],allow_headers=['*'])
 @app.exception_handler(AppException)
 async def app_error(request:Request,exc:AppException): return JSONResponse(status_code=exc.status_code,content={'success':False,'error':{'code':exc.code,'message':exc.message,'details':exc.details}})

@@ -10,3 +10,4 @@ __all__=['Base','User','CollectorProfile','WasteCategory','Material','MaterialPr
 from .payment import RecyclerPayment
 
 from .authorization import AuthorizationRecord
+from .handover import HandoverRecord
