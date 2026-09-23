@@ -34,11 +34,7 @@ public class HomeActivity extends BaseActivity {
     private EcoBridgeRepository repository;
     private AudioPromptManager audioPromptManager;
 
-    private TextView tvConnectionStatus;
-    private TextView tvSyncDetails;
-    private ImageView ivStatusIcon;
     private MaterialButton btnLanguage;
-    private MaterialButton btnQuickSync;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +49,6 @@ public class HomeActivity extends BaseActivity {
 
         initViews();
         setupLanguageDisplay();
-        observeSyncStatus();
         setupClickListeners();
     }
 
@@ -61,15 +56,10 @@ public class HomeActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         setupLanguageDisplay();
-        updateNetworkDisplay(0);
     }
 
     private void initViews() {
-        tvConnectionStatus = findViewById(R.id.tvConnectionStatus);
-        tvSyncDetails = findViewById(R.id.tvSyncDetails);
-        ivStatusIcon = findViewById(R.id.ivStatusIcon);
         btnLanguage = findViewById(R.id.btnLanguage);
-        btnQuickSync = findViewById(R.id.btnQuickSync);
     }
 
     private void setupLanguageDisplay() {
@@ -86,44 +76,6 @@ public class HomeActivity extends BaseActivity {
             Intent intent = new Intent(HomeActivity.this, LanguageActivity.class);
             startActivity(intent);
         });
-    }
-
-    private void observeSyncStatus() {
-        repository.getPendingSyncCount().observe(this, count -> {
-            int pending = count != null ? count : 0;
-            updateNetworkDisplay(pending);
-        });
-    }
-
-    private void updateNetworkDisplay(int pendingCount) {
-        boolean isConnected = NetworkUtils.isNetworkAvailable(this);
-
-        if (isConnected) {
-            tvConnectionStatus.setText(R.string.status_online);
-            tvConnectionStatus.setTextColor(getColor(R.color.status_online));
-            ivStatusIcon.setImageResource(R.drawable.ic_check_circle);
-            ivStatusIcon.setColorFilter(getColor(R.color.status_online));
-
-            if (pendingCount > 0) {
-                tvSyncDetails.setText(getString(R.string.sync_pending_count, pendingCount));
-                btnQuickSync.setVisibility(View.VISIBLE);
-            } else {
-                tvSyncDetails.setText(R.string.sync_all_synced);
-                btnQuickSync.setVisibility(View.GONE);
-            }
-        } else {
-            tvConnectionStatus.setText(R.string.status_offline);
-            tvConnectionStatus.setTextColor(getColor(R.color.status_offline));
-            ivStatusIcon.setImageResource(R.drawable.ic_sync);
-            ivStatusIcon.setColorFilter(getColor(R.color.status_offline));
-
-            if (pendingCount > 0) {
-                tvSyncDetails.setText(getString(R.string.sync_pending_count, pendingCount));
-            } else {
-                tvSyncDetails.setText("Working offline. Records saved to phone.");
-            }
-            btnQuickSync.setVisibility(View.GONE);
-        }
     }
 
     private void setupClickListeners() {
@@ -152,16 +104,14 @@ public class HomeActivity extends BaseActivity {
         });
 
         // 5. Sync
-        View.OnClickListener syncAction = v -> {
+        findViewById(R.id.cardSync).setOnClickListener(v -> {
             if (NetworkUtils.isNetworkAvailable(HomeActivity.this)) {
                 SyncWorker.triggerImmediateSync(HomeActivity.this);
                 Toast.makeText(HomeActivity.this, R.string.status_syncing, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(HomeActivity.this, "Cannot sync: device is offline. Will sync when internet reconnects.", Toast.LENGTH_LONG).show();
             }
-        };
-        findViewById(R.id.cardSync).setOnClickListener(syncAction);
-        btnQuickSync.setOnClickListener(syncAction);
+        });
 
         // 6. Help & Safety Guidance Dialog
         findViewById(R.id.cardHelp).setOnClickListener(v -> showSafetyHelpDialog());

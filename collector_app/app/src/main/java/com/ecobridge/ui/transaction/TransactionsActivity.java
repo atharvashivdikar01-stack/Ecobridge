@@ -15,6 +15,7 @@ import com.ecobridge.R;
 import com.ecobridge.data.local.entity.LotEntity;
 import com.ecobridge.data.repository.EcoBridgeRepository;
 import com.ecobridge.ui.BaseActivity;
+import com.ecobridge.ui.lot.NewLotActivity;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import java.util.List;
@@ -49,6 +50,21 @@ public class TransactionsActivity extends BaseActivity {
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setNavigationOnClickListener(v -> finish());
+        }
+
+        View.OnClickListener openNewLot = v -> {
+            Intent intent = new Intent(TransactionsActivity.this, NewLotActivity.class);
+            startActivity(intent);
+        };
+
+        View cardQuickNewLot = findViewById(R.id.cardQuickNewLot);
+        if (cardQuickNewLot != null) {
+            cardQuickNewLot.setOnClickListener(openNewLot);
+        }
+
+        View fabNewLot = findViewById(R.id.fabNewLot);
+        if (fabNewLot != null) {
+            fabNewLot.setOnClickListener(openNewLot);
         }
 
         recyclerView = findViewById(R.id.recyclerViewTransactions);
