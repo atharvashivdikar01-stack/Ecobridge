@@ -7,6 +7,7 @@ from .endpoints.pricing import router as pricing_router
 from .endpoints.recyclers import router as recyclers_router
 from .endpoints.matching import router as matching_router
 from .endpoints.recycler_portal import router as recycler_portal_router
+from .endpoints.sync import router as sync_router
 
 v1_router = APIRouter()
 
@@ -19,3 +20,4 @@ v1_router.include_router(pricing_router)
 v1_router.include_router(recyclers_router)
 v1_router.include_router(matching_router)
 v1_router.include_router(recycler_portal_router)
+v1_router.include_router(sync_router)

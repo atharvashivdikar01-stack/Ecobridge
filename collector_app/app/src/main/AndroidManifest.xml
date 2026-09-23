@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Essential Hardware & Network Permissions -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+
+    <application
+        android:name=".EcoBridgeApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.EcoBridge"
+        tools:targetApi="31">
+
+        <!-- Launcher / Router Activity -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.EcoBridge.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Home Activity -->
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity android:name=".ui.auth.LoginActivity" android:exported="false" android:label="@string/app_name" />
+
+        <!-- New Lot Multi-step Flow -->
+        <activity
+            android:name=".ui.lot.NewLotActivity"
+            android:exported="false"
+            android:label="@string/action_new_lot"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Lot Created & QR Code Display -->
+        <activity
+            android:name=".ui.lot.LotCreatedActivity"
+            android:exported="false"
+            android:label="@string/lot_created_title" />
+
+        <!-- Handover & Payment Flow -->
+        <activity
+            android:name=".ui.handover.HandoverActivity"
+            android:exported="false"
+            android:label="@string/handover_title"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Transaction Ledger -->
+        <activity
+            android:name=".ui.transaction.TransactionsActivity"
+            android:exported="false"
+            android:label="@string/action_my_transactions" />
+
+        <!-- Transaction Detail -->
+        <activity
+            android:name=".ui.transaction.TransactionDetailActivity"
+            android:exported="false"
+            android:label="@string/transaction_detail_title" />
+
+        <!-- Earnings Dashboard -->
+        <activity
+            android:name=".ui.earnings.EarningsActivity"
+            android:exported="false"
+            android:label="@string/action_my_earnings" />
+
+        <!-- Price Board -->
+        <activity
+            android:name=".ui.price.PriceBoardActivity"
+            android:exported="false"
+            android:label="@string/action_todays_prices" />
+
+        <!-- Language Selection -->
+        <activity
+            android:name=".ui.settings.LanguageActivity"
+            android:exported="false"
+            android:label="@string/select_language" />
+
+    </application>
+
+</manifest>

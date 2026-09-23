@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { api, AvailableMaterialItem } from '../../lib/api';
 
@@ -15,11 +15,7 @@ export default function MaterialsMarketplacePage() {
   const [hazardousOnly, setHazardousOnly] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
 
-  useEffect(() => {
-    loadMaterials();
-  }, [statusFilter, hazardousOnly]);
-
-  async function loadMaterials() {
+  const loadMaterials = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -34,7 +30,11 @@ export default function MaterialsMarketplacePage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [hazardousOnly, statusFilter]);
+
+  useEffect(() => {
+    void loadMaterials();
+  }, [loadMaterials]);
 
   const filteredMaterials = materials.filter((item) => {
     if (!searchQuery) return true;

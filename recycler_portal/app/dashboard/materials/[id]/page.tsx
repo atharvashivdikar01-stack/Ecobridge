@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { api, AvailableMaterialItem, DashboardSummary } from '../../../lib/api';
@@ -21,13 +21,8 @@ export default function MaterialDetailPage() {
   const [submitting, setSubmitting] = useState(false);
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (lotId) {
-      loadData();
-    }
-  }, [lotId]);
-
-  async function loadData() {
+  const loadData = useCallback(async () => {
+    if (!lotId) return;
     try {
       setLoading(true);
       setError(null);
@@ -49,7 +44,11 @@ export default function MaterialDetailPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [lotId]);
+
+  useEffect(() => {
+    void loadData();
+  }, [loadData]);
 
   async function handleAcceptOffer() {
     if (!item) return;

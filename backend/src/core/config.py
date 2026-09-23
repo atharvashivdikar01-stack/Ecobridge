@@ -4,14 +4,18 @@ class Settings(BaseSettings):
     VERSION: str = "0.1.0"
     API_V1_PREFIX: str = "/api/v1"
     DATABASE_URL: str = "postgresql://ecobridge:ecobridge@localhost:5432/ecobridge"
-    CORS_ORIGINS: list[str] = ["http://localhost:3000"]
+    CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://localhost:3001"]
     SECRET_KEY: str = "change-me-in-production"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
     OTP_EXPIRE_MINUTES: int = 5
+    MEDIA_ROOT: str = "media"
+    MAX_IMAGE_UPLOAD_BYTES: int = 5 * 1024 * 1024
     model_config = SettingsConfigDict(env_file='.env', extra='ignore')
     @property
     def ASYNC_DATABASE_URL(self):
+        if self.DATABASE_URL.startswith('sqlite+aiosqlite://'):
+            return self.DATABASE_URL
         if self.DATABASE_URL.startswith('sqlite'):
             return self.DATABASE_URL.replace('sqlite://', 'sqlite+aiosqlite://', 1)
         if self.DATABASE_URL.startswith('postgresql+asyncpg://'): return self.DATABASE_URL

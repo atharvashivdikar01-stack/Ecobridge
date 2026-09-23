@@ -1,50 +1,60 @@
-# Python
-venv/
-.venv/
-__pycache__/
-*.pyc
-*.pyo
+# Operating system and editor state
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Environment and secrets
 .env
 .env.*
 !.env.example
-*.db
-*.sqlite3
-
-# Android
-.gradle/
-build/
 local.properties
-.idea/
-*.apk
-*.aab
 *.keystore
 *.jks
+*.p12
+*.pem
 
-# Node.js / pnpm / Turborepo
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# JavaScript
 node_modules/
-.turbo/
-dist/
+.expo/
+.expo-shared/
 .next/
-out/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-*.swp
-*.swo
-
-# Coverage / Testing
-coverage/
-.pytest_cache/
-htmlcov/
-
-# Build artifacts
 *.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
 
-# Logs and local tooling
-*.log
-.claude/
-.pytest_cache/
+# Android / Gradle generated files
+.gradle/
+build/
+collector_app/.externalNativeBuild/
+collector_app/.cxx/
+collector_app/captures/
+*.apk
+*.aab
+*.ap_
+*.dex
+*.hprof
+
+# Generated runtime data and reports
+coverage/
+htmlcov/
+dist/
+*.sqlite
+*.sqlite3
+*.db
+media/
+
+# Local duplicate/export workspaces, not application source
+Ecobridge-google-collab/
+collector_app/stitch_ecobridge_native_android_rebuild/

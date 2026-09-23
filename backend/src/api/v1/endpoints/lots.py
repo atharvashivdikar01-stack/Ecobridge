@@ -1,8 +1,12 @@
 from typing import Optional
-from fastapi import APIRouter, Depends, Query, status
+import hashlib
+from pathlib import Path
+
+from fastapi import APIRouter, Depends, Header, Request, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from ....core.database import get_db
+from ....core.config import settings
 from ....models.user import User
 from ....schemas.response import ApiResponse
 from ....schemas.lot import (
@@ -115,5 +119,45 @@ async def attach_image(
         lot_id_or_code=lot_id,
         current_user=current_collector,
         image_data=image_data,
+    )
+    return ApiResponse.create_success(image_response)
+
+
+@router.post(
+    "/{lot_id}/photos",
+    response_model=ApiResponse[LotImageResponse],
+    status_code=status.HTTP_201_CREATED,
+    summary="Upload lot photo evidence",
+)
+async def upload_photo(
+    lot_id: str,
+    request: Request,
+    image_sha256: str = Header(..., alias="X-Image-SHA256", min_length=64, max_length=64),
+    current_collector: User = Depends(get_current_collector),
+    db: AsyncSession = Depends(get_db),
+) -> ApiResponse[LotImageResponse]:
+    """Store an image only after verifying the hash computed by the offline client."""
+    content_type = request.headers.get("content-type", "").split(";", 1)[0].lower()
+    suffix = {"image/jpeg": ".jpg", "image/png": ".png", "image/webp": ".webp"}.get(content_type)
+    if suffix is None:
+        from ....core.exceptions import ConflictError
+        raise ConflictError("Photo must be JPEG, PNG, or WebP")
+    body = await request.body()
+    if not body or len(body) > settings.MAX_IMAGE_UPLOAD_BYTES:
+        from ....core.exceptions import ConflictError
+        raise ConflictError("Photo must be between 1 byte and 5 MB")
+    actual_hash = hashlib.sha256(body).hexdigest()
+    if actual_hash != image_sha256.lower():
+        from ....core.exceptions import ConflictError
+        raise ConflictError("Photo hash does not match uploaded content")
+    media_dir = Path(settings.MEDIA_ROOT) / "lots"
+    media_dir.mkdir(parents=True, exist_ok=True)
+    filename = f"{actual_hash}{suffix}"
+    (media_dir / filename).write_bytes(body)
+    image_response = await lot_service.attach_image(
+        db=db,
+        lot_id_or_code=lot_id,
+        current_user=current_collector,
+        image_data=CreateLotImageRequest(image_url=f"/media/lots/{filename}", image_hash=actual_hash),
     )
     return ApiResponse.create_success(image_response)

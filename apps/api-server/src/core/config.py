@@ -1,6 +1,7 @@
 import os
+import secrets
 from typing import List, Union
-from pydantic import AnyHttpUrl, field_validator
+from pydantic import field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -8,7 +9,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "ECOBRIDGE API Server"
     VERSION: str = "0.1.0"
     ENVIRONMENT: str = "development"
-    DEBUG: bool = True
+    DEBUG: bool = False
     API_V1_PREFIX: str = "/api/v1"
     PORT: int = 8000
     HOST: str = "0.0.0.0"
@@ -24,8 +25,10 @@ class Settings(BaseSettings):
     REDIS_URL: str = "redis://localhost:6379"
 
     # JWT Authentication
-    JWT_SECRET_KEY: str = "ecobridge_dev_secret_key_change_in_production_32bytes"
+    JWT_SECRET_KEY: str = ""
     JWT_ALGORITHM: str = "HS256"
+    JWT_ISSUER: str = "ecobridge-api"
+    JWT_AUDIENCE: str = "ecobridge-clients"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days for mobile collectors
     REFRESH_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 30  # 30 days
 
@@ -53,6 +56,20 @@ class Settings(BaseSettings):
         elif db_url.startswith("postgres://"):
             return db_url.replace("postgres://", "postgresql+asyncpg://", 1)
         return db_url
+
+    @model_validator(mode="after")
+    def validate_security_settings(self) -> "Settings":
+        if self.ENVIRONMENT.lower() in {"production", "staging"}:
+            if self.DEBUG:
+                raise ValueError("DEBUG must be false in production-like environments")
+            if not self.JWT_SECRET_KEY or len(self.JWT_SECRET_KEY) < 32:
+                raise ValueError("JWT_SECRET_KEY must be provided and at least 32 characters")
+            if self.TEST_OTP:
+                raise ValueError("TEST_OTP must not be configured in production-like environments")
+        elif not self.JWT_SECRET_KEY:
+            # Development/test tokens must not use a published, reusable secret.
+            self.JWT_SECRET_KEY = secrets.token_urlsafe(32)
+        return self
 
     model_config = SettingsConfigDict(
         env_file=".env",

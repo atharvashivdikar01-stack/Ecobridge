@@ -3,7 +3,7 @@ import mr from './locales/mr.json';
 import hi from './locales/hi.json';
 
 // Translation catalogs
-const translations: Record<string, Record<string, string>> = {
+const translations: Record<string, any> = {
   en,
   mr,
   hi

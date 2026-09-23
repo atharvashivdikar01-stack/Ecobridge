@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Information -->
+    <string name="app_name">इकोब्रिज</string>
+    <string name="app_tagline">कबाड़ीवाला कनेक्ट</string>
+
+    <!-- Language Names -->
+    <string name="lang_english">English</string>
+    <string name="lang_hindi">हिंदी (Hindi)</string>
+    <string name="lang_marathi">मराठी (Marathi)</string>
+    <string name="select_language">भाषा चुनें</string>
+
+    <!-- Connection & Sync States -->
+    <string name="status_online">ऑनलाइन</string>
+    <string name="status_offline">ऑफलाइन</string>
+    <string name="status_syncing">सिंक हो रहा है...</string>
+    <string name="sync_pending_count">%1$d रिकॉर्ड्स सिंक होना बाकी है</string>
+    <string name="sync_all_synced">सभी रिकॉर्ड्स सिंक हो चुके हैं</string>
+    <string name="sync_now">अभी सिंक करें</string>
+    <string name="sync_success">सिंक सफलतापूर्वक पूरा हुआ</string>
+    <string name="sync_failed">सिंक विफल रहा। स्वचालित रूप से पुनः प्रयास किया जाएगा।</string>
+
+    <!-- Home Actions (Large Icon-Driven) -->
+    <string name="action_new_lot">नया माल</string>
+    <string name="action_my_transactions">मेरे लेन-देन</string>
+    <string name="action_todays_prices">आज के भाव</string>
+    <string name="action_my_earnings">मेरी कमाई</string>
+    <string name="action_sync">सिंक</string>
+    <string name="action_help">मदद व सुरक्षा</string>
+
+    <!-- Step 1: Camera & Photo Capture -->
+    <string name="step_photo_title">चरण १: फोटो लें</string>
+    <string name="instruction_take_photo">कबाड़ का साफ़ फोटो लें</string>
+    <string name="btn_capture">फोटो लें</string>
+    <string name="btn_retake">दोबारा लें</string>
+    <string name="btn_flash_on">फ्लैश चालू</string>
+    <string name="btn_flash_off">फ्लैश बंद</string>
+    <string name="photo_compressed_info">आकार (~१५० KB) • SHA-256 सुरक्षित</string>
+    <string name="camera_permission_required">कबाड़ की फोटो खींचने के लिए कैमरा अनुमति आवश्यक है।</string>
+
+    <!-- Step 2: AI Material Classification -->
+    <string name="step_classify_title">चरण २: कबाड़ का प्रकार</string>
+    <string name="detected_material">पहचाना गया माल</string>
+    <string name="confidence_label">विश्वास स्तर</string>
+    <string name="not_sure_manual">संदेह है? स्वयं कबाड़ प्रकार चुनें</string>
+    <string name="manual_selection">स्वयं माल चुनें</string>
+    <string name="hazard_alert_title">खतरनाक वस्तु चेतावनी!</string>
+    <string name="hazard_battery_msg">खतरनाक बैटरी मिली! इसे न काटें, न तोड़ें और न ही आग के पास ले जाएं।</string>
+    <string name="hazard_crt_msg">खतरनाक सीआरटी कांच मिली! मोटे दस्ताने पहनें। कांच न तोड़ें।</string>
+
+    <!-- Scrap Categories in Hindi -->
+    <string name="cat_copper">तांबा (Copper)</string>
+    <string name="cat_aluminium">एल्युमिनियम (Aluminium)</string>
+    <string name="cat_iron">लोहा (Iron)</string>
+    <string name="cat_pcb">सर्किट बोर्ड (PCB)</string>
+    <string name="cat_mobile">मोबाइल फोन</string>
+    <string name="cat_laptop">कंप्यूटर / लैपटॉप</string>
+    <string name="cat_cable">तार व केबल (Cables)</string>
+    <string name="cat_battery">बैटरी (Battery)</string>
+    <string name="cat_mixed">मिश्रित ई-कचरा</string>
+    <string name="cat_other">अन्य कबाड़</string>
+
+    <!-- Step 3: Weight Screen -->
+    <string name="step_weight_title">चरण ३: वज़न</string>
+    <string name="label_weight">वज़न (किलो)</string>
+    <string name="enter_weight_hint">०.०</string>
+    <string name="btn_clear">साफ़ करें</string>
+    <string name="btn_confirm_weight">वज़न पक्का करें</string>
+    <string name="unit_kg">किलो</string>
+
+    <!-- Step 4: Price Intelligence -->
+    <string name="step_price_title">चरण ४: उचित भाव</string>
+    <string name="estimated_market_price">अनुमानित बाज़ार भाव</string>
+    <string name="rate_per_kg">₹%1$.2f / किलो</string>
+    <string name="expected_value">अनुमानित मूल्य: ₹%1$,d</string>
+    <string name="calculation_breakdown">%1$.1f किलो × ₹%2$.2f = ₹%3$,d</string>
+    <string name="price_source_demo">स्रोत: प्रमाणित रीसाइक्लर दर (डेमो डेटा)</string>
+    <string name="price_source_cached">स्रोत: सुरक्षित की गई दरें</string>
+    <string name="price_source_live">स्रोत: लाइव रीसाइक्लर दरें</string>
+
+    <!-- Step 5: Recycler Matching & Net Earnings -->
+    <string name="step_recycler_title">चरण ५: प्रमाणित रीसाइक्लर्स</string>
+    <string name="cpcb_registered">CPCB प्रमाणित</string>
+    <string name="distance_km">%1$.1f किमी दूर</string>
+    <string name="offered_rate">दर: ₹%1$.2f/किलो</string>
+    <string name="estimated_payout">कुल भुगतान: ₹%1$,d</string>
+    <string name="select_recycler">रीसाइक्लर चुनें</string>
+
+    <!-- Net Earnings Formula Breakdown -->
+    <string name="net_earnings_title">शुद्ध कमाई का हिसाब</string>
+    <string name="gross_sale_value">कुल बिक्री मूल्य: ₹%1$,d</string>
+    <string name="transport_cost">परिवहन खर्च: -₹%1$,d</string>
+    <string name="handling_cost">हैंडलिंग/मज़दूरी: -₹%1$,d</string>
+    <string name="net_take_home">शुद्ध कमाई (हाथ में): ₹%1$,d</string>
+    <string name="net_earnings_formula">शुद्ध = बिक्री (₹%1$,d) - परिवहन (₹%2$,d) - हैंडलिंग (₹%3$,d)</string>
+
+    <!-- Step 6: Lot Created & QR -->
+    <string name="lot_created_title">माल सफलतापूर्वक दर्ज किया गया!</string>
+    <string name="lot_short_code_label">माल कोड: %1$s</string>
+    <string name="btn_save_lot">माल सहेजें</string>
+    <string name="btn_view_qr">क्यूआर कोड दिखाएं</string>
+    <string name="qr_instruction">रीसाइक्लर केंद्र पर यह क्यूआर कोड दिखाएं</string>
+
+    <!-- Handover & Settlement Flow -->
+    <string name="handover_title">हस्तांतरण व भुगतान</string>
+    <string name="handover_actual_weight">कांटे पर वास्तविक वज़न (किलो)</string>
+    <string name="handover_agreed_price">तय भाव (₹/किलो)</string>
+    <string name="handover_final_amount">अंतिम राशि: ₹%1$,d</string>
+    <string name="payment_mode_label">भुगतान का माध्यम</string>
+    <string name="payment_cash">नकद (CASH) - अनुशंसित</string>
+    <string name="payment_digital">डिजिटल (UPI / बैंक)</string>
+    <string name="btn_confirm_handover">हस्तांतरण व नकद प्राप्त हुआ</string>
+    <string name="handover_success">हस्तांतरण ऑडिट हैश के साथ दर्ज किया गया!</string>
+
+    <!-- Traceability Lifecycle Statuses -->
+    <string name="status_created">माल दर्ज किया गया</string>
+    <string name="status_matched">रीसाइक्लर चुना गया</string>
+    <string name="status_offer_accepted">प्रस्ताव स्वीकार किया</string>
+    <string name="status_ready_handover">हस्तांतरण के लिए तैयार</string>
+    <string name="status_handover_confirmed">हस्तांतरण सत्यापित</string>
+    <string name="status_payment_confirmed">भुगतान प्राप्त हुआ</string>
+    <string name="status_received">रीसाइक्लर के पास जमा</string>
+
+    <!-- My Transactions Ledger -->
+    <string name="transactions_empty">कोई लेन-देन नहीं मिला। अपना पहला कबाड़ माल दर्ज करें!</string>
+    <string name="transaction_detail_title">लेन-देन विवरण</string>
+    <string name="transaction_hash_label">सुरक्षित ऑडिट हैश (SHA-256):</string>
+
+    <!-- My Earnings Screen -->
+    <string name="earnings_today">आज की कमाई</string>
+    <string name="earnings_weekly">इस सप्ताह की कमाई</string>
+    <string name="earnings_total">कुल आजीवन कमाई</string>
+    <string name="stats_lots_count">कुल माल लॉट्स</string>
+    <string name="stats_weight_sold">कुल बिका वज़न (किलो)</string>
+
+    <!-- Common UI Actions -->
+    <string name="btn_next">आगे</string>
+    <string name="btn_back">पीछे</string>
+    <string name="btn_cancel">रद्द करें</string>
+    <string name="btn_done">पूर्ण</string>
+    <string name="btn_close">बंद करें</string>
+    <string name="btn_retry">पुनः प्रयास करें</string>
+
+    <!-- Additional Transaction Status Labels -->
+    <string name="label_pending">लंबित</string>
+    <string name="payment_pending_label">भुगतान लंबित</string>
+</resources>

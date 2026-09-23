@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useCallback, useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { api, AvailableMaterialItem, RecyclerTransaction } from '../../lib/api';
@@ -24,10 +24,6 @@ function PaymentContent() {
   const [completedTxn, setCompletedTxn] = useState<RecyclerTransaction | null>(null);
 
   useEffect(() => {
-    loadDeliveredLots();
-  }, []);
-
-  useEffect(() => {
     if (materials.length > 0) {
       const match = materials.find((m) => m.lot_id === selectedLotId);
       if (match) {
@@ -38,7 +34,7 @@ function PaymentContent() {
     }
   }, [materials, selectedLotId]);
 
-  async function loadDeliveredLots() {
+  const loadDeliveredLots = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -58,7 +54,11 @@ function PaymentContent() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [queryLotId]);
+
+  useEffect(() => {
+    void loadDeliveredLots();
+  }, [loadDeliveredLots]);
 
   // Exact payable amount calculation
   const weight = selectedLot?.verified_weight_kg || selectedLot?.estimated_weight_kg || 0;

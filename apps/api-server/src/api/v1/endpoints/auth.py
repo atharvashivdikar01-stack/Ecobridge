@@ -28,11 +28,11 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
     description="Generates a 6-digit One-Time Password for field authentication and zero-barrier login."
 )
 async def send_otp(request: SendOtpRequest) -> ApiResponse[SendOtpResponse]:
-    otp_code = otp_service.generate_and_send_otp(request.phone)
+    otp_service.generate_and_send_otp(request.phone)
     return ApiResponse.create_success(
         SendOtpResponse(
             phone=request.phone,
-            message="OTP sent successfully",
+            message="OTP request accepted",
             expires_in_seconds=settings.OTP_EXPIRE_MINUTES * 60,
         )
     )

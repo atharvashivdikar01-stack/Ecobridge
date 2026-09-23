@@ -17,7 +17,7 @@ class OtpService:
     def generate_and_send_otp(self, phone: str) -> str:
         """Generates a 6-digit OTP code and records it with expiry."""
         # For testing / dev, support test phone or default test OTP if enabled
-        if settings.ENVIRONMENT in ["development", "test"] and phone.endswith("123456"):
+        if settings.ENVIRONMENT in ["development", "test"] and settings.TEST_OTP and phone.endswith("123456"):
             otp_code = settings.TEST_OTP
         else:
             otp_code = f"{random.randint(100000, 999999)}"
@@ -32,7 +32,7 @@ class OtpService:
     def verify_otp(self, phone: str, otp: str) -> bool:
         """Validates provided OTP against stored record or static test code in dev mode."""
         # Always allow test OTP in test / dev environment for testing convenience
-        if settings.ENVIRONMENT in ["development", "test"] and otp == settings.TEST_OTP:
+        if settings.ENVIRONMENT in ["development", "test"] and settings.TEST_OTP and otp == settings.TEST_OTP:
             logger.info(f"Verified via default test OTP for phone: {phone}")
             return True
 
