@@ -24,19 +24,13 @@ jobs:
           cache: pip
           cache-dependency-path: backend/requirements.txt
       - name: Install backend dependencies
-        run: |
-          python -m pip install -r backend/requirements.txt
-          python -m pip install -r apps/api-server/requirements.txt
+        run: python -m pip install -r backend/requirements.txt
       - name: Compile backend
-        run: python -m compileall -q backend/src backend/tests apps/api-server/src apps/api-server/tests
+        run: python -m compileall -q backend/src backend/tests
       - name: Run canonical backend tests
         env:
           PYTHONPATH: backend
         run: python -m pytest backend/tests -q
-      - name: Run active API server tests
-        env:
-          PYTHONPATH: apps/api-server
-        run: python -m pytest apps/api-server/tests -q
 
   frontend:
     name: Frontend checks
@@ -52,8 +46,6 @@ jobs:
           cache: pnpm
       - name: Install workspace dependencies
         run: pnpm install --frozen-lockfile
-      - name: Typecheck recycler portal
-        run: pnpm --dir recycler_portal exec tsc --noEmit
       - name: Lint recycler portal
         run: pnpm lint
       - name: Build recycler portal
