@@ -5,7 +5,10 @@
   "scripts": {
     "build": "pnpm --filter @ecobridge/recycler-portal build",
     "dev": "pnpm --filter @ecobridge/recycler-portal dev",
-    "lint": "pnpm --filter @ecobridge/recycler-portal lint"
+    "lint": "pnpm --filter @ecobridge/recycler-portal lint",
+    "admin:dev": "pnpm --filter @ecobridge/admin-dashboard dev",
+    "admin:build": "pnpm --filter @ecobridge/admin-dashboard build",
+    "admin:lint": "pnpm --filter @ecobridge/admin-dashboard lint"
   },
   "devDependencies": {
     "turbo": "^2.3.0"
