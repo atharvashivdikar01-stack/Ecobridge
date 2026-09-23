@@ -39,7 +39,7 @@ android {
         viewBinding false
     }
 
-    def apiBaseUrl = project.findProperty("ECOBRIDGE_API_URL") ?: "http://10.0.2.2:8000/api/v1/"
+    def apiBaseUrl = project.findProperty("ECOBRIDGE_API_URL") ?: "https://ecobridge-backend.onrender.com/api/v1/"
     defaultConfig {
         buildConfigField "String", "API_BASE_URL", "\"${apiBaseUrl.endsWith('/') ? apiBaseUrl : apiBaseUrl + '/'}\""
     }
