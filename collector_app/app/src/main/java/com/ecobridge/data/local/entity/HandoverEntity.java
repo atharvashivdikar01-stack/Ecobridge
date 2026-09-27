@@ -3,6 +3,7 @@ package com.ecobridge.data.local.entity;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
@@ -10,6 +11,7 @@ import androidx.room.PrimaryKey;
  * HandoverEntity
  * Represents the verified transfer of scrap lot custody to a recycler,
  * including final weight confirmation, cash/digital payment receipt,
+ * tax compliance (Fixed 5% GST & Income Tax record), count of notes,
  * and deterministic tamper-evident audit record hash.
  */
 @Entity(tableName = "handovers",
@@ -32,15 +34,27 @@ public class HandoverEntity {
     private double agreedPrice;
     private String recordHash; // Deterministic SHA-256
     private String paymentMode; // CASH, DIGITAL
-    private double paymentAmount;
+    private double paymentAmount; // Total amount inclusive of 5% GST
     private String paymentStatus; // PAID, PENDING
     private String createdAt;
     private String syncStatus; // PENDING, SYNCING, SYNCED, FAILED
 
+    // Tax & Income Tax record maintenance
+    private double grossAmount; // Taxable subtotal (weight * agreedPrice)
+    private double taxRate; // Fixed 5.0% GST
+    private double taxAmount; // Total 5% GST amount
+    private double cgstAmount; // 2.5% Central GST
+    private double sgstAmount; // 2.5% State GST
+    private String taxInvoiceNo; // Income Tax / GST audit invoice reference
+    private String notesBreakdown; // Readable count of notes e.g. "4 × ₹100, 2 × ₹10 = ₹420"
+
     public HandoverEntity(@NonNull String uuid, String referenceNo, String lotId,
                           String recyclerId, String recyclerName, double weight, double agreedPrice,
                           String recordHash, String paymentMode, double paymentAmount,
-                          String paymentStatus, String createdAt, String syncStatus) {
+                          String paymentStatus, String createdAt, String syncStatus,
+                          double grossAmount, double taxRate, double taxAmount,
+                          double cgstAmount, double sgstAmount, String taxInvoiceNo,
+                          String notesBreakdown) {
         this.uuid = uuid;
         this.referenceNo = referenceNo;
         this.lotId = lotId;
@@ -54,6 +68,23 @@ public class HandoverEntity {
         this.paymentStatus = paymentStatus;
         this.createdAt = createdAt;
         this.syncStatus = syncStatus;
+        this.grossAmount = grossAmount;
+        this.taxRate = taxRate;
+        this.taxAmount = taxAmount;
+        this.cgstAmount = cgstAmount;
+        this.sgstAmount = sgstAmount;
+        this.taxInvoiceNo = taxInvoiceNo;
+        this.notesBreakdown = notesBreakdown;
+    }
+
+    @Ignore
+    public HandoverEntity(@NonNull String uuid, String referenceNo, String lotId,
+                          String recyclerId, String recyclerName, double weight, double agreedPrice,
+                          String recordHash, String paymentMode, double paymentAmount,
+                          String paymentStatus, String createdAt, String syncStatus) {
+        this(uuid, referenceNo, lotId, recyclerId, recyclerName, weight, agreedPrice,
+                recordHash, paymentMode, paymentAmount, paymentStatus, createdAt, syncStatus,
+                paymentAmount, 5.0, 0.0, 0.0, 0.0, "", "");
     }
 
     @NonNull
@@ -160,4 +191,61 @@ public class HandoverEntity {
     public void setSyncStatus(String syncStatus) {
         this.syncStatus = syncStatus;
     }
+
+    public double getGrossAmount() {
+        return grossAmount;
+    }
+
+    public void setGrossAmount(double grossAmount) {
+        this.grossAmount = grossAmount;
+    }
+
+    public double getTaxRate() {
+        return taxRate;
+    }
+
+    public void setTaxRate(double taxRate) {
+        this.taxRate = taxRate;
+    }
+
+    public double getTaxAmount() {
+        return taxAmount;
+    }
+
+    public void setTaxAmount(double taxAmount) {
+        this.taxAmount = taxAmount;
+    }
+
+    public double getCgstAmount() {
+        return cgstAmount;
+    }
+
+    public void setCgstAmount(double cgstAmount) {
+        this.cgstAmount = cgstAmount;
+    }
+
+    public double getSgstAmount() {
+        return sgstAmount;
+    }
+
+    public void setSgstAmount(double sgstAmount) {
+        this.sgstAmount = sgstAmount;
+    }
+
+    public String getTaxInvoiceNo() {
+        return taxInvoiceNo;
+    }
+
+    public void setTaxInvoiceNo(String taxInvoiceNo) {
+        this.taxInvoiceNo = taxInvoiceNo;
+    }
+
+    public String getNotesBreakdown() {
+        return notesBreakdown;
+    }
+
+    public void setNotesBreakdown(String notesBreakdown) {
+        this.notesBreakdown = notesBreakdown;
+    }
 }
+

@@ -52,16 +52,14 @@ public class DemoDataSeeder {
         List<PriceEntity> list = new ArrayList<>();
         String now = getUtcTimestamp();
 
-        list.add(new PriceEntity("Copper", 420.0, 450.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Aluminium", 145.0, 165.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Iron", 32.0, 38.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Printed Circuit Board (PCB)", 330.0, 365.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Mobile Phone", 280.0, 320.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Computer / Laptop", 350.0, 390.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Cables & Wire", 180.0, 210.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Batteries", 95.0, 115.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Mixed E-Waste", 75.0, 90.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Other Scrap", 40.0, 50.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Batteries", 105.0, 115.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Copper Cables & Wires", 195.0, 210.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("CRT Monitors & TVs", 45.0, 55.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("LCD / LED Panels", 85.0, 95.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Mixed E-Waste Plastics", 22.0, 28.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Motors & Magnet Assemblies", 55.0, 65.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Other Electronic Scrap", 40.0, 50.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Printed Circuit Boards (PCBs)", 330.0, 365.0, SOURCE_TYPE, now, now));
 
         return list;
     }

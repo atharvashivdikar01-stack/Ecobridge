@@ -7,9 +7,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.os.LocaleListCompat;
-
 import com.ecobridge.data.local.AppDatabase;
 import com.ecobridge.data.repository.DemoDataSeeder;
 import com.ecobridge.data.repository.EcoBridgeRepository;
@@ -30,6 +27,13 @@ public class EcoBridgeApplication extends Application {
     private static EcoBridgeApplication instance;
     private AppDatabase database;
     private EcoBridgeRepository repository;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        // Apply locale before any resources are loaded
+        String lang = getLanguageFromPrefs(base);
+        super.attachBaseContext(wrapContext(base, lang));
+    }
 
     @Override
     public void onCreate() {
@@ -68,8 +72,19 @@ public class EcoBridgeApplication extends Application {
      * Get currently saved user language code ('mr', 'hi', or 'en'). Default is Marathi ('mr').
      */
     public String getSavedLanguage() {
-        SharedPreferences prefs = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        return prefs.getString(KEY_LANGUAGE, "mr");
+        return getLanguageFromPrefs(this);
+    }
+
+    /**
+     * Static helper to read language pref before Application.onCreate (for attachBaseContext).
+     */
+    private static String getLanguageFromPrefs(Context context) {
+        try {
+            SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+            return prefs.getString(KEY_LANGUAGE, "mr");
+        } catch (Exception e) {
+            return "mr";
+        }
     }
 
     /**
@@ -83,6 +98,7 @@ public class EcoBridgeApplication extends Application {
 
     /**
      * Updates configuration locale for vernacular presentation across Application & Activities.
+     * Uses only the manual Configuration approach for consistent behavior across all API levels.
      */
     public void applyLocale(String languageCode) {
         if (languageCode == null || languageCode.isEmpty()) {
@@ -96,12 +112,9 @@ public class EcoBridgeApplication extends Application {
         config.setLocale(locale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
 
-        try {
-            LocaleListCompat appLocales = LocaleListCompat.forLanguageTags(languageCode);
-            AppCompatDelegate.setApplicationLocales(appLocales);
-        } catch (Exception e) {
-            Log.e(TAG, "Failed applying locale via AppCompatDelegate", e);
-        }
+        // Also update the base context configuration
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
     }
 
     /**
@@ -117,5 +130,12 @@ public class EcoBridgeApplication extends Application {
         Configuration config = new Configuration(context.getResources().getConfiguration());
         config.setLocale(locale);
         return context.createConfigurationContext(config);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Re-apply our saved locale when system config changes (e.g. rotation)
+        applyLocale(getSavedLanguage());
     }
 }

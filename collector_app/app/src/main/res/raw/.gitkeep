@@ -1,0 +1,14 @@
+# Raw Audio Resource Directory
+# Place recorded .ogg audio files here as specified in VOICE_RECORDING_SPECIFICATION.md:
+# - hindi_take_photo.ogg
+# - hindi_enter_weight.ogg
+# - hindi_lot_created.ogg
+# - hindi_review_price.ogg
+# - marathi_take_photo.ogg
+# - marathi_enter_weight.ogg
+# - marathi_lot_created.ogg
+# - marathi_review_price.ogg
+# - english_take_photo.ogg
+# - english_enter_weight.ogg
+# - english_lot_created.ogg
+# - english_review_price.ogg

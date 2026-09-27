@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.ecobridge.EcoBridgeApplication;
 import com.ecobridge.R;
 import com.ecobridge.ui.BaseActivity;
@@ -16,6 +14,7 @@ import com.google.android.material.card.MaterialCardView;
 /**
  * LanguageActivity
  * Vernacular language selection (Marathi / Hindi / English).
+ * On selection, restarts the entire activity stack so all UI updates.
  */
 public class LanguageActivity extends BaseActivity {
 
@@ -26,14 +25,17 @@ public class LanguageActivity extends BaseActivity {
     private MaterialCardView cardMarathi;
     private MaterialCardView cardHindi;
     private MaterialCardView cardEnglish;
+    private String initialLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
 
+        initialLanguage = EcoBridgeApplication.getInstance().getSavedLanguage();
+
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationOnClickListener(v -> finish());
+        toolbar.setNavigationOnClickListener(v -> handleBack());
 
         ivCheckMarathi = findViewById(R.id.ivCheckMarathi);
         ivCheckHindi = findViewById(R.id.ivCheckHindi);
@@ -49,31 +51,63 @@ public class LanguageActivity extends BaseActivity {
         cardHindi.setOnClickListener(v -> selectLanguage("hi"));
         cardEnglish.setOnClickListener(v -> selectLanguage("en"));
 
-        findViewById(R.id.btnContinue).setOnClickListener(v -> finish());
+        findViewById(R.id.btnContinue).setOnClickListener(v -> {
+            // Restart to apply language
+            restartApp();
+        });
     }
 
     private void highlightCurrentSelection() {
         String current = EcoBridgeApplication.getInstance().getSavedLanguage();
         int activeColor = getColor(R.color.primary);
         int inactiveColor = getColor(R.color.outline_variant);
+        int vis_on = android.view.View.VISIBLE;
+        int vis_off = android.view.View.INVISIBLE;
 
-        ivCheckMarathi.setColorFilter("mr".equals(current) ? activeColor : inactiveColor);
-        ivCheckHindi.setColorFilter("hi".equals(current) ? activeColor : inactiveColor);
-        ivCheckEnglish.setColorFilter("en".equals(current) ? activeColor : inactiveColor);
+        ivCheckMarathi.setVisibility("mr".equals(current) ? vis_on : vis_off);
+        ivCheckHindi.setVisibility("hi".equals(current) ? vis_on : vis_off);
+        ivCheckEnglish.setVisibility("en".equals(current) ? vis_on : vis_off);
 
-        cardMarathi.setStrokeColor("mr".equals(current) ? activeColor : getColor(R.color.outline_variant));
-        cardHindi.setStrokeColor("hi".equals(current) ? activeColor : getColor(R.color.outline_variant));
-        cardEnglish.setStrokeColor("en".equals(current) ? activeColor : getColor(R.color.outline_variant));
+        ivCheckMarathi.setColorFilter(activeColor);
+        ivCheckHindi.setColorFilter(activeColor);
+        ivCheckEnglish.setColorFilter(activeColor);
+
+        cardMarathi.setStrokeColor("mr".equals(current) ? activeColor : inactiveColor);
+        cardHindi.setStrokeColor("hi".equals(current) ? activeColor : inactiveColor);
+        cardEnglish.setStrokeColor("en".equals(current) ? activeColor : inactiveColor);
     }
 
     private void selectLanguage(String langCode) {
-        EcoBridgeApplication.getInstance().setLanguage(langCode);
-        highlightCurrentSelection();
+        EcoBridgeApplication app = EcoBridgeApplication.getInstance();
+        app.setLanguage(langCode);
 
-        // Restart HomeActivity with updated locale configuration
+        // Update TTS language if audio manager is available
+        if (audioManager != null) {
+            audioManager.updateTtsLanguage();
+        }
+
+        highlightCurrentSelection();
+    }
+
+    @Override
+    public void onBackPressed() {
+        handleBack();
+    }
+
+    private void handleBack() {
+        String current = EcoBridgeApplication.getInstance().getSavedLanguage();
+        if (initialLanguage != null && !initialLanguage.equals(current)) {
+            restartApp();
+        } else {
+            finish();
+        }
+    }
+
+    private void restartApp() {
+        // Clear entire task and restart from HomeActivity with new locale
         Intent intent = new Intent(this, HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+        finishAffinity();
     }
 }

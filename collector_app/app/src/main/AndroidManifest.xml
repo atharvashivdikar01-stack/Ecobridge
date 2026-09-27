@@ -95,6 +95,10 @@
             android:name=".ui.settings.LanguageActivity"
             android:exported="false"
             android:label="@string/select_language" />
+        <activity
+            android:name=".ui.recycler.RecyclersActivity"
+            android:exported="false"
+            android:label="@string/action_recycler" />
 
     </application>
 

@@ -2,6 +2,7 @@ package com.ecobridge.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 import com.ecobridge.EcoBridgeApplication;
 import com.ecobridge.R;
@@ -26,6 +27,12 @@ public class LoginActivity extends BaseActivity {
         findViewById(R.id.btnSendOtp).setOnClickListener(v -> sendOtp());
         findViewById(R.id.btnVerifyOtp).setOnClickListener(v -> verifyOtp());
         findViewById(R.id.btnContinueOffline).setOnClickListener(v -> openHome());
+
+        View.OnClickListener langClick = v -> startActivity(new Intent(this, com.ecobridge.ui.settings.LanguageActivity.class));
+        View cardLang = findViewById(R.id.cardLanguageSelect);
+        if (cardLang != null) cardLang.setOnClickListener(langClick);
+        View btnLang = findViewById(R.id.btnChangeLanguage);
+        if (btnLang != null) btnLang.setOnClickListener(langClick);
     }
     private String number() { String digits = phone.getText() == null ? "" : phone.getText().toString().replaceAll("\\D", ""); return digits.length() == 10 ? "+91" + digits : null; }
     private void sendOtp() {

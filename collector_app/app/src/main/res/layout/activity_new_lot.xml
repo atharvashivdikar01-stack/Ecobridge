@@ -182,60 +182,116 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- AI Detected Category Card -->
+                <!-- Loading State while AI runs -->
+                <LinearLayout
+                    android:id="@+id/layoutAiAnalyzing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:background="@drawable/bg_rounded_card"
+                    android:visibility="gone"
+                    android:layout_marginBottom="16dp">
+
+                    <ProgressBar
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="@string/ai_analyzing"
+                        android:textColor="@color/primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- AI E-WASTE ANALYSIS CARD -->
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardAiAnalysis"
                     style="@style/Widget.EcoBridge.ActionCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:strokeColor="@color/primary"
                     app:strokeWidth="2dp"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="14dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="20dp">
+                        android:padding="18dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/ai_analysis_title"
+                                android:textColor="@color/primary"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:letterSpacing="0.08" />
+
+                            <TextView
+                                android:id="@+id/tvAiModelMeta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Model: mobilenet_scrap_v1 • 180 ms"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp" />
+                        </LinearLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/detected_material"
                             android:textColor="@color/text_secondary"
-                            android:textSize="14sp" />
+                            android:textSize="13sp"
+                            android:layout_marginTop="10dp" />
 
                         <TextView
                             android:id="@+id/tvDetectedCategory"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Copper"
+                            android:text="Printed Circuit Boards (PCBs)"
                             android:textColor="@color/primary"
-                            android:textSize="28sp"
+                            android:textSize="24sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="4dp" />
+                            android:layout_marginTop="2dp" />
 
+                        <!-- Confidence Bar -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:gravity="center_vertical"
-                            android:layout_marginTop="12dp">
+                            android:layout_marginTop="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/confidence_label"
                                 android:textColor="@color/text_secondary"
-                                android:textSize="14sp" />
+                                android:textSize="13sp" />
 
                             <TextView
                                 android:id="@+id/tvConfidenceValue"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text=" 87%"
+                                android:text=" 94%"
                                 android:textColor="@color/primary"
-                                android:textSize="16sp"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
                             <ProgressBar
@@ -244,10 +300,113 @@
                                 android:layout_width="120dp"
                                 android:layout_height="10dp"
                                 android:max="100"
-                                android:progress="87"
+                                android:progress="94"
                                 android:progressTint="@color/primary" />
                         </LinearLayout>
 
+                        <!-- Top 3 Predictions Breakdown -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#E0E0E0"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginBottom="10dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ai_top_predictions_title"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:id="@+id/layoutTopPredictions"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="6dp">
+
+                            <TextView
+                                android:id="@+id/tvTopPrediction1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1. Printed Circuit Boards (PCBs) — 94%"
+                                android:textColor="@color/text_primary"
+                                android:textSize="13sp"
+                                android:paddingVertical="2dp" />
+
+                            <TextView
+                                android:id="@+id/tvTopPrediction2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="2. Other Electronic Scrap — 3%"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="12sp"
+                                android:paddingVertical="2dp" />
+
+                            <TextView
+                                android:id="@+id/tvTopPrediction3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="3. LCD / LED Panels — 2%"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="12sp"
+                                android:paddingVertical="2dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Low Confidence Warning Card (Conditional) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardLowConfidenceAlert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="#FFF8E1"
+                    app:strokeColor="#FFB300"
+                    app:strokeWidth="1dp"
+                    android:layout_marginBottom="14dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="14dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_alert_triangle"
+                            app:tint="#F57F17"
+                            android:contentDescription="Low Confidence" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ai_low_confidence_title"
+                                android:textColor="#F57F17"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvLowConfidenceMessage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ai_low_confidence_msg"
+                                android:textColor="#E65100"
+                                android:textSize="12sp" />
+                        </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -260,19 +419,19 @@
                     app:cardBackgroundColor="#FFEBEE"
                     app:strokeColor="@color/hazard_high"
                     app:strokeWidth="1dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="14dp"
                     android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="16dp"
+                        android:padding="14dp"
                         android:gravity="center_vertical">
 
                         <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
                             android:src="@drawable/ic_alert_triangle"
                             app:tint="@color/hazard_high"
                             android:contentDescription="Hazard Alert" />
@@ -282,14 +441,14 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
-                            android:layout_marginStart="12dp">
+                            android:layout_marginStart="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/hazard_alert_title"
                                 android:textColor="@color/hazard_high"
-                                android:textSize="16sp"
+                                android:textSize="15sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -298,18 +457,62 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/hazard_battery_msg"
                                 android:textColor="#B71C1C"
-                                android:textSize="13sp" />
+                                android:textSize="12sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
+                <!-- 3 Action Buttons: Confirm, Correct, Scan Again -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnScanAgain"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="54dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:text="@string/btn_scan_again"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/card_stroke" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCorrectCategory"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="54dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:text="@string/btn_ai_correct"
+                        android:textColor="@color/primary"
+                        android:textSize="12sp"
+                        app:strokeColor="@color/primary" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnConfirmCategory"
+                        style="@style/Widget.EcoBridge.LargeButton"
+                        android:layout_width="0dp"
+                        android:layout_height="54dp"
+                        android:layout_weight="1.4"
+                        android:text="@string/btn_ai_confirm"
+                        android:textColor="@color/on_primary"
+                        android:textSize="13sp"
+                        app:backgroundTint="@color/primary" />
+                </LinearLayout>
+
                 <!-- Manual Fallback Category Selection Grid -->
                 <TextView
+                    android:id="@+id/tvManualSectionTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/not_sure_manual"
                     android:textColor="@color/text_primary"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp" />
 
@@ -319,21 +522,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:columnCount="2"
-                    app:rowCount="5"
+                    app:rowCount="4"
                     android:alignmentMode="alignMargins"
                     android:layout_marginBottom="24dp">
 
-                    <!-- Buttons dynamically created in Java -->
+                    <!-- 8 Buttons dynamically created in Java -->
                 </androidx.gridlayout.widget.GridLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnConfirmCategory"
-                    style="@style/Widget.EcoBridge.LargeButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:text="@string/btn_next"
-                    android:textColor="@color/on_primary"
-                    app:backgroundTint="@color/primary" />
 
             </LinearLayout>
         </ScrollView>

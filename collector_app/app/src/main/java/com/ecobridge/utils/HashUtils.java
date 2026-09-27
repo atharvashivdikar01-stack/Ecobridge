@@ -60,6 +60,22 @@ public class HashUtils {
         return calculateStringSha256(raw);
     }
 
+    /**
+     * Generates a deterministic tamper-evident record hash for a tax-compliant handover transaction.
+     */
+    public static String generateHandoverHash(String lotId, String recyclerId,
+                                              double weight, double grossAmount,
+                                              double taxAmount, double totalAmount,
+                                              String taxInvoiceNo, String paymentMode,
+                                              String timestamp) {
+        String raw = String.format(
+                "LOT:%s|REC:%s|WT:%.2f|GROSS:%.2f|TAX:%.2f|TOT:%.2f|INV:%s|MODE:%s|TS:%s",
+                lotId, recyclerId, weight, grossAmount, taxAmount, totalAmount,
+                taxInvoiceNo != null ? taxInvoiceNo : "", paymentMode, timestamp
+        );
+        return calculateStringSha256(raw);
+    }
+
     private static String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
