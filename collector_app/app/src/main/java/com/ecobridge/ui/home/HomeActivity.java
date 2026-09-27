@@ -51,7 +51,7 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
 
         repository = EcoBridgeApplication.getInstance().getRepository();
-        audioPromptManager = new AudioPromptManager(this);
+        audioPromptManager = AudioPromptManager.getInstance(this);
 
         initViews();
         setupLanguageDisplay();
@@ -155,7 +155,7 @@ public class HomeActivity extends BaseActivity {
 
         // 5. Handover Scrap
         findViewById(R.id.cardHandover).setOnClickListener(v ->
-                startActivity(new Intent(HomeActivity.this, TransactionsActivity.class)));
+                startActivity(new Intent(HomeActivity.this, com.ecobridge.ui.handover.HandoverActivity.class)));
 
         // 6. My Earnings
         findViewById(R.id.cardEarnings).setOnClickListener(v -> {

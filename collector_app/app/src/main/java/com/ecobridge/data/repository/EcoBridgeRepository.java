@@ -48,6 +48,10 @@ public class EcoBridgeRepository {
         void onLoaded(LotEntity lot);
     }
 
+    public interface OnHandoverLoadedCallback {
+        void onLoaded(HandoverEntity handover);
+    }
+
     public interface OnLotsLoadedCallback {
         void onLoaded(List<LotEntity> lots);
     }
@@ -184,6 +188,15 @@ public class EcoBridgeRepository {
             LotEntity lot = database.lotDao().getLotByUuid(uuid);
             if (callback != null) {
                 mainHandler.post(() -> callback.onLoaded(lot));
+            }
+        });
+    }
+
+    public void getHandoverForLot(final String lotId, final OnHandoverLoadedCallback callback) {
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            HandoverEntity handover = database.handoverDao().getHandoverForLot(lotId);
+            if (callback != null) {
+                mainHandler.post(() -> callback.onLoaded(handover));
             }
         });
     }

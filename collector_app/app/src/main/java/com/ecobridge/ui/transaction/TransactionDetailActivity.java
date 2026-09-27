@@ -1,27 +1,32 @@
 package com.ecobridge.ui.transaction;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ecobridge.EcoBridgeApplication;
 import com.ecobridge.R;
+import com.ecobridge.data.local.entity.HandoverEntity;
 import com.ecobridge.data.local.entity.LotEntity;
 import com.ecobridge.data.repository.EcoBridgeRepository;
 import com.ecobridge.ui.BaseActivity;
-import com.ecobridge.ui.handover.HandoverActivity;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.Locale;
 
 /**
  * TransactionDetailActivity
- * Shows detailed information about a specific transaction/lot.
+ * Shows detailed information about a specific transaction/lot,
+ * including Tax & Income Tax compliance record (Fixed 5% GST, invoice no)
+ * and Cash Note denomination counts (e.g. 2 x 10 Rs, 4 x 100 Rs).
  */
 public class TransactionDetailActivity extends BaseActivity {
 
     private EcoBridgeRepository repository;
-    private LotEntity loadedLot;
+    private String lotUuid;
 
     private TextView tvLotCode;
     private TextView tvMaterial;
@@ -34,6 +39,19 @@ public class TransactionDetailActivity extends BaseActivity {
     private TextView tvSyncStatus;
     private TextView tvCreatedAt;
 
+    // Tax & Compliance Views
+    private MaterialCardView cardDetailTax;
+    private TextView tvDetailGrossAmount;
+    private TextView tvDetailGstAmount;
+    private TextView tvDetailGstSplit;
+    private TextView tvDetailInvoiceNo;
+    private TextView tvDetailTotalSettlement;
+
+    // Cash Denominations Views
+    private MaterialCardView cardDetailCashBreakdown;
+    private TextView tvDetailPaymentMode;
+    private TextView tvDetailNotesBreakdown;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +61,7 @@ public class TransactionDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_transaction_detail);
 
         repository = EcoBridgeApplication.getInstance().getRepository();
+        lotUuid = getIntent().getStringExtra("lot_uuid");
 
         initViews();
         loadTransactionDetails();
@@ -65,22 +84,74 @@ public class TransactionDetailActivity extends BaseActivity {
         tvSyncStatus = findViewById(R.id.tvSyncStatus);
         tvCreatedAt = findViewById(R.id.tvCreatedAt);
 
+        // Tax Views
+        cardDetailTax = findViewById(R.id.cardDetailTax);
+        tvDetailGrossAmount = findViewById(R.id.tvDetailGrossAmount);
+        tvDetailGstAmount = findViewById(R.id.tvDetailGstAmount);
+        tvDetailGstSplit = findViewById(R.id.tvDetailGstSplit);
+        tvDetailInvoiceNo = findViewById(R.id.tvDetailInvoiceNo);
+        tvDetailTotalSettlement = findViewById(R.id.tvDetailTotalSettlement);
+
+        // Cash Breakdown Views
+        cardDetailCashBreakdown = findViewById(R.id.cardDetailCashBreakdown);
+        tvDetailPaymentMode = findViewById(R.id.tvDetailPaymentMode);
+        tvDetailNotesBreakdown = findViewById(R.id.tvDetailNotesBreakdown);
+
         findViewById(R.id.btnViewCertificate).setOnClickListener(v -> {
-            if (loadedLot == null) return;
-            Intent intent = new Intent(this, HandoverActivity.class);
-            intent.putExtra("lot_uuid", loadedLot.getUuid());
-            intent.putExtra("short_code", loadedLot.getShortCode());
-            intent.putExtra("recycler_name", loadedLot.getSelectedRecyclerName());
-            intent.putExtra("recycler_id", loadedLot.getSelectedRecyclerId());
-            intent.putExtra("weight", loadedLot.getApproxWeightKg());
-            startActivity(intent);
+            if (lotUuid == null) return;
+            repository.getLotByUuid(lotUuid, lot -> {
+                if (lot == null) return;
+                repository.getHandoverForLot(lot.getUuid(), handover -> {
+                    runOnUiThread(() -> showReceiptDialog(lot, handover));
+                });
+            });
         });
     }
 
+    private void showReceiptDialog(LotEntity lot, HandoverEntity handover) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("📋 CERTIFICATE OF SCRAP TRANSFER\n");
+        sb.append("━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+        sb.append("Lot Code: ").append(lot.getShortCode()).append("\n");
+        sb.append("Material: ").append(lot.getCategory()).append("\n");
+        sb.append("Weight: ").append(String.format(Locale.US, "%.1f kg", lot.getApproxWeightKg())).append("\n");
+        sb.append("Recycler: ").append(lot.getSelectedRecyclerName()).append("\n");
+        sb.append("Sync Status: ").append(lot.getSyncStatus()).append("\n");
+
+        if (handover != null) {
+            sb.append("\n✅ HANDOVER COMPLETED\n");
+            sb.append("Invoice No: ").append(handover.getTaxInvoiceNo()).append("\n");
+            sb.append("Total Settled: ₹").append(String.format(Locale.US, "%,.2f", handover.getPaymentAmount())).append("\n");
+            sb.append("Payment Mode: ").append(handover.getPaymentMode()).append("\n");
+            sb.append("Audit Hash: ").append(handover.getRecordHash()).append("\n");
+        } else {
+            sb.append("\n⏳ HANDOVER PENDING\n");
+            sb.append("Tap 'Complete Handover' to finalize weight and collect cash at recycler terminal.\n");
+        }
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Transfer Certificate")
+                .setMessage(sb.toString())
+                .setPositiveButton("Close", (dialog, which) -> dialog.dismiss());
+
+        if (handover == null) {
+            builder.setNeutralButton("Complete Handover", (dialog, which) -> {
+                android.content.Intent intent = new android.content.Intent(this, com.ecobridge.ui.handover.HandoverActivity.class);
+                intent.putExtra("lot_uuid", lot.getUuid());
+                intent.putExtra("short_code", lot.getShortCode());
+                intent.putExtra("recycler_name", lot.getSelectedRecyclerName());
+                intent.putExtra("recycler_id", lot.getSelectedRecyclerId());
+                intent.putExtra("weight", lot.getApproxWeightKg());
+                startActivity(intent);
+            });
+        }
+
+        builder.show();
+    }
+
     private void loadTransactionDetails() {
-        repository.getLotByUuid(getIntent().getStringExtra("lot_uuid"), lot -> {
+        repository.getLotByUuid(lotUuid, lot -> {
             if (lot != null) {
-                loadedLot = lot;
                 runOnUiThread(() -> {
                     tvLotCode.setText(lot.getShortCode());
                     tvMaterial.setText(lot.getCategory());
@@ -92,8 +163,63 @@ public class TransactionDetailActivity extends BaseActivity {
                     tvStatus.setText(lot.getStatus());
                     tvSyncStatus.setText(lot.getSyncStatus());
                     tvCreatedAt.setText(lot.getCreatedAt());
+
+                    // Default fallback tax values if handover not completed
+                    double estGross = lot.getEstimatedValue();
+                    double estCgst = Math.round(estGross * 0.025 * 100.0) / 100.0;
+                    double estSgst = Math.round(estGross * 0.025 * 100.0) / 100.0;
+                    double estTax = estCgst + estSgst;
+                    double estTotal = estGross + estTax;
+
+                    tvDetailGrossAmount.setText(String.format(Locale.US, "₹%,.2f", estGross));
+                    tvDetailGstAmount.setText(String.format(Locale.US, "+₹%,.2f", estTax));
+                    tvDetailGstSplit.setText(String.format(Locale.US, "CGST 2.5%% (₹%.2f) + SGST 2.5%% (₹%.2f)", estCgst, estSgst));
+                    tvDetailInvoiceNo.setText("TXI-EST-" + lot.getShortCode());
+                    tvDetailTotalSettlement.setText(String.format(Locale.US, "₹%,d", Math.round(estTotal)));
+                });
+
+                // Load corresponding Handover record for exact recorded tax and cash notes count
+                repository.getHandoverForLot(lot.getUuid(), handover -> {
+                    if (handover != null) {
+                        runOnUiThread(() -> renderHandoverCompliance(handover));
+                    }
                 });
             }
         });
+    }
+
+    private void renderHandoverCompliance(HandoverEntity handover) {
+        double gross = handover.getGrossAmount() > 0 ? handover.getGrossAmount() : (handover.getWeight() * handover.getAgreedPrice());
+        double cgst = handover.getCgstAmount() > 0 ? handover.getCgstAmount() : (Math.round(gross * 0.025 * 100.0) / 100.0);
+        double sgst = handover.getSgstAmount() > 0 ? handover.getSgstAmount() : (Math.round(gross * 0.025 * 100.0) / 100.0);
+        double tax = handover.getTaxAmount() > 0 ? handover.getTaxAmount() : (cgst + sgst);
+        double total = handover.getPaymentAmount() > 0 ? handover.getPaymentAmount() : (gross + tax);
+
+        tvDetailGrossAmount.setText(String.format(Locale.US, "₹%,.2f", gross));
+        tvDetailGstAmount.setText(String.format(Locale.US, "+₹%,.2f", tax));
+        tvDetailGstSplit.setText(String.format(Locale.US, "CGST 2.5%% (₹%.2f) + SGST 2.5%% (₹%.2f)", cgst, sgst));
+
+        String invoice = handover.getTaxInvoiceNo();
+        if (invoice == null || invoice.isEmpty()) {
+            invoice = "TXI-2026-MH-" + handover.getReferenceNo();
+        }
+        tvDetailInvoiceNo.setText(invoice);
+        tvDetailTotalSettlement.setText(String.format(Locale.US, "₹%,d", Math.round(total)));
+
+        // Cash Denominations / Notes Breakdown
+        String mode = handover.getPaymentMode();
+        if ("CASH".equalsIgnoreCase(mode)) {
+            tvDetailPaymentMode.setText("Payment Mode: CASH (Physical Handover)");
+            String notes = handover.getNotesBreakdown();
+            if (notes == null || notes.isEmpty() || "DIGITAL_SETTLEMENT".equals(notes)) {
+                notes = "Cash handover verified at scale terminal";
+            }
+            tvDetailNotesBreakdown.setText(notes);
+            cardDetailCashBreakdown.setVisibility(View.VISIBLE);
+        } else {
+            tvDetailPaymentMode.setText("Payment Mode: DIGITAL (UPI / Bank Transfer)");
+            tvDetailNotesBreakdown.setText("Verified Digital Settlement • Ref: " + handover.getReferenceNo());
+            cardDetailCashBreakdown.setVisibility(View.VISIBLE);
+        }
     }
 }

@@ -82,13 +82,23 @@
 
     <!-- Step 2: AI Material Classification -->
     <string name="step_classify_title">Step 2: Material</string>
-    <string name="detected_material">Detected Material</string>
+    <string name="ai_analysis_title">AI E-WASTE ANALYSIS</string>
+    <string name="ai_model_meta">Model: %1$s • %2$d ms</string>
+    <string name="detected_material">Detected Category</string>
     <string name="confidence_label">Confidence</string>
-    <string name="not_sure_manual">Not sure? Select material manually</string>
+    <string name="ai_top_predictions_title">Top Predictions</string>
+    <string name="ai_low_confidence_title">Low Confidence</string>
+    <string name="ai_low_confidence_msg">The AI could not confidently identify this item. Please select the material manually.</string>
+    <string name="not_sure_manual">Select Material Manually / Correct AI</string>
     <string name="manual_selection">Manual Selection</string>
+    <string name="btn_ai_confirm">✓ Confirm</string>
+    <string name="btn_ai_correct">✎ Correct</string>
+    <string name="btn_scan_again">Scan Again</string>
+    <string name="ai_analyzing">Analyzing scrap image locally...</string>
     <string name="hazard_alert_title">Safety Warning!</string>
-    <string name="hazard_battery_msg">Hazardous battery detected! Do not puncture, crush, or expose to heat.</string>
-    <string name="hazard_crt_msg">Hazardous CRT glass detected! Handle with heavy gloves. Do not break tube.</string>
+    <string name="hazard_battery_msg">Hazardous battery detected! Risk of fire and chemical leak. Do not puncture, crush, or burn.</string>
+    <string name="hazard_crt_msg">Hazardous CRT glass detected! Vacuum implosion risk and toxic lead. Handle with cut-resistant gloves.</string>
+    <string name="hazard_pcb_msg">Contains lead solder. Avoid direct bare skin contact and do not inhale dust.</string>
 
     <string name="working_offline">Working offline. Records saved to phone.</string>
     <string name="sync_offline_blocked">Cannot sync while offline. Records will sync when internet returns.</string>
@@ -109,16 +119,24 @@
     <string name="action_required">Action Required</string>
     <string name="pcb_spot_rate">PCB: ₹320/kg</string>
 
-    <string name="cat_copper">Copper Cables &amp; Wires</string>
-    <string name="cat_aluminium">LCD / LED Panels</string>
-    <string name="cat_iron">Motors &amp; Magnet Assemblies</string>
+    <!-- 8 Trained Scrap Categories -->
+    <string name="cat_batteries">Batteries</string>
+    <string name="cat_cables">Copper Cables &amp; Wires</string>
+    <string name="cat_crt">CRT Monitors &amp; TVs</string>
+    <string name="cat_lcd_led">LCD / LED Panels</string>
+    <string name="cat_plastics">Mixed E-Waste Plastics</string>
+    <string name="cat_motors">Motors &amp; Magnet Assemblies</string>
+    <string name="cat_other_ewaste">Other Electronic Scrap</string>
     <string name="cat_pcb">Printed Circuit Boards (PCBs)</string>
-    <string name="cat_mobile">CRT Monitors &amp; TVs</string>
-    <string name="cat_laptop">Other Electronic Scrap</string>
-    <string name="cat_cable">Copper Cables &amp; Wires</string>
+    <string name="cat_copper">Copper</string>
+    <string name="cat_aluminium">Aluminium</string>
+    <string name="cat_iron">Iron</string>
+    <string name="cat_mobile">Mobile Phone</string>
+    <string name="cat_laptop">Computer / Laptop</string>
+    <string name="cat_cable">Cables &amp; Wire</string>
     <string name="cat_battery">Batteries</string>
-    <string name="cat_mixed">Mixed E-Waste Plastics</string>
-    <string name="cat_other">Other Electronic Scrap</string>
+    <string name="cat_mixed">Mixed E-Waste</string>
+    <string name="cat_other">Other Scrap</string>
 
     <!-- Step 3: Weight Screen -->
     <string name="step_weight_title">Step 3: Weight</string>
@@ -143,38 +161,72 @@
     <string name="cpcb_registered">CPCB Registered</string>
     <string name="distance_km">%1$.1f km away</string>
     <string name="offered_rate">Rate: ₹%1$.2f/kg</string>
-    <string name="estimated_payout">Gross Payout: ₹%1$,d</string>
+    <string name="estimated_payout">Est. Payout: ₹%1$,d</string>
     <string name="select_recycler">Select Recycler</string>
 
     <!-- Net Earnings Formula Breakdown -->
     <string name="net_earnings_title">Net Earnings Breakdown</string>
     <string name="gross_sale_value">Gross Sale Value: ₹%1$,d</string>
     <string name="transport_cost">Transport Cost: -₹%1$,d</string>
-    <string name="handling_cost">Handling Cost: -₹%1$,d</string>
+    <string name="handling_cost">Handling/Loading: -₹%1$,d</string>
     <string name="net_take_home">Net Take-Home: ₹%1$,d</string>
     <string name="net_earnings_formula">Net = Sale (₹%1$,d) - Transport (₹%2$,d) - Handling (₹%3$,d)</string>
 
     <!-- Step 6: Lot Created & QR -->
-    <string name="lot_created_title">Lot Created Successfully!</string>
+    <string name="lot_created_title">Scrap Lot Created Successfully!</string>
     <string name="lot_short_code_label">Lot Code: %1$s</string>
-    <string name="btn_save_lot">Save Lot</string>
-    <string name="btn_view_qr">Show Recycler QR</string>
-    <string name="qr_instruction">Show this QR code at the recycler collection center</string>
+    <string name="btn_save_lot">Save Scrap Lot</string>
+    <string name="btn_view_qr">Show QR Code</string>
+    <string name="qr_instruction">Show this QR Code at the recycler weighing terminal</string>
 
     <!-- Handover & Settlement Flow -->
-    <string name="handover_title">Handover &amp; Payment</string>
-    <string name="handover_actual_weight">Actual Weight at Handover (KG)</string>
-    <string name="handover_agreed_price">Agreed Price (₹/kg)</string>
+    <string name="handover_title">Handover &amp; Settlement</string>
+    <string name="handover_actual_weight">Verified Scale Weight (KG)</string>
+    <string name="handover_agreed_price">Agreed Price (₹/KG)</string>
     <string name="handover_final_amount">Final Amount: ₹%1$,d</string>
     <string name="payment_mode_label">Payment Mode</string>
-    <string name="payment_cash">CASH (Recommended)</string>
-    <string name="payment_digital">DIGITAL (UPI / Bank)</string>
+    <string name="payment_cash">Cash (CASH) - Recommended</string>
+    <string name="payment_digital">Digital (UPI / Bank)</string>
     <string name="btn_confirm_handover">Confirm Handover &amp; Cash Received</string>
-    <string name="handover_success">Handover recorded with tamper-evident audit hash!</string>
+    <string name="handover_success">Handover recorded with deterministic audit hash!</string>
+
+    <!-- Tax & Income Tax Compliance (Fixed 5% GST) -->
+    <string name="tax_compliance_title">Tax &amp; Income Tax Compliance</string>
+    <string name="tax_compliance_subtitle">Fixed 5.0% GST • HSN 8548/8549 E-Waste Scrap</string>
+    <string name="taxable_gross_value">Taxable Gross Value (कर योग्य मूल्य)</string>
+    <string name="gst_rate_label">GST (5.0%)</string>
+    <string name="gst_split_label">CGST 2.5%% (₹%1$s) + SGST 2.5%% (₹%2$s)</string>
+    <string name="tax_invoice_label">Tax Invoice / IT Voucher No:</string>
+    <string name="it_compliance_note">Maintained for Income Tax Audit &amp; GST Compliance (Sec 206C/194Q)</string>
+    <string name="final_settlement_incl_gst">Final Amount to Settle (Incl. 5% GST)</string>
+
+    <!-- Cash Denomination Counter (Count of Notes) -->
+    <string name="cash_counter_title">Cash Denomination Counter</string>
+    <string name="cash_counter_subtitle">नोटों की गिनती • Verify physical cash received</string>
+    <string name="btn_auto_fill_notes">Auto-Fill</string>
+    <string name="btn_reset_notes">Clear</string>
+    <string name="total_cash_counted_label">Total Cash Counted:</string>
+    <string name="total_notes_count_summary">₹%1$s (%2$d notes)</string>
+    <string name="cash_match_exact">✓ Exact Cash Matched: ₹%1$s</string>
+    <string name="cash_short">⚠️ Cash Short by ₹%1$s</string>
+    <string name="cash_excess">ℹ️ Excess Cash: Return Change ₹%1$s</string>
+    <string name="coins_label">Coins (सिक्के)</string>
+    <string name="notes_breakdown_detail_title">Cash Notes Received (नोटों का विवरण):</string>
+
+    <!-- Voice Prompt Fallback Strings -->
+    <string name="prompt_home_guide">Welcome to EcoBridge. Tap Weigh New Scrap to record lots, check prices, or find recyclers.</string>
+    <string name="prompt_take_photo">Point the camera at your scrap lot and take a clear photo.</string>
+    <string name="prompt_classify_material">AI is analyzing the scrap material. Please verify the detected category.</string>
+    <string name="prompt_enter_weight">Enter or adjust the gross weight of the scrap lot in kilograms.</string>
+    <string name="prompt_check_price">Review the benchmark market price and estimated total value for your lot.</string>
+    <string name="prompt_select_recycler">Select a certified recycler near you to proceed with handover.</string>
+    <string name="prompt_lot_created">Scrap lot created successfully and saved offline on your device.</string>
+    <string name="prompt_start_handover">Enter the verified scale weight and confirm the payment amount.</string>
+    <string name="prompt_handover_confirmed">Handover recorded successfully. Please collect your cash payment.</string>
 
     <!-- Traceability Lifecycle Statuses -->
-    <string name="status_created">Lot Created</string>
-    <string name="status_matched">Recycler Matched</string>
+    <string name="status_created">Lot Registered</string>
+    <string name="status_matched">Recycler Selected</string>
     <string name="status_offer_accepted">Offer Accepted</string>
     <string name="status_ready_handover">Ready for Handover</string>
     <string name="status_handover_confirmed">Handover Confirmed</string>

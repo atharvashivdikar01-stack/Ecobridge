@@ -1,12 +1,15 @@
 package com.ecobridge.ui;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ecobridge.EcoBridgeApplication;
 import com.ecobridge.audio.AudioPromptManager;
+
+import java.util.Locale;
 
 /**
  * BaseActivity
@@ -19,20 +22,44 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        String lang = EcoBridgeApplication.getInstance() != null ?
-                EcoBridgeApplication.getInstance().getSavedLanguage() : "mr";
+        String lang = "mr";
+        try {
+            if (EcoBridgeApplication.getInstance() != null) {
+                lang = EcoBridgeApplication.getInstance().getSavedLanguage();
+            }
+        } catch (Exception ignored) {}
         super.attachBaseContext(EcoBridgeApplication.wrapContext(newBase, lang));
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (EcoBridgeApplication.getInstance() != null) {
-            EcoBridgeApplication.getInstance().applyLocale(
-                    EcoBridgeApplication.getInstance().getSavedLanguage()
-            );
-        }
+        // Apply locale before super.onCreate to ensure correct resources
+        applyActivityLocale();
         super.onCreate(savedInstanceState);
-        audioManager = new AudioPromptManager(this);
+        audioManager = AudioPromptManager.getInstance(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Ensure locale is still correct after returning from another activity
+        applyActivityLocale();
+    }
+
+    /**
+     * Apply the saved locale to this activity's resources.
+     */
+    private void applyActivityLocale() {
+        try {
+            if (EcoBridgeApplication.getInstance() != null) {
+                String lang = EcoBridgeApplication.getInstance().getSavedLanguage();
+                Locale locale = new Locale(lang);
+                Locale.setDefault(locale);
+                Configuration config = new Configuration(getResources().getConfiguration());
+                config.setLocale(locale);
+                getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+            }
+        } catch (Exception ignored) {}
     }
 
     @Override
