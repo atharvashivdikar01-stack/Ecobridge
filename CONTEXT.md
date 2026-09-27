@@ -236,4 +236,27 @@ The project is expanding from a simple collection logging tool into a comprehens
 - **Hazard & PPE Verification**: AI verifies protective gear (gloves, eyewear) before handling swollen batteries or broken CRT glass.
 - **Offline Cryptographic Cash Vouchers**: Signed offline QR vouchers for zero-connectivity scrap yard handovers.
 
+---
+
+## 10. Grand Unified Master Specification & Free Scalable Deployment
+
+### 1. Multi-Provider Authentication & Real OTP Pipeline
+- **Truecaller SDK**: 1-tap instant mobile verification for informal waste pickers (zero manual typing, zero SMS latency).
+- **Production SMS Gateway**: Fast2SMS / MSG91 / Twilio with Android SMS Retriever API for zero-permission automatic OTP verification.
+- **Google OAuth 2.0 & OpenID Connect**: Institutional login for corporate recyclers and CPCB regulators.
+
+### 2. Free & Low-Cost Scalable Cloud Topology
+- **API & Backend**: Render Web Service / Oracle Cloud Always Free (4 ARM cores, 24GB RAM).
+- **Database**: Supabase / Neon (Serverless PostgreSQL 16 + PostGIS).
+- **Web Portals**: Vercel Edge Hosting (Recycler Portal & Admin Dashboard).
+- **Cache & Storage**: Upstash Serverless Redis & Cloudflare R2 (10GB free, zero egress fees).
+
+### 3. Recycler Portal Revamp & Brand Alignment
+- Aligned to EcoBridge mobile palette (Forest Green `#1B5E20`, Emerald `#10B981`, Amber Gold `#F59E0B`, Obsidian Slate `#070B14`).
+- Addition of Urban Mining Recovery Yield Calculator (Au, Ag, Cu, Co, Li projections) and live CPCB compliance manifest exporter.
+
+### 4. Brand Identity & Logo Specification
+- Circuit-Leaf motif: Organic leaf with internal veins stylized as gold PCB circuit traces and solder pads crossing an arched digital bridge.
+
+
 

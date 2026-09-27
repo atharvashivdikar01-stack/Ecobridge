@@ -231,4 +231,27 @@ EcoBridge complies strictly with India's **Digital Personal Data Protection Act 
 - **Right to Erasure & DPO Contact**: Collectors can delete personal profiles; statutory audit hashes remain anonymized for regulatory compliance. Dedicated DPO grievance escalation with a 7-day SLA.
 - **Modern Android Permissions**: Just-In-Time rationale dialogs for `CAMERA`, `ACCESS_FINE_LOCATION` (in-use only), and `POST_NOTIFICATIONS` with scoped storage (zero external storage access).
 
+---
+
+## 10. Grand Unified Architecture Blueprint & Free Scalable Deployment
+
+Refer to the master engineering blueprint:  
+[`grand_unified_master_blueprint.md`](file:///C:/Users/admin/.gemini/antigravity-ide/brain/0117c71b-7fdf-449b-8a86-166612cba734/grand_unified_master_blueprint.md)
+
+1. **Authentication Options**:
+   - **Truecaller SDK**: 1-tap instant mobile verification for informal waste pickers (zero typing, zero SMS latency).
+   - **Production SMS Gateway**: Fast2SMS / MSG91 / Twilio with Android SMS Retriever API.
+   - **Google OAuth 2.0**: Enterprise login for recyclers and CPCB government regulators.
+2. **100% Free & Low-Cost Cloud Topology**:
+   - **Backend**: Render Web Service / Oracle Cloud Always Free (4 ARM cores, 24GB RAM).
+   - **Database**: Supabase / Neon (Serverless PostgreSQL 16 + PostGIS extension).
+   - **Web Apps**: Vercel Edge Hosting (Recycler Portal & Admin Dashboard).
+   - **Cache & Storage**: Upstash Serverless Redis & Cloudflare R2 (10GB free, zero egress fees).
+3. **Recycler Portal Modernization**:
+   - Aligned to EcoBridge Forest Green (`#1B5E20`) and Emerald (`#10B981`) theme.
+   - Integrated Urban Mining Yield Calculator (Au, Ag, Cu, Co projected recovery grams) and automated CPCB compliance exporter.
+4. **Brand Visual Identity**:
+   - The Circuit-Leaf Motif: An organic leaf with internal veins stylized as gold PCB circuit traces and solder pads crossing an arched digital bridge.
+
+
 
