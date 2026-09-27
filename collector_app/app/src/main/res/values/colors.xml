@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand / Theme Primary Colors (Sunlight Outdoor Optimized) -->
+    <color name="primary">#00450D</color>
+    <color name="primary_variant">#1B5E20</color>
+    <color name="primary_container">#1B5E20</color>
+    <color name="primary_light">#E8F5E9</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_fixed">#ACF4A4</color>
+    <color name="on_primary_fixed">#002203</color>
+    <color name="primary_fixed_dim">#91D78A</color>
+
+    <!-- Secondary / Accent (Tactile Attention) -->
+    <color name="secondary">#A83900</color>
+    <color name="secondary_container">#FC6018</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="secondary_fixed">#FFDBCF</color>
+    <color name="on_secondary_fixed">#380D00</color>
+    <color name="secondary_fixed_dim">#FFB59A</color>
+
+    <!-- Tertiary (Navigation & Guidance) -->
+    <color name="tertiary">#003683</color>
+    <color name="tertiary_container">#184DA7</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="tertiary_fixed">#D9E2FF</color>
+    <color name="on_tertiary_fixed">#001945</color>
+    <color name="tertiary_fixed_dim">#AFC6FF</color>
+
+    <!-- Backgrounds & Surfaces (High Contrast) -->
+    <color name="background">#F9F9FC</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_bright">#F9F9FC</color>
+    <color name="surface_container">#EEEEF0</color>
+    <color name="surface_container_low">#F3F3F6</color>
+    <color name="surface_container_lowest">#FFFFFF</color>
+    <color name="surface_container_high">#E8E8EA</color>
+    <color name="surface_container_highest">#E2E2E5</color>
+    <color name="outline">#717A6D</color>
+    <color name="outline_variant">#C0C9BB</color>
+    <color name="card_stroke">#E0E0E0</color>
+
+    <!-- Typography -->
+    <color name="on_surface">#1A1C1E</color>
+    <color name="on_surface_variant">#41493E</color>
+    <color name="text_primary">#1A1C1E</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#9E9E9E</color>
+
+    <!-- Errors & Status -->
+    <color name="error">#BA1A1A</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="status_online">#2E7D32</color>
+    <color name="status_offline">#A83900</color>
+    <color name="status_syncing">#0288D1</color>
+    <color name="status_pending">#F9A825</color>
+
+    <!-- Hazards & Alerts -->
+    <color name="hazard_high">#C62828</color>
+    <color name="hazard_medium">#EF6C00</color>
+    <color name="hazard_safe">#2E7D32</color>
+
+    <!-- Material Category Card Accents -->
+    <color name="cat_copper">#D87D4A</color>
+    <color name="cat_aluminium">#78909C</color>
+    <color name="cat_iron">#455A64</color>
+    <color name="cat_pcb">#2E7D32</color>
+    <color name="cat_battery">#E53935</color>
+    <color name="cat_cable">#F57C00</color>
+    <color name="cat_mobile">#1976D2</color>
+    <color name="cat_laptop">#5C6BC0</color>
+</resources>
