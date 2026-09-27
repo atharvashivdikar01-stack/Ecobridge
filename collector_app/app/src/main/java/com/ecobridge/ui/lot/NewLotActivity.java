@@ -26,7 +26,10 @@ import androidx.core.content.ContextCompat;
 
 import com.ecobridge.EcoBridgeApplication;
 import com.ecobridge.R;
+import com.ecobridge.ai.CategoryPrediction;
 import com.ecobridge.ai.ClassificationResult;
+import com.ecobridge.ai.EwasteClassifier;
+import com.ecobridge.ai.PredictionResult;
 import com.ecobridge.ai.ScrapClassifier;
 import com.ecobridge.audio.AudioPromptManager;
 import com.ecobridge.camera.CameraManager;
@@ -66,6 +69,7 @@ public class NewLotActivity extends BaseActivity {
 
     private EcoBridgeRepository repository;
     private AudioPromptManager audioPromptManager;
+    private EwasteClassifier ewasteClassifier;
     private ScrapClassifier scrapClassifier;
     private CameraManager cameraManager;
 
@@ -95,15 +99,33 @@ public class NewLotActivity extends BaseActivity {
     private Bitmap currentBitmap;
 
     // Step 2 Views
+    private LinearLayout layoutAiAnalyzing;
+    private MaterialCardView cardAiAnalysis;
+    private TextView tvAiModelMeta;
     private TextView tvDetectedCategory;
     private TextView tvConfidenceValue;
     private ProgressBar pbConfidence;
+    private LinearLayout layoutTopPredictions;
+    private TextView tvTopPrediction1;
+    private TextView tvTopPrediction2;
+    private TextView tvTopPrediction3;
+    private MaterialCardView cardLowConfidenceAlert;
+    private TextView tvLowConfidenceMessage;
     private MaterialCardView cardHazardAlert;
     private TextView tvHazardMessage;
     private GridLayout gridCategories;
     private MaterialButton btnConfirmCategory;
-    private String selectedCategory = "Copper";
-    private float selectedConfidence = 0.87f;
+    private MaterialButton btnCorrectCategory;
+    private MaterialButton btnScanAgain;
+
+    // AI & Flywheel State
+    private String selectedCategory = "Printed Circuit Boards (PCBs)";
+    private float selectedConfidence = 0.94f;
+    private String aiPredictedCategory = "Printed Circuit Boards (PCBs)";
+    private double aiConfidence = 0.94;
+    private String collectorConfirmedCategory = "Printed Circuit Boards (PCBs)";
+    private String aiModelVersion = EwasteClassifier.MODEL_VERSION;
+    private boolean isManuallyCorrected = false;
 
     // Step 3 Views
     private TextView tvWeightDisplay;
@@ -116,7 +138,7 @@ public class NewLotActivity extends BaseActivity {
     private TextView tvExpectedValue;
     private TextView tvPriceBreakdown;
     private MaterialButton btnProceedToRecyclers;
-    private double currentBenchmarkRate = 420.0;
+    private double currentBenchmarkRate = 330.0;
 
     // Step 5 Views
     private TextView tvNetTakeHome;
@@ -138,6 +160,7 @@ public class NewLotActivity extends BaseActivity {
 
         repository = EcoBridgeApplication.getInstance().getRepository();
         audioPromptManager = new AudioPromptManager(this);
+        ewasteClassifier = new EwasteClassifier(this);
         scrapClassifier = new ScrapClassifier(this);
 
         initViews();
@@ -171,13 +194,24 @@ public class NewLotActivity extends BaseActivity {
         tvPhotoMetadata = findViewById(R.id.tvPhotoMetadata);
 
         // Step 2
+        layoutAiAnalyzing = findViewById(R.id.layoutAiAnalyzing);
+        cardAiAnalysis = findViewById(R.id.cardAiAnalysis);
+        tvAiModelMeta = findViewById(R.id.tvAiModelMeta);
         tvDetectedCategory = findViewById(R.id.tvDetectedCategory);
         tvConfidenceValue = findViewById(R.id.tvConfidenceValue);
         pbConfidence = findViewById(R.id.pbConfidence);
+        layoutTopPredictions = findViewById(R.id.layoutTopPredictions);
+        tvTopPrediction1 = findViewById(R.id.tvTopPrediction1);
+        tvTopPrediction2 = findViewById(R.id.tvTopPrediction2);
+        tvTopPrediction3 = findViewById(R.id.tvTopPrediction3);
+        cardLowConfidenceAlert = findViewById(R.id.cardLowConfidenceAlert);
+        tvLowConfidenceMessage = findViewById(R.id.tvLowConfidenceMessage);
         cardHazardAlert = findViewById(R.id.cardHazardAlert);
         tvHazardMessage = findViewById(R.id.tvHazardMessage);
         gridCategories = findViewById(R.id.gridCategories);
         btnConfirmCategory = findViewById(R.id.btnConfirmCategory);
+        btnCorrectCategory = findViewById(R.id.btnCorrectCategory);
+        btnScanAgain = findViewById(R.id.btnScanAgain);
 
         // Step 3
         tvWeightDisplay = findViewById(R.id.tvWeightDisplay);
@@ -337,6 +371,12 @@ public class NewLotActivity extends BaseActivity {
     // =========================================================================
     private void setupStep2Classification() {
         btnConfirmCategory.setOnClickListener(v -> showStep(3));
+        btnCorrectCategory.setOnClickListener(v -> {
+            ScrollView scrollView = (ScrollView) step2ClassifyLayout;
+            scrollView.smoothScrollTo(0, gridCategories.getTop() - 40);
+            Toast.makeText(this, R.string.not_sure_manual, Toast.LENGTH_SHORT).show();
+        });
+        btnScanAgain.setOnClickListener(v -> showStep(1));
         populateCategoryGrid();
     }
 
@@ -345,17 +385,65 @@ public class NewLotActivity extends BaseActivity {
             currentBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_check_circle);
         }
 
-        scrapClassifier.classifyAsync(currentBitmap, new ScrapClassifier.OnClassificationCallback() {
+        layoutAiAnalyzing.setVisibility(View.VISIBLE);
+
+        ewasteClassifier.classifyAsync(currentBitmap, new EwasteClassifier.Callback() {
             @Override
-            public void onResult(ClassificationResult result) {
+            public void onSuccess(@NonNull PredictionResult result) {
                 runOnUiThread(() -> {
-                    selectedCategory = result.getCategory();
-                    selectedConfidence = result.getConfidence();
+                    layoutAiAnalyzing.setVisibility(View.GONE);
+
+                    aiPredictedCategory = result.getCategory();
+                    aiConfidence = result.getConfidence();
+                    aiModelVersion = result.getModelVersion();
+
+                    if (!isManuallyCorrected) {
+                        selectedCategory = result.getCategory();
+                        selectedConfidence = result.getConfidence();
+                        collectorConfirmedCategory = result.getCategory();
+                    }
+
+                    tvAiModelMeta.setText(String.format(
+                            Locale.US,
+                            "Model: %s • %d ms",
+                            result.getModelVersion(),
+                            result.getInferenceTimeMs()
+                    ));
 
                     tvDetectedCategory.setText(selectedCategory);
-                    tvConfidenceValue.setText(" " + result.getConfidencePercentage() + "%");
-                    pbConfidence.setProgress(result.getConfidencePercentage());
+                    tvConfidenceValue.setText(String.format(Locale.US, " %d%%", Math.round(selectedConfidence * 100)));
+                    pbConfidence.setProgress(Math.round(selectedConfidence * 100));
 
+                    // Display top 3 predictions
+                    List<CategoryPrediction> tops = result.getTopPredictions();
+                    if (tops.size() > 0) {
+                        tvTopPrediction1.setText(tops.get(0).toString());
+                        tvTopPrediction1.setVisibility(View.VISIBLE);
+                    } else {
+                        tvTopPrediction1.setVisibility(View.GONE);
+                    }
+                    if (tops.size() > 1) {
+                        tvTopPrediction2.setText(tops.get(1).toString());
+                        tvTopPrediction2.setVisibility(View.VISIBLE);
+                    } else {
+                        tvTopPrediction2.setVisibility(View.GONE);
+                    }
+                    if (tops.size() > 2) {
+                        tvTopPrediction3.setText(tops.get(2).toString());
+                        tvTopPrediction3.setVisibility(View.VISIBLE);
+                    } else {
+                        tvTopPrediction3.setVisibility(View.GONE);
+                    }
+
+                    // Low confidence warning
+                    if (result.isLowConfidence()) {
+                        cardLowConfidenceAlert.setVisibility(View.VISIBLE);
+                        tvLowConfidenceMessage.setText(result.getErrorMessage());
+                    } else {
+                        cardLowConfidenceAlert.setVisibility(View.GONE);
+                    }
+
+                    // Safety / Hazard warning
                     if (result.isHazardous()) {
                         cardHazardAlert.setVisibility(View.VISIBLE);
                         tvHazardMessage.setText(result.getHazardWarning());
@@ -368,12 +456,18 @@ public class NewLotActivity extends BaseActivity {
             }
 
             @Override
-            public void onError(Exception e) {
+            public void onError(@NonNull Exception e) {
                 runOnUiThread(() -> {
-                    selectedCategory = "Copper";
-                    tvDetectedCategory.setText("Copper");
-                    tvConfidenceValue.setText(" 87%");
-                    pbConfidence.setProgress(87);
+                    layoutAiAnalyzing.setVisibility(View.GONE);
+                    cardLowConfidenceAlert.setVisibility(View.VISIBLE);
+                    tvLowConfidenceMessage.setText("AI analysis unavailable. Please select the category manually.");
+
+                    selectedCategory = "Printed Circuit Boards (PCBs)";
+                    collectorConfirmedCategory = "Printed Circuit Boards (PCBs)";
+                    tvDetectedCategory.setText(selectedCategory);
+                    tvConfidenceValue.setText(" Manual Selection Required");
+                    pbConfidence.setProgress(0);
+                    highlightSelectedCategoryButton(selectedCategory);
                 });
             }
         });
@@ -381,7 +475,7 @@ public class NewLotActivity extends BaseActivity {
 
     private void populateCategoryGrid() {
         gridCategories.removeAllViews();
-        List<String> categories = scrapClassifier.getCategories();
+        List<String> categories = ewasteClassifier.getCategories();
 
         for (String cat : categories) {
             MaterialButton btn = new MaterialButton(this, null, com.google.android.material.R.attr.materialButtonOutlinedStyle);
@@ -399,14 +493,24 @@ public class NewLotActivity extends BaseActivity {
             btn.setLayoutParams(params);
 
             btn.setOnClickListener(v -> {
+                isManuallyCorrected = true;
                 selectedCategory = cat;
+                collectorConfirmedCategory = cat;
+                selectedConfidence = 1.0f;
+
                 tvDetectedCategory.setText(cat);
-                tvConfidenceValue.setText(" Manual Selection");
+                tvConfidenceValue.setText(" Collector Confirmed (Manual Correction)");
                 pbConfidence.setProgress(100);
 
                 if ("Batteries".equalsIgnoreCase(cat)) {
                     cardHazardAlert.setVisibility(View.VISIBLE);
                     tvHazardMessage.setText(R.string.hazard_battery_msg);
+                } else if ("CRT Monitors & TVs".equalsIgnoreCase(cat)) {
+                    cardHazardAlert.setVisibility(View.VISIBLE);
+                    tvHazardMessage.setText(R.string.hazard_crt_msg);
+                } else if ("Printed Circuit Boards (PCBs)".equalsIgnoreCase(cat)) {
+                    cardHazardAlert.setVisibility(View.VISIBLE);
+                    tvHazardMessage.setText(R.string.hazard_pcb_msg);
                 } else {
                     cardHazardAlert.setVisibility(View.GONE);
                 }
@@ -673,7 +777,7 @@ public class NewLotActivity extends BaseActivity {
         LotEntity lot = new LotEntity(
                 lotUuid,
                 shortCode,
-                selectedCategory,
+                collectorConfirmedCategory,
                 currentWeightKg,
                 currentBenchmarkRate,
                 finalSaleValue,
@@ -683,7 +787,12 @@ public class NewLotActivity extends BaseActivity {
                 "CREATED",
                 now,
                 now,
-                "PENDING"
+                "PENDING",
+                aiPredictedCategory,
+                aiConfidence,
+                collectorConfirmedCategory,
+                aiModelVersion,
+                photoSha256
         );
 
         LotPhotoEntity photo = null;
@@ -747,6 +856,7 @@ public class NewLotActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (cameraManager != null) cameraManager.stopCamera();
+        if (ewasteClassifier != null) ewasteClassifier.close();
         if (scrapClassifier != null) scrapClassifier.close();
         if (audioPromptManager != null) audioPromptManager.release();
     }

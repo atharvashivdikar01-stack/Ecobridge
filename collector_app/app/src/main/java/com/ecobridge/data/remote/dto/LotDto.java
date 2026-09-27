@@ -31,11 +31,34 @@ public class LotDto {
     @SerializedName("created_at")
     private String createdAt;
 
+    @SerializedName("ai_category")
+    private String aiCategory;
+
+    @SerializedName("ai_confidence")
+    private double aiConfidence;
+
+    @SerializedName("collector_confirmed_category")
+    private String collectorConfirmedCategory;
+
+    @SerializedName("ai_model_version")
+    private String aiModelVersion;
+
+    @SerializedName("image_hash")
+    private String imageHash;
+
     public LotDto() {}
 
     public LotDto(String uuid, String shortCode, String category, double approxWeightKg,
                   double quotedPrice, double netEarnings, String selectedRecyclerId,
                   String status, String createdAt) {
+        this(uuid, shortCode, category, approxWeightKg, quotedPrice, netEarnings, selectedRecyclerId,
+                status, createdAt, category, 1.0, category, "mobilenet_scrap_v1", "");
+    }
+
+    public LotDto(String uuid, String shortCode, String category, double approxWeightKg,
+                  double quotedPrice, double netEarnings, String selectedRecyclerId,
+                  String status, String createdAt, String aiCategory, double aiConfidence,
+                  String collectorConfirmedCategory, String aiModelVersion, String imageHash) {
         this.uuid = uuid;
         this.shortCode = shortCode;
         this.category = category;
@@ -45,6 +68,11 @@ public class LotDto {
         this.selectedRecyclerId = selectedRecyclerId;
         this.status = status;
         this.createdAt = createdAt;
+        this.aiCategory = aiCategory;
+        this.aiConfidence = aiConfidence;
+        this.collectorConfirmedCategory = collectorConfirmedCategory;
+        this.aiModelVersion = aiModelVersion;
+        this.imageHash = imageHash;
     }
 
     public String getUuid() { return uuid; }
@@ -73,4 +101,19 @@ public class LotDto {
 
     public String getCreatedAt() { return createdAt; }
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
+
+    public String getAiCategory() { return aiCategory; }
+    public void setAiCategory(String aiCategory) { this.aiCategory = aiCategory; }
+
+    public double getAiConfidence() { return aiConfidence; }
+    public void setAiConfidence(double aiConfidence) { this.aiConfidence = aiConfidence; }
+
+    public String getCollectorConfirmedCategory() { return collectorConfirmedCategory; }
+    public void setCollectorConfirmedCategory(String collectorConfirmedCategory) { this.collectorConfirmedCategory = collectorConfirmedCategory; }
+
+    public String getAiModelVersion() { return aiModelVersion; }
+    public void setAiModelVersion(String aiModelVersion) { this.aiModelVersion = aiModelVersion; }
+
+    public String getImageHash() { return imageHash; }
+    public void setImageHash(String imageHash) { this.imageHash = imageHash; }
 }

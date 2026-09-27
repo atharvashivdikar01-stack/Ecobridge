@@ -52,6 +52,17 @@ public class DemoDataSeeder {
         List<PriceEntity> list = new ArrayList<>();
         String now = getUtcTimestamp();
 
+        // 8 Trained Model Categories
+        list.add(new PriceEntity("Batteries", 95.0, 115.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Copper Cables & Wires", 240.0, 280.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("CRT Monitors & TVs", 45.0, 60.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("LCD / LED Panels", 190.0, 230.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Mixed E-Waste Plastics", 35.0, 45.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Motors & Magnet Assemblies", 140.0, 170.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Other Electronic Scrap", 50.0, 65.0, SOURCE_TYPE, now, now));
+        list.add(new PriceEntity("Printed Circuit Boards (PCBs)", 330.0, 365.0, SOURCE_TYPE, now, now));
+
+        // Legacy Aliases
         list.add(new PriceEntity("Copper", 420.0, 450.0, SOURCE_TYPE, now, now));
         list.add(new PriceEntity("Aluminium", 145.0, 165.0, SOURCE_TYPE, now, now));
         list.add(new PriceEntity("Iron", 32.0, 38.0, SOURCE_TYPE, now, now));
@@ -59,7 +70,6 @@ public class DemoDataSeeder {
         list.add(new PriceEntity("Mobile Phone", 280.0, 320.0, SOURCE_TYPE, now, now));
         list.add(new PriceEntity("Computer / Laptop", 350.0, 390.0, SOURCE_TYPE, now, now));
         list.add(new PriceEntity("Cables & Wire", 180.0, 210.0, SOURCE_TYPE, now, now));
-        list.add(new PriceEntity("Batteries", 95.0, 115.0, SOURCE_TYPE, now, now));
         list.add(new PriceEntity("Mixed E-Waste", 75.0, 90.0, SOURCE_TYPE, now, now));
         list.add(new PriceEntity("Other Scrap", 40.0, 50.0, SOURCE_TYPE, now, now));
 

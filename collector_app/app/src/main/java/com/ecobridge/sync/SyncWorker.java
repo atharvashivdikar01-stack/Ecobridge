@@ -93,7 +93,12 @@ public class SyncWorker extends Worker {
                     lot.getNetEarnings(),
                     lot.getSelectedRecyclerId(),
                     lot.getStatus(),
-                    lot.getCreatedAt()
+                    lot.getCreatedAt(),
+                    lot.getAiCategory(),
+                    lot.getAiConfidence(),
+                    lot.getCollectorConfirmedCategory(),
+                    lot.getAiModelVersion(),
+                    lot.getImageHash()
             ));
         }
 
