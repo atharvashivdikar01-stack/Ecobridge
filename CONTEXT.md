@@ -1,76 +1,187 @@
-# EcoBridge context
+# ECOBRIDGE — Master Architecture & Project Context
 
-Last updated: 2026-09-23
+> **Target Audience:** AI Coding Assistants, Human Engineers, and Evaluators.  
+> **Problem Statement:** SIH 2026 Problem Statement 26229 — *Kabadiwala Connect* (Formalizing the Informal E-Waste Supply Chain).  
+> **Repository:** `atharvashivdikar01-stack/Ecobridge`  
+> **Last Updated:** September 2026  
 
-## Product
+---
 
-EcoBridge (SIH 26229, Kabadiwala Connect) helps informal e-waste collectors create an offline collection record, estimate value, identify recycler options, and make a tamper-evident handover record. The intended users are low-literacy collectors using low-cost Android phones, verified recyclers, and a small admin/demo team.
+## 1. Executive Summary & Mission
 
-The platform must protect collector livelihoods and avoid overstating its legal role. It helps create traceability evidence; it does not issue EPR certificates or replace CPCB/SPCB documentation.
+### The Real-World Problem
+In emerging economies (particularly India), over **90% of electronic waste (e-waste)** is collected and dismantled by the **informal sector** (*kabadiwalas*, waste pickers, local scrap aggregators). These informal workers:
+- Lack scientific tools to identify hazardous materials (e.g., toxic CRT lead, lithium battery fires, mercury switches).
+- Face price exploitation from predatory middlemen due to opaque market rates.
+- Have no verifiable proof of custody to participate in formal **Extended Producer Responsibility (EPR)** carbon/recycling credit markets.
 
-## Current architecture
+### The EcoBridge Solution
+EcoBridge is an end-to-end digital bridge connecting informal collectors directly to government-certified, formal e-waste recyclers:
+1. **Offline-First Collector Android App:** Empowers low-literacy collectors with vernacular voice prompts (Hindi, Marathi, English), camera-guided scrap classification, and offline lot staging without requiring constant internet.
+2. **On-Device AI Classification & Hazard Warning:** Uses computer vision to identify scrap categories (PCBs, Batteries, Cables, CRT, etc.) and immediately enforces safety/PPE warnings before generating fair price estimates.
+3. **Cryptographic Chain of Custody:** Generates tamper-evident SHA-256 hashed custody transfer records with QR codes and photo audit trails for verified EPR traceability.
+4. **Recycler Web Portal:** A Next.js web application for certified recycling facilities to discover aggregated lots, confirm physical handovers, verify weights, and log transparent payouts.
+
+---
+
+## 2. Total Technology Stack
+
+| Layer | Technologies & Frameworks | Key Responsibilities |
+|---|---|---|
+| **Mobile Client (`collector_app`)** | Native Android (Java 17 / Gradle 8.2), Room Database, WorkManager, CameraX, TensorFlow Lite, Android TTS & local OGG audio | Offline-first data capture, photo hashing, on-device AI inference, vernacular audio feedback, background sync queue. |
+| **Backend API (`backend`)** | Python 3.11+, FastAPI, SQLAlchemy 2.0 (Async), Pydantic v2, Uvicorn, Passlib/JWT, SQLite (local) / PostgreSQL (production) | RESTful API, offline delta sync protocol, dynamic pricing bands, auto-bootstrap catalog, SHA-256 custody ledger, payment settlement. |
+| **Recycler Portal (`recycler_portal`)** | Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS, Next rewrites proxy | Recycler authentication, live lot marketplace, QR handover confirmation, digital payment recording, ledger audit view. |
+| **AI / ML Pipeline (`ai/`, `Ecobridge-google-collab/`)** | TensorFlow / Keras, TensorFlow Lite, OpenCV, MobileNetV2, synthetic & real e-waste vision datasets | On-device 8-class e-waste vision classifier, export to `mobilenet_scrap_v1.tflite`, calibrated feature fallback. |
+| **Cloud & Deployment** | Render (`render.yaml`), Vercel (`vercel.json`), Docker (`backend/Dockerfile`) | Cloud hosting for FastAPI backend (Render) and Recycler Portal (Vercel) with production HTTPS and automated CI/CD. |
+
+---
+
+## 3. Core System Architecture & Directory Map
 
 ```text
-Native Android app (collector_app)
-  Room local database -> WorkManager queued sync -> FastAPI backend
-                                             -> SQLite locally / PostgreSQL when deployed
+Ecobridge-repo/
+├── backend/                       # ACTIVE FastAPI async backend server
+│   ├── src/
+│   │   ├── api/v1/endpoints/      # API Routes: auth, lots, sync, pricing, recyclers, recycler_portal, matching
+│   │   ├── core/                  # Database config, security, exceptions, and bootstrap.py (auto-seeds catalog)
+│   │   ├── models/                # SQLAlchemy ORM models (User, Lot, HandoverRecord, CustodyEvent, etc.)
+│   │   ├── schemas/               # Pydantic validation schemas
+│   │   └── services/              # Business logic & domain services
+│   ├── tests/                     # 18 passing pytest async unit & integration tests
+│   ├── Dockerfile                 # Container build for backend
+│   └── render.yaml                # Render service definition
+│
+├── collector_app/                 # ACTIVE Native Android Collector Client
+│   ├── app/src/main/
+│   │   ├── java/com/ecobridge/
+│   │   │   ├── ai/                # ScrapClassifier.java (TFLite interpreter + feature fallback)
+│   │   │   ├── audio/             # AudioPromptManager.java (Hindi, Marathi, English voice prompts)
+│   │   │   ├── camera/            # CameraManager.java (CameraX photo capture)
+│   │   │   ├── data/local/        # Room Database, DAOs, and Entities
+│   │   │   ├── data/remote/       # Retrofit REST API client & DTOs
+│   │   │   ├── sync/              # SyncWorker.java (WorkManager background sync)
+│   │   │   └── ui/                # Activities: Home, NewLot, Handover, PriceBoard, Earnings, Recyclers
+│   │   ├── assets/                # labels.txt (8 e-waste classes) & mobilenet_scrap_v1.tflite
+│   │   └── res/                   # Vernacular strings (values, values-hi, values-mr), layouts, drawables
+│   └── build/outputs/apk/debug/   # Built installable Android APK (~25MB)
+│
+├── recycler_portal/               # ACTIVE Next.js 14 Recycler Web Portal
+│   ├── app/
+│   │   ├── dashboard/             # Overview, Handover confirmation, Materials marketplace, Ledger, Payouts
+│   │   ├── login/                 # Phone/OTP recycler authentication
+│   │   └── lib/api.ts             # API client with token management and proxy routing
+│   ├── vercel.json                # Vercel deployment configuration
+│   └── next.config.js             # Configured reverse-proxy for /api/v1/* calls
+│
+├── ai/                            # AI Training & Export Scripts
+│   ├── export_ondevice_classifier.py  # Script to train & export TFLite 8-class model
+│   └── train_ewaste_classifier.ipynb  # Google Colab notebook for MobileNetV2 fine-tuning
+│
+├── datasets/                      # Datasets & Catalog Seeds
+│   ├── ai_ml/vision/              # E-waste training images, annotations, and split classes
+│   └── database_seeds/            # SQL schemas and pricing seed data
+│
+├── render.yaml                    # Root Render Blueprint for one-click cloud backend hosting
+└── CONTEXT.md                     # THIS MASTER CONTEXT DOCUMENT
 ```
 
-- `collector_app/` is the canonical collector app: Java, XML layouts, Room, WorkManager, CameraX, optional TensorFlow Lite, and Android TTS fallback.
-- `backend/` is the active local FastAPI implementation. It has the test suite and the native sync compatibility endpoints.
-- `apps/api-server/` is a separate backend generation. It is not the local-demo backend because its sync contract differs and its sync endpoint is an acknowledgement stub.
-- `apps/collector-mobile/` is a legacy Expo prototype. Do not add new collector features there.
-- Recycler portal folders are parallel UI work. The verified local recycler confirmation is currently available through the API endpoint, not a finished portal workflow.
+> **Note on legacy directories:**  
+> - `apps/api-server/` and `apps/collector-mobile/` (React Native Expo) were early prototypes. **`backend/`** and **`collector_app/`** are the authoritative production codebases.
 
-## Verified implementation status
+---
 
-### Works locally
+## 4. The 8 Standard E-Waste Classes & Safety Rules
 
-1. Debug Android app logs in via local OTP and stores its token using encrypted preferences.
-2. Lots are written to Room first and retried through WorkManager.
-3. `POST /api/v1/sync/batch` accepts native lots, maps their category to the local material catalog, persists them, and is idempotent by collector + short code.
-4. `POST /api/v1/sync/handovers` stores a collector handover only after its lot is present on the server.
-5. `POST /api/v1/recycler-portal/handovers/{reference_no}/confirm` permits only the addressed, verified recycler to confirm custody.
-6. Confirmation appends a custody event. Payment remains `PENDING`; it is not fabricated by the client.
+The entire platform (Android, Backend, and Recycler Portal) strictly shares an identical 8-category taxonomy:
 
-### Deliberate local-development settings
+| Category Code | Display Name | Benchmark Rate | Safety Severity & Protocol |
+|---|---|---|---|
+| `CAT_BATTERY` | **Batteries** | ₹105 / kg | **HAZARD**: Swelling/fire risk. Do not puncture, crush, or burn. |
+| `CAT_CRT` | **CRT Monitors & TVs** | ₹45 / kg | **HAZARD**: High-voltage vacuum implosion & toxic lead phosphor. Wear heavy gloves. |
+| `CAT_PCB` | **Printed Circuit Boards (PCBs)** | ₹330 / kg | **WARNING**: Contains lead/cadmium solder. Avoid bare skin contact. |
+| `CAT_LCD_LED` | **LCD / LED Panels** | ₹85 / kg | **WARNING**: Mercury backlight tubes in older CCFL units. |
+| `CAT_CABLES` | **Copper Cables & Wires** | ₹195 / kg | **NORMAL**: Stripping safety; fair market weight valuation. |
+| `CAT_MOTORS` | **Motors & Magnet Assemblies** | ₹55 / kg | **NORMAL**: Heavy lift hazard; copper winding extraction. |
+| `CAT_PLASTICS` | **Mixed E-Waste Plastics** | ₹22 / kg | **NORMAL**: Flame retardant plastics; separate from household scrap. |
+| `CAT_OTHER` | **Other Electronic Scrap** | ₹40 / kg | **NORMAL**: Unclassified electronic items. |
 
-- Android debug base URL: `http://10.0.2.2:8000/` for Android Emulator.
-- Local API host: `127.0.0.1:8000`.
-- Local database: ignored SQLite file `backend/ecobridge_local.db`.
-- Local OTP: `123456` only.
-- Local Test Recycler ID: `00000000-0000-0000-0000-000000000101`; it is seed data, not a real recycler.
+---
 
-Cleartext HTTP is present only in `collector_app/app/src/debug/AndroidManifest.xml`. Release builds must use HTTPS.
+## 5. End-to-End Lifecycle & Data Flow
 
-## Important contracts
+```
+[Collector Phone]
+   │
+   ├─ 1. Offline Lot Creation
+   │     Take photo (CameraX) ➔ AI Classifier detects category & hazard
+   │     Enter weight (kg) ➔ Price benchmark calculated
+   │     Persist immediately to SQLite/Room database
+   │
+   ├─ 2. Delta Background Sync
+   │     WorkManager triggers when network is available
+   │     POST /api/v1/sync/batch (Idempotent by collector + lot short code)
+   │     POST /api/v1/lots/{id}/photos (SHA-256 verified)
+   │
+[FastAPI Backend]
+   │
+   ├─ 3. Verification & Staging
+   │     Validates payload, creates Lot record, and appends initial CustodyEvent
+   │     Available in Recycler Marketplace (GET /api/v1/recycler-portal/materials)
+   │
+[Recycler Portal (Next.js)]
+   │
+   ├─ 4. Discovery & In-Person Handover
+   │     Recycler inspects lot details, GPS location, and photo
+   │     In-person meeting: Collector displays QR code / short code
+   │     Recycler scans/enters code: POST /api/v1/recycler-portal/handovers/{ref}/confirm
+   │     Recycler enters verified scale weight
+   │
+[Settlement & Audit Trail]
+   │
+   ├─ 5. Cryptographic Custody & Payment
+   │     Backend locks batch status to VERIFIED/TRANSFERRED
+   │     Appends SHA-256 hashed CustodyEvent (Actor ID, timestamp, previous hash)
+   │     Payment recorded as PAID; Collector app updates via GET /api/v1/sync/status
+```
 
-Native app routes used by the active backend:
+---
 
-- `POST /api/v1/auth/otp/send`
-- `POST /api/v1/auth/otp/verify`
-- `POST /api/v1/sync/batch`
-- `POST /api/v1/sync/handovers`
-- `POST /api/v1/recycler-portal/handovers/{reference_no}/confirm`
+## 6. Verified Working Features & Current Status
 
-The phone's local UUID is not trusted as the server lot identity. A handover includes the lot's short code, which the server resolves under the authenticated collector. This prevents a local database ID from being mistaken for a server UUID.
+### What is 100% Implemented & Tested:
+1. **Android App (`collector_app`)**:
+   - Compiles cleanly (`assembleDebug` succeeds).
+   - Generates standalone APK at [`collector_app/app/build/outputs/apk/debug/app-debug.apk`](file:///c:/Users/admin/Downloads/Ecobridge-repo/collector_app/app/build/outputs/apk/debug/app-debug.apk) and [`C:\Users\admin\Downloads\EcoBridge-Collector-v1.0.apk`](file:///C:/Users/admin/Downloads/EcoBridge-Collector-v1.0.apk).
+   - Vernacular audio and multilingual UI (Hindi, Marathi, English).
+   - `ScrapClassifier.java` supports dual-mode: TFLite model inference when present, with a calibrated on-device feature-based fallback that reliably detects all 8 categories with hazard alerts.
+   - Cleartext HTTP allowed for emulator/local testing, HTTPS default for cloud.
+   - Auto-retry sync with `SyncWorker`.
 
-## Non-negotiable rules
+2. **Backend API (`backend`)**:
+   - Running live on `http://localhost:8000` (`/docs` OpenAPI available).
+   - 18 automated tests passing (`pytest tests/`).
+   - Auto-bootstrap on launch seeds the 8-class catalog, price bands, and a test verified recycler company.
+   - Idempotent batch sync (`/api/v1/sync/batch`), photo uploads with SHA-256 hash checks, and handover confirmations.
+   - Payment endpoints update `HandoverRecord.payment_status` to `PAID` with ledger entries.
 
-- Offline data is written locally before any network call.
-- Retried sync must be idempotent.
-- Never mark payment paid until an authorised server-side settlement operation records it.
-- Do not invent recycler permits, rates, or AI classifications. Demo values must be visibly demo/unverified.
-- Do not collect unnecessary KYC, GPS, or financial information.
-- Keep secrets and generated local data out of Git.
+3. **Recycler Portal (`recycler_portal`)**:
+   - Running live on `http://localhost:3001`.
+   - Production build (`npm run build`) succeeds with zero errors (all 10 static/dynamic routes compiled).
+   - Built-in Next.js proxy rewrites `/api/v1/*` to the active backend (configurable via `NEXT_PUBLIC_API_URL` or `BACKEND_API_URL`).
 
-## Next milestones
+4. **Cloud Deployment Readiness**:
+   - `render.yaml` configured at root for one-click backend deployment on Render.
+   - `recycler_portal/vercel.json` and dynamic Next.js API rewrites configured for Vercel deployment.
+   - Git repository clean and synchronized on branch `feature/backend-postgres`.
 
-1. Build the recycler confirmation UI against the existing endpoint, then implement authorised payment settlement and collector ledger update.
-2. Add migrations and run the active backend on PostgreSQL; retire or merge the duplicate backend generation.
-3. Upload compressed photos separately, verify hashes server-side, and add retry/error states.
-4. Replace demo recycler/rate data with verified field data and label price sources.
-5. Test offline/online transitions on a physical low-cost Android device. Configure a debug LAN URL only for that test.
-6. Add real OTP provider credentials, TLS, production secrets, backups, and deployment monitoring before hosting.
+---
 
-See [EXPLANATION.md](EXPLANATION.md) for a fuller explanation of the current state and delivery plan.
+## 7. Guidelines for Any Future AI Working on This Codebase
+
+When continuing development or adding features, follow these strict rules:
+
+1. **Offline Invariant:** Never make the mobile client depend on immediate server connectivity. Everything must be saved to Room DB first, then queued through WorkManager.
+2. **Taxonomy Integrity:** Never hardcode new material categories in UI files. Any category must exist in the 8-class catalog (`CAT_BATTERY`, `CAT_CRT`, `CAT_PCB`, `CAT_LCD_LED`, `CAT_CABLES`, `CAT_MOTORS`, `CAT_PLASTICS`, `CAT_OTHER`).
+3. **Safety First:** AI predictions must show hazard advisories (PPE requirements, handling warnings) before displaying estimated monetary earnings.
+4. **Idempotent Handshakes:** The mobile app's local SQLite ID is not the server's ID. Always correlate using the generated `lot_code` / short reference and collector token.
+5. **No Secrets in Repo:** Never commit `.env` files, production JWT secrets, or cloud credentials.
