@@ -213,3 +213,27 @@ The project is expanding from a simple collection logging tool into a comprehens
 - **Green Dividend Pass-Through**: Routing ₹3–5/kg of corporate EPR compliance revenue directly to the informal waste picker.
 - **Aggregator Hub (*Kabadi Dukaan*) Franchising**: Providing neighborhood scrap shop owners with a 1.5% aggregation fee to turn them into certified collection hubs.
 
+---
+
+## 9. DPDP Act (2023) Compliance, Privacy Architecture & Final Submission Strategy
+
+### 1. Indian DPDP Act 2023 Compliance Framework
+- **Notice & Consent (Sections 5 & 6)**: Multi-lingual affirmative consent notice (Marathi, Hindi, English) with voice playback for low-literacy informal waste pickers.
+- **Data Minimization (Section 7)**: ZERO collection of Aadhaar numbers, biometric facial scans, phone contact books, or SMS logs.
+- **Child Labor Safeguards (Section 9)**: Mandatory age verification ($\ge 18$) to prevent informal child labor in scrap handling.
+- **Right to Erasure (Section 12)**: Collector can purge personal profile data; statutory scrap audit hashes remain anonymized for CPCB compliance.
+- **Data Protection Officer (Section 13)**: Formal DPO escalation contact with statutory 7-day grievance SLA.
+
+### 2. Android Runtime Permissions & Scoped Storage
+- **Just-in-Time Rationale**: Rationale cards explain *why* camera or GPS is required before triggering system dialogs.
+- **Permissions**: `CAMERA` (lot photos/scale OCR), `ACCESS_FINE_LOCATION` (scrap origin geotagging only while app in use), `POST_NOTIFICATIONS` (sync & payout alerts).
+- **Excluded**: No background location, no storage permissions (uses Android 10+ scoped storage).
+
+### 3. Competition-Winning Submission Differentiators
+- **CPCB / SPCB Regulatory Portal**: Real-time municipal e-waste heatmaps and automated EPR compliance manifests.
+- **Carbon Offset & ESG Metric Engine**: Calculates exact kg $CO_2$ and liters of water saved per lot recycled.
+- **Merkle Tree Cryptographic Batch Verification**: Immutable lot aggregation proof for truckload delivery.
+- **Hazard & PPE Verification**: AI verifies protective gear (gloves, eyewear) before handling swollen batteries or broken CRT glass.
+- **Offline Cryptographic Cash Vouchers**: Signed offline QR vouchers for zero-connectivity scrap yard handovers.
+
+

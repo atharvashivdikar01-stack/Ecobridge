@@ -219,3 +219,16 @@ EcoBridge is expanding into an **AI-driven Urban Mining & Circular Economy Platf
    - **EPR Green Dividend**: Passing ₹3–5/kg of corporate EPR compliance revenue directly to the informal waste picker.
    - **Aggregator Hub (*Kabadi Dukaan*) Franchising**: Transforming neighborhood scrap shops into certified collection hubs with a 1.5% aggregation fee.
 
+---
+
+## 9. DPDP Act (2023) Compliance, Privacy Architecture & User Rights
+
+EcoBridge complies strictly with India's **Digital Personal Data Protection Act (DPDP Act 2023)**:
+
+- **Audio-Visual Vernacular Consent**: Transparent notices in Marathi, Hindi, and English with voice audio playback for low-literacy informal collectors.
+- **Strict Data Minimization**: Zero collection of Aadhaar numbers, biometric face data, contacts, or SMS logs. Only phone (authentication), GPS (scrap origin), and photos (material audit) are collected.
+- **Child Labor Prevention**: Mandatory age declaration ($\ge 18$) to prevent informal child labor in e-waste processing.
+- **Right to Erasure & DPO Contact**: Collectors can delete personal profiles; statutory audit hashes remain anonymized for regulatory compliance. Dedicated DPO grievance escalation with a 7-day SLA.
+- **Modern Android Permissions**: Just-In-Time rationale dialogs for `CAMERA`, `ACCESS_FINE_LOCATION` (in-use only), and `POST_NOTIFICATIONS` with scoped storage (zero external storage access).
+
+
