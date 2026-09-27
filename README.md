@@ -195,5 +195,27 @@ To add studio voice recordings to the Android app:
 - **Database**: In production, configure PostgreSQL 16 with PostGIS:
   `DATABASE_URL=postgresql+asyncpg://user:pass@host:5432/ecobridge`
 - **Reverse Proxy**: Place FastAPI and Next.js behind Nginx or Caddy with automated Let's Encrypt TLS certificates.
-- **Docker Compose**: Multi-stage Docker definitions for all microservices are located in `infra/docker/`.
 - **Security Invariant**: Never disable cryptographic hash validation or commit cleartext production secrets.
+
+---
+
+## 8. Strategic Roadmap: Urban Mining, Deep Material Intelligence & Gamification
+
+EcoBridge is expanding into an **AI-driven Urban Mining & Circular Economy Platform**:
+
+1. **Android Core Roadmap**:
+   - **GPS Geotagging**: Attach fine-accuracy latitude/longitude (`ACCESS_FINE_LOCATION`) to `LotEntity` for regional scrap mapping and fraud prevention.
+   - **Debug-Only Cleartext**: Production release builds enforce TLS 1.3 HTTPS; cleartext traffic isolated to `app/src/debug/AndroidManifest.xml`.
+   - **Visual Sync Indicators**: Status badges (`PENDING`, `SYNCING`, `SYNCED`, `FAILED`) in transaction lists.
+2. **Deep Material Intelligence & Elemental BOM**:
+   - **Multi-Task Computer Vision**: Upgrading from single-label MobileNet to hierarchical identification (Device $\rightarrow$ Subcategory $\rightarrow$ Physical Condition $\rightarrow$ Elemental Bill of Materials).
+   - **Rare Metal Recovery Engine**: Computes exact gram/kilogram yields of Gold (Au), Silver (Ag), Copper (Cu), Palladium (Pd), Cobalt (Co), and Lithium (Li).
+   - **Hazard Matrix**: Prioritizes safety advisories (swollen batteries, hydrofluoric acid, toxic CRT lead oxide, mercury switches) before financial estimates.
+3. **Recycler Smelting Economics**:
+   - Calculates real-time gross recovery value using live commodity market rates (MCX / LME) and hydrometallurgical extraction efficiencies.
+   - Automated CPCB EPR compliance certification for electronics manufacturers.
+4. **Collector Incentive Flywheel**:
+   - **Daily Quota Rewards**: Direct cash / UPI bonuses for daily volume milestones (e.g. 15 kg/day $\rightarrow$ +₹50).
+   - **EPR Green Dividend**: Passing ₹3–5/kg of corporate EPR compliance revenue directly to the informal waste picker.
+   - **Aggregator Hub (*Kabadi Dukaan*) Franchising**: Transforming neighborhood scrap shops into certified collection hubs with a 1.5% aggregation fee.
+

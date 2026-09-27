@@ -185,3 +185,31 @@ When continuing development or adding features, follow these strict rules:
 3. **Safety First:** AI predictions must show hazard advisories (PPE requirements, handling warnings) before displaying estimated monetary earnings.
 4. **Idempotent Handshakes:** The mobile app's local SQLite ID is not the server's ID. Always correlate using the generated `lot_code` / short reference and collector token.
 5. **No Secrets in Repo:** Never commit `.env` files, production JWT secrets, or cloud credentials.
+
+---
+
+## 8. Strategic Expansion Roadmap: Urban Mining, Deep Material AI & Scrapper Flywheel
+
+The project is expanding from a simple collection logging tool into a comprehensive **AI-driven Urban Mining & Workforce Formalization Platform**:
+
+### 1. Android Core Upgrades (Section 5.3 Priorities)
+- **TFLite Model Embedding**: `mobilenet_scrap_v1.tflite` embedded in `assets/` with direct-stream memory loading and pure CPU fallback for 100% device compatibility.
+- **Move Cleartext to Debug-Only**: `app/src/debug/AndroidManifest.xml` retains `usesCleartextTraffic="true"` for local test servers; release builds enforce TLS 1.3 HTTPS.
+- **GPS Location Geotagging**: Capturing fine-accuracy latitude/longitude via `FusedLocationProviderClient` attached to `LotEntity` for regional scrap heatmaps and fraud prevention.
+- **Sync Status Badges**: Visual indicator pills (`PENDING`, `SYNCING`, `SYNCED`, `FAILED` with manual retry) in transaction views.
+
+### 2. Deep Material Intelligence & Urban Mining AI
+- **Elemental Bill of Materials (BOM)**: Decomposing collected scrap into recoverable precious and rare metals:
+  - Gold (Au), Silver (Ag), Copper (Cu), Palladium (Pd), Cobalt (Co), Lithium (Li), Neodymium (Nd).
+- **Hazard Matrix**: Safety warnings (PPE, thermal runaway, HF acid, lead oxide, mercury vapor) prioritized before financial estimates.
+- **Robustness in Unclear / Messy Scrap**: Upgrading from single-label MobileNet to YOLOv8-Nano object detection with CLAHE lighting normalization for dirty, tangled scrap heaps.
+
+### 3. Recycler Smelting Economics & EPR Ledger
+- **Recovery Yield % Engine**: Computes exact net realization based on metal spot prices (MCX/LME) and hydrometallurgical smelting efficiencies.
+- **CPCB EPR Certificate Automation**: Translates verified processed volumes into official CPCB compliance certificates for corporate electronic brands.
+
+### 4. Collector Gamification & Incentive Flywheel
+- **Daily Quotas & Streak Bonuses**: Instant cash / UPI rewards for daily volume milestones (e.g. 15 kg/day $\rightarrow$ +₹50 bonus).
+- **Green Dividend Pass-Through**: Routing ₹3–5/kg of corporate EPR compliance revenue directly to the informal waste picker.
+- **Aggregator Hub (*Kabadi Dukaan*) Franchising**: Providing neighborhood scrap shop owners with a 1.5% aggregation fee to turn them into certified collection hubs.
+
