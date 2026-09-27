@@ -71,7 +71,6 @@ public class NewLotActivity extends BaseActivity {
     private EcoBridgeRepository repository;
     private AudioPromptManager audioPromptManager;
     private EwasteClassifier ewasteClassifier;
-    private ScrapClassifier scrapClassifier;
     private CameraManager cameraManager;
 
     // Navigation & Step Management
@@ -161,8 +160,7 @@ public class NewLotActivity extends BaseActivity {
 
         repository = EcoBridgeApplication.getInstance().getRepository();
         audioPromptManager = AudioPromptManager.getInstance(this);
-        ewasteClassifier = new EwasteClassifier(this);
-        scrapClassifier = new ScrapClassifier(this);
+        ewasteClassifier = EwasteClassifier.getInstance(this);
 
         initViews();
         setupToolbar();
@@ -857,8 +855,6 @@ public class NewLotActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (cameraManager != null) cameraManager.stopCamera();
-        if (ewasteClassifier != null) ewasteClassifier.close();
-        if (scrapClassifier != null) scrapClassifier.close();
         if (audioPromptManager != null) audioPromptManager.release();
     }
 }

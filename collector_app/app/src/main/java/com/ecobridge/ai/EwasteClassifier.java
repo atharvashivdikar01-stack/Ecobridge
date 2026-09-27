@@ -17,8 +17,12 @@ import com.ecobridge.ai.deepscan.SafetyAnalyzer;
 import org.tensorflow.lite.Interpreter;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -48,19 +52,35 @@ public class EwasteClassifier {
     public static final int PIXEL_SIZE = 3; // RGB
     public static final float DEFAULT_CONFIDENCE_THRESHOLD = 0.50f;
 
+    private static volatile EwasteClassifier sInstance;
+
     private final Context context;
     private final SafetyAnalyzer safetyAnalyzer;
     private final ExecutorService executorService;
     private final Handler mainHandler;
 
     private Interpreter tfliteInterpreter;
+    private AssetFileDescriptor activeModelAfd;
+    private FileInputStream activeFis;
     private final List<String> categories = new ArrayList<>();
     private boolean isModelLoaded = false;
+    private String modelInitError = null;
     private float confidenceThreshold = DEFAULT_CONFIDENCE_THRESHOLD;
 
     public interface Callback {
         void onSuccess(@NonNull PredictionResult result);
         void onError(@NonNull Exception e);
+    }
+
+    public static EwasteClassifier getInstance(@NonNull Context context) {
+        if (sInstance == null) {
+            synchronized (EwasteClassifier.class) {
+                if (sInstance == null) {
+                    sInstance = new EwasteClassifier(context.getApplicationContext());
+                }
+            }
+        }
+        return sInstance;
     }
 
     public EwasteClassifier(@NonNull Context context) {
@@ -107,29 +127,134 @@ public class EwasteClassifier {
     }
 
     private synchronized void initInterpreter() {
+        ByteBuffer buffer = null;
+        Throwable lastError = null;
+
         try {
-            MappedByteBuffer buffer = loadModelBuffer(MODEL_FILE);
-            Interpreter.Options options = new Interpreter.Options();
-            options.setNumThreads(Math.max(2, Runtime.getRuntime().availableProcessors() / 2));
-            options.setUseXNNPACK(true);
-            tfliteInterpreter = new Interpreter(buffer, options);
-            isModelLoaded = true;
-            Log.i(TAG, "TFLite model [" + MODEL_VERSION + "] initialized successfully.");
-        } catch (Exception e) {
-            Log.e(TAG, "Failed to initialize TFLite model from assets/" + MODEL_FILE + ": " + e.getMessage());
+            buffer = loadModelBuffer(MODEL_FILE);
+        } catch (Throwable t) {
+            Log.e(TAG, "Failed loading buffer for " + MODEL_FILE, t);
+            lastError = t;
+        }
+
+        if (buffer == null) {
             isModelLoaded = false;
             tfliteInterpreter = null;
+            modelInitError = lastError != null ? lastError.getClass().getSimpleName() + ": " + lastError.getMessage() : "Model buffer null";
+            Log.e(TAG, "Cannot initialize TFLite interpreter: " + modelInitError);
+            return;
         }
+
+        // Tier 1: Try with multi-threaded options and XNNPACK delegate
+        try {
+            Interpreter.Options options = new Interpreter.Options();
+            options.setNumThreads(Math.min(4, Math.max(2, Runtime.getRuntime().availableProcessors() / 2)));
+            try {
+                options.setUseXNNPACK(true);
+            } catch (Throwable ignored) {}
+            tfliteInterpreter = new Interpreter(buffer, options);
+            isModelLoaded = true;
+            modelInitError = null;
+            Log.i(TAG, "TFLite model [" + MODEL_VERSION + "] initialized successfully with XNNPACK.");
+            return;
+        } catch (Throwable t1) {
+            Log.w(TAG, "Interpreter init with XNNPACK failed: " + t1.getMessage() + ". Retrying without XNNPACK...", t1);
+            lastError = t1;
+        }
+
+        // Tier 2: Pure CPU Interpreter (no XNNPACK, 2 threads)
+        try {
+            buffer.rewind();
+            Interpreter.Options cpuOptions = new Interpreter.Options();
+            cpuOptions.setNumThreads(2);
+            cpuOptions.setUseXNNPACK(false);
+            tfliteInterpreter = new Interpreter(buffer, cpuOptions);
+            isModelLoaded = true;
+            modelInitError = null;
+            Log.i(TAG, "TFLite model [" + MODEL_VERSION + "] initialized successfully with standard CPU.");
+            return;
+        } catch (Throwable t2) {
+            Log.w(TAG, "Interpreter init with CPU options failed: " + t2.getMessage() + ". Retrying bare interpreter...", t2);
+            lastError = t2;
+        }
+
+        // Tier 3: Bare default Interpreter
+        try {
+            buffer.rewind();
+            tfliteInterpreter = new Interpreter(buffer);
+            isModelLoaded = true;
+            modelInitError = null;
+            Log.i(TAG, "TFLite model [" + MODEL_VERSION + "] initialized with bare default options.");
+            return;
+        } catch (Throwable t3) {
+            Log.e(TAG, "All Interpreter initialization attempts failed: " + t3.getMessage(), t3);
+            lastError = t3;
+        }
+
+        isModelLoaded = false;
+        tfliteInterpreter = null;
+        modelInitError = lastError != null ? lastError.getClass().getSimpleName() + ": " + lastError.getMessage() : "Unknown init error";
     }
 
-    private MappedByteBuffer loadModelBuffer(String modelPath) throws IOException {
-        AssetFileDescriptor fileDescriptor = context.getAssets().openFd(modelPath);
-        try (FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor())) {
-            FileChannel fileChannel = inputStream.getChannel();
-            long startOffset = fileDescriptor.getStartOffset();
-            long declaredLength = fileDescriptor.getDeclaredLength();
-            return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+    /**
+     * Robust multi-strategy model loader:
+     * 1. Direct InputStream -> Direct ByteBuffer (immune to APK compression & OS file descriptor closure)
+     * 2. AssetFileDescriptor -> FileChannel.map (keeping file descriptor open)
+     * 3. App-private cache directory fallback
+     */
+    private ByteBuffer loadModelBuffer(String modelPath) throws IOException {
+        // Strategy 1: Direct InputStream -> Direct ByteBuffer
+        // This is 100% resilient across all Android versions, ROMs (ColorOS, MIUI, OneUI),
+        // and works whether the asset in the APK is compressed or uncompressed.
+        try (InputStream is = context.getAssets().open(modelPath)) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] chunk = new byte[32768];
+            int read;
+            while ((read = is.read(chunk)) != -1) {
+                baos.write(chunk, 0, read);
+            }
+            byte[] modelBytes = baos.toByteArray();
+            if (modelBytes.length > 0) {
+                Log.i(TAG, "Successfully read " + modelBytes.length + " bytes for " + modelPath + " via direct asset stream.");
+                ByteBuffer directBuffer = ByteBuffer.allocateDirect(modelBytes.length);
+                directBuffer.order(ByteOrder.nativeOrder());
+                directBuffer.put(modelBytes);
+                directBuffer.rewind();
+                return directBuffer;
+            }
+        } catch (Throwable t1) {
+            Log.w(TAG, "Direct asset stream reading failed (" + t1.getMessage() + "). Trying AssetFileDescriptor...", t1);
         }
+
+        // Strategy 2: AssetFileDescriptor memory mapping (retaining descriptor references)
+        try {
+            activeModelAfd = context.getAssets().openFd(modelPath);
+            activeFis = new FileInputStream(activeModelAfd.getFileDescriptor());
+            FileChannel fileChannel = activeFis.getChannel();
+            long startOffset = activeModelAfd.getStartOffset();
+            long declaredLength = activeModelAfd.getDeclaredLength();
+            MappedByteBuffer mappedBuffer = fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+            Log.i(TAG, "Successfully mapped " + declaredLength + " bytes for " + modelPath + " via AssetFileDescriptor.");
+            return mappedBuffer;
+        } catch (Throwable t2) {
+            Log.w(TAG, "AssetFileDescriptor mapping failed (" + t2.getMessage() + "). Trying cache file copy...", t2);
+        }
+
+        // Strategy 3: Copy to app's private cache directory
+        File cacheFile = new File(context.getCacheDir(), modelPath);
+        if (!cacheFile.exists() || cacheFile.length() == 0) {
+            try (InputStream in = context.getAssets().open(modelPath);
+                 FileOutputStream out = new FileOutputStream(cacheFile)) {
+                byte[] buf = new byte[32768];
+                int len;
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+            }
+        }
+        FileInputStream fis = new FileInputStream(cacheFile);
+        FileChannel fc = fis.getChannel();
+        return fc.map(FileChannel.MapMode.READ_ONLY, 0, cacheFile.length());
     }
 
     /**
@@ -160,9 +285,12 @@ public class EwasteClassifier {
         }
 
         if (!isModelLoaded || tfliteInterpreter == null) {
-            Log.w(TAG, "Classifier invoked while model is not loaded. Returning manual fallback.");
+            Log.w(TAG, "Classifier invoked while model is not loaded. Detail: " + modelInitError);
+            String message = modelInitError != null
+                    ? "AI model initialization issue (" + modelInitError + "). Please select manually."
+                    : "AI model unavailable. Please select the category manually.";
             return PredictionResult.createFallback(
-                    "AI model unavailable. Please select the category manually.",
+                    message,
                     PredictionResult.Status.MODEL_UNAVAILABLE
             );
         }
@@ -218,12 +346,12 @@ public class EwasteClassifier {
                     MODEL_VERSION,
                     inferenceTimeMs,
                     status,
-                    isLowConfidence ? "AI could not confidently identify this item. Please confirm manually." : ""
+                    isLowConfidence ? "Low confidence. Please verify category." : ""
             );
         } catch (Exception e) {
             Log.e(TAG, "TFLite inference runtime failure: " + e.getMessage(), e);
             return PredictionResult.createFallback(
-                    "Inference failed. Please select the category manually.",
+                    "Inference error (" + e.getMessage() + "). Please select manually.",
                     PredictionResult.Status.ERROR
             );
         }
@@ -277,6 +405,18 @@ public class EwasteClassifier {
                 tfliteInterpreter.close();
             } catch (Exception ignored) {}
             tfliteInterpreter = null;
+        }
+        if (activeFis != null) {
+            try {
+                activeFis.close();
+            } catch (Exception ignored) {}
+            activeFis = null;
+        }
+        if (activeModelAfd != null) {
+            try {
+                activeModelAfd.close();
+            } catch (Exception ignored) {}
+            activeModelAfd = null;
         }
         isModelLoaded = false;
         executorService.shutdown();
