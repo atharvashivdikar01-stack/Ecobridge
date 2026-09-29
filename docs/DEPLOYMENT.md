@@ -153,16 +153,16 @@ Azure will now:
 ### 2.6 Get Your Backend URL and Verify
 
 1. Go back to the **"Overview"** tab of your App Service
-2. Copy the **URL** — it looks like: `https://ecobridge-api-2026.azurewebsites.net`
+2. Copy the **URL** — e.g.: `https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net`
 3. **Verify** by opening in browser:
    ```
-   https://ecobridge-api-2026.azurewebsites.net/docs
+   https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/docs
    ```
    → You should see the **Swagger UI** with all endpoints listed ✅
 
 4. Test one endpoint:
    ```
-   https://ecobridge-api-2026.azurewebsites.net/api/v1/materials/taxonomy
+   https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/api/v1/lots/taxonomy/materials
    ```
    → Should return 8 material categories in JSON ✅
 
@@ -208,7 +208,7 @@ Azure will now:
 
    | Name | Value |
    |---|---|
-   | `NEXT_PUBLIC_API_URL` | `https://ecobridge-api-2026.azurewebsites.net` |
+   | `NEXT_PUBLIC_API_URL` | `https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net` |
 
 6. Click **"Deploy"** → wait ~60 seconds
 
@@ -234,7 +234,7 @@ Azure will now:
 
    | Name | Value |
    |---|---|
-   | `NEXT_PUBLIC_API_URL` | `https://ecobridge-api-2026.azurewebsites.net` |
+   | `NEXT_PUBLIC_API_URL` | `https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net` |
 
 5. Click **"Deploy"**
 
@@ -279,8 +279,8 @@ git push origin main
 
 Run through this before sharing with judges:
 
-- [ ] `https://ecobridge-api-2026.azurewebsites.net/docs` → Swagger UI loads
-- [ ] `https://ecobridge-api-2026.azurewebsites.net/api/v1/materials/taxonomy` → returns 8 categories
+- [ ] `https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/docs` → Swagger UI loads
+- [ ] `https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/api/v1/lots/taxonomy/materials` → returns 8 categories
 - [ ] Recycler Portal → login `+919811111111` / `123456` → dashboard loads
 - [ ] Admin Dashboard → loads with illustrative demo banner
 - [ ] APK installs on Android and logs in successfully
@@ -301,7 +301,7 @@ Run through this before sharing with judges:
 ║     https://ecobridge-admin-dashboard.vercel.app         ║
 ║                                                          ║
 ║  ⚡ API (Swagger Docs):                                  ║
-║     https://ecobridge-api-2026.azurewebsites.net/docs    ║
+║     https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/docs ║
 ║                                                          ║
 ║  📱 Android APK:                                         ║
 ║     github.com/…/raw/main/release/EcoBridge-…apk        ║
