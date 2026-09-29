@@ -1,3 +1,4 @@
+from typing import Any
 import json
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -6,7 +7,7 @@ class Settings(BaseSettings):
     VERSION: str = "0.1.0"
     API_V1_PREFIX: str = "/api/v1"
     DATABASE_URL: str = "sqlite+aiosqlite:///./ecobridge.db"
-    CORS_ORIGINS: list[str] = ["http://localhost:3000", "http://localhost:3001", "*"]
+    CORS_ORIGINS: Any = ["http://localhost:3000", "http://localhost:3001", "*"]
     SECRET_KEY: str = "change-me-in-production"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 10080
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
