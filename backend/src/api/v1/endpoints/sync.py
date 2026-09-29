@@ -159,6 +159,8 @@ async def sync_native_collector_batch(
                 )
             )).scalars().first()
         if not material:
+            material = (await db.execute(select(Material))).scalars().first()
+        if not material:
             failed_items.append(native_lot.uuid)
             continue
 

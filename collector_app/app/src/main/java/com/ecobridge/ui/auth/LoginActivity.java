@@ -24,6 +24,12 @@ public class LoginActivity extends BaseActivity {
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state); setContentView(R.layout.activity_login);
         phone = findViewById(R.id.inputPhone); otp = findViewById(R.id.inputOtp);
+        if (phone != null && (phone.getText() == null || phone.getText().toString().isEmpty())) {
+            phone.setText("9800000001");
+        }
+        if (otp != null && (otp.getText() == null || otp.getText().toString().isEmpty())) {
+            otp.setText("123456");
+        }
         findViewById(R.id.btnSendOtp).setOnClickListener(v -> sendOtp());
         findViewById(R.id.btnVerifyOtp).setOnClickListener(v -> verifyOtp());
         findViewById(R.id.btnContinueOffline).setOnClickListener(v -> openHome());

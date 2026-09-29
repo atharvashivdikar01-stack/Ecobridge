@@ -20,4 +20,7 @@ public final class TokenStore {
     public static void save(Context context, String access, String refresh) {
         preferences(context).edit().putString("access", access).putString("refresh", refresh).apply();
     }
+    public static void clear(Context context) {
+        preferences(context).edit().remove("access").remove("refresh").apply();
+    }
 }
