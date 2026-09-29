@@ -18,7 +18,7 @@
 | **Certified Recycler Operations Portal** | [`ecobridge-recycler-portal.vercel.app`](https://ecobridge-recycler-portal.vercel.app) *(or `localhost:3000`)* | Phone: `+919811111111`<br>OTP: `123456` |
 | **CPCB Regulator & Platform Dashboard** | [`ecobridge-admin-dashboard.vercel.app`](https://ecobridge-admin-dashboard.vercel.app) *(or `localhost:3002`)* | Instant 1-Click Role Switcher |
 | **Interactive Backend OpenAPI Specs** | [`ecobridge-api-sih26.azurewebsites.net/docs`](https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/docs) *(or `localhost:8000/docs`)* | Interactive Swagger UI |
-| **Pre-Built Collector Android APK (v1.0)** | [📥 **Download `release/EcoBridge-Collector-v1.0.apk`**](release/EcoBridge-Collector-v1.0.apk) | Direct install on Android 8.0+ (29.4 MB) |
+| **Pre-Built Collector Android APK (v1.1)** | [📥 **Download `release/EcoBridge-Collector-v1.1.apk`**](release/EcoBridge-Collector-v1.1.apk) | Direct install on Android 8.0+ (25.3 MB) — connects to Azure auto |
 | **Full Cloud Deployment Guide** | [📖 **`docs/DEPLOYMENT.md`**](docs/DEPLOYMENT.md) | Complete step-by-step setup guide |
 
 ---

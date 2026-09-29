@@ -39,7 +39,7 @@ android {
         viewBinding false
     }
 
-    def rawCloudUrl = (project.findProperty("ECOBRIDGE_API_URL") ?: "https://ecobridge-backend.onrender.com/").toString()
+    def rawCloudUrl = (project.findProperty("ECOBRIDGE_API_URL") ?: "https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/").toString()
     def cleanCloudUrl = rawCloudUrl.replaceAll('/api/v1/?$', '')
     if (!cleanCloudUrl.endsWith('/')) { cleanCloudUrl += '/' }
 

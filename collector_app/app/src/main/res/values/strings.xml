@@ -269,7 +269,7 @@
     <string name="server_url_hint">http://192.168.x.x:8000/ or http://10.0.2.2:8000/</string>
     <string name="server_url_saved">Server URL updated successfully</string>
     <string name="preset_emulator">Emulator (10.0.2.2)</string>
-    <string name="preset_render">Cloud (Render)</string>
+    <string name="preset_render">Cloud (Azure)</string>
     <string name="btn_reset_default">Reset Default</string>
 
     <!-- PPE Safety Alert (T-106 & Invariant #4) -->

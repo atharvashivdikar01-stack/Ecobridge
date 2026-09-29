@@ -102,7 +102,7 @@ public class LanguageActivity extends BaseActivity {
         android.widget.Button btnCloud = new android.widget.Button(this, null, com.google.android.material.R.attr.materialButtonOutlinedStyle);
         btnCloud.setText(R.string.preset_render);
         btnCloud.setTextSize(11);
-        btnCloud.setOnClickListener(v -> input.setText("https://ecobridge-backend.onrender.com/"));
+        btnCloud.setOnClickListener(v -> input.setText("https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/"));
 
         android.widget.LinearLayout.LayoutParams lp = new android.widget.LinearLayout.LayoutParams(0, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
         lp.setMarginEnd(8);
