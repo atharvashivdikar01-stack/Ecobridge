@@ -42,8 +42,9 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 
-# JavaScript
+# JavaScript & Node
 node_modules/
+.pnpm-store/
 .expo/
 .expo-shared/
 .next/
@@ -51,10 +52,13 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+*.log
 
 # Android / Gradle generated files
 .gradle/
 build/
+collector_app/build/
+collector_app/app/build/
 collector_app/.externalNativeBuild/
 collector_app/.cxx/
 collector_app/captures/
@@ -67,13 +71,17 @@ collector_app/captures/
 
 # Generated runtime data and reports
 coverage/
+.coverage
 htmlcov/
 dist/
 .turbo/
+.system_generated/
 *.sqlite
 *.sqlite3
 *.db
 media/
+*.zip
+*.tar.gz
 
 # Local duplicate/export workspaces, not application source
 Ecobridge-google-collab/

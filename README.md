@@ -1,31 +1,36 @@
 # ECOBRIDGE (कबाड़ीवाला कनेक्ट)
-### Formalizing India's Informal E-Waste Economy with Edge AI & Tamper-Evident Traceability
+### Formalizing India's Informal E-Waste Economy with Edge AI, Vernacular Voice UX & Tamper-Evident Traceability
 
 [![SIH 2026](https://img.shields.io/badge/SIH%202026-Problem%20Statement%2026229-16a34a?style=for-the-badge)](https://sih.gov.in)
-[![FastAPI](https://img.shields.io/badge/Backend-FastAPI%20Async-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![Next.js 14](https://img.shields.io/badge/Web%20Portals-Next.js%2014-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
-[![Android](https://img.shields.io/badge/Mobile-Android%20Java%2017-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com)
-[![TensorFlow Lite](https://img.shields.io/badge/Edge%20AI-TFLite%202.16.1-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://tensorflow.org/lite)
-[![DPDP Act 2023](https://img.shields.io/badge/Compliance-DPDP%20Act%202023-blue?style=for-the-badge)](https://www.meity.gov.in)
+[![Backend Live](https://img.shields.io/badge/Azure%20Cloud-FastAPI%20Live-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/docs)
+[![Recycler Portal](https://img.shields.io/badge/Vercel-Recycler%20Portal-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://ecobridge-recycler-portal.vercel.app)
+[![Admin Portal](https://img.shields.io/badge/Vercel-Regulator%20Dashboard-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://ecobridge-admin-dashboard.vercel.app)
+[![Android APK](https://img.shields.io/badge/Android%20v1.2-APK%20Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/atharvashivdikar01-stack/Ecobridge/raw/main/release/EcoBridge-Collector-v1.2.apk)
+[![Edge AI](https://img.shields.io/badge/Edge%20AI-TFLite%202.16.1-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://tensorflow.org/lite)
+[![Compliance](https://img.shields.io/badge/Compliance-DPDP%20Act%202023-blue?style=for-the-badge)](https://www.meity.gov.in)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 ---
 
 ## 🏆 Quick Evaluation Hub (For Hackathon Judges)
 
-| Component | Access Link / Asset | Demo Credentials |
+All production environments, cloud microservices, and mobile binaries are live and fully operational:
+
+| Platform Component | Live Link / Download | Demo Credentials / Access |
 |---|---|---|
-| **Certified Recycler Operations Portal** | [`ecobridge-recycler-portal.vercel.app`](https://ecobridge-recycler-portal.vercel.app) *(or `localhost:3000`)* | Phone: `+919811111111`<br>OTP: `123456` |
-| **CPCB Regulator & Platform Dashboard** | [`ecobridge-admin-dashboard.vercel.app`](https://ecobridge-admin-dashboard.vercel.app) *(or `localhost:3002`)* | Instant 1-Click Role Switcher |
-| **Interactive Backend OpenAPI Specs** | [`ecobridge-api-sih26.azurewebsites.net/docs`](https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/docs) *(or `localhost:8000/docs`)* | Interactive Swagger UI |
-| **Pre-Built Collector Android APK (v1.1)** | [📥 **Download `release/EcoBridge-Collector-v1.1.apk`**](release/EcoBridge-Collector-v1.1.apk) | Direct install on Android 8.0+ (25.3 MB) — connects to Azure auto |
-| **Full Cloud Deployment Guide** | [📖 **`docs/DEPLOYMENT.md`**](docs/DEPLOYMENT.md) | Complete step-by-step setup guide |
+| **Certified Recycler Operations Portal** | [🔗 `ecobridge-recycler-portal.vercel.app`](https://ecobridge-recycler-portal.vercel.app) | **1-Click Demo Login** or:<br>Phone: `+919811111111` \| OTP: `123456` |
+| **CPCB Regulator & Platform Admin** | [🔗 `ecobridge-admin-dashboard.vercel.app`](https://ecobridge-admin-dashboard.vercel.app) | **1-Click Instant Role Switcher**<br>*(Regulator / Platform Admin)* |
+| **Live Azure Cloud API & Swagger Docs** | [🔗 `ecobridge-api-sih26.azurewebsites.net/docs`](https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/docs) | Interactive Swagger UI (35+ Endpoints) |
+| **Azure Backend Health Status** | [🔗 `ecobridge-api-sih26.azurewebsites.net/api/v1/health`](https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/api/v1/health) | `{"status": "ok", "database": "connected"}` |
+| **Collector Android APK (v1.2.0 - Latest)** | [📥 **Download `EcoBridge-Collector-v1.2.apk`**](https://github.com/atharvashivdikar01-stack/Ecobridge/raw/main/release/EcoBridge-Collector-v1.2.apk) | **1-Click Online Login (Raju Shinde)**,<br>OTP: `+919800000001` / `123456`, or **Offline** |
+| **GitHub Release Package (v1.2.0)** | [📦 **GitHub Tag v1.2.0 Release**](https://github.com/atharvashivdikar01-stack/Ecobridge/releases/tag/v1.2.0) | Complete release binary & assets |
+| **Complete Deployment Guide** | [📖 `docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) | Azure + Vercel deployment walkthrough |
 
 ---
 
 ## 1. Executive Summary & Mission
 
-Over **90% of India's electronic waste** is processed by the informal recycling sector—over **1.5 million waste pickers, scrap aggregators, and neighborhood *kabadiwalas***. Despite recovering precious urban mining materials, informal collectors operate in dangerous, opaque conditions:
+Over **90% of India's electronic waste** is processed by the informal sector—encompassing over **1.5 million waste pickers, scrap aggregators, and neighborhood *kabadiwalas***. Despite recovering critical urban mining materials (copper, gold, rare-earths), informal collectors operate in dangerous, financially exploited, and opaque conditions:
 
 ```
     INFORMAL REALITY (Today)                  ECOBRIDGE DIGITAL HIGHWAY
@@ -36,7 +41,7 @@ Over **90% of India's electronic waste** is processed by the informal recycling 
  ❌ Fake EPR claims & illegal dumping    ==>   ✅ Tamper-evident SHA-256 chain of custody
 ```
 
-**EcoBridge transforms informal waste pickers into formalized, protected, digitally-settled micro-entrepreneurs** through an offline-first mobile app connected to CPCB-certified recyclers.
+**EcoBridge transforms informal waste pickers into formalized, protected, digitally-settled micro-entrepreneurs** through an offline-first mobile app connected directly to CPCB-certified recycling facilities.
 
 ---
 
@@ -49,13 +54,14 @@ Over **90% of India's electronic waste** is processed by the informal recycling 
  │  • Room SQLite Offline Store + WorkManager Background Queue            │
  │  • Marathi / Hindi / English Voice Engine (Human .ogg + TTS fallback)  │
  │  • Indian 5% Reverse GST Engine + Cash Denomination Counter            │
+ │  • 1-Click Online Cloud Authentication + Zero-Data-Loss Offline Fallback│
  └───────────────────────────────────┬────────────────────────────────────┘
                                      │
                     Background Delta Sync / SHA-256 Hash
                                      ▼
  ┌────────────────────────────────────────────────────────────────────────┐
- │                     FASTAPI ASYNC BACKEND SERVICES                     │
- │  • Alembic Schema Migrations (SQLite / PostgreSQL with PostGIS)        │
+ │               FASTAPI ASYNC BACKEND (Microsoft Azure Cloud)            │
+ │  • PostgreSQL 16 with PostGIS Geospatial Extension                     │
  │  • Atomic Custody Event Pipeline (Unbroken SHA-256 State Transitions)  │
  │  • Real-Time Market Benchmark Pricing & Tax Invoicing Engine           │
  │  • Enterprise Security (DEMO_MODE safety flags, DPDP data minimization)│
@@ -110,11 +116,17 @@ Ecobridge-repo/
 ├── admin_dashboard/             # Next.js 14 CPCB Regulator & Admin Portal
 ├── ai/                          # Training pipelines, notebooks & TFLite quantization
 ├── backend/                     # FastAPI async backend microservices & Alembic migrations
+│   ├── src/api/v1/endpoints/    # REST endpoints (auth, lots, sync, prices, recyclers, analytics)
+│   ├── src/core/                # Config, database engine, security
+│   ├── src/models/              # SQLAlchemy ORM models
+│   └── tests/                   # Pytest test suite (21 automated tests)
 ├── collector_app/               # Native Android App (Java 17, Room, WorkManager, TFLite)
+│   ├── app/src/main/java/       # Architecture components (Room, Retrofit, AudioPrompt, UI)
+│   └── app/src/main/res/        # Layouts, themes, vernacular strings (en, hi, mr)
 ├── datasets/                    # Synthetic validation datasets & schema verification
 ├── docs/                        # Complete architecture, deployment & SIH guides
 │   ├── ARCHITECTURE.md          # Domain architectures & data flows
-│   ├── DEPLOYMENT.md            # Free hosting guide (Render + Vercel)
+│   ├── DEPLOYMENT.md            # Cloud hosting guide (Azure + Vercel)
 │   ├── ROADMAP.md               # Feature roadmap & task tracking
 │   └── EcoBridge_SIH_Winning_PPT_Strategy_and_Guide.docx
 ├── infra/                       # Docker, Kubernetes & Terraform deployment templates
@@ -125,114 +137,105 @@ Ecobridge-repo/
 │   └── i18n/                    # Multilingual translation dictionaries
 ├── recycler_portal/             # Next.js 14 Certified Recycler Portal
 ├── release/                     # Production binary distribution
-│   └── EcoBridge-Collector-v1.0.apk # Pre-compiled installable Android APK (29.4 MB)
-├── scripts/                     # Automated end-to-end integration test runners
+│   ├── EcoBridge-Collector-v1.2.apk      # Latest release APK (Cloud-connected + 1-Click login)
+│   └── EcoBridge-Collector-latest.apk    # Symlink copy of latest build
 ├── LICENSE                      # MIT License
 ├── package.json                 # Monorepo scripts (Turborepo + pnpm)
-├── README.md                    # Flagship project showcase
-└── render.yaml                  # 1-Click Render Cloud deployment blueprint
+└── README.md                    # Flagship project showcase
 ```
 
 ---
 
-## 5. Local Setup & Quick Start
+## 5. Live Testing & Judge Demo Walkthrough
+
+### 🚀 Quick Evaluation Walkthrough (5 Minutes):
+
+1. **Step 1: Open the Collector Android App**
+   - Download and install [**`EcoBridge-Collector-v1.2.apk`**](https://github.com/atharvashivdikar01-stack/Ecobridge/raw/main/release/EcoBridge-Collector-v1.2.apk).
+   - On the login screen, tap **`⚡ 1-Click Online Login (Raju Shinde)`** *(or log in with `+919800000001` / `123456`, or tap `Continue Offline`)*.
+   - The app instantly authenticates against the live Azure backend and opens the home dashboard in **ONLINE** status.
+
+2. **Step 2: Create a Scrap Lot (Works Online or 100% Offline)**
+   - Tap **"Weigh New Scrap"** ➔ Select material (e.g. *Batteries* or *CRT Glass*).
+   - The on-device Edge AI classifies scrap and immediately displays PPE/Safety Warnings before valuation.
+   - Enter approximate weight (e.g. `12.5 kg`) ➔ Real-time benchmark pricing and statutory 5% reverse GST are auto-calculated.
+   - Save the lot ➔ A unique QR token is generated and persisted locally in SQLite Room DB.
+
+3. **Step 3: Background WorkManager Cloud Sync**
+   - If offline, records are held securely on the phone.
+   - Once connected, the app performs delta-sync with the Azure backend (`/api/v1/sync/batch`), posting the lot metadata and SHA-256 evidence hash.
+
+4. **Step 4: Recycler Acceptance & Settlement (Web Portal)**
+   - Open the [**Certified Recycler Operations Portal**](https://ecobridge-recycler-portal.vercel.app).
+   - Click **`⚡ Demo Recycler Login (Apex CleanTech Recyclers)`** *(or `+919811111111` / `123456`)*.
+   - Navigate to **Materials Marketplace** ➔ Locate the synced lot.
+   - Click **Accept Offer** ➔ Record weighbridge gross/tare measurements.
+   - Settle payment via UPI or Cash ➔ Chain of custody registers the transaction with SHA-256 digital signatures.
+
+5. **Step 5: Inspect Form-6 Manifest & Regulator Dashboard**
+   - In Recycler Portal, open **Ledger** ➔ Download the statutory **CPCB Form-6 E-Waste Manifest**.
+   - Open the [**CPCB Regulator Dashboard**](https://ecobridge-admin-dashboard.vercel.app) to inspect municipal collection heatmaps, EPR credit fulfillment, and DPDP compliance audits.
+
+---
+
+## 6. Automated Testing & Verification
+
+All platform components are verified by automated testing:
+
+| Test Suite | Command | Result |
+|---|---|---|
+| **Backend Pytest Suite** | `pytest backend/tests -v` | **21 / 21 Tests Passed** (2.8s) |
+| **Live Azure API Endpoints** | Integration Script | **11 / 11 Endpoints Verified (200 OK)** |
+| **Recycler Portal Build** | `pnpm --filter @ecobridge/recycler-portal build` | **Compiled & Optimized (12 routes)** |
+| **Admin Dashboard Build** | `pnpm --filter @ecobridge/admin-dashboard build` | **Compiled & Optimized (10 routes)** |
+| **Monorepo Linting** | `pnpm lint` | **Zero Lint Errors (5/5 tasks passed)** |
+| **Dataset Validation** | `python datasets/scripts/validate_datasets.py` | **All 8 Datasets Validated** |
+| **Android APK Build** | `./gradlew assembleDebug` | **Build Successful (`EcoBridge-Collector-v1.2.apk`)** |
+
+---
+
+## 7. Local Setup Instructions
 
 ### Prerequisites
 - **Python 3.11+**
 - **Node.js 18+** & `pnpm` (>= 9) or `npm`
-- **Android SDK 34 / JDK 17** *(only needed to rebuild Android APK)*
+- **Android SDK 34 / JDK 17** *(only needed if recompiling the Android APK from source)*
 
----
-
-### Step 1: Start Backend API
 ```powershell
+# 1. Clone repository
+git clone https://github.com/atharvashivdikar01-stack/Ecobridge.git
+cd Ecobridge
+
+# 2. Run Backend API
 cd backend
 python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
 alembic upgrade head
 uvicorn src.main:app --host 127.0.0.1 --port 8000 --reload
-```
-Interactive Swagger API docs: `http://127.0.0.1:8000/docs`
 
----
-
-### Step 2: Start Recycler Operations Portal
-```powershell
+# 3. Run Recycler Portal (in a separate terminal)
 cd recycler_portal
 npm install
 npm run dev
-```
-Open `http://localhost:3000` (or `3001`). Use 1-Click Recycler Demo Login (`+919811111111` / `123456`).
 
----
-
-### Step 3: Start CPCB Regulator Dashboard
-```powershell
+# 4. Run CPCB Regulator Dashboard (in a separate terminal)
 cd admin_dashboard
 npm install
 npm run dev
+
+# 5. Sideload Collector Android APK
+adb install release\EcoBridge-Collector-v1.2.apk
 ```
-Open `http://localhost:3002`. Inspect real-time scrap flows, municipal heatmaps, and DPDP compliance audits.
-
----
-
-### Step 4: Install Android Collector App
-Sideload the pre-built APK directly onto an Android device or emulator:
-```powershell
-adb install release\EcoBridge-Collector-v1.0.apk
-```
-
----
-
-## 6. Automated Testing & Quality Assurance
-
-All platform components are verified by automated testing:
-
-| Test Suite | Command | Result |
-|---|---|---|
-| **Backend Pytest** | `pytest backend/tests -v` | **21 / 21 Tests Passed** (2.8s) |
-| **Recycler Portal Build** | `pnpm --filter @ecobridge/recycler-portal build` | **Compiled & Optimized (12 routes)** |
-| **Admin Dashboard Build** | `pnpm --filter @ecobridge/admin-dashboard build` | **Compiled & Optimized (10 routes)** |
-| **Monorepo Linting** | `pnpm lint` | **Zero Lint Errors (5/5 tasks passed)** |
-| **Dataset Validation** | `python datasets/scripts/validate_datasets.py` | **All 8 Datasets Validated** |
-| **Android APK Build** | `./gradlew assembleDebug` | **Build Successful (29.4 MB APK)** |
-
----
-
-## 7. 5-Minute Judge Demo Walkthrough
-
-1. **Step 1: Offline Lot Creation (Android App)**
-   - Open EcoBridge Collector app.
-   - Tap **"Weigh New Scrap"** ➔ Take scrap photo.
-   - Edge AI detects *Battery / CRT / PCB* ➔ App displays mandatory PPE/safety warnings.
-   - Enter scale weight (e.g. `15.0 kg`) ➔ Benchmark price and 5% GST calculated.
-   - Tap **Save Offline** ➔ Staged in local SQLite Room database without internet.
-
-2. **Step 2: WorkManager Delta Sync**
-   - Tap **Sync Now** (or auto-triggers when internet reconnects).
-   - Lot metadata and photo SHA-256 hash sync to the FastAPI backend.
-
-3. **Step 3: Recycler Acceptance & Weighbridge Audit (Web Portal)**
-   - Open Recycler Portal ➔ Log in with `+919811111111` / `123456`.
-   - Materials Marketplace ➔ Accept collector scrap batch.
-   - Confirm weighbridge gross and tare scale reading ➔ Settle payment.
-
-4. **Step 4: Tamper-Evident Ledger & Form-6 CPCB Manifest**
-   - View **Ledger** ➔ Inspect unbroken SHA-256 chain of custody with digital signatures.
-   - Download statutory **Form-6 CPCB Manifest** for official EPR credit filing.
-
-5. **Step 5: Regulator Oversite (Admin Dashboard)**
-   - Open Admin Dashboard ➔ Review city-wide collection heatmaps and DPDP compliance audits.
 
 ---
 
 ## 8. Documentation Index
 
 - 📐 [**System Architecture & Domain Design**](docs/ARCHITECTURE.md)
-- 🚀 [**Zero-Cost Cloud Deployment Guide (Render + Vercel)**](docs/DEPLOYMENT.md)
+- 🚀 [**Zero-Cost Cloud Deployment Guide (Azure + Vercel)**](docs/DEPLOYMENT.md)
 - 🗺️ [**Engineering Roadmap & Task Register**](docs/ROADMAP.md)
-- 💻 [**Local Development Guidelines**](docs/DEVELOPMENT.md)
+- 📱 [**Android Application Specification**](docs/ANDROID_APP.md)
 
 ---
 
