@@ -78,3 +78,5 @@ media/
 # Local duplicate/export workspaces, not application source
 Ecobridge-google-collab/
 collector_app/stitch_ecobridge_native_android_rebuild/
+apps/
+
