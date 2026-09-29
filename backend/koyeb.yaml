@@ -1,0 +1,27 @@
+app: ecobridge-backend
+services:
+  - name: api
+    type: web
+    git:
+      repository: atharvashivdikar01-stack/Ecobridge
+      branch: main
+    build:
+      buildpack:
+        builder: buildpack-io/buildpack
+    run:
+      command: alembic upgrade head && uvicorn src.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - port: 8000
+        protocol: http
+    env:
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///./data/ecobridge.db
+      - key: DEMO_MODE
+        value: "true"
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "10080"
+    scaling:
+      min: 1
+      max: 1
