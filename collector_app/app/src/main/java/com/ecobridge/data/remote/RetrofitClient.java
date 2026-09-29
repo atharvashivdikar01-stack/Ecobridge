@@ -25,12 +25,20 @@ public class RetrofitClient {
                     .getSharedPreferences("ecobridge_prefs", android.content.Context.MODE_PRIVATE);
             String customUrl = prefs.getString("pref_server_url", null);
             if (customUrl != null && !customUrl.trim().isEmpty()) {
-                String clean = customUrl.trim().replaceAll("/api/v1/?$", "");
-                return clean.endsWith("/") ? clean : clean + "/";
+                if (customUrl.contains("10.0.2.2")) {
+                    // Stale emulator URL from previous development session - purge it!
+                    prefs.edit().remove("pref_server_url").apply();
+                } else {
+                    String clean = customUrl.trim().replaceAll("/api/v1/?$", "");
+                    return clean.endsWith("/") ? clean : clean + "/";
+                }
             }
         } catch (Throwable ignored) {}
 
         String url = BuildConfig.API_BASE_URL;
+        if (url == null || url.trim().isEmpty() || url.contains("10.0.2.2")) {
+            url = "https://ecobridge-api-sih26-d3hfbccrg3fpddcr.centralindia-01.azurewebsites.net/";
+        }
         String clean = url.replaceAll("/api/v1/?$", "");
         return clean.endsWith("/") ? clean : clean + "/";
     }

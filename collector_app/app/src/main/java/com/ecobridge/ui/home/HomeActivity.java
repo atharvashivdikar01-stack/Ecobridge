@@ -54,6 +54,7 @@ public class HomeActivity extends BaseActivity {
         audioPromptManager = AudioPromptManager.getInstance(this);
 
         initViews();
+        updateNetworkDisplay(0);
         setupLanguageDisplay();
         observeSyncStatus();
         setupClickListeners();
@@ -101,6 +102,19 @@ public class HomeActivity extends BaseActivity {
 
     private void updateNetworkDisplay(int pendingCount) {
         boolean isConnected = NetworkUtils.isNetworkAvailable(this);
+
+        View cardSync = findViewById(R.id.cardSync);
+        TextView tvSyncQueueTitle = findViewById(R.id.tvSyncQueueTitle);
+        if (cardSync != null) {
+            if (pendingCount > 0) {
+                cardSync.setVisibility(View.VISIBLE);
+                if (tvSyncQueueTitle != null) {
+                    tvSyncQueueTitle.setText(getString(R.string.sync_pending_count, pendingCount));
+                }
+            } else {
+                cardSync.setVisibility(View.GONE);
+            }
+        }
 
         if (isConnected) {
             tvConnectionStatus.setText(R.string.status_online);

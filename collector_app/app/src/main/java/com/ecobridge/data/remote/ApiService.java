@@ -3,6 +3,7 @@ package com.ecobridge.data.remote;
 import com.ecobridge.data.remote.dto.ApiResponseDto;
 import com.ecobridge.data.remote.dto.BatchSyncRequest;
 import com.ecobridge.data.remote.dto.BatchSyncResponse;
+import com.ecobridge.data.remote.dto.DemoLoginRequest;
 import com.ecobridge.data.remote.dto.HandoverDto;
 import com.ecobridge.data.remote.dto.LotDto;
 import com.ecobridge.data.remote.dto.OtpRequest;
@@ -28,6 +29,9 @@ public interface ApiService {
 
     @POST("api/v1/auth/otp/verify")
     Call<ApiResponseDto<TokenResponseDto>> verifyOtp(@Body VerifyOtpRequest request);
+
+    @POST("api/v1/auth/demo-login")
+    Call<ApiResponseDto<TokenResponseDto>> demoLogin(@Body DemoLoginRequest request);
 
     @POST("api/v1/sync/batch")
     Call<ApiResponseDto<BatchSyncResponse>> syncBatch(@Body BatchSyncRequest batchRequest);

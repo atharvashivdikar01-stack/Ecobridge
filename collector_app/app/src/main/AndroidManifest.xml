@@ -26,6 +26,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.EcoBridge"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
         <!-- Launcher / Router Activity -->

@@ -163,14 +163,28 @@
                 android:text="@string/login_verify" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnQuickDemoLogin"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:text="⚡ 1-Click Online Login (Raju Shinde)"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                app:cornerRadius="12dp"
+                android:backgroundTint="@color/primary"
+                android:textColor="@color/on_primary" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnContinueOffline"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/login_offline"
                 android:textAllCaps="false"
-                android:textSize="16sp"
+                android:textSize="15sp"
+                app:cornerRadius="12dp"
                 app:strokeColor="@color/secondary"
                 android:textColor="@color/secondary" />
 

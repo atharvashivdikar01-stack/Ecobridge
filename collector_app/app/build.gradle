@@ -49,10 +49,9 @@ android {
 
     buildTypes {
         debug {
-            def rawDebugUrl = (project.findProperty("ECOBRIDGE_API_URL") ?: "http://10.0.2.2:8000/").toString()
-            def cleanDebugUrl = rawDebugUrl.replaceAll('/api/v1/?$', '')
-            if (!cleanDebugUrl.endsWith('/')) { cleanDebugUrl += '/' }
-            buildConfigField "String", "API_BASE_URL", "\"${cleanDebugUrl}\""
+            // Use the same live cloud URL for debug builds on real devices.
+            // For emulator-only local dev, pass -PECOBRIDGE_API_URL=http://10.0.2.2:8000/
+            buildConfigField "String", "API_BASE_URL", "\"${cleanCloudUrl}\""
         }
     }
 

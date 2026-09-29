@@ -202,14 +202,14 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             app:cardCornerRadius="16dp"
-                            app:cardBackgroundColor="@color/secondary_fixed">
+                            app:cardBackgroundColor="@color/surface_container_highest">
                             <ImageView
                                 android:id="@+id/ivStatusIcon"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_sync"
-                                app:tint="@color/secondary" />
+                                android:src="@drawable/ic_check_circle"
+                                app:tint="@color/status_online" />
                         </com.google.android.material.card.MaterialCardView>
                         <LinearLayout
                             android:layout_width="0dp"
@@ -221,15 +221,15 @@
                                 android:id="@+id/tvConnectionStatus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="OFFLINE MODE — 3 Items Pending"
-                                android:textColor="@color/secondary"
+                                android:text="@string/status_online"
+                                android:textColor="@color/status_online"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
                             <TextView
                                 android:id="@+id/tvSyncDetails"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Last synced 14m ago at Sector 4 Yard"
+                                android:text="@string/sync_all_synced"
                                 android:textColor="@color/on_surface_variant"
                                 android:textSize="12sp" />
                         </LinearLayout>
@@ -791,6 +791,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
+                    android:visibility="gone"
                     app:cardCornerRadius="12dp"
                     app:cardBackgroundColor="#FFFDF7"
                     app:strokeColor="@color/secondary_fixed_dim"
