@@ -1,5 +1,4 @@
 packages:
   - 'recycler_portal'
   - 'admin_dashboard'
-  - 'apps/collector-mobile'
   - 'packages/*'

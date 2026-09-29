@@ -1,1 +1,0 @@
-"""ECOBRIDGE Backend Test Suite."""

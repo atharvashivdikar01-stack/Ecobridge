@@ -13,6 +13,14 @@ desktop.ini
 *.swp
 *.swo
 *.tmp
+*.scratch.*
+scratch/
+CONTEXT.md
+EXPLANATION.md
+IMPLEMENTATION_PLAN.md
+issues_reported_by_testers.md
+copilot-instructions.md
+WORKFLOW.md
 
 # Environment and secrets
 .env
