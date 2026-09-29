@@ -13,6 +13,7 @@ import sys
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
+    settings.validate_production_readiness()
     if "pytest" not in sys.modules:
         await bootstrap_database()
     yield

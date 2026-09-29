@@ -39,15 +39,20 @@ android {
         viewBinding false
     }
 
-    def apiBaseUrl = project.findProperty("ECOBRIDGE_API_URL") ?: "https://ecobridge-backend.onrender.com/api/v1/"
+    def rawCloudUrl = (project.findProperty("ECOBRIDGE_API_URL") ?: "https://ecobridge-backend.onrender.com/").toString()
+    def cleanCloudUrl = rawCloudUrl.replaceAll('/api/v1/?$', '')
+    if (!cleanCloudUrl.endsWith('/')) { cleanCloudUrl += '/' }
+
     defaultConfig {
-        buildConfigField "String", "API_BASE_URL", "\"${apiBaseUrl.endsWith('/') ? apiBaseUrl : apiBaseUrl + '/'}\""
+        buildConfigField "String", "API_BASE_URL", "\"${cleanCloudUrl}\""
     }
 
     buildTypes {
         debug {
-            def localApiBaseUrl = project.findProperty("ECOBRIDGE_API_URL") ?: "http://10.0.2.2:8000/"
-            buildConfigField "String", "API_BASE_URL", "\"${localApiBaseUrl.endsWith('/') ? localApiBaseUrl : localApiBaseUrl + '/'}\""
+            def rawDebugUrl = (project.findProperty("ECOBRIDGE_API_URL") ?: "http://10.0.2.2:8000/").toString()
+            def cleanDebugUrl = rawDebugUrl.replaceAll('/api/v1/?$', '')
+            if (!cleanDebugUrl.endsWith('/')) { cleanDebugUrl += '/' }
+            buildConfigField "String", "API_BASE_URL", "\"${cleanDebugUrl}\""
         }
     }
 

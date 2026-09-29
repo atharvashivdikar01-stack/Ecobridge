@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
@@ -97,6 +98,7 @@ public class NewLotActivity extends BaseActivity {
     private File compressedFile;
     private String photoSha256 = "";
     private Bitmap currentBitmap;
+    private boolean isDemoFallbackImage = false;
 
     // Step 2 Views
     private LinearLayout layoutAiAnalyzing;
@@ -315,18 +317,21 @@ public class NewLotActivity extends BaseActivity {
         cameraManager.capturePhoto(capturedRawFile, new CameraManager.OnCaptureCallback() {
             @Override
             public void onImageCaptured(File capturedFile) {
+                isDemoFallbackImage = false;
                 processCapturedImage(capturedFile);
             }
 
             @Override
             public void onError(Exception e) {
                 // Fallback for emulator / devices without working camera hardware
+                isDemoFallbackImage = true;
                 generateFallbackDemoPhoto(compressedFile);
             }
         });
     }
 
     private void generateFallbackDemoPhoto(File destination) {
+        isDemoFallbackImage = true;
         try {
             Bitmap demoBitmap = Bitmap.createBitmap(400, 400, Bitmap.Config.ARGB_8888);
             demoBitmap.eraseColor(Color.rgb(184, 115, 51)); // Copper reddish hue
@@ -369,7 +374,7 @@ public class NewLotActivity extends BaseActivity {
     // STEP 2: AI MATERIAL CLASSIFICATION
     // =========================================================================
     private void setupStep2Classification() {
-        btnConfirmCategory.setOnClickListener(v -> showStep(3));
+        btnConfirmCategory.setOnClickListener(v -> checkAndConfirmCategory());
         btnCorrectCategory.setOnClickListener(v -> {
             ScrollView scrollView = (ScrollView) step2ClassifyLayout;
             scrollView.smoothScrollTo(0, gridCategories.getTop() - 40);
@@ -377,6 +382,48 @@ public class NewLotActivity extends BaseActivity {
         });
         btnScanAgain.setOnClickListener(v -> showStep(1));
         populateCategoryGrid();
+    }
+
+    private boolean isCriticalHazard(String category) {
+        if (category == null) return false;
+        String lower = category.toLowerCase(Locale.US);
+        return lower.contains("battery") || lower.contains("crt") || lower.contains("lead");
+    }
+
+    private void checkAndConfirmCategory() {
+        if (isCriticalHazard(selectedCategory)) {
+            showPpeHazardDialog(selectedCategory);
+        } else {
+            showStep(3);
+        }
+    }
+
+    private void showPpeHazardDialog(String category) {
+        String specificWarning;
+        String lower = category.toLowerCase(Locale.US);
+        if (lower.contains("battery")) {
+            specificWarning = getString(R.string.hazard_battery_msg);
+        } else if (lower.contains("crt")) {
+            specificWarning = getString(R.string.hazard_crt_msg);
+        } else {
+            specificWarning = getString(R.string.hazard_alert_title);
+        }
+
+        String message = specificWarning + "\n\n"
+                + "⚠️ " + getString(R.string.ppe_requirement_1) + "\n\n"
+                + "🥽 " + getString(R.string.ppe_requirement_2) + "\n\n"
+                + "🚫 " + getString(R.string.ppe_requirement_3);
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.ppe_safety_modal_title)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.ppe_i_understand, (dialog, which) -> {
+                    dialog.dismiss();
+                    showStep(3);
+                })
+                .setNegativeButton(R.string.btn_cancel, (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     private void runClassification() {
@@ -796,13 +843,16 @@ public class NewLotActivity extends BaseActivity {
 
         LotPhotoEntity photo = null;
         if (compressedFile != null && compressedFile.exists()) {
+            // Prevent synthetic demo images from entering real server cryptographic evidence
+            String initialSyncStatus = isDemoFallbackImage ? "DEMO_EXCLUDED" : "PENDING";
+            String hashValue = isDemoFallbackImage ? "DEMO_FALLBACK_NOT_VERIFIED" : photoSha256;
             photo = new LotPhotoEntity(
                     UUID.randomUUID().toString(),
                     lotUuid,
-                    photoSha256,
+                    hashValue,
                     compressedFile.getAbsolutePath(),
                     now,
-                    "PENDING"
+                    initialSyncStatus
             );
         }
 

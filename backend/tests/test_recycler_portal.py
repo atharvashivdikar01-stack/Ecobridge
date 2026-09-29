@@ -436,3 +436,97 @@ async def test_native_sync_photo_handover_status_round_trip(client: AsyncClient,
     status = await client.get("/api/v1/sync/status", headers=collector_headers)
     assert status.json()["data"]["lots"] == [{"lot_code": code, "status": "SETTLED"}]
     assert status.json()["data"]["handovers"][0]["payment_status"] == "PAID"
+
+
+@pytest.mark.asyncio
+async def test_custody_events_unavoidable_on_transitions(client: AsyncClient, setup_recycler_portal_test_data):
+    """Verify that every lifecycle transition appends an immutable CustodyEvent with valid hash linkage."""
+    from sqlalchemy import select
+    from src.core.database import SessionLocal
+    from src.models import CustodyEvent
+    import uuid
+
+    collector = await client.post("/api/v1/auth/otp/verify", json={
+        "phone": "+919800000099", "otp": "123456", "full_name": "Custody Test Collector",
+    })
+    collector_headers = {"Authorization": f"Bearer {collector.json()['data']['access_token']}"}
+    recycler_headers = {"Authorization": f"Bearer {setup_recycler_portal_test_data['verified_token']}"}
+
+    # 1. Create Lot -> generates CREATION (sequence 1)
+    code = f"EB-CHAIN-{uuid.uuid4().hex[:4].upper()}"
+    lot_res = await client.post("/api/v1/lots", headers=collector_headers, json={
+        "lot_code": code,
+        "items": [{
+            "material_id": setup_recycler_portal_test_data["material_id"],
+            "estimated_weight_kg": 5.0,
+            "quantity": 1,
+            "unit": "KG",
+        }],
+    })
+    assert lot_res.status_code == 201
+    lot_id = uuid.UUID(lot_res.json()["data"]["id"])
+
+    # 2. Recycler Accepts -> generates OFFER_ACCEPTED (sequence 2)
+    acc_res = await client.post(f"/api/v1/recycler-portal/lots/{lot_id}/accept", headers=recycler_headers, json={
+        "agreed_price_per_kg": 150.0,
+        "notes": "Verified high-yield batch",
+    })
+    assert acc_res.status_code == 200
+
+    # 3. Recycler Weighbridge Handover -> generates PHYSICAL_HANDOVER (sequence 3)
+    ho_res = await client.post(f"/api/v1/recycler-portal/lots/{lot_id}/handover", headers=recycler_headers, json={
+        "weighbridge_slip_number": "WB-CHAIN-01",
+        "weighbridge_gross_kg": 10.0,
+        "weighbridge_tare_kg": 5.0,
+        "verified_weight_kg": 5.0,
+        "scale_calibration_id": "CAL-WB-99",
+    })
+    assert ho_res.status_code == 200
+
+    # 4. Settlement -> generates PAYMENT_SETTLED (sequence 4)
+    pay_res = await client.post(f"/api/v1/recycler-portal/lots/{lot_id}/payment", headers=recycler_headers, json={
+        "payment_method": "UPI",
+        "gateway_reference": f"UPI-REF-{uuid.uuid4().hex[:6]}",
+    })
+    assert pay_res.status_code == 201
+
+    # Verify Database Custody Events Chain
+    from tests.conftest import TestSessionFactory
+    async with TestSessionFactory() as db:
+        events = (
+            await db.execute(
+                select(CustodyEvent)
+                .where(CustodyEvent.lot_id == lot_id)
+                .order_by(CustodyEvent.sequence_number.asc())
+            )
+        ).scalars().all()
+
+    assert len(events) == 4
+    assert [e.event_type for e in events] == ["CREATION", "OFFER_ACCEPTED", "PHYSICAL_HANDOVER", "PAYMENT_SETTLED"]
+    assert [e.sequence_number for e in events] == [1, 2, 3, 4]
+
+    # Verify cryptographic hash linkage
+    for i in range(1, len(events)):
+        assert events[i].previous_event_hash == events[i - 1].current_event_hash
+        assert len(events[i].current_event_hash) == 64
+
+
+@pytest.mark.asyncio
+async def test_demo_auth_gating_when_disabled(client: AsyncClient):
+    """Verify that when DEMO_MODE is False, bypass OTP 123456 and demo-login are blocked."""
+    from src.core.config import settings
+    orig_demo = settings.DEMO_MODE
+    try:
+        settings.DEMO_MODE = False
+        # 1. Demo login endpoint must be forbidden
+        demo_res = await client.post("/api/v1/auth/demo-login", json={"role": "VERIFIED_RECYCLER"})
+        assert demo_res.status_code == 403
+
+        # 2. Unregistered phone with fake 123456 must fail
+        otp_res = await client.post("/api/v1/auth/otp/verify", json={
+            "phone": "+919999900001",
+            "otp": "123456",
+        })
+        assert otp_res.status_code == 400
+    finally:
+        settings.DEMO_MODE = orig_demo

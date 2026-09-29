@@ -13,9 +13,17 @@ if config.config_file_name:
 target_metadata = Base.metadata
 
 
+def get_sync_url() -> str:
+    url = settings.DATABASE_URL
+    url = url.replace("sqlite+aiosqlite://", "sqlite://")
+    url = url.replace("postgresql+asyncpg://", "postgresql://")
+    url = url.replace("postgres://", "postgresql://")
+    return url
+
+
 def run_migrations_offline() -> None:
     context.configure(
-        url=settings.DATABASE_URL,
+        url=get_sync_url(),
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
@@ -28,7 +36,7 @@ def run_migrations_online() -> None:
     connectable = engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
-        url=settings.DATABASE_URL,
+        url=get_sync_url(),
         poolclass=pool.NullPool,
     )
     with connectable.connect() as connection:

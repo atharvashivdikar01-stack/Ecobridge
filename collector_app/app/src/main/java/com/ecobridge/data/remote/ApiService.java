@@ -43,4 +43,7 @@ public interface ApiService {
 
     @GET("api/v1/sync/status")
     Call<ApiResponseDto<SyncStatusResponse>> getSyncStatus();
+
+    @GET("api/v1/prices")
+    Call<ApiResponseDto<Object>> getPrices();
 }

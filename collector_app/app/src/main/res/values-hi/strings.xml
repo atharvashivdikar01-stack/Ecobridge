@@ -172,8 +172,8 @@
     <string name="payment_mode_label">भुगतान का माध्यम</string>
     <string name="payment_cash">नकद (CASH) - अनुशंसित</string>
     <string name="payment_digital">डिजिटल (UPI / बैंक)</string>
-    <string name="btn_confirm_handover">हस्तांतरण व नकद प्राप्त हुआ</string>
-    <string name="handover_success">हस्तांतरण ऑडिट हैश के साथ दर्ज किया गया!</string>
+    <string name="btn_confirm_handover">हस्तांतरण अनुरोध भेजें</string>
+    <string name="handover_success">हैंडओवर अनुरोध दर्ज किया गया! रीसाइक्लर सत्यापन की प्रतीक्षा है।</string>
 
     <!-- Tax & Income Tax Compliance (Fixed 5% GST) -->
     <string name="tax_compliance_title">कर व आयकर अनुपालन (Tax &amp; IT Compliance)</string>
@@ -207,13 +207,14 @@
     <string name="prompt_select_recycler">हैंडओवर के लिए अपने नजदीकी प्रमाणित रीसाइक्लर का चयन करें।</string>
     <string name="prompt_lot_created">स्क्रैप लॉट सफलतापूर्वक बन गया और आपके फोन में सुरक्षित सेव हो गया।</string>
     <string name="prompt_start_handover">कांटे का वास्तविक वजन दर्ज करें और भुगतान राशि की पुष्टि करें।</string>
-    <string name="prompt_handover_confirmed">हैंडओवर सफलतापूर्वक दर्ज हुआ। कृपया अपनी नकद राशि प्राप्त करें।</string>
+    <string name="prompt_handover_confirmed">हैंडओवर अनुरोध दर्ज हुआ। रीसाइक्लर द्वारा वजन और सत्यापन की प्रतीक्षा करें।</string>
 
     <!-- Traceability Lifecycle Statuses -->
     <string name="status_created">माल दर्ज किया गया</string>
     <string name="status_matched">रीसाइक्लर चुना गया</string>
     <string name="status_offer_accepted">प्रस्ताव स्वीकार किया</string>
     <string name="status_ready_handover">हस्तांतरण के लिए तैयार</string>
+    <string name="status_handover_requested">हस्तांतरण अनुरोध भेजा गया (सत्यापन लंबित)</string>
     <string name="status_handover_confirmed">हस्तांतरण सत्यापित</string>
     <string name="status_payment_confirmed">भुगतान प्राप्त हुआ</string>
     <string name="status_received">रीसाइक्लर के पास जमा</string>

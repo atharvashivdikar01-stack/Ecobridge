@@ -148,10 +148,10 @@ public class EcoBridgeRepository {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             try {
                 database.handoverDao().insertHandover(handover);
-                // Transition lot status to HANDOVER_CONFIRMED
+                // Transition lot status to HANDOVER_REQUESTED (awaiting recycler weighbridge confirmation)
                 database.lotDao().updateLotStatus(
                         handover.getLotId(),
-                        "HANDOVER_CONFIRMED",
+                        "HANDOVER_REQUESTED",
                         DemoDataSeeder.getUtcTimestamp()
                 );
                 if (callback != null) {

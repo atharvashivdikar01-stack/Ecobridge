@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from ....core.config import settings
 from ....core.database import get_db
+from ....core.exceptions import ForbiddenError
 from ....models.user import User
 from ....schemas.response import ApiResponse
 from ....schemas.auth import (
@@ -112,6 +113,8 @@ async def demo_login(
     request: DemoLoginRequest,
     db: AsyncSession = Depends(get_db),
 ) -> ApiResponse[TokenResponse]:
+    if not settings.DEMO_MODE:
+        raise ForbiddenError("Demo authentication is disabled in production mode")
     token_response = await auth_service.demo_login(
         db=db,
         target_role=request.role,

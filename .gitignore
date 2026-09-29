@@ -51,6 +51,7 @@ collector_app/.externalNativeBuild/
 collector_app/.cxx/
 collector_app/captures/
 *.apk
+!release/*.apk
 *.aab
 *.ap_
 *.dex
@@ -60,6 +61,7 @@ collector_app/captures/
 coverage/
 htmlcov/
 dist/
+.turbo/
 *.sqlite
 *.sqlite3
 *.db

@@ -2,12 +2,29 @@ import en from './locales/en.json';
 import mr from './locales/mr.json';
 import hi from './locales/hi.json';
 
+type LocaleRecord = Record<string, unknown>;
+
 // Translation catalogs
-const translations: Record<string, any> = {
-  en,
-  mr,
-  hi
+const translations: Record<string, LocaleRecord> = {
+  en: en as LocaleRecord,
+  mr: mr as LocaleRecord,
+  hi: hi as LocaleRecord,
 };
+
+function getNestedValue(obj: unknown, path: string): string | null {
+  const keys = path.split('.');
+  let current: unknown = obj;
+
+  for (const k of keys) {
+    if (current && typeof current === 'object' && k in (current as Record<string, unknown>)) {
+      current = (current as Record<string, unknown>)[k];
+    } else {
+      return null;
+    }
+  }
+
+  return typeof current === 'string' ? current : null;
+}
 
 /**
  * Get translated string for a given key and locale
@@ -15,39 +32,21 @@ const translations: Record<string, any> = {
  * @param locale - Locale code (en, mr, hi)
  * @returns Translated string or fallback to English
  */
-export function t(key: string, locale: string = 'en'): string {
-  // Fallback to English if locale not supported
-  const availableLocale = translations[locale] || translations.en;
+export function t(key: string, locale = 'en'): string {
+  const targetCatalog = translations[locale] || translations.en;
+  const translated = getNestedValue(targetCatalog, key);
 
-  // Split key by dots for nested object traversal
-  const keys = key.split('.');
-  let current: any = availableLocale;
-
-  // Traverse the nested object
-  for (const k of keys) {
-    if (current[k] !== undefined && current[k] !== null) {
-      current = current[k];
-    } else {
-      // Key not found, try fallback to English
-      if (locale === 'en') {
-        return key; // Return key as last resort
-      }
-      // Try English fallback
-      const enKeys = key.split('.');
-      let enCurrent: any = translations.en;
-      for (const ek of enKeys) {
-        if (enCurrent[ek] !== undefined && enCurrent[ek] !== null) {
-          enCurrent = enCurrent[ek];
-        } else {
-          return key; // Not found even in English
-        }
-      }
-      return enCurrent;
-    }
+  if (translated !== null) {
+    return translated;
   }
 
-  return typeof current === 'string' ? current : key;
+  // Fallback to English if not found in requested locale
+  if (locale !== 'en') {
+    const enFallback = getNestedValue(translations.en, key);
+    if (enFallback !== null) return enFallback;
+  }
+
+  return key;
 }
 
-// Export for use in other files
 export default { t };

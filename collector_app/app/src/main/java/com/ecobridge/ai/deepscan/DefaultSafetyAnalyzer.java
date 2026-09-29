@@ -16,11 +16,11 @@ public class DefaultSafetyAnalyzer implements SafetyAnalyzer {
 
         String lower = category.toLowerCase(Locale.US);
 
-        if (lower.contains("batter")) {
+        if (lower.contains("batter") || lower.contains("mobile") || lower.contains("phone") || lower.contains("cell") || lower.contains("smartphone")) {
             return new HazardAssessment(
                     true,
-                    "Hazardous battery! Risk of fire, chemical leakage, and toxic fumes. Do not puncture, crush, or expose to high heat.",
-                    "Acid-resistant nitrile gloves, safety goggles"
+                    "Internal Battery Hazard! Mobile electronic devices contain lithium-ion/polymer cells prone to thermal runaway, swelling, and chemical fire. Do not puncture or crush.",
+                    "Fire-resistant gloves, protective eyewear"
             );
         } else if (lower.contains("crt")) {
             return new HazardAssessment(

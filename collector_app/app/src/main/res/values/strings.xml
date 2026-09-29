@@ -187,8 +187,8 @@
     <string name="payment_mode_label">Payment Mode</string>
     <string name="payment_cash">Cash (CASH) - Recommended</string>
     <string name="payment_digital">Digital (UPI / Bank)</string>
-    <string name="btn_confirm_handover">Confirm Handover &amp; Cash Received</string>
-    <string name="handover_success">Handover recorded with deterministic audit hash!</string>
+    <string name="btn_confirm_handover">Submit Handover Request</string>
+    <string name="handover_success">Handover request recorded! Awaiting recycler weighbridge confirmation.</string>
 
     <!-- Tax & Income Tax Compliance (Fixed 5% GST) -->
     <string name="tax_compliance_title">Tax &amp; Income Tax Compliance</string>
@@ -222,13 +222,14 @@
     <string name="prompt_select_recycler">Select a certified recycler near you to proceed with handover.</string>
     <string name="prompt_lot_created">Scrap lot created successfully and saved offline on your device.</string>
     <string name="prompt_start_handover">Enter the verified scale weight and confirm the payment amount.</string>
-    <string name="prompt_handover_confirmed">Handover recorded successfully. Please collect your cash payment.</string>
+    <string name="prompt_handover_confirmed">Handover request recorded. Awaiting recycler weighbridge verification.</string>
 
     <!-- Traceability Lifecycle Statuses -->
     <string name="status_created">Lot Registered</string>
     <string name="status_matched">Recycler Selected</string>
     <string name="status_offer_accepted">Offer Accepted</string>
     <string name="status_ready_handover">Ready for Handover</string>
+    <string name="status_handover_requested">Handover Requested (Pending Verification)</string>
     <string name="status_handover_confirmed">Handover Confirmed</string>
     <string name="status_payment_confirmed">Payment Confirmed</string>
     <string name="status_received">Received at Dismantler</string>
@@ -260,4 +261,22 @@
     <!-- Additional Transaction Status Labels -->
     <string name="label_pending">Pending</string>
     <string name="payment_pending_label">Payment Pending</string>
+
+    <!-- Server Configuration (T-102) -->
+    <string name="server_settings_title">Server URL Configuration</string>
+    <string name="server_settings_subtitle">Custom LAN IP or Cloud Endpoint</string>
+    <string name="server_url_dialog_title">Configure Server URL</string>
+    <string name="server_url_hint">http://192.168.x.x:8000/ or http://10.0.2.2:8000/</string>
+    <string name="server_url_saved">Server URL updated successfully</string>
+    <string name="preset_emulator">Emulator (10.0.2.2)</string>
+    <string name="preset_render">Cloud (Render)</string>
+    <string name="btn_reset_default">Reset Default</string>
+
+    <!-- PPE Safety Alert (T-106 & Invariant #4) -->
+    <string name="ppe_safety_modal_title">Mandatory PPE &amp; Hazard Alert</string>
+    <string name="ppe_hazard_detected">Critical Scrap Hazard Detected</string>
+    <string name="ppe_requirement_1">Wear cut-resistant safety gloves before touching scrap.</string>
+    <string name="ppe_requirement_2">Wear eye protection goggles against toxic dust and chemical leaks.</string>
+    <string name="ppe_requirement_3">Do NOT puncture, crush, hammer, or incinerate hazardous components.</string>
+    <string name="ppe_i_understand">I Confirm Wearing PPE • Continue</string>
 </resources>

@@ -13,7 +13,13 @@ class Settings(BaseSettings):
     OTP_EXPIRE_MINUTES: int = 5
     MEDIA_ROOT: str = "media"
     MAX_IMAGE_UPLOAD_BYTES: int = 5 * 1024 * 1024
+    DEMO_MODE: bool = True
     model_config = SettingsConfigDict(env_file='.env', extra='ignore')
+
+    def validate_production_readiness(self) -> None:
+        if not self.DEMO_MODE:
+            if self.SECRET_KEY in ("change-me-in-production", "default-dev-secret-key-123456789") or len(self.SECRET_KEY) < 32:
+                raise ValueError("FATAL: In production mode (DEMO_MODE=False), SECRET_KEY must be a secure secret of at least 32 characters.")
 
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod

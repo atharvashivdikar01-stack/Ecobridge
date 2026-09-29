@@ -131,9 +131,13 @@ public class SyncWorker extends Worker {
 
     private boolean syncPendingPhotos(AppDatabase database, ApiService apiService) throws Exception {
         for (com.ecobridge.data.local.entity.LotPhotoEntity photo : database.lotPhotoDao().getPendingPhotos()) {
+            if ("DEMO_EXCLUDED".equals(photo.getSyncStatus()) || "DEMO_FALLBACK_NOT_VERIFIED".equals(photo.getSha256Hash())) {
+                Log.i(TAG, "Skipping upload of demo fallback image for lot " + photo.getLotId());
+                continue;
+            }
             LotEntity lot = database.lotDao().getLotByUuid(photo.getLotId());
             File file = new File(photo.getFilePath());
-            if (lot == null || !file.isFile()) return false;
+            if (lot == null || !file.isFile()) continue;
             Response<ApiResponseDto<Object>> response = apiService.uploadPhoto(lot.getShortCode(), photo.getSha256Hash(), "image/jpeg",
                     RequestBody.create(MediaType.parse("image/jpeg"), file)).execute();
             if (!response.isSuccessful() || response.body() == null || !response.body().isSuccess()) return false;

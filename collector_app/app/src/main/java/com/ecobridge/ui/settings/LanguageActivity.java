@@ -3,6 +3,7 @@ package com.ecobridge.ui.settings;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ecobridge.EcoBridgeApplication;
 import com.ecobridge.R;
@@ -25,6 +26,8 @@ public class LanguageActivity extends BaseActivity {
     private MaterialCardView cardMarathi;
     private MaterialCardView cardHindi;
     private MaterialCardView cardEnglish;
+    private MaterialCardView cardServerSettings;
+    private TextView tvCurrentServerUrl;
     private String initialLanguage;
 
     @Override
@@ -44,17 +47,90 @@ public class LanguageActivity extends BaseActivity {
         cardMarathi = findViewById(R.id.cardMarathi);
         cardHindi = findViewById(R.id.cardHindi);
         cardEnglish = findViewById(R.id.cardEnglish);
+        cardServerSettings = findViewById(R.id.cardServerSettings);
+        tvCurrentServerUrl = findViewById(R.id.tvCurrentServerUrl);
 
         highlightCurrentSelection();
+        updateServerUrlDisplay();
 
         cardMarathi.setOnClickListener(v -> selectLanguage("mr"));
         cardHindi.setOnClickListener(v -> selectLanguage("hi"));
         cardEnglish.setOnClickListener(v -> selectLanguage("en"));
 
+        if (cardServerSettings != null) {
+            cardServerSettings.setOnClickListener(v -> showServerConfigDialog());
+        }
+
         findViewById(R.id.btnContinue).setOnClickListener(v -> {
             // Restart to apply language
             restartApp();
         });
+    }
+
+    private void updateServerUrlDisplay() {
+        if (tvCurrentServerUrl != null) {
+            String currentUrl = com.ecobridge.data.remote.RetrofitClient.getBaseUrl();
+            tvCurrentServerUrl.setText(currentUrl);
+        }
+    }
+
+    private void showServerConfigDialog() {
+        String currentUrl = com.ecobridge.data.remote.RetrofitClient.getBaseUrl();
+
+        android.widget.LinearLayout container = new android.widget.LinearLayout(this);
+        container.setOrientation(android.widget.LinearLayout.VERTICAL);
+        int pad = (int) (16 * getResources().getDisplayMetrics().density);
+        container.setPadding(pad, pad, pad, pad);
+
+        final android.widget.EditText input = new android.widget.EditText(this);
+        input.setHint(R.string.server_url_hint);
+        input.setText(currentUrl);
+        input.setSingleLine(true);
+        input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_URI);
+        container.addView(input);
+
+        // Preset Quick Buttons
+        android.widget.LinearLayout presets = new android.widget.LinearLayout(this);
+        presets.setOrientation(android.widget.LinearLayout.HORIZONTAL);
+        presets.setPadding(0, pad / 2, 0, 0);
+
+        android.widget.Button btnEmu = new android.widget.Button(this, null, com.google.android.material.R.attr.materialButtonOutlinedStyle);
+        btnEmu.setText(R.string.preset_emulator);
+        btnEmu.setTextSize(11);
+        btnEmu.setOnClickListener(v -> input.setText("http://10.0.2.2:8000/"));
+
+        android.widget.Button btnCloud = new android.widget.Button(this, null, com.google.android.material.R.attr.materialButtonOutlinedStyle);
+        btnCloud.setText(R.string.preset_render);
+        btnCloud.setTextSize(11);
+        btnCloud.setOnClickListener(v -> input.setText("https://ecobridge-backend.onrender.com/"));
+
+        android.widget.LinearLayout.LayoutParams lp = new android.widget.LinearLayout.LayoutParams(0, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+        lp.setMarginEnd(8);
+        presets.addView(btnEmu, lp);
+        presets.addView(btnCloud, new android.widget.LinearLayout.LayoutParams(0, android.widget.LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+        container.addView(presets);
+
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle(R.string.server_url_dialog_title)
+                .setView(container)
+                .setPositiveButton(R.string.btn_done, (dialog, which) -> {
+                    String entered = input.getText().toString().trim();
+                    if (!entered.isEmpty()) {
+                        if (!entered.startsWith("http://") && !entered.startsWith("https://")) {
+                            entered = "http://" + entered;
+                        }
+                        com.ecobridge.data.remote.RetrofitClient.setCustomBaseUrl(entered);
+                        updateServerUrlDisplay();
+                        android.widget.Toast.makeText(this, R.string.server_url_saved, android.widget.Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNeutralButton(R.string.btn_reset_default, (dialog, which) -> {
+                    com.ecobridge.data.remote.RetrofitClient.setCustomBaseUrl(null);
+                    updateServerUrlDisplay();
+                    android.widget.Toast.makeText(this, R.string.server_url_saved, android.widget.Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(R.string.btn_cancel, (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     private void highlightCurrentSelection() {

@@ -15,6 +15,7 @@
   "devDependencies": {
     "@ecobridge/eslint-config": "workspace:*",
     "@ecobridge/tsconfig": "workspace:*",
+    "@types/node": "^20.16.10",
     "tsup": "^8.1.0",
     "typescript": "^5.4.0"
   }

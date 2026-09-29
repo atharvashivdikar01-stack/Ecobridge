@@ -12,3 +12,5 @@ services:
         value: "10080"
       - key: CORS_ORIGINS
         value: "*"
+      - key: DEMO_MODE
+        value: "true"

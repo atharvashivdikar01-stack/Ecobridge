@@ -17,13 +17,50 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
     private static Retrofit retrofit = null;
+    private static String cachedBaseUrl = null;
 
-    public static ApiService getApiService() {
-        return getClient(BuildConfig.API_BASE_URL).create(ApiService.class);
+    public static String getBaseUrl() {
+        try {
+            android.content.SharedPreferences prefs = EcoBridgeApplication.getInstance()
+                    .getSharedPreferences("ecobridge_prefs", android.content.Context.MODE_PRIVATE);
+            String customUrl = prefs.getString("pref_server_url", null);
+            if (customUrl != null && !customUrl.trim().isEmpty()) {
+                String clean = customUrl.trim().replaceAll("/api/v1/?$", "");
+                return clean.endsWith("/") ? clean : clean + "/";
+            }
+        } catch (Throwable ignored) {}
+
+        String url = BuildConfig.API_BASE_URL;
+        String clean = url.replaceAll("/api/v1/?$", "");
+        return clean.endsWith("/") ? clean : clean + "/";
     }
 
-    public static Retrofit getClient(String baseUrl) {
-        if (retrofit == null) {
+    public static void setCustomBaseUrl(String url) {
+        try {
+            android.content.SharedPreferences prefs = EcoBridgeApplication.getInstance()
+                    .getSharedPreferences("ecobridge_prefs", android.content.Context.MODE_PRIVATE);
+            if (url == null || url.trim().isEmpty()) {
+                prefs.edit().remove("pref_server_url").apply();
+            } else {
+                prefs.edit().putString("pref_server_url", url.trim()).apply();
+            }
+            retrofit = null;
+            cachedBaseUrl = null;
+        } catch (Throwable ignored) {}
+    }
+
+    public static ApiService getApiService() {
+        return getClient(getBaseUrl()).create(ApiService.class);
+    }
+
+    public static synchronized Retrofit getClient(String baseUrl) {
+        String normalizedUrl = baseUrl.replaceAll("/api/v1/?$", "");
+        if (!normalizedUrl.endsWith("/")) {
+            normalizedUrl += "/";
+        }
+
+        if (retrofit == null || !normalizedUrl.equals(cachedBaseUrl)) {
+            cachedBaseUrl = normalizedUrl;
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(15, TimeUnit.SECONDS)
                     .readTimeout(20, TimeUnit.SECONDS)
@@ -37,7 +74,7 @@ public class RetrofitClient {
                     .build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
+                    .baseUrl(normalizedUrl)
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

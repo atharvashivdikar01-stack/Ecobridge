@@ -172,8 +172,8 @@
     <string name="payment_mode_label">पेमेंटचा प्रकार</string>
     <string name="payment_cash">रोख (CASH) - शिफारस केलेले</string>
     <string name="payment_digital">डिजिटल (UPI / बँक)</string>
-    <string name="btn_confirm_handover">हस्तांतरण व रोख रक्कम प्राप्त झाली</string>
-    <string name="handover_success">हस्तांतरण ऑडिट हॅशसह नोंदवले गेले!</string>
+    <string name="btn_confirm_handover">हस्तांतरण विनंती पाठवा</string>
+    <string name="handover_success">हस्तांतरण विनंती नोंदवली गेली! रिसायकलर पडताळणीची प्रतीक्षा आहे.</string>
 
     <!-- Tax & Income Tax Compliance (Fixed 5% GST) -->
     <string name="tax_compliance_title">कर व आयकर पूर्तता (Tax &amp; IT Compliance)</string>
@@ -207,13 +207,14 @@
     <string name="prompt_select_recycler">हस्तांतरणासाठी जवळचा अधिकृत रिसायकलर निवडा.</string>
     <string name="prompt_lot_created">स्क्रॅप लॉट यशस्वीरीत्या तयार झाला आणि फोनमध्ये ऑफलाइन सेव्ह झाला.</string>
     <string name="prompt_start_handover">काट्यावरील प्रत्यक्ष वजन नोंदवा आणि पेमेंट रकमेची खात्री करा.</string>
-    <string name="prompt_handover_confirmed">हस्तांतरण यशस्वीरीत्या नोंदवले गेले. कृपया आपली रोख रक्कम स्वीकारा.</string>
+    <string name="prompt_handover_confirmed">हस्तांतरण विनंती नोंदवली गेली. रिसायकलर द्वारे वजन आणि पडताळणीची प्रतीक्षा करा.</string>
 
     <!-- Traceability Lifecycle Statuses -->
     <string name="status_created">माल नोंदवला गेला</string>
     <string name="status_matched">रिसायकलर निवडला</string>
     <string name="status_offer_accepted">प्रस्ताव स्वीकारला</string>
     <string name="status_ready_handover">हस्तांतरणासाठी तयार</string>
+    <string name="status_handover_requested">हस्तांतरण विनंती पाठवली (पडताळणी प्रलंबित)</string>
     <string name="status_handover_confirmed">हस्तांतरण सत्यापित</string>
     <string name="status_payment_confirmed">पेमेंट मिळाले</string>
     <string name="status_received">रिसायकलरकडे जमा</string>
