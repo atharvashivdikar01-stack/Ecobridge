@@ -58,7 +58,11 @@ export type LedgerResponse = {
   transactions: RecyclerTransaction[];
 };
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+function getApiUrl(path: string): string {
+  const cleanPath = path.startsWith('/api/v1') ? path : `/api/v1${path.startsWith('/') ? path : `/${path}`}`;
+  const rawBase = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/api\/v1\/?$/, '').replace(/\/+$/, '');
+  return rawBase ? `${rawBase}${cleanPath}` : cleanPath;
+}
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const headers = new Headers(init?.headers);
@@ -67,7 +71,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     const token = window.localStorage.getItem('ecobridge_access_token');
     if (token) headers.set('Authorization', `Bearer ${token}`);
   }
-  const response = await fetch(`${baseUrl}${path}`, { ...init, headers });
+  const targetUrl = getApiUrl(path);
+  const response = await fetch(targetUrl, { ...init, headers });
   const body = await response.json().catch(() => ({}));
   if (!response.ok) {
     throw new Error(body?.message || body?.detail || `Request failed (${response.status})`);
