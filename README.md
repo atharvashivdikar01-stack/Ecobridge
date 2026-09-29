@@ -18,9 +18,11 @@ Informal waste pickers collect over 90% of India's electronic scrap but face opa
 
 ## 2. Key Features & Recent Upgrades
 
-### 🤖 On-Device AI Scrap Classifier (Embedded TFLite)
+### 🤖 On-Device AI Scrap Classifier (Embedded TFLite 2.16.1)
 - **Model**: `mobilenet_scrap_v1.tflite` (2.5 MB) deployed directly in `collector_app/app/src/main/assets/`.
-- **Inference**: On-device MobileNetV2 taking `[1, 224, 224, 3] float32` normalized camera bitmaps.
+- **Runtime**: Upgraded to TensorFlow Lite `2.16.1` with support library `0.4.4`.
+- **Async Pre-Warming**: `EcoBridgeApplication` pre-warms the `EwasteClassifier` singleton in a dedicated background worker thread at application startup, eliminating camera cold-start lag.
+- **Inference**: On-device MobileNetV2 taking `[1, 224, 224, 3] float32` normalized camera bitmaps with sub-150ms inference times.
 - **Scrap Classes**:
   1. `CRT Monitors & TVs` (Hazardous)
   2. `LCD / LED Panels` (Warning)
@@ -31,6 +33,18 @@ Informal waste pickers collect over 90% of India's electronic scrap but face opa
   7. `Mixed E-Waste Plastics` (Normal)
   8. `Other Electronic Scrap` (Normal)
 - **UI Experience**: Instant top-3 confidence prediction cards, safety hazard alerts before pricing, and a 3-button confirmation bar (*Scan Again*, *Choose Other Category*, *Confirm*).
+
+### 🧠 AI Model Training & Dataset Engineering (`ai/`)
+- **Master Dataset & Training Pipeline**: `ai/ECOBRIDGE_AI_Master_Dataset_and_Training.ipynb` provides end-to-end dataset curation, data augmentation, class balancing, and MobileNet training with quantization-aware export.
+- **Model Fine-Tuning Experiments**: `ai/AITrain2 (1).ipynb` covers progressive transfer learning, learning rate schedulers, and confusion matrix validation for e-waste scrap categories.
+- **Edge Deployment Exporter**: `ai/export_ondevice_classifier.py` converts trained TensorFlow / Keras models into INT8 / FP16 quantized TFLite assets compatible with low-end Android hardware.
+
+### 🏆 Smart India Hackathon (SIH 2026) Strategy Playbook (`docs/`)
+- **Winning PPT Overhaul**: `docs/EcoBridge_SIH_Winning_PPT_Strategy_and_Guide.docx` provides an evaluator-focused, slide-by-slide overhaul addressing Problem Statement 26229 (Kabadiwala Connect).
+- **3-Column Bento Grid Solution**: Restructures Slide 2 from blank space into a compelling *FROM (Informal Reality) -> TO (EcoBridge Architecture) -> USP* framework.
+- **TAM / SAM / SOM Market Sizing**: Complete economic feasibility analysis (₹26,000 Cr TAM, ₹6,500 Cr SAM, ₹325 Cr SOM) with 1.5% B2B EPR traceability revenue model.
+- **Second-by-Second Video Screenplay**: Exact 2.5-minute demo screenplay detailing the airplane-mode offline AI classification, GST calculation, note counter, and web portal verification.
+- **Playbook Generator Script**: `scripts/generate_sih_winning_guide_docx.py` automatically compiles and generates the 12-page Word playbook with modern typography, callout boxes, and custom tables.
 
 ### 🗣️ Vernacular Language & Studio Voice Engine
 - **Full Localization**: Complete string parity across Marathi (मराठी), Hindi (हिन्दी), and English (en).
@@ -58,7 +72,12 @@ Informal waste pickers collect over 90% of India's electronic scrap but face opa
 
 ```text
 Ecobridge-repo/
-├── collector_app/               # Native Android Client (Java 17, Room, WorkManager, TFLite)
+├── ai/                          # AI model training pipelines & Jupyter notebooks
+│   ├── ECOBRIDGE_AI_Master_Dataset_and_Training.ipynb # Master dataset & training notebook
+│   ├── AITrain2 (1).ipynb       # Model fine-tuning & transfer learning
+│   ├── export_ondevice_classifier.py # Quantization & TFLite export script
+│   └── labels.txt               # Class label mappings
+├── collector_app/               # Native Android Client (Java 17, Room, WorkManager, TFLite 2.16.1)
 │   ├── app/src/main/assets/     # mobilenet_scrap_v1.tflite & labels.txt
 │   ├── app/src/main/java/       # MVVM, Room Entities, DAOs, AI Classifier, Audio Engine
 │   ├── app/src/main/res/        # Vernacular strings (values, values-hi, values-mr), layouts
@@ -73,9 +92,13 @@ Ecobridge-repo/
 ├── recycler_portal/             # Certified Recycler Portal (Next.js, Tailwind CSS)
 ├── admin_dashboard/             # Platform & Regulator Admin Dashboard (Next.js)
 ├── packages/                    # Shared workspace libraries (api-contracts, crypto-traceability)
+├── docs/                        # Project documentation & strategy guides
+│   ├── EcoBridge_SIH_Winning_PPT_Strategy_and_Guide.docx # Master SIH 2026 Strategy Playbook
+│   └── EcoBridge_Jury_Prep.md   # Defense notes & jury Q&A
 ├── scripts/
 │   ├── test_end_to_end_flow.py  # Automated 3-phase closed-loop verification test
-│   └── generate_voice_script_docx.py # Voice artist Word script generator
+│   ├── generate_voice_script_docx.py # Voice artist Word script generator
+│   └── generate_sih_winning_guide_docx.py # SIH Strategy Playbook generator
 └── EcoBridge_Voice_Recording_Script_For_Voice_Artist.docx # Voice artist Word document
 ```
 

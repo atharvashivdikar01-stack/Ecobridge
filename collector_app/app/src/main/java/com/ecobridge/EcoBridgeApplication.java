@@ -53,6 +53,16 @@ public class EcoBridgeApplication extends Application {
         // Schedule periodic background sync with WorkManager
         com.ecobridge.sync.SyncWorker.schedulePeriodicSync(this);
 
+        // Pre-warm AI scrap classifier off the main thread for instant camera readiness
+        new Thread(() -> {
+            try {
+                com.ecobridge.ai.EwasteClassifier classifier = com.ecobridge.ai.EwasteClassifier.getInstance(this);
+                Log.i(TAG, "AI scrap classifier pre-warmed. Model ready: " + classifier.isModelLoaded());
+            } catch (Throwable t) {
+                Log.w(TAG, "Failed pre-warming classifier in background: " + t.getMessage());
+            }
+        }).start();
+
         Log.i(TAG, "EcoBridge initialized successfully in offline-first mode.");
     }
 
