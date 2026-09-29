@@ -1,0 +1,65 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+  workflow_dispatch:   # allows manual trigger from GitHub UI
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-backend:
+    name: Deploy Backend → Azure App Service
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Run tests before deploy
+        env:
+          PYTHONPATH: backend
+        run: python -m pytest backend/tests -q
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ secrets.AZURE_APP_NAME }}        # e.g. ecobridge-api
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: ./backend
+
+  deploy-recycler-portal:
+    name: Deploy Recycler Portal → Vercel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_RECYCLER_PROJECT_ID }}
+          working-directory: ./recycler_portal
+          vercel-args: '--prod'
+
+  deploy-admin-dashboard:
+    name: Deploy Admin Dashboard → Vercel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_ADMIN_PROJECT_ID }}
+          working-directory: ./admin_dashboard
+          vercel-args: '--prod'
